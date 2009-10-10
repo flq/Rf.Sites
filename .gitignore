@@ -1,0 +1,10 @@
+obj
+bin
+db data
+_ReSharper.*
+*.user
+*.resharper
+*.suo
+*.cache
+*.~
+*.swp

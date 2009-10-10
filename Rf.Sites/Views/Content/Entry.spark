@@ -1,0 +1,16 @@
+﻿<viewdata model="Rf.Sites.Models.ContentViewModel" />
+<use namespace="System.Linq" />
+<use namespace="Rf.Sites.Frame" />
+<use namespace="Rf.Sites.Actions" />
+<use namespace="Rf.Sites.Actions.Args" />
+<set Title='Model.Title'/>
+
+<div class="content_header">
+	<h1>${Title}</h1>
+	<p>${Model.WrittenInTime} (${Model.WrittenInPeriod})</p>
+	<p>Filed under 
+	${string.Join(", ", Model.Tags.Select(t => Html.ActionLink<ContentTagAction>(t, ArgsFrom.Value(t))).ToArray())}
+	</p>
+</div>
+
+${Model.Body}

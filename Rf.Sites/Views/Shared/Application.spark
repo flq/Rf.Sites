@@ -1,0 +1,21 @@
+﻿<global type='string' Title='"putting the f-word into reality"' />
+<html>
+  <head>
+    <meta name="copyright" content="All content hosted by this site is written by F Quednau. Reproduction only under consent" />
+    <title>realfiction - ${Title}</title>    
+    <link rel="shortcut icon" href="/files/rf.ico" type="image/x-icon" />
+    <link type="text/css" rel="stylesheet" media="all" href="/files/site.css" />
+  </head>
+  <body>
+    <div id="header">
+      <h1>realfiction</h1>
+      <p>Explore the intersections of fiction and reality. Question them. Leave them behind.</p>
+    </div>
+    
+    <div class="page">
+      <use content="view"/>
+    </div>
+     
+    <div id="footer">&copy; ${System.DateTime.Now.Year} realfiction</div>
+  </body>
+</html>
