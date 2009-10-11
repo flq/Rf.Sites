@@ -61,7 +61,8 @@ namespace Rf.Sites.Frame
 
     private static string getValue(ControllerContext ctx, string key)
     {
-      return ctx.RouteData.Values[key].ToString();
+      var value = ctx.RouteData.Values[key];
+      return value != null ? value.ToString() : "";
     }
 
     /// <summary>

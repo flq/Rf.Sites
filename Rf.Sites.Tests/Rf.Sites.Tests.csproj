@@ -63,6 +63,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="StructureMap, Version=2.5.4.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\StructureMap.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -71,7 +75,13 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\System.Data.SQLite.DLL</HintPath>
     </Reference>
+    <Reference Include="System.Web.Abstractions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Web.Mvc, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Routing">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -84,6 +94,7 @@
   <ItemGroup>
     <Compile Include="BasicCheck.cs" />
     <Compile Include="ContentStorage.cs" />
+    <Compile Include="Frame\ActionEnv.cs" />
     <Compile Include="Frame\AssertExtensions.cs" />
     <Compile Include="Frame\DbTestBase.cs" />
     <Compile Include="Frame\EntityMaker.cs" />

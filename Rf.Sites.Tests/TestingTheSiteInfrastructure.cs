@@ -1,7 +1,9 @@
 using NUnit.Framework;
 using NUnit.Framework.SyntaxHelpers;
+using Rf.Sites.Actions;
 using Rf.Sites.Frame;
 using Rf.Sites.Tests.Frame;
+using StructureMap;
 
 namespace Rf.Sites.Tests
 {
@@ -34,6 +36,16 @@ namespace Rf.Sites.Tests
     {
       string s = "34";
       s.SafeCast(1).ShouldBeEqualTo(34);
+    }
+
+    [Test]
+    public void CurrentConfigResolvesActions()
+    {
+      ActionEnv env = new ActionEnv();
+      var a1 = env.GetAction("contentindex");
+      a1.ShouldBeOfType<ContentIndexAction>();
+      var a2 = env.GetAction("Blablerg");
+      a2.ShouldBeOfType<UnknownAction>();
     }
 
   }
