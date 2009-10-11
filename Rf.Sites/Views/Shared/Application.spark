@@ -5,6 +5,9 @@
     <title>realfiction - ${Title}</title>    
     <link rel="shortcut icon" href="/files/rf.ico" type="image/x-icon" />
     <link type="text/css" rel="stylesheet" media="all" href="/files/site.css" />
+    <link type="text/css" rel="stylesheet" media="all" href="/files/sh_golden.css" />
+    <script type="text/javascript" src="/Scripts/jquery.js"></script>
+    <use content="head" />    
   </head>
   <body>
     <div id="header">

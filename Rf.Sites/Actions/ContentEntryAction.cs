@@ -4,6 +4,7 @@ using Rf.Sites.Domain;
 using Rf.Sites.Domain.Frame;
 using Rf.Sites.Frame;
 using Rf.Sites.Models;
+using Rf.Sites.Models.Extender;
 
 namespace Rf.Sites.Actions
 {
@@ -21,7 +22,8 @@ namespace Rf.Sites.Actions
     public override ActionResult Execute()
     {
       var content = repository[args.Id];
-      return createResult(content != null ? new ContentViewModel(content, null) : null);
+      return createResult(content != null ? 
+        new ContentViewModel(content, new[] { new CodeHighlightExtension() }) : null);
     }
   }
 }

@@ -5,6 +5,18 @@
 <use namespace="Rf.Sites.Actions.Args" />
 <set Title='Model.Title'/>
 
+<content name="head">
+  <test if="Model.NeedsCodeHighlighting">
+    <script type="text/javascript" src="/Scripts/sh_main.js"></script>
+    <script type="text/javascript" src="/Scripts/sh_csharp.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        sh_highlightDocument();
+      });
+    </script>
+  </test>
+</content>
+
 <div class="content_header">
 	<h1>${Title}</h1>
 	<p>${Model.WrittenInTime} (${Model.WrittenInPeriod})</p>

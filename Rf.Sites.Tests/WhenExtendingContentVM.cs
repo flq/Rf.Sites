@@ -3,7 +3,9 @@ using NUnit.Framework;
 using Rf.Sites.Domain;
 using Rf.Sites.Frame;
 using Rf.Sites.Models;
+using Rf.Sites.Models.Extender;
 using Rf.Sites.Tests.Support;
+using Rf.Sites.Tests.Frame;
 
 namespace Rf.Sites.Tests
 {
@@ -30,6 +32,23 @@ namespace Rf.Sites.Tests
                   Body = DataMother.GetContentSampleBody1()
                 };
       c.AssociateWithTag(new Tag());
+
+      var cVM = new ContentViewModel(c, new[] { new CodeHighlightExtension() });
+
+      cVM.Body.Contains("<pre class=\"sh_csharp\">").ShouldBeTrue();
+      cVM.NeedsCodeHighlighting.ShouldBeTrue();
+    }
+
+    [Test]
+    public void NoCodeMeansNoHighlightNeeded()
+    {
+      var c = new Content
+      {
+        Body = "<p>Hello</p>"
+      };
+      c.AssociateWithTag(new Tag());
+      var cVM = new ContentViewModel(c, new[] { new CodeHighlightExtension() });
+      cVM.NeedsCodeHighlighting.ShouldBeFalse();
     }
   }
 }

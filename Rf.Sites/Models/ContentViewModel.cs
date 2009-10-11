@@ -23,7 +23,9 @@ namespace Rf.Sites.Models
 
     public string WrittenInPeriod { get; private set; }
 
-    public string Body { get; private set; }
+    public string Body { get; set; }
+
+    public bool NeedsCodeHighlighting { get; set; }
 
     public IEnumerable<string> Tags { get; private set; }
 

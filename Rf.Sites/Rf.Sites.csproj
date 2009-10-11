@@ -95,7 +95,7 @@
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Models\Extender\ContentVmExtender.cs" />
+    <Compile Include="Models\Extender\CodeHighlightExtension.cs" />
     <Compile Include="Frame\FrameUtilities.cs" />
     <Compile Include="Frame\IAction.cs" />
     <Compile Include="Frame\PeriodOfTimeOutput.cs" />
@@ -116,10 +116,16 @@
   <ItemGroup>
     <Content Include="Default.aspx" />
     <Content Include="files\rf.ico" />
+    <Content Include="files\sh_matlab.css" />
     <Content Include="files\site.css" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\sh_csharp.js" />
+    <Content Include="Scripts\sh_javascript.js" />
+    <Content Include="Scripts\sh_main.js" />
+    <Content Include="Scripts\sh_ruby.js" />
+    <Content Include="Scripts\sh_xml.js" />
     <Content Include="Web.config" />
-    <Content Include="Scripts\jquery-1.3.2.js" />
+    <Content Include="Scripts\jquery.js" />
     <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
