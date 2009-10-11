@@ -95,6 +95,7 @@
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Models\Extender\ContentVmExtender.cs" />
     <Compile Include="Frame\FrameUtilities.cs" />
     <Compile Include="Frame\IAction.cs" />
     <Compile Include="Frame\PeriodOfTimeOutput.cs" />
@@ -107,7 +108,7 @@
     </Compile>
     <Compile Include="Models\ContentFragments.cs" />
     <Compile Include="Models\ContentViewModel.cs" />
-    <Compile Include="Frame\IPreViewFilter.cs" />
+    <Compile Include="Frame\IVMExtender.cs" />
     <Compile Include="Models\ContentFragmentViewModel.cs" />
     <Compile Include="Models\PageInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

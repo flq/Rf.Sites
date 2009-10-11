@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Web.Mvc;
-using System.Web.Mvc.Html;
 using Rf.Sites.Domain;
 using Rf.Sites.Frame;
 using System.Linq;
@@ -10,43 +8,40 @@ namespace Rf.Sites.Models
 {
   public class ContentViewModel
   {
-    private readonly Content content;
-
-    public ContentViewModel(Content content)
+    public ContentViewModel(Content content, IVmExtender<ContentViewModel>[] extender)
     {
-      this.content = content;
+      pullData(content);
+      if (extender != null)
+        callExtender(extender);
     }
 
-    public string Title
+    public string Title { get; private set; }
+
+    public string Keywords { get; private set; }
+
+    public string WrittenInTime { get; private set; }
+
+    public string WrittenInPeriod { get; private set; }
+
+    public string Body { get; private set; }
+
+    public IEnumerable<string> Tags { get; private set; }
+
+    private void callExtender(IEnumerable<IVmExtender<ContentViewModel>> extenders)
     {
-      get { return content.Title; }
+      foreach (var e in extenders)
+        e.Inspect(this);
     }
 
-    public string WrittenInTime
+    private void pullData(Content content)
     {
-      get { return content.Created.ToString("dd.MM.yyyy - hh:mm"); }
-    }
-
-    public string WrittenInPeriod
-    {
-      get
-      {
-        var o = new PeriodOfTimeOutput(content.Created, DateTime.Now).ToString();
-        return string.Format("{0}{1}", o, o == "today" ? "" : " ago");
-      }
-    }
-
-    public string Body
-    {
-      get { return content.Body; }
-    }
-
-    public IEnumerable<string> Tags
-    {
-      get
-      {
-        return content.Tags.Select(t => t.Name);
-      }
+      Title = content.Title;
+      WrittenInTime = content.Created.ToString("dd.MM.yyyy - hh:mm");
+      var o = new PeriodOfTimeOutput(content.Created, DateTime.Now).ToString();
+      WrittenInPeriod = string.Format("{0}{1}", o, o == "today" ? "" : " ago");
+      Body = content.Body;
+      Keywords = content.MetaKeyWords;
+      Tags = content.Tags.Select(t => t.Name);
     }
   }
 }

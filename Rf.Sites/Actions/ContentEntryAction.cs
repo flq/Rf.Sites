@@ -21,7 +21,7 @@ namespace Rf.Sites.Actions
     public override ActionResult Execute()
     {
       var content = repository[args.Id];
-      return createResult(content != null ? new ContentViewModel(content) : null);
+      return createResult(content != null ? new ContentViewModel(content, null) : null);
     }
   }
 }

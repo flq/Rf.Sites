@@ -103,10 +103,12 @@
     <Compile Include="Frame\TestRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Frame\TestNHSessionContext.cs" />
+    <Compile Include="Support\DataMother.cs" />
     <Compile Include="TestingTheSiteInfrastructure.cs" />
     <Compile Include="UsingTheTeaserGenerator.cs" />
     <Compile Include="WhenActionsAreUsed.cs" />
     <Compile Include="WhenContentIsUsed.cs" />
+    <Compile Include="WhenExtendingContentVM.cs" />
     <Compile Include="WhenPeriodOfPassedTimeIsOutput.cs" />
     <Compile Include="WhenThePaginatorIsUsed.cs" />
     <Compile Include="WhenTheRepositoryIsUsed.cs" />
@@ -120,6 +122,9 @@
       <Project>{72EC968F-1C03-4C03-A4FF-E7792E1127D7}</Project>
       <Name>Rf.Sites</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Support\contentmodsample1.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
