@@ -75,6 +75,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\System.Data.SQLite.DLL</HintPath>
     </Reference>
+    <Reference Include="System.ServiceModel">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ServiceModel.Web">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Web.Abstractions">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -103,6 +109,7 @@
     <Compile Include="Frame\TestRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Frame\TestNHSessionContext.cs" />
+    <Compile Include="DoingAtomFeeds.cs" />
     <Compile Include="Support\DataMother.cs" />
     <Compile Include="TestingTheSiteInfrastructure.cs" />
     <Compile Include="UsingTheTeaserGenerator.cs" />
