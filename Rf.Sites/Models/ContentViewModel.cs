@@ -43,7 +43,7 @@ namespace Rf.Sites.Models
       WrittenInPeriod = string.Format("{0}{1}", o, o == "today" ? "" : " ago");
       Body = content.Body;
       Keywords = content.MetaKeyWords;
-      Tags = content.Tags.Select(t => t.Name);
+      Tags = content.Tags != null ? content.Tags.Select(t => t.Name) : new string[] {};
     }
   }
 }

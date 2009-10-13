@@ -4,13 +4,11 @@ namespace Rf.Sites.Models
 {
   public class ContentFragmentViewModel
   {
-    private readonly DateTime created;
-
     public ContentFragmentViewModel(int id, string title, DateTime created, string teaser)
     {
       Id = id;
       Title = title;
-      this.created = created;
+      Created = created;
       Teaser = teaser;
     }
 
@@ -20,7 +18,9 @@ namespace Rf.Sites.Models
 
     public string WrittenInTime
     {
-      get { return created.ToString("dd.MM.yyyy - hh:mm"); }
+      get { return Created.ToString("dd.MM.yyyy - hh:mm"); }
     }
+
+    public DateTime Created { get; private set; }
   }
 }

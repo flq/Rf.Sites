@@ -56,6 +56,9 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.ServiceModel.Web">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Web.Mvc, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -90,11 +93,14 @@
     <Compile Include="Frame\AbstractAction.cs" />
     <Compile Include="Actions\Args\IDActionArgs.cs" />
     <Compile Include="Frame\Constants.cs" />
+    <Compile Include="Frame\ContentToAtomFeed.cs" />
     <Compile Include="Frame\ControllerFactory.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Frame\Environment.cs" />
+    <Compile Include="Frame\IResponseWriter.cs" />
     <Compile Include="Models\Extender\CodeHighlightExtension.cs" />
     <Compile Include="Frame\FrameUtilities.cs" />
     <Compile Include="Frame\IAction.cs" />

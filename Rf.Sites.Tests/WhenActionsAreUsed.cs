@@ -19,7 +19,7 @@ namespace Rf.Sites.Tests
     public void ContentEntryReturnsLoadedContentInViewModel()
     {
       var mock = new Mock<IRepository<Content>>();
-      mock.Setup(rep => rep[1]).Returns(new Content(1) {Title = "Foo"});
+      mock.Setup(rep => rep[1]).Returns(new Content(1) {Title = "Foo", Body = "Bar"});
 
       var action = new ContentEntryAction(ArgsFrom.Id(1), mock.Object);
       var model = action.Execute().GetModelFromAction<ContentViewModel>();
