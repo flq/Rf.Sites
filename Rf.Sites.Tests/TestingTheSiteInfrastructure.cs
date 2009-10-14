@@ -1,7 +1,9 @@
 using NUnit.Framework;
 using NUnit.Framework.SyntaxHelpers;
 using Rf.Sites.Actions;
+using Rf.Sites.Domain;
 using Rf.Sites.Frame;
+using Rf.Sites.Models;
 using Rf.Sites.Tests.Frame;
 using StructureMap;
 
@@ -13,11 +15,12 @@ namespace Rf.Sites.Tests
     [Test]
     public void OneCanTokenizeAnActionClassName()
     {
-      var result = "HelloThereAction".PasCalCaseTokenization();
-      Assert.That(result, Has.Length(3));
+      var result = "HelloThereBAction".PasCalCaseTokenization();
+      Assert.That(result, Has.Length(4));
       Assert.AreEqual("Hello", result[0]);
       Assert.AreEqual("There", result[1]);
-      Assert.AreEqual("Action", result[2]);
+      Assert.AreEqual("B", result[2]);
+      Assert.AreEqual("Action", result[3]);
     }
 
     [Test]
@@ -34,8 +37,7 @@ namespace Rf.Sites.Tests
     [Test]
     public void SafeCastWorksWithIntegers()
     {
-      string s = "34";
-      s.SafeCast(1).ShouldBeEqualTo(34);
+      "34".SafeCast(1).ShouldBeEqualTo(34);
     }
 
     [Test]
@@ -48,5 +50,21 @@ namespace Rf.Sites.Tests
       a2.ShouldBeOfType<UnknownAction>();
     }
 
+    [Test]
+    public void ConfigEnsuresProvisionOfContainer()
+    {
+      ActionEnv env = new ActionEnv();
+      var a = env.GetAction<ContentIndexAction>();
+      ((AbstractAction)a).Container.ShouldNotBeNull();
+    }
+
+    [Test]
+    public void EnvEnsuresExistenceOfVmExtender()
+    {
+      ActionEnv env = new ActionEnv();
+      var cnt = new Content { Body = "<code>jo</code>" };
+      var vm = env.Container.With(cnt).GetInstance<ContentViewModel>();
+      vm.Body.Contains("<pre ").ShouldBeTrue();
+    }
   }
 }

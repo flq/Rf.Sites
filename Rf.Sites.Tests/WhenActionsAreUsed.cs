@@ -9,6 +9,7 @@ using Rf.Sites.Domain;
 using Rf.Sites.Domain.Frame;
 using Rf.Sites.Models;
 using Rf.Sites.Tests.Frame;
+using StructureMap;
 
 namespace Rf.Sites.Tests
 {
@@ -21,7 +22,9 @@ namespace Rf.Sites.Tests
       var mock = new Mock<IRepository<Content>>();
       mock.Setup(rep => rep[1]).Returns(new Content(1) {Title = "Foo", Body = "Bar"});
 
-      var action = new ContentEntryAction(ArgsFrom.Id(1), mock.Object);
+      var cnt = new Container();
+
+      var action = new ContentEntryAction(ArgsFrom.Id(1), mock.Object) {Container = cnt};
       var model = action.Execute().GetModelFromAction<ContentViewModel>();
       
       model.Title.ShouldBeEqualTo("Foo");

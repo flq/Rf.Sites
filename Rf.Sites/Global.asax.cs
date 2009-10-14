@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.Routing;
-using Rf.Sites.Domain.Frame;
+﻿using System.Web;
 using Rf.Sites.Frame;
 using StructureMap;
 
@@ -16,11 +10,7 @@ namespace Rf.Sites
 
     protected void Application_Start()
     {
-      ObjectFactory.Initialize(i =>
-                                 {
-                                   i.AddRegistry<SiteRegistry>();
-                                   i.AddRegistry<DomainRegistry>();
-                                 });
+      ObjectFactory.Initialize(i => i.AddRegistry<SiteRegistry>());
       ObjectFactory.GetInstance<Startup>();
     }
   }

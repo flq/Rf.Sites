@@ -23,7 +23,8 @@ namespace Rf.Sites.Actions
     {
       var content = repository[args.Id];
       return createResult(content != null ? 
-        new ContentViewModel(content, new[] { new CodeHighlightExtension() }) : null);
+        Container.With(content).GetInstance<ContentViewModel>() :
+        null);
     }
   }
 }

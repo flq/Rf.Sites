@@ -3,6 +3,7 @@ using Rf.Sites.Domain;
 using Rf.Sites.Domain.Frame;
 using Spark;
 using Spark.Web.Mvc;
+using StructureMap;
 using StructureMap.Configuration.DSL;
 
 namespace Rf.Sites.Frame
@@ -15,13 +16,10 @@ namespace Rf.Sites.Frame
         .TheDefaultIsConcreteType<ControllerFactory>();
       ForRequestedType<IViewEngine>()
         .TheDefaultIsConcreteType<SparkViewFactory>();
-      ForRequestedType<ISparkSettings>()
-        .TheDefault.Is.ConstructedBy(() => new SparkSettings()
-                                             .AddNamespace("System.Linq")
-                                             .AddNamespace("Rf.Sites.Frame")
-                                             .AddNamespace("Rf.Sites.Actions"));
 
-      //SelectConstructor(() => new SparkViewFactory());
+      SelectConstructor(() => new SparkViewFactory());
+
+      SetAllProperties(s=>s.OfType<IContainer>());
 
       ForRequestedType<IController>()
         .TheDefaultIsConcreteType<ActionDispatcher>();
@@ -39,6 +37,7 @@ namespace Rf.Sites.Frame
                s.AssemblyContainingType<SiteRegistry>();
                s.AddAllTypesOf<IAction>()
                  .NameBy(t => t.Name.Replace("Action", "").ToLowerInvariant());
+               s.AddAllTypesOf(typeof (IVmExtender<>));
              });
       Scan(s=>
              {

@@ -23,7 +23,12 @@ namespace Rf.Sites.Tests.Frame
             });
     }
 
-    private ControllerContext getControllerContext()
+    public Container Container
+    {
+      get { return container; }
+    }
+
+    private static ControllerContext getControllerContext()
     {
       var request = new Mock<HttpRequestBase>();
       request.Setup(r => r.HttpMethod).Returns("GET");
@@ -36,7 +41,12 @@ namespace Rf.Sites.Tests.Frame
 
     public IAction GetAction(string actionKey)
     {
-      return container.GetInstance<IAction>(actionKey);
+      return Container.GetInstance<IAction>(actionKey);
+    }
+
+    public IAction GetAction<T>() where T : IAction
+    {
+      return Container.GetInstance<IAction>(typeof(T).Name.ToLowerInvariant());
     }
   }
 }

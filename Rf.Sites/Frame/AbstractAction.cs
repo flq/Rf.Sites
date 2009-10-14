@@ -1,4 +1,5 @@
 using System.Web.Mvc;
+using StructureMap;
 
 namespace Rf.Sites.Frame
 {
@@ -8,6 +9,8 @@ namespace Rf.Sites.Frame
     {
       return createResult();
     }
+
+    public IContainer Container { get; set; }
 
     protected ViewResult createResult()
     {
