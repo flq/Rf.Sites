@@ -20,6 +20,7 @@ namespace Rf.Sites.Frame
       SelectConstructor(() => new SparkViewFactory());
 
       SetAllProperties(s=>s.OfType<IContainer>());
+      SetAllProperties(s => s.OfType<Environment>());
 
       ForRequestedType<IController>()
         .TheDefaultIsConcreteType<ActionDispatcher>();
@@ -31,6 +32,8 @@ namespace Rf.Sites.Frame
 
       ForRequestedType<IAction>()
         .MissingNamedInstanceIs.TheInstanceNamed("unknown");
+
+      ForSingletonOf<Environment>().TheDefault.IsThis(Startup.Environment);
 
       Scan(s =>
              {

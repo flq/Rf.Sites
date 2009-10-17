@@ -7,11 +7,11 @@ using System.Linq;
 
 namespace Rf.Sites.Frame
 {
-  public class ContentToAtomFeed : IResponseWriter
+  public class ContentToFeedResponse : IResponseWriter
   {
     private readonly SyndicationFeed feed;
 
-    public ContentToAtomFeed(ContentFragments fragments, Environment env)
+    public ContentToFeedResponse(ContentFragments fragments, Environment env)
     {
       var items = fragments
         .Select(vm => 
@@ -36,10 +36,10 @@ namespace Rf.Sites.Frame
       get { return "application/rss+xml"; }
     }
 
-    public void WriteTo(Stream stream)
+    public void WriteTo(TextWriter writer)
     {
       var s = new XmlWriterSettings { Indent = true };
-      using (var xw = XmlWriter.Create(stream, s))
+      using (var xw = XmlWriter.Create(writer, s))
         feed.GetAtom10Formatter().WriteTo(xw);
     }
   }

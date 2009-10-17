@@ -16,7 +16,8 @@ namespace Rf.Sites.Tests.Frame
     public static string GetResponseWriterOutput(this IResponseWriter writer)
     {
       MemoryStream ms = new MemoryStream();
-      writer.WriteTo(ms);
+      TextWriter w = new StreamWriter(ms);
+      writer.WriteTo(w);
       ms.Seek(0, SeekOrigin.Begin);
       return new StreamReader(ms).ReadToEnd();
     }

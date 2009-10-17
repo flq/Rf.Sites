@@ -11,6 +11,7 @@ namespace Rf.Sites.Frame
     }
 
     public IContainer Container { get; set; }
+    public Environment Environment { get; set; }
 
     protected ViewResult createResult()
     {

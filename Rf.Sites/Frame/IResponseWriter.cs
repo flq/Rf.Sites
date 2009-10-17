@@ -9,6 +9,6 @@ namespace Rf.Sites.Frame
   public interface IResponseWriter
   {
     string ContentType { get; }
-    void WriteTo(Stream stream);
+    void WriteTo(TextWriter stream);
   }
 }

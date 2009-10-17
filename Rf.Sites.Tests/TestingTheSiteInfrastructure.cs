@@ -59,6 +59,14 @@ namespace Rf.Sites.Tests
     }
 
     [Test]
+    public void ConfigEnsuresProvisionOfEnvironment()
+    {
+      ActionEnv env = new ActionEnv();
+      var a = env.GetAction<ContentIndexAction>();
+      ((AbstractAction)a).Environment.ShouldNotBeNull();
+    }
+
+    [Test]
     public void EnvEnsuresExistenceOfVmExtender()
     {
       ActionEnv env = new ActionEnv();

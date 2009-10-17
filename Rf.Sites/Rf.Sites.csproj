@@ -78,6 +78,8 @@
     <Compile Include="Actions\ContentIndexAction.cs" />
     <Compile Include="Actions\ContentMonthAction.cs" />
     <Compile Include="Actions\ContentYearAction.cs" />
+    <Compile Include="Actions\RssIndexAction.cs" />
+    <Compile Include="Frame\AbstractFeed.cs" />
     <Compile Include="Frame\AbstractPagedContent.cs" />
     <Compile Include="Actions\Args\ActionArgs.cs" />
     <Compile Include="Actions\Args\ArgsFrom.cs" />
@@ -93,12 +95,13 @@
     <Compile Include="Frame\AbstractAction.cs" />
     <Compile Include="Actions\Args\IDActionArgs.cs" />
     <Compile Include="Frame\Constants.cs" />
-    <Compile Include="Frame\ContentToAtomFeed.cs" />
+    <Compile Include="Frame\ContentToFeedResponse.cs" />
     <Compile Include="Frame\ControllerFactory.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Frame\CustomActionResult.cs" />
     <Compile Include="Frame\Environment.cs" />
     <Compile Include="Frame\IResponseWriter.cs" />
     <Compile Include="Models\Extender\CodeHighlightExtension.cs" />

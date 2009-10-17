@@ -1,3 +1,5 @@
+using System;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Rf.Sites.Domain.Frame;
@@ -17,6 +19,22 @@ namespace Rf.Sites.Frame
       Paginator.SetPaginatorCountCache(cnt.GetInstance<ICache>());
 
       registerRoutes(RouteTable.Routes);
+    }
+
+    public static Environment Environment
+    {
+      get
+      {
+        // from stackoverflow
+        // {0}://{1}{2}", Request.Url.Scheme, Request.Url.Authority, urlHelper.Content("~"));
+        return new Environment
+                 {
+                   AbsoluteBaseUrl = new Uri("http://realfiction.net"), // this needs some thinking about
+                   AuthorName = "Frank Quednau",
+                   CopyrightNotice = "All content hosted by this site is written by F Quednau. Reproduction only under consent",
+                   FeedItemsPerFeed = 10
+                 };
+      }
     }
 
     private static void registerRoutes(RouteCollection routes)

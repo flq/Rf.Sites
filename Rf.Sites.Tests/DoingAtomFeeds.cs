@@ -39,7 +39,7 @@ namespace Rf.Sites.Tests
     [Test]
     public void ContentToAtomFeedworksWithContent()
     {
-      var f = new ContentToAtomFeed(fragments, env);
+      var f = new ContentToFeedResponse(fragments, env);
       f.ContentType.ShouldBeEqualTo("application/rss+xml");
       var output = f.GetResponseWriterOutput();
       output.Length.ShouldBeGreaterThan(0);
@@ -52,7 +52,7 @@ namespace Rf.Sites.Tests
     [Test]
     public void ItemTimeIsReflected()
     {
-      var f = new ContentToAtomFeed(fragments, env);
+      var f = new ContentToFeedResponse(fragments, env);
       var feed = f.GetResponseWriterOutput().GetAsSyndicationFeed();
 
       var items = feed.Items.ToArray();
@@ -62,7 +62,7 @@ namespace Rf.Sites.Tests
     [Test]
     public void FeedLastUpdateIsNewestItem()
     {
-      var f = new ContentToAtomFeed(fragments, env);
+      var f = new ContentToFeedResponse(fragments, env);
       var feed = f.GetResponseWriterOutput().GetAsSyndicationFeed();
 
       feed.LastUpdatedTime.ShouldBeEqualTo(new DateTimeOffset(new DateTime(2009, 1, 1)));
