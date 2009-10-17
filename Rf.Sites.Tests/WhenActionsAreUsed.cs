@@ -1,15 +1,20 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Text;
 using System.Web.Mvc;
+using System.Xml;
 using Moq;
 using NUnit.Framework;
 using Rf.Sites.Actions;
 using Rf.Sites.Actions.Args;
 using Rf.Sites.Domain;
 using Rf.Sites.Domain.Frame;
+using Rf.Sites.Frame;
 using Rf.Sites.Models;
 using Rf.Sites.Tests.Frame;
 using StructureMap;
+using Moq.Protected;
 
 namespace Rf.Sites.Tests
 {
@@ -70,6 +75,41 @@ namespace Rf.Sites.Tests
       var model = action.Execute().GetModelFromAction<List<ContentFragmentViewModel>>();
       model.ShouldHaveCount(1);
 
+    }
+
+    [Test]
+    public void RssActionStructureWorksAsOutlined()
+    {
+      var finalResponse = new StringBuilder();
+      ActionEnv env = new ActionEnv();
+      env.ControllerCtxMock.ResponseMock.Setup(rB => rB.Output).Returns(new StringWriter(finalResponse));
+
+      var mock = new Mock<AbstractFeed>();
+      mock.Protected().Setup<ContentFragments>("produceFragments")
+        .Returns(
+        () => new ContentFragments(new List<ContentFragmentViewModel>
+                                     {
+                                       new ContentFragmentViewModel(1, "Hello", DateTime.Now, "Blabla")
+                                     })
+                {
+                  Title = "The Feed"
+                });
+
+      
+      var action = env.GetAction(mock.Object);
+      var result = action.Execute();
+      result.ExecuteResult(env.ControllerCtxMock.ControllerContext);
+
+      env.ControllerCtxMock.ResponseMock.VerifySet(rB => rB.ContentType);
+      try
+      {
+        XmlDocument d = new XmlDocument();
+        d.LoadXml(finalResponse.ToString());
+      }
+      catch
+      {
+        Assert.Fail("Output was not XML.");
+      }
     }
 
   }

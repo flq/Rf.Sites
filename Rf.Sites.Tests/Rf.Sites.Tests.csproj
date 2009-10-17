@@ -102,6 +102,7 @@
     <Compile Include="ContentStorage.cs" />
     <Compile Include="Frame\ActionEnv.cs" />
     <Compile Include="Frame\AssertExtensions.cs" />
+    <Compile Include="Frame\ControllerCtxMock.cs" />
     <Compile Include="Frame\DbTestBase.cs" />
     <Compile Include="Frame\EntityMaker.cs" />
     <Compile Include="Frame\InMemorySessions.cs" />

@@ -1,7 +1,10 @@
 using System.IO;
 using System.ServiceModel.Syndication;
+using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 using System.Xml;
+using Moq;
 using Rf.Sites.Frame;
 
 namespace Rf.Sites.Tests.Frame
@@ -25,6 +28,20 @@ namespace Rf.Sites.Tests.Frame
     public static SyndicationFeed GetAsSyndicationFeed(this string feed)
     {
       return SyndicationFeed.Load(XmlReader.Create(new StringReader(feed)));
+    }
+
+    public static ControllerCtxMock StartControllerContextMock()
+    {
+      // Courtesy of Phil Haack through stackoverflow
+      var request = new Mock<HttpRequestBase>();
+      request.Setup(r => r.HttpMethod).Returns("GET");
+      var response = new Mock<HttpResponseBase>();
+      var mockHttpContext = new Mock<HttpContextBase>();
+      mockHttpContext.Setup(c => c.Request).Returns(request.Object);
+      mockHttpContext.Setup(c => c.Response).Returns(response.Object);
+      var controllerContext = new ControllerContext(mockHttpContext.Object
+      , new RouteData(), new Mock<ControllerBase>().Object);
+      return new ControllerCtxMock(controllerContext, request, response, mockHttpContext);
     }
   }
 }

@@ -5,7 +5,7 @@ namespace Rf.Sites.Frame
 {
   public abstract class AbstractFeed : AbstractAction
   {
-    public override ActionResult Execute()
+    public override sealed ActionResult Execute()
     {
       var feedResponse = Container.With(produceFragments())
         .GetInstance<ContentToFeedResponse>();
