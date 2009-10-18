@@ -10,6 +10,12 @@ namespace Rf.Sites.Frame
 {
   public class Startup
   {
+    /// <summary>
+    /// Used when there is no HTTP context available,
+    /// e.g. in tests
+    /// </summary>
+    private const string fallbackAbsoluteRoot = "http://localhost";
+
     public Startup(IContainer cnt)
     {
       ControllerBuilder.Current
@@ -25,14 +31,22 @@ namespace Rf.Sites.Frame
     {
       get
       {
+        string url = fallbackAbsoluteRoot;
+        if (HttpContext.Current != null && HttpContext.Current.Request != null)
+        {
+          var req = HttpContext.Current.Request;
+          url = string.Format("{0}://{1}", req.Url.Scheme, req.Url.Authority);
+        }
+
         // from stackoverflow
         // {0}://{1}{2}", Request.Url.Scheme, Request.Url.Authority, urlHelper.Content("~"));
         return new Environment
                  {
-                   AbsoluteBaseUrl = new Uri("http://realfiction.net"), // this needs some thinking about
+                   AbsoluteBaseUrl = new Uri(url),
                    AuthorName = "Frank Quednau",
                    CopyrightNotice = "All content hosted by this site is written by F Quednau. Reproduction only under consent",
-                   FeedItemsPerFeed = 10
+                   FeedItemsPerFeed = 10,
+                   ItemsPerPage = 5
                  };
       }
     }

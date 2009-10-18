@@ -9,5 +9,7 @@ namespace Rf.Sites.Frame
     public string CopyrightNotice { get; set; }
 
     public int FeedItemsPerFeed { get; set; }
+    public int ItemsPerPage { get; set; }
+
   }
 }

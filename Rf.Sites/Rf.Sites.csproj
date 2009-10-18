@@ -79,6 +79,7 @@
     <Compile Include="Actions\ContentMonthAction.cs" />
     <Compile Include="Actions\ContentYearAction.cs" />
     <Compile Include="Actions\RssIndexAction.cs" />
+    <Compile Include="Actions\RssTagAction.cs" />
     <Compile Include="Frame\AbstractFeed.cs" />
     <Compile Include="Frame\AbstractPagedContent.cs" />
     <Compile Include="Actions\Args\ActionArgs.cs" />

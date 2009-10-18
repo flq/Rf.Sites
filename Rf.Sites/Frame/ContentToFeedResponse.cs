@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.ServiceModel.Syndication;
 using System.Xml;
+using Rf.Sites.Actions;
 using Rf.Sites.Models;
 using System.Linq;
 
@@ -13,9 +14,11 @@ namespace Rf.Sites.Frame
 
     public ContentToFeedResponse(ContentFragments fragments, Environment env)
     {
+      var urlToContentItem = FrameUtilities.RelativeUrlToAction<ContentEntryAction>() + "/";
+
       var items = fragments
         .Select(vm => 
-          new SyndicationItem(vm.Title, vm.Teaser, new Uri(env.AbsoluteBaseUrl, vm.Id.ToString()))
+          new SyndicationItem(vm.Title, vm.Teaser, new Uri(env.AbsoluteBaseUrl, urlToContentItem + vm.Id.ToString()))
             {
               LastUpdatedTime = new DateTimeOffset(vm.Created)
             });

@@ -21,6 +21,7 @@ namespace Rf.Sites.Frame
       var p = Paginator.For(Model)
         .SetPageToLoad(args.Page)
         .SetCacheKey(PaginatorCacheKey)
+        .SetPageSize(Environment.ItemsPerPage)
         .Get();
 
       return createResult(

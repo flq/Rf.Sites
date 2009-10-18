@@ -22,6 +22,13 @@ namespace Rf.Sites.Frame
       return helper.ActionLink(linkText, tokens[1], tokens[0], args.ToDictionary(), null);
     }
 
+    public static string RelativeUrlToAction<T>() where T : IAction
+    {
+
+      var str = typeof (T).Name.Replace("Action", "").PasCalCaseTokenization();
+      return "/" + string.Join("/", str);
+    }
+
     public static string[] PasCalCaseTokenization(this string name)
     {
       var chars = name.ToCharArray();
