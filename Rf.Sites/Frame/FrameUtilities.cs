@@ -96,6 +96,13 @@ namespace Rf.Sites.Frame
       }
       return defaultvalue;
     }
+
+    public static void Apply<T>(this IEnumerable<IVmExtender<T>> extenders, T viewModel)
+    {
+      if (extenders != null)
+        foreach (var e in extenders)
+          e.Inspect(viewModel);
+    }
   }
 
 

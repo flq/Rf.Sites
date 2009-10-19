@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using Rf.Sites.Domain;
 using Rf.Sites.Frame;
 using System.Linq;
+using StructureMap;
 
 namespace Rf.Sites.Models
 {
   public class ContentViewModel
   {
+    
     public ContentViewModel(Content content, IVmExtender<ContentViewModel>[] extender)
     {
       pullData(content);
-      if (extender != null)
-        callExtender(extender);
+      extender.Apply(this);
     }
 
     public string Title { get; private set; }
@@ -27,13 +28,11 @@ namespace Rf.Sites.Models
 
     public bool NeedsCodeHighlighting { get; set; }
 
+    public int CommentCount { get; set; }
+
     public IEnumerable<string> Tags { get; private set; }
 
-    private void callExtender(IEnumerable<IVmExtender<ContentViewModel>> extenders)
-    {
-      foreach (var e in extenders)
-        e.Inspect(this);
-    }
+    public IEnumerable<CommentVM> Comments { get; private set; }
 
     private void pullData(Content content)
     {
@@ -44,6 +43,9 @@ namespace Rf.Sites.Models
       Body = content.Body;
       Keywords = content.MetaKeyWords;
       Tags = content.Tags != null ? content.Tags.Select(t => t.Name) : new string[] {};
+      
+      CommentCount = content.CommentCount;
+
     }
   }
 }

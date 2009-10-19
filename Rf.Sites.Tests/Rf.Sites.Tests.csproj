@@ -120,6 +120,7 @@
     <Compile Include="WhenPeriodOfPassedTimeIsOutput.cs" />
     <Compile Include="WhenThePaginatorIsUsed.cs" />
     <Compile Include="WhenTheRepositoryIsUsed.cs" />
+    <Compile Include="WhenWorkingWithViewModels.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Rf.Sites.Domain\Rf.Sites.Domain.csproj">
