@@ -3,15 +3,23 @@ using System.Collections.Generic;
 using Rf.Sites.Domain;
 using Rf.Sites.Frame;
 using System.Linq;
-using StructureMap;
 
 namespace Rf.Sites.Models
 {
   public class ContentViewModel
   {
-    
+    private readonly IObjectConverter<Comment, CommentVM> converter;
+
     public ContentViewModel(Content content, IVmExtender<ContentViewModel>[] extender)
+      : this(content,extender,ObjectConverter.From((Comment c)=>new CommentVM(c,null)))
+    {}
+
+    public ContentViewModel(
+      Content content, 
+      IVmExtender<ContentViewModel>[] extender,
+      IObjectConverter<Comment,CommentVM> converter)
     {
+      this.converter = converter;
       pullData(content);
       extender.Apply(this);
     }
@@ -45,6 +53,10 @@ namespace Rf.Sites.Models
       Tags = content.Tags != null ? content.Tags.Select(t => t.Name) : new string[] {};
       
       CommentCount = content.CommentCount;
+      if (CommentCount == 0) return;
+
+      Comments = from cmt in content.Comments
+                 select converter.Convert(cmt);
 
     }
   }

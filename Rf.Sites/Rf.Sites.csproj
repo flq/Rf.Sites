@@ -104,6 +104,7 @@
     </Compile>
     <Compile Include="Frame\CustomActionResult.cs" />
     <Compile Include="Frame\Environment.cs" />
+    <Compile Include="Frame\IObjectConverter.cs" />
     <Compile Include="Frame\IResponseWriter.cs" />
     <Compile Include="Models\CommentVM.cs" />
     <Compile Include="Models\Extender\CodeHighlightExtension.cs" />

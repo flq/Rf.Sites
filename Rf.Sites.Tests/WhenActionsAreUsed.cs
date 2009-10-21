@@ -15,6 +15,7 @@ using Rf.Sites.Models;
 using Rf.Sites.Tests.Frame;
 using StructureMap;
 using Moq.Protected;
+using Environment=Rf.Sites.Frame.Environment;
 
 namespace Rf.Sites.Tests
 {
@@ -48,7 +49,7 @@ namespace Rf.Sites.Tests
       c2.AssociateWithTag(new Tag { Name = "Fluuoo" });
       rep.Add(c2);
 
-      var action = new ContentTagAction(ArgsFrom.Value("Foo"), rep);
+      var action = new ContentTagAction(ArgsFrom.Value("Foo"), rep) { Environment = new Environment { ItemsPerPage = 5}};
       var model = action.Execute().GetModelFromAction<ContentFragments>();
       model.ShouldHaveCount(1);
       model.Title.ShouldBeEqualTo("Foo");
@@ -71,7 +72,8 @@ namespace Rf.Sites.Tests
       }
 
       Session.Clear();
-      var action = new ContentTagAction(ArgsFrom.Value(tag.Name), new Repository<Content>(factory));
+      var action = new ContentTagAction(ArgsFrom.Value(tag.Name), new Repository<Content>(factory))
+        { Environment = new Environment { ItemsPerPage = 5}};
       var model = action.Execute().GetModelFromAction<List<ContentFragmentViewModel>>();
       model.ShouldHaveCount(1);
 

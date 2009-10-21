@@ -2,17 +2,21 @@ using System;
 using System.Security.Cryptography;
 using System.Text;
 using Rf.Sites.Domain;
+using Rf.Sites.Frame;
 
 namespace Rf.Sites.Models
 {
   public class CommentVM
   {
-    private const string gravatarRoot = "http://www.gravatar.com/avatar/";
+    private const string gravatarRoot = "http://www.gravatar.com/avatar/{0}?s=80&d=identicon";
     private static readonly Random randomizer = new Random();
 
-    public CommentVM(Comment comment)
+    public CommentVM(Comment comment) : this(comment,null) { }
+
+    public CommentVM(Comment comment, IVmExtender<CommentVM>[] extender)
     {
       setUp(comment);
+      extender.Apply(this);
     }
 
     public string Website { get; private set; }
@@ -38,7 +42,7 @@ namespace Rf.Sites.Models
       var builder = new StringBuilder();
       Array.ForEach(theHash, b => builder.Append(b.ToString("x2")));
 
-      GravatarImageSource = string.Concat(gravatarRoot, builder);
+      GravatarImageSource = string.Format(gravatarRoot, builder);
     }
   }
 }
