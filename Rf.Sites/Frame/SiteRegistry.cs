@@ -1,6 +1,8 @@
 using System.Web.Mvc;
 using Rf.Sites.Domain;
 using Rf.Sites.Domain.Frame;
+using Rf.Sites.Models;
+using Rf.Sites.Models.Extender;
 using Spark;
 using Spark.Web.Mvc;
 using StructureMap;
@@ -34,6 +36,9 @@ namespace Rf.Sites.Frame
         .MissingNamedInstanceIs.TheInstanceNamed("unknown");
 
       ForSingletonOf<Environment>().TheDefault.IsThis(Startup.Environment);
+
+      ForRequestedType<IObjectConverter<Comment, CommentVM>>()
+        .TheDefaultIsConcreteType<CommentToVMConverter>();
 
       Scan(s =>
              {

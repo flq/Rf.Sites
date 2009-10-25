@@ -74,5 +74,22 @@ namespace Rf.Sites.Tests
       var vm = env.Container.With(cnt).GetInstance<ContentViewModel>();
       vm.Body.Contains("<pre ").ShouldBeTrue();
     }
+
+    [Test]
+    public void EnvObtainsTheCommentToVMConverter()
+    {
+      ActionEnv env = new ActionEnv();
+      var oC = env.Container.GetInstance<IObjectConverter<Comment, CommentVM>>();
+      oC.ShouldNotBeNull();
+    }
+
+    [Test]
+    public void KnownCommentExtenderIsApplied()
+    {
+      ActionEnv env = new ActionEnv();
+      var oC = env.Container.GetInstance<IObjectConverter<Comment, CommentVM>>();
+      var vm = oC.Convert(new Comment {Body = "<code>jo</code>"});
+      vm.Body.Contains("<pre ").ShouldBeTrue();
+    }
   }
 }
