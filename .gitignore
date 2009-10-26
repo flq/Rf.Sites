@@ -9,5 +9,7 @@ _ReSharper.*
 *.~
 *.swp
 test.htm
+test2.htm
+test2_files
 rf.ico
 Rf.Sites/files/images/*.*

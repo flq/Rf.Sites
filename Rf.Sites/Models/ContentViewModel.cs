@@ -45,7 +45,7 @@ namespace Rf.Sites.Models
     private void pullData(Content content)
     {
       Title = content.Title;
-      WrittenInTime = content.Created.ToString("dd.MM.yyyy - hh:mm");
+      WrittenInTime = content.Created.ToString(Constants.CommonDateFormat);
       var o = new PeriodOfTimeOutput(content.Created, DateTime.Now).ToString();
       WrittenInPeriod = string.Format("{0}{1}", o, o == "today" ? "" : " ago");
       Body = content.Body;

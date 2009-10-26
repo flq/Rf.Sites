@@ -20,6 +20,7 @@ namespace Rf.Sites.Models
     }
 
     public string Website { get; private set; }
+    public string Created { get; private set; }
     public string Name { get; private set; }
     public string GravatarImageSource { get; private set; }
     public string Body { get; set; }
@@ -29,6 +30,7 @@ namespace Rf.Sites.Models
       Name = comment.CommenterName;
       Website = comment.CommenterWebsite;
       Body = comment.Body;
+      Created = comment.Created.ToString(Constants.CommonDateFormat);
       createGravatarImageSource(comment.CommenterEmail);
     }
 
