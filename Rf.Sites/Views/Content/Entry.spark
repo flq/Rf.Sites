@@ -4,6 +4,7 @@
 <use namespace="Rf.Sites.Actions" />
 <use namespace="Rf.Sites.Actions.Args" />
 <set Title='Model.Title'/>
+<set Keywords='Model.Keywords'/>
 
 <content name="head">
   <test if="Model.NeedsCodeHighlighting">
@@ -17,12 +18,33 @@
   </test>
 </content>
 
-<div class="content_header">
-	<h1>${Title}</h1>
-	<p>${Model.WrittenInTime} (${Model.WrittenInPeriod})</p>
-	<p>Filed under 
-	${string.Join(", ", Model.Tags.Select(t => Html.ActionLink<ContentTagAction>(t, ArgsFrom.Value(t))).ToArray())}
-	</p>
-</div>
+<div class="content">
+	<div class="content_header">
+		<h1>${Title}</h1>
+		<p>${Model.WrittenInTime} (${Model.WrittenInPeriod})</p>
+		<p>Filed under 
+		${string.Join(", ", Model.Tags.Select(t => Html.ActionLink<ContentTagAction>(t, ArgsFrom.Value(t))).ToArray())}
+		</p>
+	</div>
 
-${Model.Body}
+    <div class="content_body">
+	${Model.Body}
+	</div>
+	
+	<div class="content_comments" if="Model.CommentCount > 0">
+	  <for each="var c in Model.Comments">
+	    <div class="comment">
+	      <image src="${c.GravatarImageSource}" width="80" height="80">
+	      <test if="!string.IsNullOrEmpty(c.Website)">
+	        <a href="${c.Website}">${c.Name}</a>
+	      </test>
+	      <else>
+	        <p>${c.Name}</p>
+	      </else>
+	      <div class="comment_body">
+	        ${c.Body}
+	      </div>
+	    </div>
+	  </for>
+	</div>
+</div>

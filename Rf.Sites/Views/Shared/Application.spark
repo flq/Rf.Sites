@@ -1,7 +1,9 @@
 ﻿<global type='string' Title='"putting the f-word into reality"' />
+<global type='string' Keywords='"realfiction,Frank Quednau"' />
 <html>
   <head>
     <meta name="copyright" content="All content hosted by this site is written by F Quednau. Reproduction only under consent" />
+    <meta name="keywords" content="${Keywords}" />
     <title>realfiction - ${Title}</title>    
     <link rel="shortcut icon" href="/files/rf.ico" type="image/x-icon" />
     <link rel="alternate" type="application/rss+xml" title="realfiction RSS" href="/rss" />
