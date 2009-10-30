@@ -8,7 +8,7 @@ namespace Rf.Sites.Models
 {
   public class CommentVM
   {
-    private const string gravatarRoot = "http://www.gravatar.com/avatar/{0}?s=80&d=identicon";
+    private const string gravatarRoot = "http://www.gravatar.com/avatar/{0}?s=50&d=identicon";
     private static readonly Random randomizer = new Random();
 
     public CommentVM(Comment comment) : this(comment,null) { }

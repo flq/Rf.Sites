@@ -1,4 +1,4 @@
-﻿<viewdata model="Rf.Sites.Models.ContentViewModel" />
+<viewdata model="Rf.Sites.Models.ContentViewModel" />
 <use namespace="System.Linq" />
 <use namespace="Rf.Sites.Frame" />
 <use namespace="Rf.Sites.Actions" />
@@ -36,14 +36,14 @@
 	  <for each="var c in Model.Comments">
 		<div class="comment">
 		  <div class="comment_head">
-		  <image src="${c.GravatarImageSource}" width="80" height="80">
+		  <image src="${c.GravatarImageSource}" width="50" height="50">
 		  <test if="!string.IsNullOrEmpty(c.Website)">
 			  <a href="${c.Website}">${c.Name}</a>
 		  </test>
 		  <else>
 			  <span>${c.Name}</span>
 		  </else>
-		  <span>${c.Created}</span>
+		  <span> ( ${c.Created} ) </span>
 		  </div>
 		  <div class="comment_body">
 			${c.Body}

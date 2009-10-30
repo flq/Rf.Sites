@@ -1,4 +1,4 @@
-﻿<global type='string' Title='"putting the f-word into reality"' />
+<global type='string' Title='"putting the f-word into reality"' />
 <global type='string' Keywords='"realfiction,Frank Quednau"' />
 <html>
   <head>
@@ -22,6 +22,6 @@
       <use content="view"/>
     </div>
      
-    <div id="footer">&copy; ${System.DateTime.Now.Year} realfiction</div>
+    <div id="footer"><p>&copy; ${System.DateTime.Now.Year} realfiction</p></div>
   </body>
 </html>

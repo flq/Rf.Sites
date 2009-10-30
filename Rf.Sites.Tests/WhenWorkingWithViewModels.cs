@@ -12,16 +12,14 @@ namespace Rf.Sites.Tests
   public class WhenWorkingWithViewModels
   {
     private const string checkMail = "boobles@shambocks.com";
-    private const string expectedUrl = "http://www.gravatar.com/avatar/18d0aad273d654dfece3952113268428?s=80&d=identicon";
+    private const string expectedUrl = "http://www.gravatar.com/avatar/18d0aad273d654dfece3952113268428";
 
     [Test]
     public void GravatarUrlIsFormedCorrectly()
     {
       var c = new Comment { Body = "Hi", CommenterEmail = checkMail };
-
       var cVM = new CommentVM(c);
-
-      cVM.GravatarImageSource.ShouldBeEqualTo(expectedUrl);
+      cVM.GravatarImageSource.StartsWith(expectedUrl).ShouldBeTrue();
     }
 
     [Test]
