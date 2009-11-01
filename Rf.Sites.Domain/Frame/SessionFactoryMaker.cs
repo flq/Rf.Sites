@@ -58,7 +58,11 @@ namespace Rf.Sites.Domain.Frame
     {
       var model = AutoMap.AssemblyOf<Content>(t => t.BaseType == typeof (Entity))
         .IgnoreBase(typeof (Entity))
-        .Override<Content>(a => a.HasMany(c => c.Comments).Cascade.AllDeleteOrphan());
+        .Override<Content>(a =>
+                             {
+                               a.HasMany(c => c.Comments).Cascade.AllDeleteOrphan();
+                               a.HasMany(c => c.Attachments).Cascade.AllDeleteOrphan();
+                             });
       additionalModelConfig(model);
       return model;
     }

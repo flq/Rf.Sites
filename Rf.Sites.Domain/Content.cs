@@ -29,10 +29,13 @@ namespace Rf.Sites.Domain
     public virtual bool Published { get; set; }
 
     public virtual int CommentCount { get; private set; }
+    public virtual int AttachmentCount { get; private set; }
 
     public virtual IList<Comment> Comments { get; private set; }
 
     public virtual IList<Tag> Tags { get; private set; }
+
+    public virtual IList<Attachment> Attachments { get; private set; }
 
     public virtual void AssociateWithTag(Tag tag)
     {
@@ -52,6 +55,12 @@ namespace Rf.Sites.Domain
     {
       (Comments ?? (Comments = new List<Comment>())).Add(comment);
       CommentCount++;
+    }
+
+    public virtual void AddAttachment(Attachment attachment)
+    {
+      (Attachments ?? (Attachments = new List<Attachment>())).Add(attachment);
+      AttachmentCount++;
     }
   }
 }

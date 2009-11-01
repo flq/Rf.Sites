@@ -8,6 +8,8 @@ using NHibernate.Validator.Exceptions;
 using Rf.Sites.Domain;
 using Rf.Sites.Domain.Frame;
 
+// ReSharper disable PossibleNullReferenceException
+// ReSharper disable AssignNullToNotNullAttribute
 namespace Rf.Sites.Migration
 {
   class Program
@@ -20,7 +22,9 @@ namespace Rf.Sites.Migration
     {
       try
       {
-        setupSchema();
+        var sMaker = new SessionFactoryMaker();
+        factory = sMaker.CreateFactory();
+        setupSchema(sMaker);
         insertTags();
         insertContent();
       }
@@ -49,12 +53,16 @@ namespace Rf.Sites.Migration
       var tagDoc = getDocument("drp_term_data.xml");
       var commentDoc = getDocument("drp_comments.xml");
       var nodeWordDoc = getDocument("drp_nodewords.xml");
+
+      var attachmentDoc = getDocument("drp_files.xml");
+      var attachmentRelDoc = getDocument("drp_upload.xml");
       
       using (var session = factory.OpenSession())
       using (var tx = session.BeginTransaction())
       {
 
         var dbTags = session.CreateCriteria<Tag>().List<Tag>();
+
 
         foreach (XmlNode n in dHead.SelectNodes("//drp_node"))
         {
@@ -79,14 +87,18 @@ namespace Rf.Sites.Migration
 
           var tags = usedTags(nodeId, dTagToContent, tagDoc);
           var comments = getComments(nodeId, commentDoc);
+          var attachments = getAttachments(nodeId, attachmentDoc, attachmentRelDoc);
 
           foreach (var ta in dbTags)
             if (tags.Contains(ta.Name))
               content.AssociateWithTag(ta);
           foreach (var c in comments)
             content.AddComment(c);
+          foreach (var a in attachments)
+            content.AddAttachment(a);
           session.Save(content);
-          Console.WriteLine("Saved {0} with {1} tags and {2} comments", content.Title, tags.Count, content.CommentCount);
+          Console.WriteLine("Saved {0} with {1} tags, {2} comments and {3} attachments", 
+            content.Title, tags.Count, content.CommentCount, content.AttachmentCount);
         }
 
         tx.Commit();
@@ -95,10 +107,12 @@ namespace Rf.Sites.Migration
 
     }
 
+
     private static IEnumerable<Comment> getComments(string nodeID, XmlDocument commentDoc)
     {
       return
         from n in commentDoc.SelectNodes("//drp_comments[nid='" + nodeID + "']").OfType<XmlNode>()
+
         let email = n.SelectSingleNode("mail").InnerText
         let website = n.SelectSingleNode("homepage").InnerText
         let comment = n.SelectSingleNode("comment").InnerText
@@ -123,6 +137,32 @@ namespace Rf.Sites.Migration
         select tagNode.SelectSingleNode("name").InnerText;
 
       return tagAssocs.ToList();
+    }
+
+    private static IEnumerable<Attachment> getAttachments(string nodeID, XmlDocument attachments, XmlDocument attachmentToNode)
+    {
+      var atmtIDs = attachmentToNode
+        .SelectNodes("//drp_upload[nid='" + nodeID + "']")
+        .OfType<XmlNode>()
+        .Select(n => n.SelectSingleNode("fid").InnerText);
+
+      if (atmtIDs.Count() == 0) return new Attachment[] {};
+
+      return from n in attachments.SelectNodes("//drp_files[" + listOfAttachments(atmtIDs) + "]").OfType<XmlNode>()
+             where n.SelectSingleNode("filename").InnerText != "_original" &&
+                   n.SelectSingleNode("filename").InnerText != "thumbnail"
+             select new Attachment
+             {
+               Created = DateTime.Now,
+               Name = n.SelectSingleNode("filename").InnerText,
+               Path = n.SelectSingleNode("filepath").InnerText,
+               Size = Convert.ToInt32(n.SelectSingleNode("filesize").InnerText)
+             };
+    }
+
+    private static string listOfAttachments(IEnumerable<string> attachmentIDs)
+    {
+      return string.Join(" or ", attachmentIDs.Select(id => "fid='" + id + "'").ToArray());
     }
 
     private static XmlDocument getDocument(string doc)
@@ -155,13 +195,11 @@ namespace Rf.Sites.Migration
       }
     }
 
-    private static void setupSchema()
+    private static void setupSchema(SessionFactoryMaker maker)
     {
-      var sMaker = new SessionFactoryMaker();
-      factory = sMaker.CreateFactory();
       using (var con = factory.OpenSession().Connection)
       {
-        sMaker.DropAndRecreateSchema(Console.Out, con);
+        maker.DropAndRecreateSchema(Console.Out, con);
       }
     }
 
