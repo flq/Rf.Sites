@@ -30,7 +30,7 @@ namespace Rf.Sites.Frame
                  Title = new TextSyndicationContent(fragments.Title, TextSyndicationContentKind.Plaintext),
                  LastUpdatedTime = new DateTimeOffset(lastUpdate)
                };
-      feed.Authors.Add(new SyndicationPerson(null, env.AuthorName, null));
+      feed.Authors.Add(new SyndicationPerson(null, env.SiteMasterName, null));
       feed.Copyright = new TextSyndicationContent(env.CopyrightNotice);
     }
 

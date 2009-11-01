@@ -1,5 +1,4 @@
 using System;
-using System.IO;
 using NUnit.Framework;
 using NUnit.Framework.SyntaxHelpers;
 using Rf.Sites.Domain;
@@ -103,6 +102,22 @@ namespace Rf.Sites.Tests
       cDb.AttachmentCount.ShouldBeEqualTo(1);
       cDb.Attachments.ShouldNotBeNull();
       cDb.Attachments[0].Name.ShouldBeEqualTo("Attached");
+    }
+
+    [Test]
+    public void CommentDefaultIsNotFromSiteMaster()
+    {
+      object id;
+      var cmt = maker.CreateComment();
+      using (var tx = Session.BeginTransaction())
+      {
+        id = Session.Save(cmt);
+        tx.Commit();
+      }
+      Session.Clear();
+      var cmtDb = Session.Load<Comment>(id);
+      cmtDb.ShouldNotBeNull();
+      cmtDb.IsFromSiteMaster.ShouldBeFalse();
     }
   }
 }

@@ -11,5 +11,7 @@ namespace Rf.Sites.Domain
     [NotNullNotEmpty, Length(2000)]
     public virtual string Body { get; set; }
 
+    public virtual bool IsFromSiteMaster { get; set; }
+
   }
 }

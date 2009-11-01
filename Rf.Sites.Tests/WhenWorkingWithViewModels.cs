@@ -3,6 +3,7 @@ using NUnit.Framework;
 using Rf.Sites.Domain;
 using Rf.Sites.Frame;
 using Rf.Sites.Models;
+using Rf.Sites.Models.Extender;
 using Rf.Sites.Tests.Frame;
 using System.Linq;
 
@@ -52,6 +53,19 @@ namespace Rf.Sites.Tests
       vm.Comments.ShouldNotBeNull();
       vm.Comments.Count().ShouldBeEqualTo(1);
       e.Verify(x=>x.Inspect(It.IsAny<CommentVM>()));
+    }
+
+    [Test]
+    public void SiteManagerCommentInspectorWorksAsIntended()
+    {
+      var aWebsite = "http://lefleur";
+      var e = new CommentFromSiteMasterExtension(
+        new Environment {SiteMasterEmail = checkMail, SiteMasterWebPage = aWebsite});
+
+      var cmtVM = new CommentVM(new Comment { IsFromSiteMaster = true});
+      e.Inspect(cmtVM);
+      cmtVM.GravatarImageSource.StartsWith(expectedUrl).ShouldBeTrue();
+      cmtVM.Website.ShouldBeEqualTo(aWebsite);
     }
   }
 }

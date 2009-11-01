@@ -122,6 +122,7 @@
     <Compile Include="Models\ContentViewModel.cs" />
     <Compile Include="Frame\IVMExtender.cs" />
     <Compile Include="Models\ContentFragmentViewModel.cs" />
+    <Compile Include="Models\Extender\CommentFromSiteMasterExtension.cs" />
     <Compile Include="Models\Extender\CommentToVMConverter.cs" />
     <Compile Include="Models\PageInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

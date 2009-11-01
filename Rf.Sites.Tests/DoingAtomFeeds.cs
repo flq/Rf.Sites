@@ -18,7 +18,7 @@ namespace Rf.Sites.Tests
       new Environment
         {
           AbsoluteBaseUrl = new Uri("http://host/Content/Entry/"),
-          AuthorName = "Frank",
+          SiteMasterName = "Frank",
           CopyrightNotice = "All content hosted by this site is written by F Quednau. Reproduction only under consent"
         };
     

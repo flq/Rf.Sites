@@ -43,7 +43,9 @@ namespace Rf.Sites.Frame
         return new Environment
                  {
                    AbsoluteBaseUrl = new Uri(url),
-                   AuthorName = "Frank Quednau",
+                   SiteMasterName = "Frank Quednau",
+                   SiteMasterEmail = "fquednau@gmail.com",
+                   SiteMasterWebPage = "http://frankquednau.de",
                    CopyrightNotice = "All content hosted by this site is written by F Quednau. Reproduction only under consent",
                    FeedItemsPerFeed = 10,
                    ItemsPerPage = 5

@@ -19,10 +19,11 @@ namespace Rf.Sites.Models
       extender.Apply(this);
     }
 
-    public string Website { get; private set; }
+    public string Website { get; set; }
     public string Created { get; private set; }
-    public string Name { get; private set; }
-    public string GravatarImageSource { get; private set; }
+    public string Name { get; set; }
+    public string GravatarImageSource { get; set; }
+    public bool IsFromSiteMaster { get; set; }
     public string Body { get; set; }
 
     private void setUp(Comment comment)
@@ -31,10 +32,11 @@ namespace Rf.Sites.Models
       Website = comment.CommenterWebsite;
       Body = comment.Body;
       Created = comment.Created.ToString(Constants.CommonDateFormat);
-      createGravatarImageSource(comment.CommenterEmail);
+      CreateGravatarImageSource(comment.CommenterEmail);
+      IsFromSiteMaster = comment.IsFromSiteMaster;
     }
 
-    private void createGravatarImageSource(string email)
+    public void CreateGravatarImageSource(string email)
     {
       if (string.IsNullOrEmpty(email))
         email = "anyemail" + randomizer.Next(1000);

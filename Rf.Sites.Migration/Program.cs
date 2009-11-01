@@ -27,6 +27,7 @@ namespace Rf.Sites.Migration
         setupSchema(sMaker);
         insertTags();
         insertContent();
+        specialStatements();
       }
       catch (InvalidStateException x)
       {
@@ -206,6 +207,18 @@ namespace Rf.Sites.Migration
     private static DateTime getTime(XmlNode n)
     {
       return new DateTime(1970, 1, 1) + TimeSpan.FromSeconds(long.Parse(n.InnerText));
+    }
+
+    private static void specialStatements()
+    {
+      using (var s = factory.OpenSession())
+      using (var tx = s.BeginTransaction())
+      {
+        var q = s.CreateQuery("UPDATE Comment SET IsFromSiteMaster = 'True' WHERE (CommenterName = 'flq')");
+        var rowCount = q.ExecuteUpdate();
+        Console.WriteLine("Updates {0} comments", rowCount);
+        tx.Commit();
+      }
     }
   }
 }
