@@ -48,11 +48,23 @@ namespace Rf.Sites.Tests
       var e = new Mock<IVmExtender<CommentVM>>();
       var cvt = ObjectConverter.From((Comment c) => new CommentVM(c, new[] {e.Object}));
 
-      var vm = new ContentViewModel(cnt, null, cvt);
+      var vm = new ContentViewModel(cnt, null, cvt, null);
       
       vm.Comments.ShouldNotBeNull();
       vm.Comments.Count().ShouldBeEqualTo(1);
       e.Verify(x=>x.Inspect(It.IsAny<CommentVM>()));
+    }
+
+    [Test]
+    public void ContentVMWillPropagateAttachmentConstruction()
+    {
+      var cnt = new Content { Body = "Hello World" };
+      cnt.AddAttachment(new Attachment { Name = "Great Attachment" });
+
+      var vm = new ContentViewModel(cnt,null);
+
+      vm.Attachments.ShouldNotBeNull();
+      vm.Attachments.Count().ShouldBeEqualTo(1);
     }
 
     [Test]
@@ -66,6 +78,22 @@ namespace Rf.Sites.Tests
       e.Inspect(cmtVM);
       cmtVM.GravatarImageSource.StartsWith(expectedUrl).ShouldBeTrue();
       cmtVM.Website.ShouldBeEqualTo(aWebsite);
+    }
+    
+    [Test]
+    public void AttachmentVMShowsSizeInKilobytes()
+    {
+      var aVM = new AttachmentVM(new Attachment {Size = 2048 + 512});
+      aVM.Size.ShouldBeEqualTo("2.5");
+      aVM.SizeDimension.ShouldBeEqualTo("KB");
+    }
+
+    [Test]
+    public void BiggerAttachmentsAreShownInMegs()
+    {
+      var aVM = new AttachmentVM(new Attachment { Size = 2 * 1024 * 1024 + 50000 });
+      aVM.Size.ShouldBeEqualTo("2.05");
+      aVM.SizeDimension.ShouldBeEqualTo("MB");
     }
   }
 }

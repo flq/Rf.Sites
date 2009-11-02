@@ -106,7 +106,9 @@
     <Compile Include="Frame\Environment.cs" />
     <Compile Include="Frame\IObjectConverter.cs" />
     <Compile Include="Frame\IResponseWriter.cs" />
+    <Compile Include="Models\AttachmentVM.cs" />
     <Compile Include="Models\CommentVM.cs" />
+    <Compile Include="Models\Extender\AttachmentToVMConverter.cs" />
     <Compile Include="Models\Extender\CodeHighlightExtension.cs" />
     <Compile Include="Frame\FrameUtilities.cs" />
     <Compile Include="Frame\IAction.cs" />

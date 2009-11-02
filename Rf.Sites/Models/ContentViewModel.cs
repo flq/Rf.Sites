@@ -8,18 +8,23 @@ namespace Rf.Sites.Models
 {
   public class ContentViewModel
   {
-    private readonly IObjectConverter<Comment, CommentVM> converter;
+    private readonly IObjectConverter<Comment, CommentVM> commentConverter;
+    private readonly IObjectConverter<Attachment, AttachmentVM> attachmentConverter;
 
     public ContentViewModel(Content content, IVmExtender<ContentViewModel>[] extender)
-      : this(content,extender,ObjectConverter.From((Comment c)=>new CommentVM(c,null)))
+      : this(content,extender,
+      ObjectConverter.From((Comment c)=>new CommentVM(c,null)),
+      ObjectConverter.From((Attachment a) => new AttachmentVM(a)))
     {}
 
     public ContentViewModel(
       Content content, 
       IVmExtender<ContentViewModel>[] extender,
-      IObjectConverter<Comment,CommentVM> converter)
+      IObjectConverter<Comment,CommentVM> commentConverter,
+      IObjectConverter<Attachment, AttachmentVM> attachmentConverter)
     {
-      this.converter = converter;
+      this.commentConverter = commentConverter;
+      this.attachmentConverter = attachmentConverter;
       pullData(content);
       extender.Apply(this);
     }
@@ -36,11 +41,14 @@ namespace Rf.Sites.Models
 
     public bool NeedsCodeHighlighting { get; set; }
 
+    public int AttachmentCount { get; private set; }
+
     public int CommentCount { get; set; }
 
     public IEnumerable<string> Tags { get; private set; }
 
     public IEnumerable<CommentVM> Comments { get; private set; }
+    public IEnumerable<AttachmentVM> Attachments { get; private set; }
 
     private void pullData(Content content)
     {
@@ -53,11 +61,12 @@ namespace Rf.Sites.Models
       Tags = content.Tags != null ? content.Tags.Select(t => t.Name) : new string[] {};
       
       CommentCount = content.CommentCount;
-      if (CommentCount == 0) return;
+      AttachmentCount = content.AttachmentCount;
+      if (CommentCount > 0)
+        Comments = from cmt in content.Comments select commentConverter.Convert(cmt);
 
-      Comments = from cmt in content.Comments
-                 select converter.Convert(cmt);
-
+      if (AttachmentCount > 0)
+        Attachments = from a in content.Attachments select attachmentConverter.Convert(a);
     }
   }
 }
