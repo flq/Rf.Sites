@@ -113,6 +113,7 @@
     <Compile Include="DoingAtomFeeds.cs" />
     <Compile Include="Support\DataMother.cs" />
     <Compile Include="TestingTheSiteInfrastructure.cs" />
+    <Compile Include="UsingAttachmentVM.cs" />
     <Compile Include="UsingTheTeaserGenerator.cs" />
     <Compile Include="WhenActionsAreUsed.cs" />
     <Compile Include="WhenContentIsUsed.cs" />

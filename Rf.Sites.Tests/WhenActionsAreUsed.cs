@@ -28,9 +28,15 @@ namespace Rf.Sites.Tests
       var mock = new Mock<IRepository<Content>>();
       mock.Setup(rep => rep[1]).Returns(new Content(1) {Title = "Foo", Body = "Bar"});
 
-      var cnt = new Container(cn=>
-        cn.ForRequestedType<IObjectConverter<Comment,CommentVM>>()
-         .TheDefault.IsThis(ObjectConverter.From((Comment c)=>new CommentVM(c,null))));
+      var cnt = new Container(
+        cn =>
+          {
+            cn.ForRequestedType<IObjectConverter<Comment, CommentVM>>()
+              .TheDefault.IsThis(ObjectConverter.From((Comment c) => new CommentVM(c, null)));
+            cn.ForRequestedType<IObjectConverter<Attachment, AttachmentVM>>()
+              .TheDefault.IsThis(ObjectConverter.From((Attachment a) => new AttachmentVM(a,null)));
+          });
+
       
       var action = new ContentEntryAction(ArgsFrom.Id(1), mock.Object) {Container = cnt};
       var model = action.Execute().GetModelFromAction<ContentViewModel>();

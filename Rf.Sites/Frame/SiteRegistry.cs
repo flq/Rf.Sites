@@ -39,6 +39,8 @@ namespace Rf.Sites.Frame
 
       ForRequestedType<IObjectConverter<Comment, CommentVM>>()
         .TheDefaultIsConcreteType<CommentToVMConverter>();
+      ForRequestedType<IObjectConverter<Attachment, AttachmentVM>>()
+        .TheDefaultIsConcreteType<AttachmentToVMConverter>();
 
       Scan(s =>
              {

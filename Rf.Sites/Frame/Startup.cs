@@ -46,6 +46,7 @@ namespace Rf.Sites.Frame
                    SiteMasterName = "Frank Quednau",
                    SiteMasterEmail = "fquednau@gmail.com",
                    SiteMasterWebPage = "http://frankquednau.de",
+                   DropZoneUrl = "files",
                    CopyrightNotice = "All content hosted by this site is written by F Quednau. Reproduction only under consent",
                    FeedItemsPerFeed = 10,
                    ItemsPerPage = 5

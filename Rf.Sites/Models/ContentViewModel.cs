@@ -14,7 +14,7 @@ namespace Rf.Sites.Models
     public ContentViewModel(Content content, IVmExtender<ContentViewModel>[] extender)
       : this(content,extender,
       ObjectConverter.From((Comment c)=>new CommentVM(c,null)),
-      ObjectConverter.From((Attachment a) => new AttachmentVM(a)))
+      ObjectConverter.From((Attachment a) => new AttachmentVM(a,null)))
     {}
 
     public ContentViewModel(

@@ -31,6 +31,13 @@
 	${Model.Body}
 	</div>
 
+  <div class="content_attachments" if="Model.AttachmentCount > 0">
+    <h2>Attachments</h2>
+    <for each="var a in Model.Attachments">
+      <p class="attachment"><a href="${a.Path}">${a.Name}</a> (${a.Size} ${a.SizeDimension})</p>
+    </for>
+  </div>
+
 	<div class="content_comments" if="Model.CommentCount > 0">
 	  <h2>Comments</h2>
 	  <for each="var c in Model.Comments">

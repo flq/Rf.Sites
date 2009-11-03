@@ -79,21 +79,5 @@ namespace Rf.Sites.Tests
       cmtVM.GravatarImageSource.StartsWith(expectedUrl).ShouldBeTrue();
       cmtVM.Website.ShouldBeEqualTo(aWebsite);
     }
-    
-    [Test]
-    public void AttachmentVMShowsSizeInKilobytes()
-    {
-      var aVM = new AttachmentVM(new Attachment {Size = 2048 + 512});
-      aVM.Size.ShouldBeEqualTo("2.5");
-      aVM.SizeDimension.ShouldBeEqualTo("KB");
-    }
-
-    [Test]
-    public void BiggerAttachmentsAreShownInMegs()
-    {
-      var aVM = new AttachmentVM(new Attachment { Size = 2 * 1024 * 1024 + 50000 });
-      aVM.Size.ShouldBeEqualTo("2.05");
-      aVM.SizeDimension.ShouldBeEqualTo("MB");
-    }
   }
 }

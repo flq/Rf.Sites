@@ -108,6 +108,7 @@
     <Compile Include="Frame\IResponseWriter.cs" />
     <Compile Include="Models\AttachmentVM.cs" />
     <Compile Include="Models\CommentVM.cs" />
+    <Compile Include="Models\Extender\AttachmentPathModifier.cs" />
     <Compile Include="Models\Extender\AttachmentToVMConverter.cs" />
     <Compile Include="Models\Extender\CodeHighlightExtension.cs" />
     <Compile Include="Frame\FrameUtilities.cs" />
@@ -132,7 +133,7 @@
   <ItemGroup>
     <Content Include="Default.aspx" />
     <Content Include="files\rf.ico" />
-    <Content Include="files\sh_matlab.css" />
+    <Content Include="files\sh_golden.css" />
     <Content Include="files\site.css" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\sh_csharp.js" />

@@ -1,41 +1,39 @@
 using System;
 using Rf.Sites.Domain;
+using Rf.Sites.Frame;
 
 namespace Rf.Sites.Models
 {
   public class AttachmentVM
   {
-    private readonly Attachment attachment;
     private const int megaByteInBytes = 1024*1024;
 
-    public AttachmentVM(Attachment attachment)
+    public AttachmentVM(Attachment attachment, IVmExtender<AttachmentVM>[] extender)
     {
-      this.attachment = attachment;
+      setUp(attachment);
+      extender.Apply(this);
     }
 
-    public string Name { get { return attachment.Name; } }
-    public string Path { get { return attachment.Path; } }
-    public string Size
+    private void setUp(Attachment attachment)
     {
-      get
-      {
-        int size = attachment.Size;
-        double newSize = mByteThreshold() ? (double)size / megaByteInBytes : size / 1024.0;
-        return Math.Round(newSize, 2).ToString().Replace(",", ".");
-      }
+      if (attachment == null) return;
+      Name = attachment.Name;
+      Path = attachment.Path;
+      int size = attachment.Size;
+      double newSize = mByteThreshold(size) ? (double)size / megaByteInBytes : size / 1024.0;
+      Size = Math.Round(newSize, 2).ToString().Replace(",", ".");
+      SizeDimension = mByteThreshold(size) ? "MB" : "KB";
     }
 
-    public string SizeDimension
-    {
-      get
-      {
-        return mByteThreshold() ? "MB" : "KB";
-      }
-    }
+    public string Name { get; private set; }
+    public string Path { get; set; }
+    public string Size { get; private set; }
 
-    private bool mByteThreshold()
+    public string SizeDimension { get; private set; }
+
+    private static bool mByteThreshold(int size)
     {
-      return attachment.Size > megaByteInBytes;
+      return size > megaByteInBytes;
     }
   }
 }
