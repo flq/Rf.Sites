@@ -35,6 +35,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="CookComputing.XmlRpcV2, Version=2.4.0.0, Culture=neutral, PublicKeyToken=a7d6e17aa302004d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\CookComputing.XmlRpcV2.dll</HintPath>
+    </Reference>
     <Reference Include="FluentNHibernate, Version=1.0.0.0, Culture=neutral, PublicKeyToken=8aa435e3cb308880, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\FluentNHibernate.dll</HintPath>
@@ -81,6 +85,7 @@
     <Reference Include="System.ServiceModel.Web">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -114,6 +119,7 @@
     <Compile Include="Support\DataMother.cs" />
     <Compile Include="TestingTheSiteInfrastructure.cs" />
     <Compile Include="UsingAttachmentVM.cs" />
+    <Compile Include="UsingTheMetaWeblogService.cs" />
     <Compile Include="UsingTheTeaserGenerator.cs" />
     <Compile Include="WhenActionsAreUsed.cs" />
     <Compile Include="WhenContentIsUsed.cs" />

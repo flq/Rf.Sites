@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CookComputing.XmlRpcV2, Version=2.4.0.0, Culture=neutral, PublicKeyToken=a7d6e17aa302004d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\CookComputing.XmlRpcV2.dll</HintPath>
+    </Reference>
     <Reference Include="NHibernate, Version=2.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\NHibernate.dll</HintPath>
@@ -60,9 +64,6 @@
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Web.Mvc, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="System.Xml.Linq">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.Abstractions" />
@@ -106,6 +107,9 @@
     <Compile Include="Frame\Environment.cs" />
     <Compile Include="Frame\IObjectConverter.cs" />
     <Compile Include="Frame\IResponseWriter.cs" />
+    <Compile Include="MetaWebLogApi\IMetaWeblog.cs" />
+    <Compile Include="MetaWebLogApi\MetaWeblog.cs" />
+    <Compile Include="MetaWebLogApi\Structs.cs" />
     <Compile Include="Models\AttachmentVM.cs" />
     <Compile Include="Models\CommentVM.cs" />
     <Compile Include="Models\Extender\AttachmentPathModifier.cs" />
@@ -115,7 +119,7 @@
     <Compile Include="Frame\IAction.cs" />
     <Compile Include="Frame\PeriodOfTimeOutput.cs" />
     <Compile Include="Frame\SiteRegistry.cs" />
-    <Compile Include="Frame\Startup.cs" />
+    <Compile Include="Startup.cs" />
     <Compile Include="Frame\UrlToClassActionInvoker.cs" />
     <Compile Include="Frame\WebBasedCache.cs" />
     <Compile Include="Global.asax.cs">
