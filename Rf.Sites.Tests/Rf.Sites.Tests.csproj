@@ -111,6 +111,7 @@
     <Compile Include="Frame\DbTestBase.cs" />
     <Compile Include="Frame\EntityMaker.cs" />
     <Compile Include="Frame\InMemorySessions.cs" />
+    <Compile Include="Frame\MetaWeblogEnv.cs" />
     <Compile Include="Frame\TestHelpExtensions.cs" />
     <Compile Include="Frame\TestRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

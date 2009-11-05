@@ -5,6 +5,7 @@ using System.Web.Mvc;
 using System.Web.Mvc.Html;
 using System.Web.Routing;
 using Rf.Sites.Actions.Args;
+using System.Linq;
 
 namespace Rf.Sites.Frame
 {
@@ -22,11 +23,11 @@ namespace Rf.Sites.Frame
       return helper.ActionLink(linkText, tokens[1], tokens[0], args.ToDictionary(), null);
     }
 
-    public static string RelativeUrlToAction<T>() where T : IAction
+    public static string RelativeUrlToAction<T>(params string[] additionalRouteValues) where T : IAction
     {
-
       var str = typeof (T).Name.Replace("Action", "").PasCalCaseTokenization();
-      return "/" + string.Join("/", str);
+      var allValues = str.Concat(additionalRouteValues);
+      return "/" + string.Join("/", allValues.ToArray());
     }
 
     public static string[] PasCalCaseTokenization(this string name)

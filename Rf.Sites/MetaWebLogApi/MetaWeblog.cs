@@ -1,7 +1,13 @@
+using System;
 using CookComputing.XmlRpc;
 using System.Collections.Generic;
+using Rf.Sites.Actions;
+using Rf.Sites.Domain;
+using Rf.Sites.Domain.Frame;
 using Rf.Sites.Frame;
 using StructureMap;
+using System.Linq;
+using Environment=Rf.Sites.Frame.Environment;
 
 namespace Rf.Sites.MetaWeblogApi
 {
@@ -16,15 +22,14 @@ namespace Rf.Sites.MetaWeblogApi
   /// </summary>
   public class MetaWeblog : XmlRpcService, IMetaWeblog
   {
-    private bool initializedThroughNonDefaultConstructor;
+    private readonly IContainer container;
+    private readonly bool initializedThroughNonDefaultConstructor;
 
-    public MetaWeblog()
-    {
-      
-    }
+    public MetaWeblog() { }
 
-    public MetaWeblog(Environment environment)
+    public MetaWeblog(Environment environment, IContainer container)
     {
+      this.container = container;
       Environment = environment;
       initializedThroughNonDefaultConstructor = true;
     }
@@ -76,12 +81,23 @@ namespace Rf.Sites.MetaWeblogApi
     CategoryInfo[] IMetaWeblog.GetCategories(string blogid, string username, string password)
     {
       ensureRequestIntegrity(username, password);
+      var repTag = container.GetInstance<IRepository<Tag>>();
 
-      List<CategoryInfo> categoryInfos = new List<CategoryInfo>();
-
-      // TODO: Implement your own logic to get category info and set the categoryInfos
-
-      return categoryInfos.ToArray();
+      return (from t in repTag
+              let rssUrl = new Uri(
+                Environment.AbsoluteBaseUrl,
+                FrameUtilities.RelativeUrlToAction<RssTagAction>(t.Name)).ToString()
+              let webUrl = new Uri(
+                Environment.AbsoluteBaseUrl,
+                FrameUtilities.RelativeUrlToAction<ContentTagAction>(t.Name)).ToString()
+              select new CategoryInfo
+                       {
+                         categoryid = t.Name,
+                         description = t.Description,
+                         rssUrl = rssUrl,
+                         htmlUrl = webUrl,
+                         title = t.Name
+                       }).ToArray();
     }
 
     Post[] IMetaWeblog.GetRecentPosts(string blogid, string username, string password,
@@ -112,12 +128,7 @@ namespace Rf.Sites.MetaWeblogApi
     bool IMetaWeblog.DeletePost(string key, string postid, string username, string password, bool publish)
     {
       ensureRequestIntegrity(username, password);
-
-      bool result = false;
-
-      // TODO: Implement your own logic to delete the post and set the result
-
-      return result;
+      throw new XmlRpcFaultException(1, "Deleting Post is currently not supported");
     }
 
     BlogInfo[] IMetaWeblog.GetUsersBlogs(string key, string username, string password)

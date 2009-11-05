@@ -39,7 +39,7 @@ namespace Rf.Sites.Tests.Frame
       Assert.AreEqual(
         expectedCount,
         array.Length,
-        "Array should have {0} elements but has {1}", array.Length, expectedCount);
+        "Array should have {0} elements but has {1}", expectedCount, array.Length);
     }
 
     public static void ShouldBeEqualTo<T>(this T target, T expectedValue)
