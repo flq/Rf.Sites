@@ -40,6 +40,11 @@ namespace Rf.Sites.Tests
                };
     }
 
+    public void ResetTagCount()
+    {
+      tagCount = 0;
+    }
+
     public Comment CreateComment()
     {
       return new Comment

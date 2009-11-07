@@ -26,18 +26,14 @@ namespace Rf.Sites.Tests.Frame
     public MetaWeblogEnv()
     {
       Tags =
-        new TestRepository<Tag>()
+        new TestRepository<Tag>
           {
             new Tag {Created = DateTime.Now, Name = "1", Description = "A"},
             new Tag {Created = DateTime.Now, Name = "2", Description = "B"}
           };
 
       container.Configure(
-        c =>
-          {
-            c.ForRequestedType<IRepository<Tag>>().TheDefault.IsThis(Tags);
-
-          });
+        c => c.ForRequestedType<IRepository<Tag>>().TheDefault.IsThis(Tags));
     }
 
     public string Uid { get { return uid; }}
@@ -46,9 +42,20 @@ namespace Rf.Sites.Tests.Frame
 
     public IRepository<Tag> Tags { get; private set; }
 
+    public Environment Env
+    {
+      get { return env; }
+    }
+
     public IMetaWeblog GetApi()
     {
-      return new MetaWeblog(env, container);
+      return new MetaWeblog(Env, container);
+    }
+
+    public MetaWeblogEnv ConfigureContainer(Action<ConfigurationExpression> action)
+    {
+      container.Configure(action);
+      return this;
     }
   }
 }

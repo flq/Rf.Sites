@@ -40,6 +40,23 @@ namespace Rf.Sites.Domain.Frame
       return criteria.GetExecutableCriteria(theSession()).List<T>();
     }
 
+    public void Transacted(Action<IRepository<T>> actionWithinTransaction)
+    {
+      using (var t = theSession().BeginTransaction())
+      {
+        try
+        {
+          actionWithinTransaction(this);
+          t.Commit();
+        }
+        catch
+        {
+          t.Rollback();
+          throw;
+        }
+      }
+    }
+
     public Expression Expression
     {
       get { return theSession().Linq<T>().Expression; }

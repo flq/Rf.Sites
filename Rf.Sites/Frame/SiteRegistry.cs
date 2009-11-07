@@ -1,6 +1,7 @@
 using System.Web.Mvc;
 using Rf.Sites.Domain;
 using Rf.Sites.Domain.Frame;
+using Rf.Sites.MetaWeblogApi;
 using Rf.Sites.Models;
 using Rf.Sites.Models.Extender;
 using Spark;
@@ -41,6 +42,11 @@ namespace Rf.Sites.Frame
         .TheDefaultIsConcreteType<CommentToVMConverter>();
       ForRequestedType<IObjectConverter<Attachment, AttachmentVM>>()
         .TheDefaultIsConcreteType<AttachmentToVMConverter>();
+      ForRequestedType<IObjectConverter<Post, Content>>()
+        .TheDefaultIsConcreteType<PostToContentConverter>();
+
+      ForRequestedType<IMediaStorage>()
+        .TheDefaultIsConcreteType<MediaStorage>();
 
       Scan(s =>
              {

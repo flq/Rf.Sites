@@ -1,4 +1,5 @@
 using CookComputing.XmlRpc;
+using Moq;
 using NUnit.Framework;
 using Rf.Sites.MetaWeblogApi;
 using Rf.Sites.Tests.Frame;
@@ -49,6 +50,22 @@ namespace Rf.Sites.Tests
       var cats = api.GetCategories("1", mwl.Uid, mwl.Pwd);
       cats.ShouldHaveLength(mwl.Tags.Count);
       cats[0].categoryid.ShouldBeEqualTo(mwl.Tags.First().Name);
+    }
+
+    [Test]
+    public void MediaStorageUsesTheCorrespondingComponent()
+    {
+      var mS = new Mock<IMediaStorage>();
+      var content = new byte[] {1, 2, 3};
+      mS.Setup(m => m.StoreMedia("test", content)).Returns("test");
+      var api = mwl
+        .ConfigureContainer(c => c.ForRequestedType<IMediaStorage>().TheDefault.IsThis(mS.Object))
+        .GetApi();
+
+      var result = api.NewMediaObject("1", mwl.Uid, mwl.Pwd, new MediaObject {name = "test", bits = content});
+
+      mS.Verify();
+      result.url.ShouldBeEqualTo(mwl.Url + "test");
     }
   }
 }

@@ -77,6 +77,12 @@ namespace Rf.Sites.Tests
       throw new NotImplementedException("Requires NHibernate based backend");
     }
 
+    public void Transacted(Action<IRepository<T>> actionWithinTransaction)
+    {
+      // No transaction here...
+      actionWithinTransaction(this);
+    }
+
     public IEnumerator<T> GetEnumerator()
     {
       return list.GetEnumerator();

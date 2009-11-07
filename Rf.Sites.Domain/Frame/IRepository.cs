@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using NHibernate.Criterion;
@@ -10,5 +11,7 @@ namespace Rf.Sites.Domain.Frame
     new int Add(T item);
     T this[int id] { get; }
     IList<T> ByCriteria(DetachedCriteria criteria);
+    void Transacted(Action<IRepository<T>> actionWithinTransaction);
+
   }
 }

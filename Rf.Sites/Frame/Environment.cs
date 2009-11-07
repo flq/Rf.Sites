@@ -13,7 +13,8 @@ namespace Rf.Sites.Frame
     public string SiteMasterEmail { get; set; }
     public string SiteMasterPassword { get; set; }
     public string SiteMasterWebPage { get; set; }
-    
+
+    public string BaseDirectory { get; set; }
     public string DropZoneUrl { get; set; }
 
     public int FeedItemsPerFeed { get; set; }

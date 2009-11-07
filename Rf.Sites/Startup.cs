@@ -48,11 +48,12 @@ namespace Rf.Sites
                    SiteMasterName = "Frank Quednau",
                    SiteMasterEmail = "fquednau@gmail.com",
                    SiteMasterWebPage = "http://frankquednau.de",
-                   SiteMasterPassword = "b264c030-1546-4a10-8b53-ca398a9de939",
+                   SiteMasterPassword = "pwd"/*"b264c030-1546-4a10-8b53-ca398a9de939"*/,
                    
                    CopyrightNotice = "All content hosted by this site is written by F Quednau. Reproduction only under consent",
 
                    DropZoneUrl = "files",
+                   BaseDirectory = AppDomain.CurrentDomain.BaseDirectory,
 
                    FeedItemsPerFeed = 10,
                    ItemsPerPage = 5

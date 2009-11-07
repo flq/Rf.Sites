@@ -1,7 +1,5 @@
 using System;
 using System.Linq;
-using NHibernate;
-using NHibernate.Criterion;
 using NUnit.Framework;
 using NUnit.Framework.SyntaxHelpers;
 using Rf.Sites.Domain;
@@ -194,6 +192,71 @@ namespace Rf.Sites.Tests
       result.ShouldHaveLength(1);
       result[0].Title.ShouldBeEqualTo("Foo");
     }
+
+    [Test]
+    public void CanDoInStatementWithLINQ()
+    {
+      maker.ResetTagCount();
+      var repT = new Repository<Tag>(factory);
+      using (var t = Session.BeginTransaction())
+      {
+        repT.Add(maker.CreateTag());
+        repT.Add(maker.CreateTag());
+        repT.Add(maker.CreateTag());
+        t.Commit();
+      }
+
+      Session.Clear();
+
+      var tags = new[] {"Tag0", "Tag1"};
+      var t2 = (from t in repT where tags.Contains(t.Name) select t.Name)
+        .Distinct()
+        .ToList();
+      t2.ShouldNotBeNull();
+      t2.ShouldHaveCount(2);
+      t2.ShouldNotContain(t=>t == "Tag2");
+    }
+
+    [Test]
+    public void AutomatedCommitInTransactionMethod()
+    {
+      var repC = new Repository<Content>(factory);
+      var cn = maker.CreateContent();
+      int id = -1;
+      repC.Transacted(r=>id = r.Add(cn));
+      Session.Clear();
+
+      var cn2 = repC[id];
+      cn2.ShouldNotBeNull();
+      cn2.Title.ShouldBeEqualTo(cn.Title);
+    }
+
+    [Test]
+    public void TransactedActionWillRollback()
+    {
+      var repC = new Repository<Content>(factory);
+
+      var currentContentCount = repC.Count;
+
+      var cn = maker.CreateContent();
+      var cn2 = maker.CreateContent();
+      try
+      {
+        repC.Transacted(r=>
+                          {
+                            r.Add(cn);
+                            r.Add(cn2);
+                            throw new Exception("Ouch");
+                          });
+      }
+      catch {}
+
+      Session.Clear();
+
+      repC.Count.ShouldBeEqualTo(currentContentCount);
+    }
+
+
 
   }
 }

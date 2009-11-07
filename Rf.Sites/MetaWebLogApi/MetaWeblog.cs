@@ -56,11 +56,15 @@ namespace Rf.Sites.MetaWeblogApi
     {
       ensureRequestIntegrity(username, password);
 
-      string id = string.Empty;
+      var converter = container.GetInstance<IObjectConverter<Post, Content>>();
+      var content = converter.Convert(post);
+      var repository = container.GetInstance<IRepository<Content>>();
 
-      // TODO: Implement your own logic to add the post and set the id
+      int id = 0;
 
-      return id;
+      repository.Transacted(r=>id = r.Add(content));
+
+      return id.ToString();
     }
 
     bool IMetaWeblog.UpdatePost(string postid, string username, string password,
@@ -128,12 +132,19 @@ namespace Rf.Sites.MetaWeblogApi
     {
       ensureRequestIntegrity(username, password);
 
-      MediaObjectInfo objectInfo = new MediaObjectInfo();
-
-      // TODO: Implement your own logic to add media object and set the objectInfo
-
-      return objectInfo;
-
+      var storage = container.GetInstance<IMediaStorage>();
+      try
+      {
+        var relativeUrl = storage.StoreMedia(mediaObject.name, mediaObject.bits);
+        return new MediaObjectInfo
+                 {
+                   url = new Uri(Environment.AbsoluteBaseUrl, relativeUrl).ToString()
+                 };
+      }
+      catch (Exception x)
+      {
+        throw new XmlRpcFaultException(2, string.Format("{0}:{1}", x.GetType().Name, x.Message));
+      }
     }
 
     bool IMetaWeblog.DeletePost(string key, string postid, string username, string password, bool publish)
