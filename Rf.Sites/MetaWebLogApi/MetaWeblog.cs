@@ -22,7 +22,7 @@ namespace Rf.Sites.MetaWeblogApi
   /// </summary>
   public class MetaWeblog : XmlRpcService, IMetaWeblog
   {
-    private readonly IContainer container;
+    private IContainer container;
     private readonly bool initializedThroughNonDefaultConstructor;
 
     public MetaWeblog() { }
@@ -38,6 +38,14 @@ namespace Rf.Sites.MetaWeblogApi
     {
       private get;
       set;
+    }
+
+    public IContainer Container
+    {
+      set
+      {
+        container = value;
+      }
     }
 
     #region IMetaWeblog Members
@@ -83,7 +91,10 @@ namespace Rf.Sites.MetaWeblogApi
       ensureRequestIntegrity(username, password);
       var repTag = container.GetInstance<IRepository<Tag>>();
 
-      return (from t in repTag
+      var tags = (from t in repTag select new {t.Name, t.Description}).ToList();
+
+
+      return (from t in tags
               let rssUrl = new Uri(
                 Environment.AbsoluteBaseUrl,
                 FrameUtilities.RelativeUrlToAction<RssTagAction>(t.Name)).ToString()
