@@ -105,8 +105,12 @@
     </Compile>
     <Compile Include="Frame\CustomActionResult.cs" />
     <Compile Include="Frame\Environment.cs" />
+    <Compile Include="Frame\HandlerUrlAttribute.cs" />
+    <Compile Include="Frame\HttpHandlerDispatcher.cs" />
+    <Compile Include="Frame\HttpHandlerRegistrar.cs" />
     <Compile Include="Frame\IObjectConverter.cs" />
     <Compile Include="Frame\IResponseWriter.cs" />
+    <Compile Include="Handlers\404Handler.cs" />
     <Compile Include="MetaWebLogApi\ContentToPostConverter.cs" />
     <Compile Include="MetaWebLogApi\IMediaStorage.cs" />
     <Compile Include="MetaWebLogApi\IMetaWeblog.cs" />

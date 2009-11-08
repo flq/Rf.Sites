@@ -14,39 +14,18 @@ namespace Rf.Sites.MetaWeblogApi
   /// Code used from the post
   /// http://nayyeri.net/implement-metaweblog-api-in-asp-net
   /// No licensing provided.
-  /// As a Handler, the class gets constructed by the .Net HTTP Runtime.
-  /// Hence, when the site is running the <see cref="ensureRequestIntegrity"/>
-  /// method will ensure provision of dependencies directly through the ObjectFactory.
-  /// Tests (or a handler factory) may use the non-default constructor to provide dependencies directly.
   /// </summary>
+  [HandlerUrl(Url = "metaweblog.site")]
   public class MetaWeblog : XmlRpcService, IMetaWeblog
   {
-    private IContainer container;
-    private readonly bool initializedThroughNonDefaultConstructor;
-
-    public MetaWeblog() { }
-
+    private readonly IContainer container;
+    private readonly Environment environment;
+    
     public MetaWeblog(Environment environment, IContainer container)
     {
       this.container = container;
-      Environment = environment;
-      initializedThroughNonDefaultConstructor = true;
+      this.environment = environment;
     }
-
-    public Environment Environment
-    {
-      private get;
-      set;
-    }
-
-    public IContainer Container
-    {
-      set
-      {
-        container = value;
-      }
-    }
-
 
     string IMetaWeblog.AddPost(string blogid, string username, string password,
                                Post post, bool publish)
@@ -92,10 +71,10 @@ namespace Rf.Sites.MetaWeblogApi
 
       return (from t in tags
               let rssUrl = new Uri(
-                Environment.AbsoluteBaseUrl,
+                environment.AbsoluteBaseUrl,
                 FrameUtilities.RelativeUrlToAction<RssTagAction>(t.Name)).ToString()
               let webUrl = new Uri(
-                Environment.AbsoluteBaseUrl,
+                environment.AbsoluteBaseUrl,
                 FrameUtilities.RelativeUrlToAction<ContentTagAction>(t.Name)).ToString()
               select new CategoryInfo
                        {
@@ -142,7 +121,7 @@ namespace Rf.Sites.MetaWeblogApi
         var relativeUrl = storage.StoreMedia(mediaObject.name, mediaObject.bits);
         return new MediaObjectInfo
                  {
-                   url = new Uri(Environment.AbsoluteBaseUrl, relativeUrl).ToString()
+                   url = new Uri(environment.AbsoluteBaseUrl, relativeUrl).ToString()
                  };
       }
       catch (Exception x)
@@ -166,8 +145,8 @@ namespace Rf.Sites.MetaWeblogApi
                          new BlogInfo
                            {
                              blogid = "1",
-                             blogName = Environment.SiteTitle,
-                             url = Environment.AbsoluteBaseUrl.ToString()
+                             blogName = environment.SiteTitle,
+                             url = environment.AbsoluteBaseUrl.ToString()
                            }
                        };
       return infoList;
@@ -179,11 +158,11 @@ namespace Rf.Sites.MetaWeblogApi
 
       UserInfo info = new UserInfo
                         {
-                          email = Environment.SiteMasterEmail,
-                          firstname = Environment.SiteMasterName,
+                          email = environment.SiteMasterEmail,
+                          firstname = environment.SiteMasterName,
                           lastname = "",
                           nickname = "",
-                          url = Environment.AbsoluteBaseUrl.ToString(),
+                          url = environment.AbsoluteBaseUrl.ToString(),
                           userid = "1"
                         };
       return info;
@@ -191,10 +170,7 @@ namespace Rf.Sites.MetaWeblogApi
 
     private void ensureRequestIntegrity(string username, string password)
     {
-      if (!initializedThroughNonDefaultConstructor)
-        ObjectFactory.BuildUp(this);
-
-      if (username == Environment.SiteMasterEmail && password == Environment.SiteMasterPassword)
+      if (username == environment.SiteMasterEmail && password == environment.SiteMasterPassword)
         return;
 
       throw new XmlRpcFaultException(0, "Usr Pwd Combination Fail");

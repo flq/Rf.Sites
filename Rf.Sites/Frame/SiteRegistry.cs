@@ -1,3 +1,4 @@
+using System.Web;
 using System.Web.Mvc;
 using Rf.Sites.Domain;
 using Rf.Sites.Domain.Frame;
@@ -15,6 +16,12 @@ namespace Rf.Sites.Frame
   {
     public SiteRegistry()
     {
+      Scan(s =>
+      {
+        s.AssemblyContainingType<Entity>();
+        s.LookForRegistries();
+      });
+
       ForRequestedType<IControllerFactory>()
         .TheDefaultIsConcreteType<ControllerFactory>();
       ForRequestedType<IViewEngine>()
@@ -33,9 +40,6 @@ namespace Rf.Sites.Frame
       ForSingletonOf<ICache>()
         .TheDefaultIsConcreteType<WebBasedCache>();
 
-      ForRequestedType<IAction>()
-        .MissingNamedInstanceIs.TheInstanceNamed("unknown");
-
       ForSingletonOf<Environment>().TheDefault.IsThis(Startup.Environment);
 
       ForRequestedType<IObjectConverter<Comment, CommentVM>>()
@@ -49,6 +53,8 @@ namespace Rf.Sites.Frame
       ForRequestedType<IMediaStorage>()
         .TheDefaultIsConcreteType<MediaStorage>();
 
+      ForRequestedType<IAction>()
+        .MissingNamedInstanceIs.TheInstanceNamed("unknown");
       Scan(s =>
              {
                s.AssemblyContainingType<SiteRegistry>();
@@ -56,10 +62,13 @@ namespace Rf.Sites.Frame
                  .NameBy(t => t.Name.Replace("Action", "").ToLowerInvariant());
                s.AddAllTypesOf(typeof (IVmExtender<>));
              });
+
+      ForRequestedType<IHttpHandler>()
+        .MissingNamedInstanceIs.TheInstanceNamed("unknown");
       Scan(s=>
              {
-               s.AssemblyContainingType<Entity>();
-               s.LookForRegistries();
+               s.AssemblyContainingType<SiteRegistry>();
+               s.With<HttpHandlerRegistrar>();
              });
     }
   }
