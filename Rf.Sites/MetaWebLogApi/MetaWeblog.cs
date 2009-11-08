@@ -1,13 +1,12 @@
 using System;
+using System.Linq;
 using CookComputing.XmlRpc;
-using System.Collections.Generic;
 using Rf.Sites.Actions;
 using Rf.Sites.Domain;
 using Rf.Sites.Domain.Frame;
 using Rf.Sites.Frame;
 using StructureMap;
-using System.Linq;
-using Environment=Rf.Sites.Frame.Environment;
+using Environment = Rf.Sites.Frame.Environment;
 
 namespace Rf.Sites.MetaWeblogApi
 {
@@ -18,7 +17,7 @@ namespace Rf.Sites.MetaWeblogApi
   /// As a Handler, the class gets constructed by the .Net HTTP Runtime.
   /// Hence, when the site is running the <see cref="ensureRequestIntegrity"/>
   /// method will ensure provision of dependencies directly through the ObjectFactory.
-  /// Tests may use the non-default constructor to provide dependencies directly.
+  /// Tests (or a handler factory) may use the non-default constructor to provide dependencies directly.
   /// </summary>
   public class MetaWeblog : XmlRpcService, IMetaWeblog
   {
@@ -47,8 +46,6 @@ namespace Rf.Sites.MetaWeblogApi
         container = value;
       }
     }
-
-    #region IMetaWeblog Members
 
 
     string IMetaWeblog.AddPost(string blogid, string username, string password,
@@ -192,10 +189,6 @@ namespace Rf.Sites.MetaWeblogApi
       return info;
     }
 
-    #endregion
-
-    #region Private Methods
-
     private void ensureRequestIntegrity(string username, string password)
     {
       if (!initializedThroughNonDefaultConstructor)
@@ -206,7 +199,5 @@ namespace Rf.Sites.MetaWeblogApi
 
       throw new XmlRpcFaultException(0, "Usr Pwd Combination Fail");
     }
-
-    #endregion
   }
 }
