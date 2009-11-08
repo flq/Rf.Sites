@@ -1,33 +1,19 @@
 using System.Web.Mvc;
 using Rf.Sites.Frame;
-using StructureMap;
 
 namespace Rf.Sites.Tests.Frame
 {
-  public class ActionEnv
-  {
-    private readonly Container container;
 
+  public class ActionEnv : IntegrationEnv
+  {
     public ActionEnv()
     {
       ControllerCtxMock = TestHelpExtensions.StartControllerContextMock();
-
-      container =
-        new Container(
-          ce =>
-            {
-              ce.AddRegistry<SiteRegistry>();
-              ce.ForRequestedType<ControllerContext>()
-                .TheDefault.Is.ConstructedBy(() => ControllerCtxMock.ControllerContext);
-            });
+      container.Configure(ce => ce.ForRequestedType<ControllerContext>()
+                                  .TheDefault.Is.ConstructedBy(() => ControllerCtxMock.ControllerContext));
     }
 
     public ControllerCtxMock ControllerCtxMock { get; private set; }
-
-    public Container Container
-    {
-      get { return container; }
-    }
 
     public IAction GetAction(string actionKey)
     {

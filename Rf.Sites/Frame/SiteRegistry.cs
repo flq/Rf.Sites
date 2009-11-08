@@ -44,7 +44,8 @@ namespace Rf.Sites.Frame
         .TheDefaultIsConcreteType<AttachmentToVMConverter>();
       ForRequestedType<IObjectConverter<Post, Content>>()
         .TheDefaultIsConcreteType<PostToContentConverter>();
-
+      ForRequestedType<IObjectConverter<Content, Post>>()
+        .TheDefaultIsConcreteType<ContentToPostConverter>();
       ForRequestedType<IMediaStorage>()
         .TheDefaultIsConcreteType<MediaStorage>();
 

@@ -1,7 +1,9 @@
+using System;
 using NUnit.Framework;
 using NUnit.Framework.SyntaxHelpers;
 using Rf.Sites.Actions;
 using Rf.Sites.Domain;
+using Rf.Sites.Domain.Frame;
 using Rf.Sites.Frame;
 using Rf.Sites.Models;
 using Rf.Sites.Tests.Frame;
@@ -90,6 +92,23 @@ namespace Rf.Sites.Tests
       var oC = env.Container.GetInstance<IObjectConverter<Comment, CommentVM>>();
       var vm = oC.Convert(new Comment {Body = "<code>jo</code>"});
       vm.Body.Contains("<pre ").ShouldBeTrue();
+    }
+
+    [Test]
+    public void NestedContainerCanBeUsedForLocalOverload()
+    {
+      var repT = new TestRepository<Tag>
+          {
+            new Tag {Created = DateTime.Now, Name = "1", Description = "A"},
+            new Tag {Created = DateTime.Now, Name = "2", Description = "B"}
+          };
+
+      ActionEnv env = new ActionEnv();
+      var nC = env.Container.GetNestedContainer();
+      nC.Configure(c=>c.ForRequestedType<IRepository<Tag>>().TheDefault.IsThis(repT));
+
+      env.Container.GetInstance<IRepository<Tag>>().ShouldBeOfType<Repository<Tag>>();
+      nC.GetInstance<IRepository<Tag>>().ShouldBeOfType<TestRepository<Tag>>();
     }
   }
 }

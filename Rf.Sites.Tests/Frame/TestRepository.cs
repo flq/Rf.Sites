@@ -7,11 +7,11 @@ using Rf.Sites.Domain;
 using Rf.Sites.Domain.Frame;
 using Expression=System.Linq.Expressions.Expression;
 
-namespace Rf.Sites.Tests
+namespace Rf.Sites.Tests.Frame
 {
   public class TestRepository<T> : IRepository<T> where T : Entity
   {
-    List<T> list = new List<T>();
+    readonly List<T> list = new List<T>();
 
     public Expression Expression
     {
@@ -39,7 +39,13 @@ namespace Rf.Sites.Tests
 
     public T this[int id]
     {
-      get { return list[id]; }
+      get { return list.Where(t=>t.Id == id).SingleOrDefault(); }
+      set
+      {
+        var idx = list.FindIndex(t => t.Id == id);
+        if (idx >= 0)
+          list[idx] = value;
+      }
     }
 
     public void Clear()

@@ -256,6 +256,24 @@ namespace Rf.Sites.Tests
       repC.Count.ShouldBeEqualTo(currentContentCount);
     }
 
+    [Test]
+    public void UpdateIsPossibleViaIdSetter()
+    {
+      var repC = new Repository<Content>(factory);
+      var cn = maker.CreateContent();
+      int id = 0;
+      repC.Transacted(r=>id = r.Add(cn));
+      
+      Session.Clear();
+      var cn2 = repC[id];
+      cn2.Title = "TheFoo";
+      repC.Transacted(r=>r[id] = cn2);
+
+      Session.Clear();
+      var cn3 = repC[id];
+      cn3.Title.ShouldBeEqualTo("TheFoo");
+    }
+
 
 
   }

@@ -1,6 +1,9 @@
+using System;
 using CookComputing.XmlRpc;
 using Moq;
 using NUnit.Framework;
+using Rf.Sites.Domain;
+using Rf.Sites.Domain.Frame;
 using Rf.Sites.MetaWeblogApi;
 using Rf.Sites.Tests.Frame;
 using System.Linq;
@@ -11,6 +14,12 @@ namespace Rf.Sites.Tests
   public class UsingTheMetaWeblogService
   {
     readonly MetaWeblogEnv mwl = new MetaWeblogEnv();
+
+    [TearDown]
+    public void ReleaseResources()
+    {
+      mwl.ReleaseResources();
+    }
 
     [Test]
     [ExpectedException(typeof(XmlRpcFaultException))]
@@ -46,10 +55,17 @@ namespace Rf.Sites.Tests
     [Test]
     public void CategoriesRetrievesAvailableTags()
     {
+      var tagR = new TestRepository<Tag>
+          {
+            new Tag {Created = DateTime.Now, Name = "1", Description = "A"},
+            new Tag {Created = DateTime.Now, Name = "2", Description = "B"}
+          };
+
+      mwl.OverloadContainer(c => c.ForRequestedType<IRepository<Tag>>().TheDefault.IsThis(tagR));
       var api = mwl.GetApi();
       var cats = api.GetCategories("1", mwl.Uid, mwl.Pwd);
-      cats.ShouldHaveLength(mwl.Tags.Count);
-      cats[0].categoryid.ShouldBeEqualTo(mwl.Tags.First().Name);
+      cats.ShouldHaveLength(tagR.Count);
+      cats[0].categoryid.ShouldBeEqualTo(tagR.First().Name);
     }
 
     [Test]
@@ -58,14 +74,70 @@ namespace Rf.Sites.Tests
       var mS = new Mock<IMediaStorage>();
       var content = new byte[] {1, 2, 3};
       mS.Setup(m => m.StoreMedia("test", content)).Returns("test");
-      var api = mwl
-        .ConfigureContainer(c => c.ForRequestedType<IMediaStorage>().TheDefault.IsThis(mS.Object))
-        .GetApi();
+      mwl.OverloadContainer(c => c.ForRequestedType<IMediaStorage>().TheDefault.IsThis(mS.Object));
+      var api = mwl.GetApi();
 
       var result = api.NewMediaObject("1", mwl.Uid, mwl.Pwd, new MediaObject {name = "test", bits = content});
 
       mS.Verify();
       result.url.ShouldBeEqualTo(mwl.Url + "test");
     }
+
+    [Test]
+    public void GetPostViaMwlApi()
+    {
+      var cR = new TestRepository<Content>
+                 {
+                   new Content(10) {Title = "A", Body = "B"}
+                 };
+      cR[10].AssociateWithTag(new Tag { Name = "Foo"});
+      cR[10].AssociateWithTag(new Tag { Name = "Bar" });
+
+      mwl.OverloadContainer(c=>c.ForRequestedType<IRepository<Content>>().TheDefault.IsThis(cR));
+      var api = mwl.GetApi();
+      var p = api.GetPost("10", mwl.Uid, mwl.Pwd);
+      p.postid.ShouldBeEqualTo(10);
+      p.categories.ShouldHaveLength(2);
+      p.title.ShouldBeEqualTo("A");
+    }
+
+    [Test]
+    public void UpdatePostViaMwlApi()
+    {
+      var cR = new TestRepository<Content>
+                 {
+                   new Content(10) {Title = "A", Body = "B"}
+                 };
+      cR[10].AssociateWithTag(new Tag { Name = "Foo" });
+      cR[10].AssociateWithTag(new Tag { Name = "Bar" });
+
+      mwl.OverloadContainer(c => c.ForRequestedType<IRepository<Content>>().TheDefault.IsThis(cR));
+      var api = mwl.GetApi();
+      api.UpdatePost("10", mwl.Uid, mwl.Pwd, new Post { postid = 10, title = "Hi", description = "Ho"}, true);
+
+      var content = cR[10];
+      content.Title.ShouldBeEqualTo("Hi");
+      content.Body.ShouldBeEqualTo("Ho");
+      content.Teaser.ShouldBeEqualTo("Ho");
+    }
+
+    [Test]
+    public void GetRecentPostsViaApi()
+    {
+      var theDate = DateTime.Now - TimeSpan.FromDays(10);
+
+      var cR = new TestRepository<Content>();
+      for (int i = 0; i < 5; i++)
+        cR.Add(new Content(i) {Title = "A" + i, Created = theDate + TimeSpan.FromDays(i)});
+
+      mwl.OverloadContainer(c => c.ForRequestedType<IRepository<Content>>().TheDefault.IsThis(cR));
+      var api = mwl.GetApi();
+
+      var posts = api.GetRecentPosts("1", mwl.Uid, mwl.Pwd, 4);
+      posts.ShouldHaveLength(4);
+      posts.ShouldNotContain(p=>p.title == "A0");
+      posts.ShouldContain(p => p.title == "A4");
+    }
+
   }
 }

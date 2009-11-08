@@ -9,7 +9,7 @@ namespace Rf.Sites.Domain.Frame
     where T : Entity
   {
     new int Add(T item);
-    T this[int id] { get; }
+    T this[int id] { get; set; }
     IList<T> ByCriteria(DetachedCriteria criteria);
     void Transacted(Action<IRepository<T>> actionWithinTransaction);
 

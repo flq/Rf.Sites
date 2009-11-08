@@ -33,6 +33,10 @@ namespace Rf.Sites.Domain.Frame
       {
         return theSession().Get<T>(id);
       }
+      set
+      {
+        theSession().Update(value,id);
+      }
     }
 
     public IList<T> ByCriteria(DetachedCriteria criteria)

@@ -67,27 +67,22 @@ namespace Rf.Sites.MetaWeblogApi
       return id.ToString();
     }
 
+    /// <summary>
+    /// Current support: Only body and title is updated
+    /// </summary>
     bool IMetaWeblog.UpdatePost(string postid, string username, string password,
                                 Post post, bool publish)
     {
       ensureRequestIntegrity(username, password);
 
-      bool result = false;
+      var cRep = container.GetInstance<IRepository<Content>>();
+      var content = cRep[Convert.ToInt32(postid)];
+      content.Title = post.title;
+      content.SetBody(post.description);
+      
+      cRep.Transacted(r=>r[content.Id] = content);
 
-      // TODO: Implement your own logic to add the post and set the result
-
-      return result;
-    }
-
-    Post IMetaWeblog.GetPost(string postid, string username, string password)
-    {
-      ensureRequestIntegrity(username, password);
-
-      Post post = new Post();
-
-      // TODO: Implement your own logic to update the post and set the post
-
-      return post;
+      return true;
     }
 
     CategoryInfo[] IMetaWeblog.GetCategories(string blogid, string username, string password)
@@ -115,16 +110,28 @@ namespace Rf.Sites.MetaWeblogApi
                        }).ToArray();
     }
 
+    Post IMetaWeblog.GetPost(string postid, string username, string password)
+    {
+      ensureRequestIntegrity(username, password);
+
+      var rep = container.GetInstance<IRepository<Content>>();
+      var c = rep[Convert.ToInt32(postid)];
+      return container.GetInstance<IObjectConverter<Content, Post>>().Convert(c);
+    }
+
     Post[] IMetaWeblog.GetRecentPosts(string blogid, string username, string password,
                                       int numberOfPosts)
     {
       ensureRequestIntegrity(username, password);
 
-      List<Post> posts = new List<Post>();
+      var rep = container.GetInstance<IRepository<Content>>();
+      var converter = container.GetInstance<IObjectConverter<Content, Post>>();
 
-      // TODO: Implement your own logic to get posts and set the posts
-
-      return posts.ToArray();
+      return (from c in rep orderby c.Created descending select c)
+        .Take(numberOfPosts)
+        .ToList() // Do the Query
+        .Select(c => converter.Convert(c))
+        .ToArray();
     }
 
     MediaObjectInfo IMetaWeblog.NewMediaObject(string blogid, string username, string password,
