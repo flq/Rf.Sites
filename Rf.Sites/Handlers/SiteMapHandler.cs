@@ -12,7 +12,7 @@ using Environment=Rf.Sites.Frame.Environment;
 namespace Rf.Sites.Handlers
 {
   [HandlerUrl(Url = "sitemap.site")]
-  public class SiteMapHandler : IHttpHandler
+  public class SiteMapHandler : AbstractHandler
   {
     private readonly ISessionFactory factory;
     private readonly string contentEntryUrl;
@@ -23,10 +23,11 @@ namespace Rf.Sites.Handlers
       contentEntryUrl = new Uri(environment.AbsoluteBaseUrl, FrameUtilities.RelativeUrlToAction<ContentEntryAction>()).ToString();
     }
 
-    public void ProcessRequest(HttpContext context)
+    protected override void processRequest()
     {
-      context.Response.ContentType = "application/xml";
-      using (XmlTextWriter writer = new XmlTextWriter(context.Response.Output))
+      Context.ResponseContentType = "application/xml";
+
+      using (XmlTextWriter writer = new XmlTextWriter(Context.ResponseOutput))
       using (var s = factory.OpenStatelessSession())
       {
         var q = s.CreateQuery(
@@ -50,13 +51,7 @@ namespace Rf.Sites.Handlers
       writer.WriteProcessingInstruction("xml", @"version=""1.0"" encoding=""UTF-8""");
       writer.WriteStartElement("urlset");
       writer.WriteAttributeString("xmlns", "http://www.sitemaps.org/schemas/sitemap/0.9");
-      writer.WriteAttributeString("xmlns", "xsi", "http://www.w3.org/2001/XMLSchema-instance");
-      writer.WriteAttributeString("xmlns", "schemaLocation", "http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd");
-    }
-
-    public bool IsReusable
-    {
-      get { return false; }
+      writer.WriteAttributeString("xmlns:schemaLocation", "http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd");
     }
 
     private class Row

@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using NUnit.Framework;
+using Rf.Sites.Tests.Frame;
 
 namespace Rf.Sites.Tests
 {

@@ -5,15 +5,16 @@ using Rf.Sites.Frame;
 namespace Rf.Sites.Handlers
 {
   [HandlerUrl(Url="unknown")]
-  public class Handler404 : IHttpHandler
+  public class Handler404 : AbstractHandler
   {
-    public void ProcessRequest(HttpContext context)
+
+    protected override void processRequest()
     {
-      context.Response.StatusCode = 404;
-      context.Response.End();
+      Context.ResponseStatusCode = 404;
+      Context.EndResponse();
     }
 
-    public bool IsReusable
+    public override bool IsReusable
     {
       get { return true; }
     }

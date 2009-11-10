@@ -111,7 +111,10 @@
     <Compile Include="Frame\IObjectConverter.cs" />
     <Compile Include="Frame\IResponseWriter.cs" />
     <Compile Include="Handlers\404Handler.cs" />
+    <Compile Include="Handlers\AbstractHandler.cs" />
+    <Compile Include="Handlers\IHttpContext.cs" />
     <Compile Include="Handlers\SiteMapHandler.cs" />
+    <Compile Include="Handlers\WebHttpContext.cs" />
     <Compile Include="MetaWebLogApi\ContentToPostConverter.cs" />
     <Compile Include="MetaWebLogApi\IMediaStorage.cs" />
     <Compile Include="MetaWebLogApi\IMetaWeblog.cs" />

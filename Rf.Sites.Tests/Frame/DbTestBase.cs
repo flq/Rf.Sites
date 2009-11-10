@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Text;
 using NHibernate;
 
-namespace Rf.Sites.Tests
+namespace Rf.Sites.Tests.Frame
 {
   public class DbTestBase : IDisposable
   {
@@ -23,13 +20,12 @@ namespace Rf.Sites.Tests
 
     public DbTestBase()
     {
-      var maker = new InMemorySessions();
-      factory = maker.CreateFactory();
+      var memorySessions = new InMemorySessions();
+      factory = memorySessions.CreateFactory();
 
       var sb = new StringBuilder();
       
-      maker.DropAndRecreateSchema(new StringWriter(sb), Session.Connection);
-      //Debug.WriteLine(sb.ToString());
+      memorySessions.DropAndRecreateSchema(new StringWriter(sb), Session.Connection);
     }
 
     public void Dispose()

@@ -114,6 +114,7 @@
     <Compile Include="Frame\IntegrationEnv.cs" />
     <Compile Include="Frame\MetaWeblogEnv.cs" />
     <Compile Include="Frame\TestHelpExtensions.cs" />
+    <Compile Include="Frame\TestHttpContext.cs" />
     <Compile Include="Frame\TestRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Frame\TestNHSessionContext.cs" />
