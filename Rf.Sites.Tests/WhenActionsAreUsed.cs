@@ -68,11 +68,11 @@ namespace Rf.Sites.Tests
     [Test]
     public void NHibernateCheckOfGettingTeasers()
     {
-      var tag = maker.CreateTag();
+      var tag = Maker.CreateTag();
 
       using (var t = Session.BeginTransaction())
       {
-        var c = maker.CreateContent();  
+        var c = Maker.CreateContent();  
         c.AssociateWithTag(tag);
         Session.Save(tag);
         Session.Save(c);
@@ -80,7 +80,7 @@ namespace Rf.Sites.Tests
       }
 
       Session.Clear();
-      var action = new ContentTagAction(ArgsFrom.Value(tag.Name), new Repository<Content>(factory))
+      var action = new ContentTagAction(ArgsFrom.Value(tag.Name), new Repository<Content>(Factory))
         { Environment = new Environment { ItemsPerPage = 5}};
       var model = action.Execute().GetModelFromAction<List<ContentFragmentViewModel>>();
       model.ShouldHaveCount(1);

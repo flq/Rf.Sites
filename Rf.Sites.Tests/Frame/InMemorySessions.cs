@@ -5,7 +5,7 @@ using NHibernate.Dialect;
 using NHibernate.Driver;
 using Rf.Sites.Domain.Frame;
 
-namespace Rf.Sites.Tests
+namespace Rf.Sites.Tests.Frame
 {
   public class InMemorySessions : SessionFactoryMaker
   {

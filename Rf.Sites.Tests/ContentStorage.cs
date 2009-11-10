@@ -15,7 +15,7 @@ namespace Rf.Sites.Tests
       object id;
       
       using (var tx = Session.BeginTransaction()) {
-        var c = maker.CreateContent();
+        var c = Maker.CreateContent();
         id = Session.Save(c);
         tx.Commit();
       }
@@ -34,7 +34,7 @@ namespace Rf.Sites.Tests
     public void ContentIsTagged()
     {
       object tagId;
-      var t = maker.CreateTag();
+      var t = Maker.CreateTag();
       using (var tx = Session.BeginTransaction())
       {
         tagId = Session.Save(t);
@@ -43,7 +43,7 @@ namespace Rf.Sites.Tests
 
       using (var tx = Session.BeginTransaction())
       {
-        var c = maker.CreateContent();
+        var c = Maker.CreateContent();
         c.AssociateWithTag(t);
         Session.Save(c);
         tx.Commit();
@@ -61,8 +61,8 @@ namespace Rf.Sites.Tests
     {
       object id;
 
-      var c = maker.CreateContent();
-      var comment = maker.CreateComment();
+      var c = Maker.CreateContent();
+      var comment = Maker.CreateComment();
 
       using (var tx = Session.BeginTransaction())
       {
@@ -83,7 +83,7 @@ namespace Rf.Sites.Tests
     public void CanSaveAttachments()
     {
       object id;
-      var c = maker.CreateContent();
+      var c = Maker.CreateContent();
       var attachment = new Attachment
                          {
                            Name = "Attached", Path = @"files/x.xml", Size = 1024,
@@ -108,7 +108,7 @@ namespace Rf.Sites.Tests
     public void CommentDefaultIsNotFromSiteMaster()
     {
       object id;
-      var cmt = maker.CreateComment();
+      var cmt = Maker.CreateComment();
       using (var tx = Session.BeginTransaction())
       {
         id = Session.Save(cmt);

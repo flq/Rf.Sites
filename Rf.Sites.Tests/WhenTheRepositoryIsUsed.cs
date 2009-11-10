@@ -16,12 +16,12 @@ namespace Rf.Sites.Tests
     {
       using (var t = Session.BeginTransaction())
       {
-        var c = maker.CreateContent();
+        var c = Maker.CreateContent();
         Session.Save(c);
         t.Commit();
       }
 
-      var repC = new Repository<Content>(factory);
+      var repC = new Repository<Content>(Factory);
       Assert.AreEqual(1, repC.Count);
     }
 
@@ -29,7 +29,7 @@ namespace Rf.Sites.Tests
     public void ContainsWillSaythatItemDoesNotExist()
     {
       var c = new Content(13);
-      var repC = new Repository<Content>(factory);
+      var repC = new Repository<Content>(Factory);
       Assert.IsFalse(repC.Contains(c));
     }
 
@@ -39,11 +39,11 @@ namespace Rf.Sites.Tests
       object id;
       using (var t = Session.BeginTransaction())
       {
-        var c = maker.CreateContent();
+        var c = Maker.CreateContent();
         id = Session.Save(c);
         t.Commit();
       }
-      var repC = new Repository<Content>(factory);
+      var repC = new Repository<Content>(Factory);
       Assert.IsTrue(repC.Contains(new Content((int)id)));
     }
 
@@ -53,9 +53,9 @@ namespace Rf.Sites.Tests
       object id;
       using (var t = Session.BeginTransaction())
       {
-        var c = maker.CreateContent();
-        var tag1 = maker.CreateTag();
-        var tag2 = maker.CreateTag();
+        var c = Maker.CreateContent();
+        var tag1 = Maker.CreateTag();
+        var tag2 = Maker.CreateTag();
         c.AssociateWithTag(tag1);
         c.AssociateWithTag(tag2);
         Session.Save(tag1);
@@ -66,7 +66,7 @@ namespace Rf.Sites.Tests
 
       Session.Clear();
 
-      var repC = new Repository<Content>(factory);
+      var repC = new Repository<Content>(Factory);
 
       var content = repC[(int) id];
 
@@ -80,10 +80,10 @@ namespace Rf.Sites.Tests
     [Test]
     public void CanQueryTheRepository()
     {
-      var c = maker.CreateContent();
-      c.AddComment(maker.CreateComment());
-      var c2 = maker.CreateContent();
-      c2.AddComment(maker.CreateComment("Foo"));
+      var c = Maker.CreateContent();
+      c.AddComment(Maker.CreateComment());
+      var c2 = Maker.CreateContent();
+      c2.AddComment(Maker.CreateComment("Foo"));
       c2.Title = "Foo";
       using (var t = Session.BeginTransaction())
       {
@@ -92,7 +92,7 @@ namespace Rf.Sites.Tests
         t.Commit();
       }
 
-      var repC = new Repository<Content>(factory);
+      var repC = new Repository<Content>(Factory);
 
       var result =
         (from content in repC
@@ -107,7 +107,7 @@ namespace Rf.Sites.Tests
     public void UpdatesAnItem()
     {
       object id;
-      var c = maker.CreateContent();
+      var c = Maker.CreateContent();
 
       using (var t = Session.BeginTransaction())
       {
@@ -119,7 +119,7 @@ namespace Rf.Sites.Tests
 
       using (var t = Session.BeginTransaction())
       {
-        var repC = new Repository<Content>(factory);
+        var repC = new Repository<Content>(Factory);
         var c2 = repC[(int)id];
         c2.Title = "Bar";
         t.Commit();
@@ -135,8 +135,8 @@ namespace Rf.Sites.Tests
     [Test]
     public void CanAddNew()
     {
-      var cn = maker.CreateContent();
-      var repC = new Repository<Content>(factory);
+      var cn = Maker.CreateContent();
+      var repC = new Repository<Content>(Factory);
       using (var t = Session.BeginTransaction())
       {
         repC.Add(cn);
@@ -150,8 +150,8 @@ namespace Rf.Sites.Tests
     [Test]
     public void IndexerForIDLoad()
     {
-      var repC = new Repository<Content>(factory);
-      var cn = maker.CreateContent();
+      var repC = new Repository<Content>(Factory);
+      var cn = Maker.CreateContent();
       int id;
       using (var t = Session.BeginTransaction())
       {
@@ -170,11 +170,11 @@ namespace Rf.Sites.Tests
     [Test]
     public void QueryByTimePartsIsDoneLikeThis()
     {
-      var repC = new Repository<Content>(factory);
-      var cn = maker.CreateContent();
+      var repC = new Repository<Content>(Factory);
+      var cn = Maker.CreateContent();
       cn.Created = new DateTime(2007, 01, 01);
       cn.Title = "Foo";
-      var cn2 = maker.CreateContent();
+      var cn2 = Maker.CreateContent();
       cn2.Created = new DateTime(2008, 01, 01);
 
       using (var t = Session.BeginTransaction())
@@ -196,13 +196,13 @@ namespace Rf.Sites.Tests
     [Test]
     public void CanDoInStatementWithLINQ()
     {
-      maker.ResetTagCount();
-      var repT = new Repository<Tag>(factory);
+      Maker.ResetTagCount();
+      var repT = new Repository<Tag>(Factory);
       using (var t = Session.BeginTransaction())
       {
-        repT.Add(maker.CreateTag());
-        repT.Add(maker.CreateTag());
-        repT.Add(maker.CreateTag());
+        repT.Add(Maker.CreateTag());
+        repT.Add(Maker.CreateTag());
+        repT.Add(Maker.CreateTag());
         t.Commit();
       }
 
@@ -220,8 +220,8 @@ namespace Rf.Sites.Tests
     [Test]
     public void AutomatedCommitInTransactionMethod()
     {
-      var repC = new Repository<Content>(factory);
-      var cn = maker.CreateContent();
+      var repC = new Repository<Content>(Factory);
+      var cn = Maker.CreateContent();
       int id = -1;
       repC.Transacted(r=>id = r.Add(cn));
       Session.Clear();
@@ -234,12 +234,12 @@ namespace Rf.Sites.Tests
     [Test]
     public void TransactedActionWillRollback()
     {
-      var repC = new Repository<Content>(factory);
+      var repC = new Repository<Content>(Factory);
 
       var currentContentCount = repC.Count;
 
-      var cn = maker.CreateContent();
-      var cn2 = maker.CreateContent();
+      var cn = Maker.CreateContent();
+      var cn2 = Maker.CreateContent();
       try
       {
         repC.Transacted(r=>
@@ -259,8 +259,8 @@ namespace Rf.Sites.Tests
     [Test]
     public void UpdateIsPossibleViaIdSetter()
     {
-      var repC = new Repository<Content>(factory);
-      var cn = maker.CreateContent();
+      var repC = new Repository<Content>(Factory);
+      var cn = Maker.CreateContent();
       int id = 0;
       repC.Transacted(r=>id = r.Add(cn));
       

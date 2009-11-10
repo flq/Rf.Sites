@@ -103,13 +103,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AssortedHandlerTests.cs" />
     <Compile Include="BasicCheck.cs" />
+    <Compile Include="CallingTheSiteMapHandler.cs" />
     <Compile Include="ContentStorage.cs" />
     <Compile Include="Frame\ActionEnv.cs" />
     <Compile Include="Frame\AssertExtensions.cs" />
     <Compile Include="Frame\ControllerCtxMock.cs" />
     <Compile Include="Frame\DbTestBase.cs" />
     <Compile Include="Frame\EntityMaker.cs" />
+    <Compile Include="Frame\HandlerEnv.cs" />
     <Compile Include="Frame\InMemorySessions.cs" />
     <Compile Include="Frame\IntegrationEnv.cs" />
     <Compile Include="Frame\MetaWeblogEnv.cs" />

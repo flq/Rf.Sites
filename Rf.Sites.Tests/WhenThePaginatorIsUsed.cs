@@ -28,7 +28,7 @@ namespace Rf.Sites.Tests
     [Test]
     public void AllowsPaginationOfData()
     {
-      var repository = new Repository<Content>(factory);
+      var repository = new Repository<Content>(Factory);
       Paginator<Content> paginator = Paginator.For(repository).Get();
 
       var r = paginator.GetPage();
@@ -46,7 +46,7 @@ namespace Rf.Sites.Tests
     [Test]
     public void AllowsPaginationOfFilteredData()
     {
-      var repository = new Repository<Content>(factory);
+      var repository = new Repository<Content>(Factory);
 
       var query = from c in repository where c.MetaKeyWords == "Foo" select c;
 
@@ -64,7 +64,7 @@ namespace Rf.Sites.Tests
     [Test]
     public void AllowsPaginationOfAnonymousData()
     {
-      var repository = new Repository<Content>(factory);
+      var repository = new Repository<Content>(Factory);
 
       var query = from c in repository where c.MetaKeyWords == "Foo" select new { c.Title };
 
@@ -82,7 +82,7 @@ namespace Rf.Sites.Tests
     [Test]
     public void PaginatorTellsNumberOfPages()
     {
-      var repository = new Repository<Content>(factory);
+      var repository = new Repository<Content>(Factory);
 
       int count = repository.Count;
 
@@ -101,7 +101,7 @@ namespace Rf.Sites.Tests
       cacheMock.Setup(c => c.HasValue("A")).Returns(true);
       Paginator.SetPaginatorCountCache(cacheMock.Object);
 
-      var paginator = Paginator.For(new Repository<Content>(factory))
+      var paginator = Paginator.For(new Repository<Content>(Factory))
         .SetCacheKey("A")
         .SetPageSize(3)
         .Get();
@@ -116,7 +116,7 @@ namespace Rf.Sites.Tests
       cacheMock.Setup(c => c.Get<int>(It.IsAny<string>())).Returns(16);
       cacheMock.Setup(c => c.HasValue("A")).Returns(true);
       Paginator.SetPaginatorCountCache(cacheMock.Object);
-      var paginator = Paginator.For(new Repository<Content>(factory))
+      var paginator = Paginator.For(new Repository<Content>(Factory))
         .SetPageSize(3)
         .SetCacheKey("A")
         .Get();
@@ -131,7 +131,7 @@ namespace Rf.Sites.Tests
       {
         for (int i = 0; i < 10; i++)
         {
-          var content = maker.CreateContent();
+          var content = Maker.CreateContent();
           content.MetaKeyWords = i%2 == 0 ? "Foo" : "Bar";
           content.Title = "Title" + i;
           Session.Save(content);
