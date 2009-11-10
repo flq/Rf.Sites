@@ -1,10 +1,15 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Xml;
 using Moq;
 using NHibernate;
 using NUnit.Framework;
+using Rf.Sites.Domain;
 using Rf.Sites.Handlers;
 using Rf.Sites.Tests.Frame;
 using Environment=Rf.Sites.Frame.Environment;
+using System.Linq;
 
 namespace Rf.Sites.Tests
 {
@@ -14,6 +19,8 @@ namespace Rf.Sites.Tests
     private HandlerEnv env;
     private TestHttpContext usedContext;
     private XmlDocument output;
+    private List<Content> content;
+    private XmlNamespaceManager nsMgr;
 
     [TestFixtureSetUp]
     public void Setup()
@@ -24,8 +31,9 @@ namespace Rf.Sites.Tests
       var session = env.InMemoryDB.Session;
       using (var t = session.BeginTransaction())
       {
-        var cnt = env.InMemoryDB.Maker.CreateContent();
-        session.Save(cnt);
+        content = createContent(env.InMemoryDB.Maker);
+        foreach (var cnt in content)
+          session.Save(cnt);
         t.Commit();
       }
       session.Clear();
@@ -40,12 +48,59 @@ namespace Rf.Sites.Tests
       usedContext = env.UsedContext;
       output = new XmlDocument();
       output.LoadXml(usedContext.OutputOfHandler.ToString());
+
+      nsMgr = new XmlNamespaceManager(output.NameTable);
+      nsMgr.AddNamespace("ns0", "http://www.sitemaps.org/schemas/sitemap/0.9");
     }
 
     [Test]
     public void TheOutputIsAValidDocument()
     {
       output.ShouldNotBeNull();
+    }
+
+    [Test]
+    public void ChangeFrequencyOfRecentContentIsCorrect()
+    {
+      var node = getTheNodeOf(c => c.Title == "A");
+      node.SelectSingleNode("ns0:changefreq", nsMgr).InnerText.ShouldBeEqualTo("weekly");
+    }
+
+    [Test]
+    public void ChangeFrequencyOfOldContentIsCorrect()
+    {
+      var node = getTheNodeOf(c => c.Title == "C");
+      node.SelectSingleNode("ns0:changefreq", nsMgr).InnerText.ShouldBeEqualTo("never");
+    }
+
+    private static List<Content> createContent(EntityMaker maker)
+    {
+      List<Content> contents = new List<Content>();
+      
+      var cnt = maker.CreateContent("A");
+      cnt.Created = DateTime.Now.Subtract(TimeSpan.FromDays(1));
+      contents.Add(cnt);
+      
+      cnt = maker.CreateContent("B");
+      cnt.Created = DateTime.Now.Subtract(TimeSpan.FromDays(60));
+      contents.Add(cnt);
+      
+      cnt = maker.CreateContent("C");
+      cnt.Created = new DateTime(2005,5,5);
+      var comment = maker.CreateComment();
+      comment.Created = new DateTime(2006,6,6);
+      cnt.AddComment(comment);
+      contents.Add(cnt);
+
+      return contents;
+    }
+
+    private XmlNode getTheNodeOf(Func<Content, bool> func)
+    {
+      var cnt = content.Where(func).Single();
+      var xpath = "//ns0:url[contains(./ns0:loc,'" + cnt.Id + "')]";
+      var node = output.SelectSingleNode(xpath, nsMgr);
+      return node;
     }
   }
 }
