@@ -1,6 +1,6 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Xml;
 using Moq;
 using NHibernate;
@@ -73,6 +73,22 @@ namespace Rf.Sites.Tests
       node.SelectSingleNode("ns0:changefreq", nsMgr).InnerText.ShouldBeEqualTo("never");
     }
 
+    [Test]
+    public void TheLatestDateWasPickedBetweenCommentAndContent()
+    {
+      var node = getTheNodeOf(c => c.Title == "C");
+      var time = DateTime.ParseExact(node.SelectSingleNode("ns0:lastmod", nsMgr).InnerText, "yyyy-MM-dd",
+                                     DateTimeFormatInfo.InvariantInfo);
+      time.ShouldBeEqualTo(new DateTime(2006,6,6));
+    }
+
+    [Test]
+    public void NumberOfCommentsInfluencesContentPriority()
+    {
+      var node = getTheNodeOf(c => c.Title == "B");
+      node.SelectSingleNode("ns0:priority", nsMgr).InnerText.ShouldBeEqualTo("0.7");
+    }
+
     private static List<Content> createContent(EntityMaker maker)
     {
       List<Content> contents = new List<Content>();
@@ -82,6 +98,9 @@ namespace Rf.Sites.Tests
       contents.Add(cnt);
       
       cnt = maker.CreateContent("B");
+      cnt.AddComment(maker.CreateComment());
+      cnt.AddComment(maker.CreateComment());
+      cnt.AddComment(maker.CreateComment());
       cnt.Created = DateTime.Now.Subtract(TimeSpan.FromDays(60));
       contents.Add(cnt);
       
