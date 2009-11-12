@@ -83,7 +83,9 @@
     <Compile Include="Actions\ContentYearAction.cs" />
     <Compile Include="Actions\RssIndexAction.cs" />
     <Compile Include="Actions\RssTagAction.cs" />
-    <Compile Include="Actions\TagcloudIndexAction.cs" />
+    <Compile Include="Actions\TagCloud\TagcloudIndexAction.cs" />
+    <Compile Include="Actions\TagCloud\TagList.cs" />
+    <Compile Include="Actions\TagCloud\WeightedTag.cs" />
     <Compile Include="Frame\AbstractFeed.cs" />
     <Compile Include="Frame\AbstractPagedContent.cs" />
     <Compile Include="Actions\Args\ActionArgs.cs" />

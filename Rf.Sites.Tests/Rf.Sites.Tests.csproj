@@ -126,6 +126,7 @@
     <Compile Include="TestingTheSiteInfrastructure.cs" />
     <Compile Include="UsingAttachmentVM.cs" />
     <Compile Include="UsingTheMetaWeblogService.cs" />
+    <Compile Include="UsingTheTagCloudFeature.cs" />
     <Compile Include="UsingTheTeaserGenerator.cs" />
     <Compile Include="WhenActionsAreUsed.cs" />
     <Compile Include="WhenContentIsUsed.cs" />
