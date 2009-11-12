@@ -13,14 +13,18 @@ namespace Rf.Sites.Frame
   {
     public static string ActionLink<T>(this HtmlHelper helper, string linkText) where T : IAction
     {
-      var tokens = typeof (T).Name.PasCalCaseTokenization();
-      return helper.ActionLink(linkText, tokens[1], tokens[0], new RouteValueDictionary(), null);
+      return helper.ActionLink<T>(linkText, ArgsFrom.Null);
     }
 
     public static string ActionLink<T>(this HtmlHelper helper, string linkText, IArgToRoute args) where T : IAction
     {
+      return helper.ActionLink<T>(linkText, args, null);
+    }
+
+    public static string ActionLink<T>(this HtmlHelper helper, string linkText, IArgToRoute args, IDictionary<string,object> linkAttributes) where T : IAction
+    {
       var tokens = typeof(T).Name.PasCalCaseTokenization();
-      return helper.ActionLink(linkText, tokens[1], tokens[0], args.ToDictionary(), null);
+      return helper.ActionLink(linkText, tokens[1], tokens[0], args.ToDictionary(), linkAttributes);
     }
 
     public static string RelativeUrlToAction<T>(params string[] additionalRouteValues) where T : IAction

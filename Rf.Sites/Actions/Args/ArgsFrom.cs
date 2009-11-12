@@ -2,6 +2,11 @@ namespace Rf.Sites.Actions.Args
 {
   public static class ArgsFrom
   {
+    public static NullArgs Null
+    {
+      get { return new NullArgs(); }
+    }
+
     public static IDActionArgs Id(int id)
     {
       return new IDActionArgs { Id = id };

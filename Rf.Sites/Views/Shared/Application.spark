@@ -8,14 +8,27 @@
     <link rel="shortcut icon" href="/files/rf.ico" type="image/x-icon" />
     <link rel="alternate" type="application/rss+xml" title="realfiction RSS" href="/rss" />
     <link type="text/css" rel="stylesheet" media="all" href="/files/site.css" />
-    <link type="text/css" rel="stylesheet" media="all" href="/files/sh_golden.css" />
+    <link type="text/css" rel="stylesheet" media="screen" href="/files/facebox.css" />
     <script type="text/javascript" src="/Scripts/jquery.js"></script>
-    <use content="head" />    
+    <script type="text/javascript" src="/Scripts/facebox.js" ></script>     
+    <script type="text/javascript">
+      jQuery(document).ready(function($) {
+      $('a[rel*=box]').facebox({
+        loadingImage : '/files/images/facebox/loading.gif',
+        closeImage   : '/files/images/facebox/closelabel.gif'
+        })
+      })
+    </script>
+    <use content="head" />
   </head>
   <body>
     <div id="header">
       <h1>realfiction</h1>
       <p>Explore the intersections of fiction and reality. Question them. Leave them behind.</p>
+    </div>
+    
+    <div id="nav">
+      <Tags />
     </div>
     
     <div class="page">

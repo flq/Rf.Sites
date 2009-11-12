@@ -74,13 +74,16 @@
     <Reference Include="System.Web.Mobile" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Actions\Args\LinkAttributes.cs" />
     <Compile Include="Actions\Args\MonthArgs.cs" />
+    <Compile Include="Actions\Args\NullArgs.cs" />
     <Compile Include="Actions\Args\YearArgs.cs" />
     <Compile Include="Actions\ContentIndexAction.cs" />
     <Compile Include="Actions\ContentMonthAction.cs" />
     <Compile Include="Actions\ContentYearAction.cs" />
     <Compile Include="Actions\RssIndexAction.cs" />
     <Compile Include="Actions\RssTagAction.cs" />
+    <Compile Include="Actions\TagcloudIndexAction.cs" />
     <Compile Include="Frame\AbstractFeed.cs" />
     <Compile Include="Frame\AbstractPagedContent.cs" />
     <Compile Include="Actions\Args\ActionArgs.cs" />
@@ -148,10 +151,19 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Default.aspx" />
+    <Content Include="files\facebox.css" />
+    <Content Include="files\images\facebox\b.png" />
+    <Content Include="files\images\facebox\bl.png" />
+    <Content Include="files\images\facebox\br.png" />
+    <Content Include="files\images\facebox\closelabel.gif" />
+    <Content Include="files\images\facebox\loading.gif" />
+    <Content Include="files\images\facebox\tl.png" />
+    <Content Include="files\images\facebox\tr.png" />
     <Content Include="files\rf.ico" />
     <Content Include="files\sh_golden.css" />
     <Content Include="files\site.css" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\facebox.js" />
     <Content Include="Scripts\sh_csharp.js" />
     <Content Include="Scripts\sh_javascript.js" />
     <Content Include="Scripts\sh_main.js" />
@@ -167,15 +179,14 @@
     <None Include="Views\Home\Index.spark" />
     <None Include="Views\Shared\Application.spark" />
     <None Include="Views\Shared\404.spark" />
+    <None Include="Views\Shared\_Tags.spark" />
+    <None Include="Views\Tagcloud\Index.spark" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Rf.Sites.Domain\Rf.Sites.Domain.csproj">
       <Project>{650F3F70-DF4D-49EB-8EAB-552060A1D641}</Project>
       <Name>Rf.Sites.Domain</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="files\images\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />
