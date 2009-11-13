@@ -9,7 +9,6 @@ namespace Rf.Sites.Tests.Frame
   {
     protected Container container;
     protected IContainer nestedContainer;
-    private DbTestBase inMemoryDb;
 
     protected IntegrationEnv()
     {
@@ -21,10 +20,7 @@ namespace Rf.Sites.Tests.Frame
       get { return nestedContainer ?? container; }
     }
 
-    public DbTestBase InMemoryDB
-    {
-      get { return inMemoryDb; }
-    }
+    public DbTestBase InMemoryDB { get; private set; }
 
     public void OverloadContainer(Action<ConfigurationExpression> action)
     {
@@ -34,11 +30,11 @@ namespace Rf.Sites.Tests.Frame
 
     public void UseInMemoryDb()
     {
-      inMemoryDb = new DbTestBase();
+      InMemoryDB = new DbTestBase();
       getNestedContainer();
       // Providing the sessionFactory does not work
       // as the same session must be used throughout
-      nestedContainer.Configure(c => c.ForRequestedType<ISession>().TheDefault.Is.ConstructedBy(()=>inMemoryDb.Session));
+      nestedContainer.Configure(c => c.ForRequestedType<ISession>().TheDefault.Is.ConstructedBy(()=>InMemoryDB.Session));
     }
 
 
@@ -47,9 +43,9 @@ namespace Rf.Sites.Tests.Frame
       if (nestedContainer != null)
         nestedContainer.Dispose();
       nestedContainer = null;
-      if (inMemoryDb != null)
-        inMemoryDb.Dispose();
-      inMemoryDb = null;
+      if (InMemoryDB != null)
+        InMemoryDB.Dispose();
+      InMemoryDB = null;
     }
 
     private void getNestedContainer()

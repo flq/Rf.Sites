@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.ServiceModel.Syndication;
 using System.Web;
@@ -39,9 +40,27 @@ namespace Rf.Sites.Tests.Frame
       var mockHttpContext = new Mock<HttpContextBase>();
       mockHttpContext.Setup(c => c.Request).Returns(request.Object);
       mockHttpContext.Setup(c => c.Response).Returns(response.Object);
+
+      var routeValues = new RouteValueDictionary()
+        {
+          {"controller", "Home"},
+          {"action", "Index"},
+          {"val1", ""},
+          {"val2", ""},
+          {"val3", ""}
+        };
+      var routeHandler = new Mock<IRouteHandler>(MockBehavior.Strict);
+      
+      var data = new RouteData
+                   {
+                     Route = new Route("{controller}/{action}/{val1}/{val2}/{val3}", routeValues, routeHandler.Object)
+                   };
+
       var controllerContext = new ControllerContext(mockHttpContext.Object
-      , new RouteData(), new Mock<ControllerBase>().Object);
+      , data, new Mock<ControllerBase>().Object);
+      
       return new ControllerCtxMock(controllerContext, request, response, mockHttpContext);
     }
+
   }
 }

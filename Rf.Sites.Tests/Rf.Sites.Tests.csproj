@@ -124,6 +124,7 @@
     <Compile Include="DoingAtomFeeds.cs" />
     <Compile Include="Support\DataMother.cs" />
     <Compile Include="TestingTheSiteInfrastructure.cs" />
+    <Compile Include="TestingUtilities.cs" />
     <Compile Include="UsingAttachmentVM.cs" />
     <Compile Include="UsingTheMetaWeblogService.cs" />
     <Compile Include="UsingTheTagCloudFeature.cs" />

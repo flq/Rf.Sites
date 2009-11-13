@@ -71,7 +71,9 @@ namespace Rf.Sites
         "{controller}/{action}/{val1}/{val2}/{val3}",
         new { controller = "Home", action = "Index", val1 = "", val2 = "", val3 = "" },
         new { controller = @"[^\.]*" }
-        );     
+        );
+
+      
 
     }
   }

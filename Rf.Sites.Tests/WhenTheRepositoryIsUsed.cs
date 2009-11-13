@@ -21,8 +21,12 @@ namespace Rf.Sites.Tests
         t.Commit();
       }
 
+      Session.Clear();
+
+      object count = Session.CreateQuery("select count(*) from Content c").UniqueResult();
+
       var repC = new Repository<Content>(Factory);
-      Assert.AreEqual(1, repC.Count);
+      Assert.AreEqual(count, repC.Count);
     }
 
     [Test]
