@@ -58,7 +58,7 @@ namespace Rf.Sites
                    FeedItemsPerFeed = 10,
                    ItemsPerPage = 5,
 
-                   TagcloudSegments = 5
+                   TagcloudSegments = 8
                  };
       }
     }

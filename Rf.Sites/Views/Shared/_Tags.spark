@@ -1,4 +1,5 @@
 ﻿<use namespace="Rf.Sites.Actions" />
+<use namespace="Rf.Sites.Actions.TagCloud" />
 <use namespace="Rf.Sites.Frame" />
 <use namespace="Rf.Sites.Actions.Args" />
 ${Html.ActionLink<TagcloudIndexAction>("Tag Cloud", ArgsFrom.Null, new LinkAttributes { { "rel", "box" } })}

@@ -33,61 +33,70 @@
     margin-left: 10px;
   }
   
-  .page {
-    margin-left:15em;
-    margin-right:5em;
-    padding:0 3em 1em;
-  }
+.page {
+  margin-left:15em;
+  margin-right:5em;
+  padding:0 3em 1em;
+}
   
-  div.content_header {
-   margin-bottom: 2em;
-  }
+div.content_header {
+ margin-bottom: 2em;
+}
   
-  div.content_header > h1 {
-    border-bottom: thin solid #000000;
-    margin: 0;  
-  }
+div.content_header > h1 {
+  border-bottom: thin solid #000000;
+  margin: 0;  
+}
   
-  div.content_header > h2 {
-    border-bottom: thin solid #000000;
-    margin: 0;
-  }
+div.content_header > h2 {
+  border-bottom: thin solid #000000;
+  margin: 0;
+}
   
-  div.content_header > p {
-    text-align: right;
-    margin: 0;
-  }
+div.content_header > p {
+  text-align: right;
+  margin: 0;
+}
   
-  div.comment {
-    margin: 20 0 0 0;
-  }
+div.comment {
+  margin: 20 0 0 0;
+}
   
-  div.comment:hover {
-    background: #ddeeff;
-  }
+div.comment:hover {
+  background: #ddeeff;
+}
   
-  div.comment_head > img {
-    vertical-align: middle;
-  }
+div.comment_head > img {
+  vertical-align: middle;
+}
   
-  div.comment_body {
-    margin: 5 0 0 25;
-    padding-left: 10;
-    padding-bottom: 5;
-    border-left: 1px solid black;
-    
-  }
+div.comment_body {
+  margin: 5 0 0 25;
+  padding-left: 10;
+  padding-bottom: 5;
+  border-left: 1px solid black;
   
-  .content 
-  {
-  	margin-bottom: 30px;
-  }
+}
+  
+.content 
+{
+	margin-bottom: 30px;
+}
         
-  a {
-    text-decoration: none;
-    color: #0044BB;
-  }
+a {
+  text-decoration: none;
+  color: #0044BB;
+}
   
-  a:hover {
-    text-decoration: underline;
-  }
+a:hover {
+  text-decoration: underline;
+}
+  
+a.tagcloud1 { font-size: 0.9em; font-weight: 100; }
+a.tagcloud2 { font-size: 1.1em; font-weight: 200; }
+a.tagcloud3 { font-size: 1.3em; font-weight: 300; }
+a.tagcloud4 { font-size: 1.5em; font-weight: 400; }
+a.tagcloud5 { font-size: 1.6em; font-weight: 500; }
+a.tagcloud6 { font-size: 1.7em; font-weight: 600; }
+a.tagcloud7 { font-size: 1.9em; font-weight: 700; }
+a.tagcloud8 { font-size: 2.2em; font-weight: 800; }

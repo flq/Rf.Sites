@@ -1,1 +1,14 @@
-﻿<p>Greetings world!</p>
+﻿<use namespace="Rf.Sites.Frame" />
+<use namespace="Rf.Sites.Actions" />
+<use namespace="Rf.Sites.Actions.TagCloud" />
+<use namespace="Rf.Sites.Actions.Args" />
+<viewdata model="TagList" />
+
+<for each="var wTag in Model">
+  ${Html.ActionLink<ContentTagAction>(
+      wTag.Text,
+      ArgsFrom.Value(wTag.Text),
+      new LinkAttributes { { "class", "tagcloud" + wTag.Segment } })}
+  &nbsp;&nbsp;
+</for>
+

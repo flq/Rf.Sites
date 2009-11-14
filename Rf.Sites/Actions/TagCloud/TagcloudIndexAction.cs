@@ -24,9 +24,12 @@ namespace Rf.Sites.Actions.TagCloud
         var q = s.CreateQuery(
           @"select tag.Name, count(cnt.Id) from 
             Tag tag join tag.RelatedContent cnt
-            group by tag.Id");
+            group by tag.Name");
         
-        tl = new TagList(q.List());
+        tl = new TagList(
+          q.List(), 
+          new Uri(Environment.AbsoluteBaseUrl, FrameUtilities.RelativeUrlToAction<ContentTagAction>()));
+
       }
 
       tl.Segment(Environment.TagcloudSegments);
