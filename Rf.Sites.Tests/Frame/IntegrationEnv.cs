@@ -1,6 +1,8 @@
 using System;
+using Moq;
 using NHibernate;
 using Rf.Sites.Frame;
+using Rf.Sites.Tests.DataScenarios;
 using StructureMap;
 
 namespace Rf.Sites.Tests.Frame
@@ -32,11 +34,28 @@ namespace Rf.Sites.Tests.Frame
     {
       InMemoryDB = new DbTestBase();
       getNestedContainer();
-      // Providing the sessionFactory does not work
-      // as the same session must be used throughout
-      nestedContainer.Configure(c => c.ForRequestedType<ISession>().TheDefault.Is.ConstructedBy(()=>InMemoryDB.Session));
+      nestedContainer
+        .Configure(c => c.ForRequestedType<ISession>()
+        .TheDefault.Is.ConstructedBy(()=>InMemoryDB.Session));
     }
 
+    public ISessionFactory FactoryForStatelessSession()
+    {
+      var sF = new Mock<ISessionFactory>();
+      sF.Setup(f => f.OpenStatelessSession())
+        .Returns(InMemoryDB.Factory.OpenStatelessSession(InMemoryDB.Session.Connection));
+      return sF.Object;
+    }
+
+    public T DataScenario<T>() where T : AbstractDataScenario
+    {
+      if (InMemoryDB == null)
+        throw new InvalidOperationException("Data Scneario currently only supported for in memory DB");
+      var s = Container.GetInstance<T>();
+      s.ExecuteScenario(InMemoryDB.Session);
+
+      return s;
+    }
 
     public void ReleaseResources()
     {

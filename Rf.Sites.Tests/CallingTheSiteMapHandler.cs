@@ -1,12 +1,10 @@
 using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Xml;
-using Moq;
-using NHibernate;
 using NUnit.Framework;
 using Rf.Sites.Domain;
 using Rf.Sites.Handlers;
+using Rf.Sites.Tests.DataScenarios;
 using Rf.Sites.Tests.Frame;
 using Environment=Rf.Sites.Frame.Environment;
 using System.Linq;
@@ -19,7 +17,7 @@ namespace Rf.Sites.Tests
     private HandlerEnv env;
     private TestHttpContext usedContext;
     private XmlDocument output;
-    private List<Content> content;
+    private ContentWithComments scenario;
     private XmlNamespaceManager nsMgr;
 
     [TestFixtureSetUp]
@@ -27,24 +25,11 @@ namespace Rf.Sites.Tests
     {
       env = new HandlerEnv();
       env.UseInMemoryDb();
-
-      var session = env.InMemoryDB.Session;
-      using (var t = session.BeginTransaction())
-      {
-        content = createContent(env.InMemoryDB.Maker);
-        foreach (var cnt in content)
-          session.Save(cnt);
-        t.Commit();
-      }
-      session.Clear();
-
-      var sF = new Mock<ISessionFactory>();
-      sF.Setup(f => f.OpenStatelessSession())
-        .Returns(env.InMemoryDB.Factory.OpenStatelessSession(session.Connection));
+      scenario = env.DataScenario<ContentWithComments>();
 
       var siteEnv = env.Container.GetInstance<Environment>();
 
-      env.ExecuteHandler(new SiteMapHandler(siteEnv, sF.Object));
+      env.ExecuteHandler(new SiteMapHandler(siteEnv, env.FactoryForStatelessSession()));
       usedContext = env.UsedContext;
       output = new XmlDocument();
       output.LoadXml(usedContext.OutputOfHandler.ToString());
@@ -89,34 +74,17 @@ namespace Rf.Sites.Tests
       node.SelectSingleNode("ns0:priority", nsMgr).InnerText.ShouldBeEqualTo("0.7");
     }
 
-    private static List<Content> createContent(EntityMaker maker)
+    [Test]
+    public void UrlIsSetupCorrectly()
     {
-      List<Content> contents = new List<Content>();
-      
-      var cnt = maker.CreateContent("A");
-      cnt.Created = DateTime.Now.Subtract(TimeSpan.FromDays(1));
-      contents.Add(cnt);
-      
-      cnt = maker.CreateContent("B");
-      cnt.AddComment(maker.CreateComment());
-      cnt.AddComment(maker.CreateComment());
-      cnt.AddComment(maker.CreateComment());
-      cnt.Created = DateTime.Now.Subtract(TimeSpan.FromDays(60));
-      contents.Add(cnt);
-      
-      cnt = maker.CreateContent("C");
-      cnt.Created = new DateTime(2005,5,5);
-      var comment = maker.CreateComment();
-      comment.Created = new DateTime(2006,6,6);
-      cnt.AddComment(comment);
-      contents.Add(cnt);
-
-      return contents;
+      const string correctUrl = "http://localhost/Content/Entry/1";
+      var node = getTheNodeOf(c => c.Title == "A");
+      node.SelectSingleNode("ns0:loc", nsMgr).InnerText.ShouldBeEqualTo(correctUrl);
     }
 
     private XmlNode getTheNodeOf(Func<Content, bool> func)
     {
-      var cnt = content.Where(func).Single();
+      var cnt = scenario.Contents.Where(func).Single();
       var xpath = "//ns0:url[contains(./ns0:loc,'" + cnt.Id + "')]";
       var node = output.SelectSingleNode(xpath, nsMgr);
       return node;

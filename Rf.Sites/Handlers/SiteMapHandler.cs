@@ -88,7 +88,7 @@ namespace Rf.Sites.Handlers
       public void WriteTo(XmlWriter writer)
       {
         writer.WriteStartElement("url");
-        writer.WriteElementString("loc", baseURL + row.Id);
+        writer.WriteElementString("loc", baseURL + "/" + row.Id);
         writer.WriteElementString("lastmod", row.LastUpdate.ToString("yyyy-MM-dd"));
         writer.WriteElementString("changefreq", getChangeFrequency());
         writer.WriteElementString("priority", getPriority());

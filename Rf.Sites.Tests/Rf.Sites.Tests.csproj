@@ -103,10 +103,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataScenarios\AbstractDataScenario.cs" />
     <Compile Include="AssortedHandlerTests.cs" />
     <Compile Include="BasicCheck.cs" />
     <Compile Include="CallingTheSiteMapHandler.cs" />
     <Compile Include="ContentStorage.cs" />
+    <Compile Include="DataScenarios\AFewTagsAndNumerousContent.cs" />
+    <Compile Include="DataScenarios\ContentWithComments.cs" />
+    <Compile Include="DataScenarios\TagAndContent.cs" />
     <Compile Include="Frame\ActionEnv.cs" />
     <Compile Include="Frame\AssertExtensions.cs" />
     <Compile Include="Frame\ControllerCtxMock.cs" />

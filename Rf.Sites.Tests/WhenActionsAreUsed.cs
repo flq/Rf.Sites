@@ -7,10 +7,12 @@ using Moq;
 using NUnit.Framework;
 using Rf.Sites.Actions;
 using Rf.Sites.Actions.Args;
+using Rf.Sites.Actions.TagCloud;
 using Rf.Sites.Domain;
 using Rf.Sites.Domain.Frame;
 using Rf.Sites.Frame;
 using Rf.Sites.Models;
+using Rf.Sites.Tests.DataScenarios;
 using Rf.Sites.Tests.Frame;
 using StructureMap;
 using Moq.Protected;
@@ -21,6 +23,14 @@ namespace Rf.Sites.Tests
   [TestFixture]
   public class WhenActionsAreUsed : DbTestBase
   {
+    readonly ActionEnv actionEnv = new ActionEnv();
+
+    [TearDown]
+    public void TearDown()
+    {
+      actionEnv.ReleaseResources();
+    }
+
     [Test]
     public void ContentEntryReturnsLoadedContentInViewModel()
     {
@@ -67,20 +77,14 @@ namespace Rf.Sites.Tests
     [Test]
     public void NHibernateCheckOfGettingTeasers()
     {
-      var tag = Maker.CreateTag();
-
-      using (var t = Session.BeginTransaction())
-      {
-        var c = Maker.CreateContent();  
-        c.AssociateWithTag(tag);
-        Session.Save(tag);
-        Session.Save(c);
-        t.Commit();
-      }
-
-      Session.Clear();
-      var action = new ContentTagAction(ArgsFrom.Value(tag.Name), new Repository<Content>(Factory))
+      actionEnv.UseInMemoryDb();
+      var scenario = actionEnv.DataScenario<TagAndContent>();
+      
+      var action = new ContentTagAction(
+        ArgsFrom.Value(scenario.Tag.Name), 
+        new Repository<Content>(actionEnv.InMemoryDB.Factory))
         { Environment = new Environment { ItemsPerPage = 5}};
+
       var model = action.Execute().GetModelFromAction<List<ContentFragmentViewModel>>();
       model.ShouldHaveCount(1);
 
@@ -90,8 +94,7 @@ namespace Rf.Sites.Tests
     public void RssActionStructureWorksAsOutlined()
     {
       var finalResponse = new StringBuilder();
-      ActionEnv env = new ActionEnv();
-      env.ControllerCtxMock.ResponseMock.Setup(rB => rB.Output).Returns(new StringWriter(finalResponse));
+      actionEnv.ControllerCtxMock.ResponseMock.Setup(rB => rB.Output).Returns(new StringWriter(finalResponse));
 
       var mock = new Mock<AbstractFeed>();
       mock.Protected().Setup<ContentFragments>("produceFragments")
@@ -105,11 +108,11 @@ namespace Rf.Sites.Tests
                 });
 
       
-      var action = env.GetAction(mock.Object);
+      var action = actionEnv.GetAction(mock.Object);
       var result = action.Execute();
-      result.ExecuteResult(env.ControllerCtxMock.ControllerContext);
+      result.ExecuteResult(actionEnv.ControllerCtxMock.ControllerContext);
 
-      env.ControllerCtxMock.ResponseMock.VerifySet(rB => rB.ContentType);
+      actionEnv.ControllerCtxMock.ResponseMock.VerifySet(rB => rB.ContentType);
       try
       {
         XmlDocument d = new XmlDocument();
@@ -121,5 +124,19 @@ namespace Rf.Sites.Tests
       }
     }
 
+    [Test]
+    public void TagcloudActionWorksAsIntended()
+    {
+      ActionEnv env = new ActionEnv();
+      env.UseInMemoryDb();
+      env.DataScenario<AFewTagsAndNumerousContent>();
+
+      var a = new TagcloudIndexAction();
+      env.GetAction(a);
+
+      var tl = a.Execute().GetModelFromAction<TagList>();
+      tl.ShouldNotBeNull();
+
+    }
   }
 }
