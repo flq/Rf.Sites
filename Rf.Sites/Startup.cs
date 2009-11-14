@@ -56,7 +56,9 @@ namespace Rf.Sites
                    BaseDirectory = AppDomain.CurrentDomain.BaseDirectory,
 
                    FeedItemsPerFeed = 10,
-                   ItemsPerPage = 5
+                   ItemsPerPage = 5,
+
+                   TagcloudSegments = 5
                  };
       }
     }

@@ -10,6 +10,14 @@ namespace Rf.Sites.Actions.TagCloud
     readonly List<WeightedTag> tags = new List<WeightedTag>();
     private double segmentSize;
 
+    public TagList() { }
+
+    public TagList(IEnumerable data)
+    {
+      foreach (object[] item in data)
+        tags.Add(new WeightedTag(item[0].ToString(), Convert.ToInt32(item[1])));
+    }
+
     public void Add(WeightedTag tag)
     {
       tags.Add(tag);

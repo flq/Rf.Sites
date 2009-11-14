@@ -1,17 +1,37 @@
+using System;
+using System.Web.Mvc;
+using NHibernate;
 using Rf.Sites.Frame;
 
-namespace Rf.Sites.Actions
+namespace Rf.Sites.Actions.TagCloud
 {
   public class TagcloudIndexAction : AbstractAction
   {
-    //public TagcloudIndexAction(ISes)
-    //{
-      
-    //}
+    private readonly ISessionFactory sessionFactory;
 
-    public override System.Web.Mvc.ActionResult Execute()
+    public TagcloudIndexAction(ISessionFactory sessionFactory)
     {
-      return createPartialView(null);
+      this.sessionFactory = sessionFactory;
+    }
+
+    public override ActionResult Execute()
+    {
+
+      TagList tl = null;
+
+      using (var s = sessionFactory.OpenStatelessSession())
+      {
+        var q = s.CreateQuery(
+          @"select tag.Name, count(cnt.Id) from 
+            Tag tag join tag.RelatedContent cnt
+            group by tag.Id");
+        
+        tl = new TagList(q.List());
+      }
+
+      tl.Segment(Environment.TagcloudSegments);
+
+      return createPartialView(tl);
     }
   }
 }

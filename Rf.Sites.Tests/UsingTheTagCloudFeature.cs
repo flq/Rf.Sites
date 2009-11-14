@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using Rf.Sites.Actions.TagCloud;
 using System.Linq;
+using Rf.Sites.Tests.DataScenarios;
 using Rf.Sites.Tests.Frame;
 
 namespace Rf.Sites.Tests
@@ -46,6 +47,24 @@ namespace Rf.Sites.Tests
       l[0].Segment.ShouldBeEqualTo(4);
       l[1].Segment.ShouldBeEqualTo(1);
       l[2].Segment.ShouldBeEqualTo(3);
+    }
+
+    [Test]
+    public void TagcloudActionWorksAsIntended()
+    {
+      ActionEnv env = new ActionEnv();
+      env.UseInMemoryDb();
+      env.DataScenario<AFewTagsAndNumerousContent>();
+
+      var a = new TagcloudIndexAction(env.FactoryForStatelessSession());
+      env.GetAction(a);
+
+      var tl = a.Execute().GetModelFromAction<TagList>();
+      tl.ShouldNotBeNull();
+      var wTags = tl.ToList();
+      wTags.ShouldHaveCount(3);
+      wTags[0].Segment.ShouldBeEqualTo(1);
+      wTags[2].Segment.ShouldBeEqualTo(5);
     }
   }
 }

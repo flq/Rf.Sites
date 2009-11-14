@@ -123,20 +123,5 @@ namespace Rf.Sites.Tests
         Assert.Fail("Output was not XML.");
       }
     }
-
-    [Test]
-    public void TagcloudActionWorksAsIntended()
-    {
-      ActionEnv env = new ActionEnv();
-      env.UseInMemoryDb();
-      env.DataScenario<AFewTagsAndNumerousContent>();
-
-      var a = new TagcloudIndexAction();
-      env.GetAction(a);
-
-      var tl = a.Execute().GetModelFromAction<TagList>();
-      tl.ShouldNotBeNull();
-
-    }
   }
 }

@@ -19,5 +19,7 @@ namespace Rf.Sites.Frame
 
     public int FeedItemsPerFeed { get; set; }
     public int ItemsPerPage { get; set; }
+
+    public int TagcloudSegments { get; set; }
   }
 }
