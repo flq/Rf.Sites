@@ -153,7 +153,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Default.aspx" />
-    <Content Include="files\facebox.css" />
     <Content Include="files\images\facebox\b.png" />
     <Content Include="files\images\facebox\bl.png" />
     <Content Include="files\images\facebox\br.png" />
@@ -161,11 +160,31 @@
     <Content Include="files\images\facebox\loading.gif" />
     <Content Include="files\images\facebox\tl.png" />
     <Content Include="files\images\facebox\tr.png" />
+    <Content Include="files\images\treeview\file.gif" />
+    <Content Include="files\images\treeview\folder-closed.gif" />
+    <Content Include="files\images\treeview\folder.gif" />
+    <Content Include="files\images\treeview\minus.gif" />
+    <Content Include="files\images\treeview\plus.gif" />
+    <Content Include="files\images\treeview\treeview-black-line.gif" />
+    <Content Include="files\images\treeview\treeview-black.gif" />
+    <Content Include="files\images\treeview\treeview-default-line.gif" />
+    <Content Include="files\images\treeview\treeview-default.gif" />
+    <Content Include="files\images\treeview\treeview-famfamfam-line.gif" />
+    <Content Include="files\images\treeview\treeview-famfamfam.gif" />
+    <Content Include="files\images\treeview\treeview-gray-line.gif" />
+    <Content Include="files\images\treeview\treeview-gray.gif" />
+    <Content Include="files\images\treeview\treeview-red-line.gif" />
+    <Content Include="files\images\treeview\treeview-red.gif" />
+    <Content Include="files\jquery.facebox.css" />
+    <Content Include="files\jquery.treeview.css" />
     <Content Include="files\rf.ico" />
     <Content Include="files\sh_golden.css" />
     <Content Include="files\site.css" />
     <Content Include="Global.asax" />
-    <Content Include="Scripts\facebox.js" />
+    <Content Include="Scripts\jquery.cookie.js" />
+    <Content Include="Scripts\jquery.facebox.js" />
+    <Content Include="Scripts\jquery.treeview.async.js" />
+    <Content Include="Scripts\jquery.treeview.js" />
     <Content Include="Scripts\sh_csharp.js" />
     <Content Include="Scripts\sh_javascript.js" />
     <Content Include="Scripts\sh_main.js" />
@@ -181,6 +200,7 @@
     <None Include="Views\Home\Index.spark" />
     <None Include="Views\Shared\Application.spark" />
     <None Include="Views\Shared\404.spark" />
+    <None Include="Views\Shared\_Archive.spark" />
     <None Include="Views\Shared\_Tags.spark" />
     <None Include="Views\Tagcloud\Index.spark" />
   </ItemGroup>

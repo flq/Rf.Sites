@@ -25,6 +25,8 @@ namespace Rf.Sites.Tests
     [Test]
     public void AllViewsCurrentlyCompile()
     {
+      //http://sparkviewengine.com/documentation/precompiling
+
       const string basePath = @"..\..\..\Rf.Sites\Views";
       var viewFactory = new SparkViewFactory
                           {

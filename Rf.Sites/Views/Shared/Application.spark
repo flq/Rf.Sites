@@ -8,15 +8,21 @@
     <link rel="shortcut icon" href="/files/rf.ico" type="image/x-icon" />
     <link rel="alternate" type="application/rss+xml" title="realfiction RSS" href="/rss" />
     <link type="text/css" rel="stylesheet" media="all" href="/files/site.css" />
-    <link type="text/css" rel="stylesheet" media="screen" href="/files/facebox.css" />
+    <link type="text/css" rel="stylesheet" media="screen" href="/files/jquery.facebox.css" />
+    <link type="text/css" rel="stylesheet" media="screen" href="/files/jquery.treeview.css" />
     <script type="text/javascript" src="/Scripts/jquery.js"></script>
-    <script type="text/javascript" src="/Scripts/facebox.js" ></script>     
+    <script type="text/javascript" src="/Scripts/jquery.cookie.js" ></script>
+    <script type="text/javascript" src="/Scripts/jquery.facebox.js" ></script>
+    <script type="text/javascript" src="/Scripts/jquery.treeview.js" ></script>
+    <!--<script type="text/javascript" src="/Scripts/jquery.treeview.async.js" ></script>-->
+    
     <script type="text/javascript">
       jQuery(document).ready(function($) {
       $('a[rel*=box]').facebox({
         loadingImage : '/files/images/facebox/loading.gif',
         closeImage   : '/files/images/facebox/closelabel.gif'
-        })
+        });
+       $('#archive').treeview({ collapsed: true });
       })
     </script>
     <use content="head" />
@@ -29,6 +35,7 @@
     
     <div id="nav">
       <Tags />
+      <Archive />
     </div>
     
     <div class="page">
