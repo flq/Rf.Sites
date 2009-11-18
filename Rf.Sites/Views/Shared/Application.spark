@@ -14,7 +14,7 @@
     <script type="text/javascript" src="/Scripts/jquery.cookie.js" ></script>
     <script type="text/javascript" src="/Scripts/jquery.facebox.js" ></script>
     <script type="text/javascript" src="/Scripts/jquery.treeview.js" ></script>
-    <!--<script type="text/javascript" src="/Scripts/jquery.treeview.async.js" ></script>-->
+    <script type="text/javascript" src="/Scripts/jquery.treeview.async.js" ></script>
     
     <script type="text/javascript">
       jQuery(document).ready(function($) {
@@ -22,7 +22,7 @@
         loadingImage : '/files/images/facebox/loading.gif',
         closeImage   : '/files/images/facebox/closelabel.gif'
         });
-       $('#archive').treeview({ collapsed: true });
+       $('#archive').treeview({ url: "/chronics" });
       })
     </script>
     <use content="head" />

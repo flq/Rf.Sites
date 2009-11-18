@@ -74,10 +74,12 @@
     <Reference Include="System.Web.Mobile" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Actions\Args\ChronicsPostArgs.cs" />
     <Compile Include="Actions\Args\LinkAttributes.cs" />
     <Compile Include="Actions\Args\MonthArgs.cs" />
     <Compile Include="Actions\Args\NullArgs.cs" />
     <Compile Include="Actions\Args\YearArgs.cs" />
+    <Compile Include="Actions\ChronicsIndexAction.cs" />
     <Compile Include="Actions\ContentIndexAction.cs" />
     <Compile Include="Actions\ContentMonthAction.cs" />
     <Compile Include="Actions\ContentYearAction.cs" />
@@ -128,6 +130,7 @@
     <Compile Include="MetaWebLogApi\PostToContentConverter.cs" />
     <Compile Include="MetaWebLogApi\Structs.cs" />
     <Compile Include="Models\AttachmentVM.cs" />
+    <Compile Include="Models\ChronicsNode.cs" />
     <Compile Include="Models\CommentVM.cs" />
     <Compile Include="Models\Extender\AttachmentPathModifier.cs" />
     <Compile Include="Models\Extender\AttachmentToVMConverter.cs" />
