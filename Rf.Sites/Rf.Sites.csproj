@@ -131,6 +131,7 @@
     <Compile Include="MetaWebLogApi\Structs.cs" />
     <Compile Include="Models\AttachmentVM.cs" />
     <Compile Include="Models\ChronicsNode.cs" />
+    <Compile Include="Models\ChronicsTree.cs" />
     <Compile Include="Models\CommentVM.cs" />
     <Compile Include="Models\Extender\AttachmentPathModifier.cs" />
     <Compile Include="Models\Extender\AttachmentToVMConverter.cs" />

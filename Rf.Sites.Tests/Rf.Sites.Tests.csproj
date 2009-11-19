@@ -135,6 +135,7 @@
     <Compile Include="Frame\TestNHSessionContext.cs" />
     <Compile Include="DoingAtomFeeds.cs" />
     <Compile Include="Support\DataMother.cs" />
+    <Compile Include="TestingTheChronicsFeature.cs" />
     <Compile Include="TestingTheSiteInfrastructure.cs" />
     <Compile Include="TestingUtilities.cs" />
     <Compile Include="UsingAttachmentVM.cs" />

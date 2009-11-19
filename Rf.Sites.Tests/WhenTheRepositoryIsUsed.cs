@@ -277,8 +277,5 @@ namespace Rf.Sites.Tests
       var cn3 = repC[id];
       cn3.Title.ShouldBeEqualTo("TheFoo");
     }
-
-
-
   }
 }

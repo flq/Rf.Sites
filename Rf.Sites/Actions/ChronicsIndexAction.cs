@@ -1,4 +1,5 @@
 using System.Web.Mvc;
+using NHibernate.Cache;
 using Rf.Sites.Actions.Args;
 using Rf.Sites.Frame;
 using Rf.Sites.Models;
@@ -9,7 +10,7 @@ namespace Rf.Sites.Actions
   {
     private readonly ChronicsPostArgs args;
 
-    public ChronicsIndexAction(ChronicsPostArgs args)
+    public ChronicsIndexAction(ChronicsPostArgs args, ICache cache)
     {
       this.args = args;
     }
