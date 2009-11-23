@@ -35,8 +35,11 @@ namespace Rf.Sites.Tests.Frame
       InMemoryDB = new DbTestBase();
       getNestedContainer();
       nestedContainer
-        .Configure(c => c.ForRequestedType<ISession>()
-        .TheDefault.Is.ConstructedBy(()=>InMemoryDB.Session));
+        .Configure(c =>
+                     {
+                       c.ForRequestedType<ISession>().TheDefault.Is.ConstructedBy(() => InMemoryDB.Session);
+                       c.ForRequestedType<ISessionFactory>().TheDefault.Is.ConstructedBy(() => InMemoryDB.Factory);
+                     });
     }
 
     public ISessionFactory FactoryForStatelessSession()

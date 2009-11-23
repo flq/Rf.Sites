@@ -45,7 +45,8 @@ namespace Rf.Sites.Tests
     [Test]
     public void CurrentConfigResolvesActions()
     {
-      ActionEnv env = new ActionEnv();
+      var env = new ActionEnv();
+      env.UseInMemoryDb();
       var a1 = env.GetAction("contentindex");
       a1.ShouldBeOfType<ContentIndexAction>();
       var a2 = env.GetAction("Blablerg");
@@ -103,7 +104,8 @@ namespace Rf.Sites.Tests
             new Tag {Created = DateTime.Now, Name = "2", Description = "B"}
           };
 
-      ActionEnv env = new ActionEnv();
+      var env = new ActionEnv();
+      env.UseInMemoryDb();
       var nC = env.Container.GetNestedContainer();
       nC.Configure(c=>c.ForRequestedType<IRepository<Tag>>().TheDefault.IsThis(repT));
 
