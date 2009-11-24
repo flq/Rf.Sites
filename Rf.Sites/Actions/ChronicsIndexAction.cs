@@ -1,6 +1,7 @@
 using System.Web.Mvc;
-using NHibernate.Cache;
+
 using Rf.Sites.Actions.Args;
+using Rf.Sites.Domain.Frame;
 using Rf.Sites.Frame;
 using Rf.Sites.Models;
 

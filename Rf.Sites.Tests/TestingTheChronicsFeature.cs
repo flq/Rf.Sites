@@ -43,6 +43,22 @@ namespace Rf.Sites.Tests
       l[0].ShouldBeOfType<ChronicsNode>();
       ((ChronicsNode)l[0]).id.ShouldBeEqualTo("2005/1");
     }
-    
+
+    [Test]
+    public void ChronicsTreeCondensesMonths()
+    {
+      var lT = new List<DateTime>
+                 {
+                   new DateTime(2005,1,1),
+                   new DateTime(2005,1,20),
+                   new DateTime(2005,1,15)
+                 };
+      var t = new ChronicsTree(lT);
+      var l = t.Query("2005");
+
+      l.ShouldHaveLength(1);
+      l[0].ShouldBeOfType<ChronicsNode>();
+      ((ChronicsNode)l[0]).count.ShouldBeEqualTo(3);
+    }
   }
 }

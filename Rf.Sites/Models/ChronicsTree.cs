@@ -12,10 +12,20 @@ namespace Rf.Sites.Models
 
     public ChronicsTree(IEnumerable<DateTime> dateTimes)
     {
-      this.years = (from d in dateTimes
-                   let value = new YearMonth {Year = d.Year, Month = d.Month}
+      var r = from d in dateTimes
+                   let value = new {d.Year, d.Month}
                    group value by value.Year into years
-                   select years).ToDictionary(g=>g.Key.ToString(), g=>g.AsEnumerable());
+                   select new { 
+                     Year = years.Key, 
+                     Months = 
+                     (from y in years group y by y.Month into months 
+                      select new { months.Key, Count = months.Count()})
+                   };
+      this.years = r.ToDictionary(a => a.Year.ToString(),
+                             a => a.Months
+                               .Select(b => 
+                                 new YearMonth {Year = a.Year, Month = b.Key, Count = b.Count})
+                                 .AsEnumerable());
     }
 
     public object[] Query(string query)
@@ -33,7 +43,8 @@ namespace Rf.Sites.Models
                     expanded = false,
                     hasChildren = true,
                     id = t,
-                    text = t
+                    text = t,
+                    count = s.Count
                   }).ToArray();
       
       return null;
@@ -43,6 +54,7 @@ namespace Rf.Sites.Models
     {
       public int Year { get; set; }
       public int Month { get; set; }
+      public int Count { get; set; }
     }
   }
 }
