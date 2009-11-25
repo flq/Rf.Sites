@@ -20,9 +20,19 @@ namespace Rf.Sites.Tests.Frame
       return Container.GetInstance<IAction>(actionKey);
     }
 
+    public IAction GetAction<T,U>(U value) where T : IAction
+    {
+      return Container.With(value).GetInstance<IAction>(getActionName<T>());
+    }
+
     public IAction GetAction<T>() where T : IAction
     {
-      return Container.GetInstance<IAction>(typeof(T).Name.ToLowerInvariant());
+      return Container.GetInstance<IAction>(getActionName<T>());
+    }
+
+    private static string getActionName<T>()
+    {
+      return typeof(T).Name.ToLowerInvariant().Replace("action", "");
     }
 
     public IAction GetAction(AbstractAction action)

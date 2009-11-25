@@ -17,10 +17,6 @@ namespace Rf.Sites.Models
 
     [ScriptIgnore] public int count = 1;
 
-    public void Increment()
-    {
-      count++;
-    }
   }
   // ReSharper restore InconsistentNaming
 }

@@ -10,17 +10,28 @@ namespace Rf.Sites.Tests
 
     public Content CreateContent()
     {
-      return CreateContent("Title");
+      return CreateContent(0, "Title", DateTime.Now);
+    }
+
+    public Content CreateContent(DateTime created)
+    {
+      return CreateContent(0, "Title", created);
     }
 
     public Content CreateContent(string title)
     {
-      var content = new Content
+      return CreateContent(0, title, DateTime.Now);
+    }
+
+    public Content CreateContent(int id, string title, DateTime created)
+    {
+      var content = new Content(id)
                       {
                         Title = title,
                         Published = true,
-                        Created = DateTime.Now
+                        Created = created
                       };
+
       content.SetBody("Body");
       return content;
     }

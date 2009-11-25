@@ -57,6 +57,7 @@ namespace Rf.Sites.Tests
     public void ConfigEnsuresProvisionOfContainer()
     {
       ActionEnv env = new ActionEnv();
+      env.UseInMemoryDb();
       var a = env.GetAction<ContentIndexAction>();
       ((AbstractAction)a).Container.ShouldNotBeNull();
     }
@@ -65,6 +66,7 @@ namespace Rf.Sites.Tests
     public void ConfigEnsuresProvisionOfEnvironment()
     {
       ActionEnv env = new ActionEnv();
+      env.UseInMemoryDb();
       var a = env.GetAction<ContentIndexAction>();
       ((AbstractAction)a).Environment.ShouldNotBeNull();
     }

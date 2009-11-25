@@ -11,6 +11,7 @@ namespace Rf.Sites.Tests.Frame
   {
     protected Container container;
     protected IContainer nestedContainer;
+    private EntityMaker maker;
 
     protected IntegrationEnv()
     {
@@ -20,6 +21,14 @@ namespace Rf.Sites.Tests.Frame
     public IContainer Container
     {
       get { return nestedContainer ?? container; }
+    }
+
+    public EntityMaker Maker
+    {
+      get
+      {
+        return maker ?? (maker = new EntityMaker());
+      }
     }
 
     public DbTestBase InMemoryDB { get; private set; }

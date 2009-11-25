@@ -18,7 +18,8 @@ namespace Rf.Sites.Models
                    select new { 
                      Year = years.Key, 
                      Months = 
-                     (from y in years group y by y.Month into months 
+                     (from y in years 
+                      group y by y.Month into months 
                       select new { months.Key, Count = months.Count()})
                    };
       this.years = r.ToDictionary(a => a.Year.ToString(),
@@ -28,11 +29,14 @@ namespace Rf.Sites.Models
                                  .AsEnumerable());
     }
 
-    public object[] Query(string query)
+    public ChronicsNode[] Query(string query)
     {
+      if (string.IsNullOrEmpty(query))
+        return null;
+
       if (query == "root")
         return years.Keys
-          .Select(s => new ChronicsNode {expanded = false, hasChildren = true, id = s, text = s})
+          .Select(s => new ChronicsNode {expanded = false, hasChildren = true, id = s})
           .ToArray();
 
       if (years.ContainsKey(query))
@@ -41,9 +45,8 @@ namespace Rf.Sites.Models
                select new ChronicsNode
                   {
                     expanded = false,
-                    hasChildren = true,
+                    hasChildren = false,
                     id = t,
-                    text = t,
                     count = s.Count
                   }).ToArray();
       

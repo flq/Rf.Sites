@@ -1,6 +1,10 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 
 using Rf.Sites.Actions.Args;
+using Rf.Sites.Domain;
 using Rf.Sites.Domain.Frame;
 using Rf.Sites.Frame;
 using Rf.Sites.Models;
@@ -10,21 +14,33 @@ namespace Rf.Sites.Actions
   public class ChronicsIndexAction : AbstractAction
   {
     private readonly ChronicsPostArgs args;
+    private readonly IRepository<Content> repository;
+    private readonly IVmExtender<ChronicsNode>[] extenders;
+    private readonly ICache cache;
 
-    public ChronicsIndexAction(ChronicsPostArgs args, ICache cache)
+    public ChronicsIndexAction(ChronicsPostArgs args, ICache cache, IRepository<Content> repository, IVmExtender<ChronicsNode>[] extenders)
     {
       this.args = args;
+      this.repository = repository;
+      this.extenders = extenders;
+      this.cache = cache;
     }
 
     public override ActionResult Execute()
     {
-      var ret = new object[]
-                  {
-                    new ChronicsNode() { hasChildren = true, id = "1", text = "A"},
-                    new ChronicsNode() { hasChildren = true, id = "2", text = "B"}
-                  };
+      var tree = cache.HasValue("chronics") ? cache.Get<ChronicsTree>("chronics") : createTree();
+      var nodes = tree.Query(args.RawRequestId);
+      if (nodes != null)
+        Array.ForEach(nodes, extenders.Apply);
+      return new JsonResult {Data = nodes};
+    }
 
-      return new JsonResult() {Data = ret};
+    private ChronicsTree createTree()
+    {
+      var dateTimes = from c in repository select c.Created;
+      var t = new ChronicsTree(dateTimes);
+      cache.Add("chronics", t);
+      return t;
     }
   }
 }
