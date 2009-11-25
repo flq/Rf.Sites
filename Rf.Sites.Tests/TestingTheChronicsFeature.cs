@@ -55,7 +55,7 @@ namespace Rf.Sites.Tests
     public void ChronicsTreeReturnsYearNodes()
     {
       var t = new ChronicsTree(dateTimes);
-      var l = t.Query("root");
+      var l = t.Query("source");
       l.ShouldNotBeNull();
       l.ShouldHaveLength(2);
       l[0].ShouldBeOfType<ChronicsNode>();
@@ -111,7 +111,7 @@ namespace Rf.Sites.Tests
     [Test]
     public void RetrievalOfYearsIsCorrectlyWired()
     {
-      var a = env.GetAction<ChronicsIndexAction,ChronicsPostArgs>(new ChronicsPostArgs { RawRequestId  = "root" });
+      var a = env.GetAction<ChronicsIndexAction,ChronicsPostArgs>(new ChronicsPostArgs { RawRequestId  = "source" });
       var r = a.Execute();
       var d = (object[])((JsonResult)r).Data;
       d.ShouldNotBeNull();
@@ -133,7 +133,7 @@ namespace Rf.Sites.Tests
     [Test]
     public void YearTextIsCorrectlyGenerated()
     {
-      var r = (JsonResult)env.GetAction<ChronicsIndexAction, ChronicsPostArgs>(new ChronicsPostArgs { RawRequestId = "root" })
+      var r = (JsonResult)env.GetAction<ChronicsIndexAction, ChronicsPostArgs>(new ChronicsPostArgs { RawRequestId = "source" })
         .Execute();
       r.Data.ShouldNotBeNull();
       var node = ((ChronicsNode[])r.Data)[0];

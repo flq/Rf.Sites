@@ -34,7 +34,7 @@ namespace Rf.Sites.Models
       if (string.IsNullOrEmpty(query))
         return null;
 
-      if (query == "root")
+      if (query == "source")
         return years.Keys
           .Select(s => new ChronicsNode {expanded = false, hasChildren = true, id = s})
           .ToArray();
