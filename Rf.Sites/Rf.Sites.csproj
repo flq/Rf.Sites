@@ -200,6 +200,8 @@
     <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Views\Content\_Attachment.spark" />
+    <None Include="Views\Content\_Comment.spark" />
     <None Include="Views\Shared\ContentList.spark" />
     <None Include="Views\Content\Entry.spark" />
     <None Include="Views\Home\Index.spark" />

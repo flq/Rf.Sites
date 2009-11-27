@@ -54,11 +54,11 @@ namespace Rf.Sites.Tests
     // HACK: Monster Hack. Spark resolves view directories based on Controller types.
     // Since I don't have any controllers, these are the types that at the end map
     // to folders inside the "Views" folder
-    public class Folders
+    static class Folders
     {
-      public class Content { }
-      public class Tagcloud { }
-      public class Shared { }
+      public abstract class Content { }
+      public abstract class Tagcloud { }
+      public abstract class Shared { }
     }
   }
 }

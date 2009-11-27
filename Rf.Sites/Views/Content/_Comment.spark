@@ -1,0 +1,15 @@
+<div class="comment">
+	  <div class="comment_head">
+		  <image src="${comment.GravatarImageSource}" width="50" height="50">
+		  <test if="!string.IsNullOrEmpty(comment.Website)">
+			  <a href="${comment.Website}">${comment.Name}</a>
+		  </test>
+		  <else>
+			  <span>${comment.Name}</span>
+		  </else>
+		  <span> ( ${comment.Created} ) </span>
+	  </div>
+	  <div class="comment_body">
+			${comment.Body}
+	  </div>
+</div>

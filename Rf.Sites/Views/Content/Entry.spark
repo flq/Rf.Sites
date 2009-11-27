@@ -35,28 +35,14 @@
   <div class="content_attachments" if="Model.AttachmentCount > 0">
     <h2>Attachments</h2>
     <for each="var a in Model.Attachments">
-      <p class="attachment"><a href="${a.Path}">${a.Name}</a> (${a.Size} ${a.SizeDimension})</p>
+      <Attachment attachment="a" />
     </for>
   </div>
 
 	<div class="content_comments" if="Model.CommentCount > 0">
 	  <h2>Comments</h2>
 	  <for each="var c in Model.Comments">
-		<div class="comment">
-		  <div class="comment_head">
-		  <image src="${c.GravatarImageSource}" width="50" height="50">
-		  <test if="!string.IsNullOrEmpty(c.Website)">
-			  <a href="${c.Website}">${c.Name}</a>
-		  </test>
-		  <else>
-			  <span>${c.Name}</span>
-		  </else>
-		  <span> ( ${c.Created} ) </span>
-		  </div>
-		  <div class="comment_body">
-			${c.Body}
-		  </div>
-		</div>
+		  <Comment comment="c" />
 	  </for>
 	</div>
 </div>
