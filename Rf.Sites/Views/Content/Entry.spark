@@ -45,4 +45,7 @@
 		  <Comment comment="c" />
 	  </for>
 	</div>
+	
+	<CommentPost />
+	
 </div>

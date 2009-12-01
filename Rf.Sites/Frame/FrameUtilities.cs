@@ -16,6 +16,12 @@ namespace Rf.Sites.Frame
       return helper.ActionLink<T>(linkText, ArgsFrom.Null);
     }
 
+    public static string ActionLink<T>(this UrlHelper helper) where T : IAction
+    {
+      var str = typeof (T).Name.Replace("Action", "").PasCalCaseTokenization();
+      return helper.Action(str[1], str[0]);
+    }
+
     public static string ActionLink<T>(this HtmlHelper helper, string linkText, IArgToRoute args) where T : IAction
     {
       return helper.ActionLink<T>(linkText, args, null);
