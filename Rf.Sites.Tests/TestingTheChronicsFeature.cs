@@ -59,7 +59,7 @@ namespace Rf.Sites.Tests
       l.ShouldNotBeNull();
       l.ShouldHaveLength(2);
       l[0].ShouldBeOfType<ChronicsNode>();
-      l[0].id.ShouldBeEqualTo("2005");
+      l[0].id.ShouldBeEqualTo("2006");
     }
 
     [Test]

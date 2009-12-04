@@ -36,7 +36,9 @@ namespace Rf.Sites.Models
 
       if (query == "source")
         return years.Keys
-          .Select(s => new ChronicsNode {expanded = false, hasChildren = true, id = s})
+          .Select(s=>int.Parse(s))
+          .OrderByDescending(i=>i)
+          .Select(s => new ChronicsNode {expanded = false, hasChildren = true, id = s.ToString()})
           .ToArray();
 
       if (years.ContainsKey(query))
