@@ -29,6 +29,8 @@ namespace Rf.Sites.Models
       extender.Apply(this);
     }
 
+    public string ContentId { get; private set; }
+
     public string Title { get; private set; }
 
     public string Keywords { get; private set; }
@@ -52,6 +54,7 @@ namespace Rf.Sites.Models
 
     private void pullData(Content content)
     {
+      ContentId = content.Id.ToString();
       Title = content.Title;
       WrittenInTime = content.Created.ToString(Constants.CommonDateFormat);
       var o = new PeriodOfTimeOutput(content.Created, DateTime.Now).ToString();

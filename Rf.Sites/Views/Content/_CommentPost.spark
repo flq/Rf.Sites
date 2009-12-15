@@ -1,10 +1,13 @@
 <use namespace="Rf.Sites.Frame" />
-<use namespace="Rf.Sites.Actions" />
+<use namespace="Rf.Sites.Actions.CommentPost" />
 <h2>Post a comment</h2>
 <p id="after_comment_post" class="alert" style="display:none;">Your comment has been posted and once it passes checks for SPAM etc. 
 it should appear here when you refresh.</p>
 <form id="comment_post" action="${Url.ActionLink<CommentPostAction>()}" method="post">
 <fieldset style="border: none;">
+  <input id="id" name="id" type="hidden" value="${ContentId}">
+  <label for="name">Your name&nbsp;&nbsp;&nbsp;:</label>
+  <input id="name" type="text" name="name" size="40"><br>
   <label for="email">Your email&nbsp;&nbsp;:</label>
   <input id="email" type="text" name="email" size="40"><br>
   <label for="website">Your website:</label>

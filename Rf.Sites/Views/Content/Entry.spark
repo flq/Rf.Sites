@@ -60,6 +60,6 @@
 	  </for>
 	</div>
 	
-	<CommentPost />
+	<CommentPost ContentId="Model.ContentId" />
 	
 </div>

@@ -1,11 +1,4 @@
-using FluentNHibernate.Automapping;
-using FluentNHibernate.Cfg;
-using FluentNHibernate.Cfg.Db;
 using NHibernate;
-using NHibernate.Cfg;
-using NHibernate.Tool.hbm2ddl;
-using NHibernate.Validator.Cfg;
-using NHibernate.Validator.Engine;
 using StructureMap.Attributes;
 using StructureMap.Configuration.DSL;
 
@@ -15,10 +8,15 @@ namespace Rf.Sites.Domain.Frame
   {
     public DomainRegistry()
     {
+      var maker = new SessionFactoryMaker();
       
       ForRequestedType<ISessionFactory>()
         .CacheBy(InstanceScope.Singleton)
-        .TheDefault.Is.ConstructedBy(()=>new SessionFactoryMaker().CreateFactory());
+        .TheDefault.Is.ConstructedBy(maker.CreateFactory);
+
+      ForRequestedType<IValidator>()
+        .CacheBy(InstanceScope.Singleton)
+        .TheDefault.Is.ConstructedBy(()=>new NHBasedValidator(maker.GetValidationEngine()));
 
       ForRequestedType<ISession>()
         .CacheBy(InstanceScope.Hybrid)

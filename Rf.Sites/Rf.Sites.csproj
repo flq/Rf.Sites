@@ -80,8 +80,8 @@
     <Compile Include="Actions\Args\NullArgs.cs" />
     <Compile Include="Actions\Args\YearArgs.cs" />
     <Compile Include="Actions\ChronicsIndexAction.cs" />
-    <Compile Include="Actions\CommentPostAction.cs" />
-    <Compile Include="Actions\Args\CommentPostArgs.cs" />
+    <Compile Include="Actions\CommentPost\CommentPostAction.cs" />
+    <Compile Include="Actions\CommentPost\CommentUpdatePreparer.cs" />
     <Compile Include="Actions\ContentIndexAction.cs" />
     <Compile Include="Actions\ContentMonthAction.cs" />
     <Compile Include="Actions\ContentYearAction.cs" />

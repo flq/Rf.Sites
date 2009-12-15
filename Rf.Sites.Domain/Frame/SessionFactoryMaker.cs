@@ -15,6 +15,7 @@ namespace Rf.Sites.Domain.Frame
   public class SessionFactoryMaker
   {
     private static Configuration config;
+    private static ValidatorEngine engine;
     private ISessionFactory factory;
 
     public ISessionFactory CreateFactory()
@@ -34,14 +35,15 @@ namespace Rf.Sites.Domain.Frame
       se.Execute(false, true, false, con, w);
     }
 
+    public ValidatorEngine GetValidationEngine()
+    {
+      return engine;
+    }
+
     protected virtual IPersistenceConfigurer dbConfig()
     {
-      //return MsSqlConfiguration.MsSql2005
-      //  .ConnectionString(b => b.FromConnectionStringWithKey("Rf.Sites"));
-      return MsSqlConfiguration.MsSql2005
-        .ConnectionString(b => b.Server(".\\SQLEXPRESS")
-                            .Database("RfSite")
-                            .TrustedConnection());
+      return MsSqlConfiguration.MsSql2008
+        .ConnectionString(b=>b.FromConnectionStringWithKey("RfSite"));
     }
 
     protected virtual Type currentSessionContextType()
@@ -79,7 +81,7 @@ namespace Rf.Sites.Domain.Frame
 
     private static void initializeValidationFramework(Configuration cfg)
     {
-      var engine = new ValidatorEngine();
+      engine = new ValidatorEngine();
       engine.Configure(new NHVConfigurationBase());
       ValidatorInitializer.Initialize(cfg, engine);
     }
