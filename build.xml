@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="BuildApp" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <UsingTask TaskName="CompileSparkView" AssemblyFile="lib/Rf.Sites.Build.dll" />
+  <PropertyGroup>
+    <Configuration>Debug</Configuration>
+  </PropertyGroup>
+  <Target Name="BuildApp">
+    <MakeDir Directories="out" />
+     
+    <CreateItem Include="Rf.Sites\bin\*.dll">
+      <Output TaskParameter="Include" ItemName="Assemblies" />
+    </CreateItem>
+
+    <Copy SourceFiles="@(Assemblies)" DestinationFolder="out" />
+    <Copy SourceFiles="lib/Rf.Sites.Build.dll" DestinationFolder="out" />
+
+    <ItemGroup>
+      <UseAssemblies Include="Rf.Sites" />
+      <UseAssemblies Include="Rf.Sites.Domain" />
+    </ItemGroup>
+        
+    <CompileSparkView
+      OutputAssembly="Rf.Sites.Views.dll"
+      CompilationDir="out"
+      UseAssemblies="@(UseAssemblies)"
+      ViewsLocation="Rf.Sites\Views"
+      TargetNamespace="Rf.Sites.Views" />
+    
+  </Target>
+</Project>

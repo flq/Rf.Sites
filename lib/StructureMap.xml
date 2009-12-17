@@ -225,23 +225,6 @@
             <typeparam name="T"></typeparam>
             <returns></returns>
         </member>
-        <member name="M:StructureMap.Graph.TypeRules.CanBeCast(System.Type,System.Type)">
-            <summary>
-            Determines if the pluggedType can be upcast to the pluginType
-            </summary>
-            <param name="pluginType"></param>
-            <param name="pluggedType"></param>
-            <returns></returns>
-        </member>
-        <member name="M:StructureMap.Graph.TypeRules.IsExplicitlyMarkedAsPlugin(System.Type,System.Type)">
-            <summary>
-            Determines if the PluggedType is a valid Plugin into the
-            PluginType
-            </summary>
-            <param name="pluginType"></param>
-            <param name="pluggedType"></param>
-            <returns></returns>
-        </member>
         <member name="M:StructureMap.Graph.Constructor.GetConstructor(System.Type)">
             <summary>
             Returns the System.Reflection.ConstructorInfo for the PluggedType.  Uses either
@@ -525,6 +508,13 @@
             <typeparam name="CONSTRUCTORARGUMENTTYPE"></typeparam>
             <returns></returns>
         </member>
+        <member name="M:StructureMap.Pipeline.ConfiguredInstance.Child(System.Type)">
+            <summary>
+            Start the definition of a child instance for type CONSTRUCTORARGUMENTTYPE
+            </summary>
+            <typeparam name="CONSTRUCTORARGUMENTTYPE"></typeparam>
+            <returns></returns>
+        </member>
         <member name="M:StructureMap.Pipeline.ConfiguredInstance.Child(System.String)">
             <summary>
             Inline definition of a constructor or a setter property dependency
@@ -597,6 +587,13 @@
             Start the definition of a child instance by defining the concrete type
             </summary>
             <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:StructureMap.Pipeline.ConfiguredInstance.ChildInstanceExpression.IsConcreteType(System.Type)">
+            <summary>
+            Start the definition of a child instance by defining the concrete type
+            </summary>
+            <param name="pluggedType"></param>
             <returns></returns>
         </member>
         <member name="M:StructureMap.Pipeline.ConfiguredInstance.ChildInstanceExpression.Is(StructureMap.Pipeline.Instance)">
@@ -804,9 +801,21 @@
             <param name="scope"></param>
             <returns></returns>
         </member>
-        <member name="M:StructureMap.Configuration.DSL.Expressions.CreatePluginFamilyExpression`1.AsSingletons">
+        <member name="M:StructureMap.Configuration.DSL.Expressions.CreatePluginFamilyExpression`1.Singleton">
             <summary>
             Convenience method to mark a PluginFamily as a Singleton
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:StructureMap.Configuration.DSL.Expressions.CreatePluginFamilyExpression`1.HybridHttpOrThreadLocalScoped">
+            <summary>
+            Convenience method to mark a PluginFamily as a Hybrid lifecycle
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:StructureMap.Configuration.DSL.Expressions.CreatePluginFamilyExpression`1.HttpContextScoped">
+            <summary>
+            Convenience method to mark a PluginFamily as HttpContext scoped
             </summary>
             <returns></returns>
         </member>
@@ -2767,6 +2776,23 @@
             <summary>
             Makes sure that every request for this object returns a unique object
             </summary>
+        </member>
+        <member name="M:StructureMap.TypeRules.TypeExtensions.CanBeCastTo(System.Type,System.Type)">
+            <summary>
+            Determines if the pluggedType can be upcast to the pluginType
+            </summary>
+            <param name="pluginType"></param>
+            <param name="pluggedType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:StructureMap.TypeRules.TypeExtensions.IsExplicitlyMarkedAsPlugin(System.Type,System.Type)">
+            <summary>
+            Determines if the PluggedType is a valid Plugin into the
+            PluginType
+            </summary>
+            <param name="pluginType"></param>
+            <param name="pluggedType"></param>
+            <returns></returns>
         </member>
         <member name="M:StructureMap.IInitializationExpression.AddConfigurationFromXmlFile(System.String)">
             <summary>
