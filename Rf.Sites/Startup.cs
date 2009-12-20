@@ -34,44 +34,21 @@ namespace Rf.Sites
       Paginator.SetPaginatorCountCache(cnt.GetInstance<ICache>());
 
       registerRoutes(RouteTable.Routes);
+      environment = cnt.GetInstance<Environment>();
     }
 
     public static Environment Environment
     {
       get
       {
-        return environment ?? (environment = constructEnvironment());
+        return environment;
       }
     }
 
     public static void ConstructUrlRoot(HttpRequest request)
     {
-      Environment.AbsoluteBaseUrl = new Uri(string.Format("{0}://{1}", request.Url.Scheme, request.Url.Authority));
-    }
-
-    private static Environment constructEnvironment()
-    {
-
-      return new Environment
-      {
-        AbsoluteBaseUrl = new Uri("http://localhost"), //Placeholder for testing. Is replaced by "ConstructUrlRoot" during the first request
-        SiteTitle = "realfiction",
-
-        SiteMasterName = "Frank Quednau",
-        SiteMasterEmail = "fquednau@gmail.com",
-        SiteMasterWebPage = "http://frankquednau.de",
-        SiteMasterPassword = "pwd"/*"b264c030-1546-4a10-8b53-ca398a9de939"*/,
-
-        CopyrightNotice = "All content hosted by this site is written by F Quednau. Reproduction only under consent",
-
-        DropZoneUrl = "files",
-        BaseDirectory = AppDomain.CurrentDomain.BaseDirectory,
-
-        FeedItemsPerFeed = 10,
-        ItemsPerPage = 5,
-
-        TagcloudSegments = 8
-      };
+      
+      Environment.ApplicationBaseUrl = new Uri(string.Format("{0}://{1}", request.Url.Scheme, request.Url.Authority));
     }
 
     [Conditional("COMPILEDVIEWS")]

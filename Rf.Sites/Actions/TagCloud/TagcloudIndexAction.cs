@@ -28,7 +28,7 @@ namespace Rf.Sites.Actions.TagCloud
         
         tl = new TagList(
           q.List(), 
-          new Uri(Environment.AbsoluteBaseUrl, FrameUtilities.RelativeUrlToAction<ContentTagAction>()));
+          new Uri(Environment.ApplicationBaseUrl, FrameUtilities.RelativeUrlToAction<ContentTagAction>()));
 
       }
 

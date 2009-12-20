@@ -1,10 +1,24 @@
 using System;
+using System.Xml.Serialization;
 
 namespace Rf.Sites.Frame
 {
+  [XmlRoot]
   public class Environment
   {
-    public Uri AbsoluteBaseUrl { get; set; }
+    public Environment()
+    {
+      BaseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+    }
+    
+    [XmlIgnore]
+    public Uri ApplicationBaseUrl { get; set; }
+    public string ApplicationBaseUrlAsString
+    {
+      get { return ApplicationBaseUrl.ToString(); }
+      set { ApplicationBaseUrl = new Uri(value);}
+    }
+
     public string CopyrightNotice { get; set; }
 
     public string SiteTitle { get; set; }

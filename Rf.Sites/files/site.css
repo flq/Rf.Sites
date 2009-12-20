@@ -102,7 +102,7 @@ a.tagcloud7 { font-size: 1.9em; font-weight: 700; }
 a.tagcloud8 { font-size: 2.2em; font-weight: 800; }
 
 .alert {
-	background: #fff6bf url(/files/images/info.png) center no-repeat;
+	background: #fff6bf url(files/images/info.png) center no-repeat;
 	background-position: 15px 50%; /* x-pos y-pos */
 	text-align: left;
 	padding: 5px 20px 5px 45px;

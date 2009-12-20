@@ -114,6 +114,7 @@
     </Compile>
     <Compile Include="Frame\CustomActionResult.cs" />
     <Compile Include="Frame\Environment.cs" />
+    <Compile Include="Frame\EnvironmentConfigurationSection.cs" />
     <Compile Include="Frame\HandlerUrlAttribute.cs" />
     <Compile Include="Frame\HttpHandlerDispatcher.cs" />
     <Compile Include="Frame\HttpHandlerRegistrar.cs" />
@@ -202,6 +203,7 @@
     <Content Include="Scripts\jquery.js" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="WebRelease.config" />
     <None Include="Views\Content\_CommentPost.spark" />
     <None Include="Views\Content\_Attachment.spark" />
     <None Include="Views\Content\_Comment.spark" />

@@ -18,7 +18,7 @@ namespace Rf.Sites.Tests.Frame
       SiteMasterEmail = uid,
       SiteMasterPassword = pwd,
       SiteMasterWebPage = "http://lugos.com",
-      AbsoluteBaseUrl = new Uri(url)
+      ApplicationBaseUrl = new Uri(url)
     };
 
     public string Uid { get { return uid; }}

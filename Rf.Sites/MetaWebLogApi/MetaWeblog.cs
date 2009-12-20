@@ -71,10 +71,10 @@ namespace Rf.Sites.MetaWeblogApi
 
       return (from t in tags
               let rssUrl = new Uri(
-                environment.AbsoluteBaseUrl,
+                environment.ApplicationBaseUrl,
                 FrameUtilities.RelativeUrlToAction<RssTagAction>(t.Name)).ToString()
               let webUrl = new Uri(
-                environment.AbsoluteBaseUrl,
+                environment.ApplicationBaseUrl,
                 FrameUtilities.RelativeUrlToAction<ContentTagAction>(t.Name)).ToString()
               select new CategoryInfo
                        {
@@ -121,7 +121,7 @@ namespace Rf.Sites.MetaWeblogApi
         var relativeUrl = storage.StoreMedia(mediaObject.name, mediaObject.bits);
         return new MediaObjectInfo
                  {
-                   url = new Uri(environment.AbsoluteBaseUrl, relativeUrl).ToString()
+                   url = new Uri(environment.ApplicationBaseUrl, relativeUrl).ToString()
                  };
       }
       catch (Exception x)
@@ -146,7 +146,7 @@ namespace Rf.Sites.MetaWeblogApi
                            {
                              blogid = "1",
                              blogName = environment.SiteTitle,
-                             url = environment.AbsoluteBaseUrl.ToString()
+                             url = environment.ApplicationBaseUrl.ToString()
                            }
                        };
       return infoList;
@@ -162,7 +162,7 @@ namespace Rf.Sites.MetaWeblogApi
                           firstname = environment.SiteMasterName,
                           lastname = "",
                           nickname = "",
-                          url = environment.AbsoluteBaseUrl.ToString(),
+                          url = environment.ApplicationBaseUrl.ToString(),
                           userid = "1"
                         };
       return info;

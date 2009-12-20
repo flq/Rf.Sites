@@ -27,7 +27,7 @@ namespace Rf.Sites.Tests
       env.UseInMemoryDb();
       scenario = env.DataScenario<ContentWithComments>();
 
-      var siteEnv = env.Container.GetInstance<Environment>();
+      var siteEnv = new Environment() { ApplicationBaseUrl = new Uri("http://localhost")};
 
       env.ExecuteHandler(new SiteMapHandler(siteEnv, env.FactoryForStatelessSession()));
       usedContext = env.UsedContext;

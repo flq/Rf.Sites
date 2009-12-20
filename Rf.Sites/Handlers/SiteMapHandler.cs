@@ -20,7 +20,7 @@ namespace Rf.Sites.Handlers
     public SiteMapHandler(Environment environment, ISessionFactory factory)
     {
       this.factory = factory;
-      contentEntryUrl = new Uri(environment.AbsoluteBaseUrl, FrameUtilities.RelativeUrlToAction<ContentEntryAction>()).ToString();
+      contentEntryUrl = new Uri(environment.ApplicationBaseUrl, FrameUtilities.RelativeUrlToAction<ContentEntryAction>()).ToString();
     }
 
     protected override void processRequest()

@@ -95,7 +95,11 @@ namespace Rf.Sites.Tests
     {
       var finalResponse = new StringBuilder();
       actionEnv.ControllerCtxMock.ResponseMock.Setup(rB => rB.Output).Returns(new StringWriter(finalResponse));
-
+      actionEnv.OverloadContainer(ce => ce.ForRequestedType<Environment>()
+                                   .TheDefault.IsThis(new Environment
+                                   {
+                                     ApplicationBaseUrl = new Uri("http://localhost")
+                                   }));
       var mock = new Mock<AbstractFeed>();
       mock.Protected().Setup<ContentFragments>("produceFragments")
         .Returns(

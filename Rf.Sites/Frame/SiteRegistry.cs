@@ -1,3 +1,4 @@
+using System.Configuration;
 using System.Web;
 using System.Web.Mvc;
 using Rf.Sites.Domain;
@@ -16,6 +17,12 @@ namespace Rf.Sites.Frame
   {
     public SiteRegistry()
     {
+      //ForSingletonOf<Environment>().TheDefault.IsThis(Startup.Environment);
+      ForSingletonOf<Environment>()
+        .TheDefault.Is
+        .ConstructedBy(() => (Environment) ConfigurationManager.GetSection("Environment"));
+      
+
       Scan(s =>
       {
         s.AssemblyContainingType<Entity>();
@@ -39,8 +46,6 @@ namespace Rf.Sites.Frame
 
       ForSingletonOf<ICache>()
         .TheDefaultIsConcreteType<WebBasedCache>();
-
-      ForSingletonOf<Environment>().TheDefault.IsThis(Startup.Environment);
 
       ForRequestedType<IObjectConverter<Comment, CommentVM>>()
         .TheDefaultIsConcreteType<CommentToVMConverter>();
@@ -70,6 +75,8 @@ namespace Rf.Sites.Frame
                s.AssemblyContainingType<SiteRegistry>();
                s.With<HttpHandlerRegistrar>();
              });
+      
     }
+
   }
 }

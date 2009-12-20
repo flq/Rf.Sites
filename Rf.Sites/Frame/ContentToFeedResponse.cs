@@ -18,7 +18,7 @@ namespace Rf.Sites.Frame
 
       var items = fragments
         .Select(vm => 
-          new SyndicationItem(vm.Title, vm.Teaser, new Uri(env.AbsoluteBaseUrl, urlToContentItem + vm.Id.ToString()))
+          new SyndicationItem(vm.Title, vm.Teaser, new Uri(env.ApplicationBaseUrl, urlToContentItem + vm.Id.ToString()))
             {
               LastUpdatedTime = new DateTimeOffset(vm.Created)
             });

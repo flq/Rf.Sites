@@ -5,17 +5,23 @@ namespace Rf.Sites.Build
 {
   class AppDomainExpander<T> where T : DomainLifetimeHook, new()
   {
+    private AppDomain domain;
 
     public void Create(AppDomainSetup setup, object data)
     {
-      AppDomain dmn = AppDomain.CreateDomain(Guid.NewGuid().ToString(), null, setup);
-      dmn.Load(GetType().Assembly.FullName);
-      dmn.SetData("data", data);
+      domain = AppDomain.CreateDomain(Guid.NewGuid().ToString(), null, setup);
+      domain.Load(GetType().Assembly.FullName);
+      domain.SetData("data", data);
       string typename = typeof(DomainCommunicator).FullName;
       string assemblyName = typeof(DomainCommunicator).Assembly.FullName;
 
-      var inner = (DomainCommunicator)dmn.CreateInstanceAndUnwrap(assemblyName, typename);
+      var inner = (DomainCommunicator)domain.CreateInstanceAndUnwrap(assemblyName, typename);
       inner.Create();
+    }
+
+    public void End()
+    {
+      AppDomain.Unload(domain);
     }
 
     class DomainCommunicator : MarshalByRefObject

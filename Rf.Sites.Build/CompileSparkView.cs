@@ -51,9 +51,11 @@ namespace Rf.Sites.Build
                      TargetNamespace = TargetNamespace,
                      ViewsLocation = Path.Combine(Environment.CurrentDirectory, ViewsLocation)
                    };
-
+      Log.LogMessage("Creating AppDomain for Compilation");
       var compile = new AppDomainExpander<SparkCompilation>();
       compile.Create(s, args);
+      Log.LogMessage("Exiting Compilation");
+      compile.End();
       return true;
     }
   }

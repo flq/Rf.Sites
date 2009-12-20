@@ -1,9 +1,10 @@
+using System;
 using NUnit.Framework;
 using Rf.Sites.Actions.TagCloud;
 using System.Linq;
-using Rf.Sites.Frame;
 using Rf.Sites.Tests.DataScenarios;
 using Rf.Sites.Tests.Frame;
+using Environment=Rf.Sites.Frame.Environment;
 
 namespace Rf.Sites.Tests
 {
@@ -54,6 +55,12 @@ namespace Rf.Sites.Tests
     public void TagcloudActionWorksAsIntended()
     {
       ActionEnv env = new ActionEnv();
+      env.OverloadContainer(ce=> ce.ForRequestedType<Environment>()
+                                   .TheDefault.IsThis(new Environment
+                                                        {
+                                                          ApplicationBaseUrl = new Uri("http://localhost"),
+                                                          TagcloudSegments = 5
+                                                        }));
       var maxSegment = env.Container.GetInstance<Environment>().TagcloudSegments;
       env.UseInMemoryDb();
       env.DataScenario<AFewTagsAndNumerousContent>();

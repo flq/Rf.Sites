@@ -17,7 +17,7 @@ namespace Rf.Sites.Tests
     private static readonly Environment env =
       new Environment
         {
-          AbsoluteBaseUrl = new Uri("http://host/Content/Entry/"),
+          ApplicationBaseUrl = new Uri("http://host/Content/Entry/"),
           SiteMasterName = "Frank",
           CopyrightNotice = "All content hosted by this site is written by F Quednau. Reproduction only under consent"
         };
