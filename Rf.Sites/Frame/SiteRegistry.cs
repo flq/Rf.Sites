@@ -17,11 +17,9 @@ namespace Rf.Sites.Frame
   {
     public SiteRegistry()
     {
-      //ForSingletonOf<Environment>().TheDefault.IsThis(Startup.Environment);
       ForSingletonOf<Environment>()
         .TheDefault.Is
         .ConstructedBy(() => (Environment) ConfigurationManager.GetSection("Environment"));
-      
 
       Scan(s =>
       {
@@ -74,9 +72,7 @@ namespace Rf.Sites.Frame
              {
                s.AssemblyContainingType<SiteRegistry>();
                s.With<HttpHandlerRegistrar>();
-             });
-      
+             }); 
     }
-
   }
 }

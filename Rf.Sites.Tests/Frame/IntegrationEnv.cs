@@ -4,6 +4,7 @@ using NHibernate;
 using Rf.Sites.Frame;
 using Rf.Sites.Tests.DataScenarios;
 using StructureMap;
+using Environment=Rf.Sites.Frame.Environment;
 
 namespace Rf.Sites.Tests.Frame
 {
@@ -16,6 +17,8 @@ namespace Rf.Sites.Tests.Frame
     protected IntegrationEnv()
     {
       container = new Container(ce => ce.AddRegistry<SiteRegistry>());
+      container.Configure(ce=>ce.ForSingletonOf<Sites.Frame.Environment>()
+        .TheDefault.IsThis(new Environment()));
     }
 
     public IContainer Container

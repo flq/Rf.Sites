@@ -14,13 +14,6 @@ namespace Rf.Sites
 {
   public class Startup
   {
-    /// <summary>
-    /// Used when there is no HTTP context available,
-    /// e.g. in tests
-    /// </summary>
-    private const string fallbackAbsoluteRoot = "http://localhost";
-
-    private static Environment environment;
 
     public Startup(IContainer cnt)
     {
@@ -34,22 +27,10 @@ namespace Rf.Sites
       Paginator.SetPaginatorCountCache(cnt.GetInstance<ICache>());
 
       registerRoutes(RouteTable.Routes);
-      environment = cnt.GetInstance<Environment>();
+      Environment = cnt.GetInstance<Environment>();
     }
 
-    public static Environment Environment
-    {
-      get
-      {
-        return environment;
-      }
-    }
-
-    public static void ConstructUrlRoot(HttpRequest request)
-    {
-      
-      Environment.ApplicationBaseUrl = new Uri(string.Format("{0}://{1}", request.Url.Scheme, request.Url.Authority));
-    }
+    public static Environment Environment { get; private set; }
 
     [Conditional("COMPILEDVIEWS")]
     private static void usePrecompilation(SparkViewFactory factory)
