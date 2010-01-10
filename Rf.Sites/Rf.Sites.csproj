@@ -114,6 +114,7 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Frame\CustomActionResult.cs" />
+    <Compile Include="Frame\DrupalUrlMap.cs" />
     <Compile Include="Frame\Environment.cs" />
     <Compile Include="Frame\EnvironmentConfigurationSection.cs" />
     <Compile Include="Frame\HandlerUrlAttribute.cs" />
@@ -200,7 +201,8 @@
     <Content Include="Scripts\sh_main.js" />
     <Content Include="Scripts\sh_ruby.js" />
     <Content Include="Scripts\sh_xml.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+    </Content>
     <Content Include="Scripts\jquery.js" />
   </ItemGroup>
   <ItemGroup>

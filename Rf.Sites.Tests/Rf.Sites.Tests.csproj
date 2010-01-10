@@ -149,6 +149,7 @@
     <Compile Include="WhenPeriodOfPassedTimeIsOutput.cs" />
     <Compile Include="WhenThePaginatorIsUsed.cs" />
     <Compile Include="WhenTheRepositoryIsUsed.cs" />
+    <Compile Include="WhenUsingTheDrupalMapFeature.cs" />
     <Compile Include="WhenWorkingWithViewModels.cs" />
   </ItemGroup>
   <ItemGroup>

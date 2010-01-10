@@ -49,5 +49,10 @@ namespace Rf.Sites.Frame
       var tokens = typeof (T).Name.PasCalCaseTokenization();
       return new RedirectResult(string.Format("{0}/{1}", tokens[0], tokens[1]));
     }
+    protected ActionResult redirectTo<T>(object value1) where T : IAction
+    {
+      var tokens = typeof(T).Name.PasCalCaseTokenization();
+      return new RedirectResult(string.Format("{0}/{1}/{2}", tokens[0], tokens[1], value1));
+    }
   }
 }

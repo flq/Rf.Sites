@@ -20,6 +20,9 @@ namespace Rf.Sites.Frame
       ForSingletonOf<Environment>()
         .TheDefault.Is
         .ConstructedBy(() => (Environment) ConfigurationManager.GetSection("Environment"));
+      ForSingletonOf<DrupalUrlMap>()
+        .TheDefault.Is
+        .ConstructedBy(() => (DrupalUrlMap)ConfigurationManager.GetSection("DrupalUrlMap"));
 
       Scan(s =>
       {

@@ -6,9 +6,21 @@ namespace Rf.Sites.Actions
 {
   public class HomeIndexAction : AbstractAction
   {
+    private readonly DrupalUrlMap map;
+    private readonly string drupalQString;
+
+    public HomeIndexAction(ControllerContext ctx, DrupalUrlMap map)
+    {
+      this.map = map;
+      drupalQString = ctx.RequestContext.HttpContext.Request.QueryString["q"];
+    }
+
     public override ActionResult Execute()
     {
-      return redirectTo<ContentIndexAction>();
+      if (drupalQString == null)
+        return redirectTo<ContentIndexAction>();
+      var id = map[drupalQString];
+      return id != null ? redirectTo<ContentEntryAction>(id) : redirectTo<UnknownAction>();
     }
   }
 }
