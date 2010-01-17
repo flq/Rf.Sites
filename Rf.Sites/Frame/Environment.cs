@@ -35,5 +35,7 @@ namespace Rf.Sites.Frame
     public int ItemsPerPage { get; set; }
 
     public int TagcloudSegments { get; set; }
+
+    public bool CommentingEnabled { get; set; }
   }
 }

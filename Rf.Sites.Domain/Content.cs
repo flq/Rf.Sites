@@ -28,6 +28,9 @@ namespace Rf.Sites.Domain
     [NotNull]
     public virtual bool Published { get; set; }
 
+    [NotNull]
+    public virtual bool CommentingDisabled { get; set; }
+
     public virtual int CommentCount { get; private set; }
     public virtual int AttachmentCount { get; private set; }
 

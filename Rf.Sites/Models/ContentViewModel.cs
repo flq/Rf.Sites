@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Rf.Sites.Domain;
 using Rf.Sites.Frame;
 using System.Linq;
+using Environment=Rf.Sites.Frame.Environment;
 
 namespace Rf.Sites.Models
 {
@@ -29,6 +30,8 @@ namespace Rf.Sites.Models
       extender.Apply(this);
     }
 
+    public Environment Environment { get; set; }
+
     public string ContentId { get; private set; }
 
     public string Title { get; private set; }
@@ -51,6 +54,14 @@ namespace Rf.Sites.Models
 
     public IEnumerable<CommentVM> Comments { get; private set; }
     public IEnumerable<AttachmentVM> Attachments { get; private set; }
+
+    public bool CommentingEnabled
+    {
+      get
+      {
+        return Environment != null ? Environment.CommentingEnabled : true;
+      }
+    }
 
     private void pullData(Content content)
     {
