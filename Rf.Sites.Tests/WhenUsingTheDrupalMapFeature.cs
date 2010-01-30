@@ -14,7 +14,7 @@ namespace Rf.Sites.Tests
     {
       Entries = new List<MapEntry>
                                   {
-                                    new MapEntry {DrupalId = 1, RfSiteId = 2}
+                                    new MapEntry {DrupalUrl = "node/1", RfSiteUrl = "/Content/Entry/4"}
                                   }
     };
 
@@ -22,45 +22,27 @@ namespace Rf.Sites.Tests
     public void DrupalMapIsCorrectlyDeserialized()
     {
       string xml =
-      @"<DrupalUrlMap><Entry DrupalId=""1"" RfSiteId=""3"" />
-      <Entry DrupalId=""2"" RfSiteId=""4"" /></DrupalUrlMap>";
+      @"<DrupalUrlMap><Entry DrupalUrl=""node/1"" RfSiteUrl=""/Content/Entry/4"" />
+      <Entry DrupalUrl=""blog/1/feed"" RfSiteUrl=""/rss"" /></DrupalUrlMap>";
 
       var s = new XmlSerializer(typeof(DrupalUrlMap));
       var d = (DrupalUrlMap)s.Deserialize(new StringReader(xml));
       d.Entries.ShouldHaveCount(2);
-      d["2"].ShouldBeOfType<int>();
-      ((int)d["2"]).ShouldBeEqualTo(4);
+      d["blog/1/feed"].ShouldBeEqualTo("/rss");
     }
 
     [Test]
     public void DrupalMapReturnsCorrectValue()
     {
-      var ret = drupalMap["1"];
-      ret.ShouldNotBeNull();
-      ret.ShouldBeOfType<int>();
-      ((int)ret).ShouldBeEqualTo(2);
-    }
-
-    [Test]
-    public void DrupalMapRemovesNodePrefix()
-    {
       var ret = drupalMap["node/1"];
       ret.ShouldNotBeNull();
-      ret.ShouldBeOfType<int>();
-      ((int)ret).ShouldBeEqualTo(2);
+      ret.ShouldBeEqualTo("/Content/Entry/4");
     }
 
     [Test]
     public void NotExistingMapReturnsNull()
     {
       var ret = drupalMap["32"];
-      ret.ShouldBeNull();
-    }
-
-    [Test]
-    public void NonNumericDrupalIdReturnsNull()
-    {
-      var ret = drupalMap["hello"];
       ret.ShouldBeNull();
     }
   }

@@ -12,20 +12,14 @@ namespace Rf.Sites.Frame
     [XmlElement(ElementName = "Entry")]
     public List<MapEntry> Entries { get; set; }
 
-    public object this[string drupalID]
+    public string this[string drupalID]
     {
       get
       {
-        var id = drupalID.Replace("node/", "");
-        try
-        {
-          var entry = Entries.Where(e => e.DrupalId == Convert.ToInt32(id)).FirstOrDefault();
-          return entry != null ? (object) entry.RfSiteId : null;
-        }
-        catch (FormatException)
-        {
-          return null;
-        }
+        var entry = Entries
+          .Where(e => e.DrupalUrl.Equals(drupalID, StringComparison.InvariantCultureIgnoreCase))
+          .FirstOrDefault();
+        return entry != null ? entry.RfSiteUrl : null;
       }
     }
   }
@@ -33,8 +27,8 @@ namespace Rf.Sites.Frame
   public class MapEntry
   {
     [XmlAttribute]
-    public int DrupalId { get; set; }
+    public string DrupalUrl { get; set; }
     [XmlAttribute]
-    public int RfSiteId { get; set; }
+    public string RfSiteUrl { get; set; }
   }
 }

@@ -109,7 +109,7 @@ namespace Rf.Sites.Tests
       var env = new ActionEnv();
       env.UseInMemoryDb();
       var nC = env.Container.GetNestedContainer();
-      nC.Configure(c=>c.ForRequestedType<IRepository<Tag>>().TheDefault.IsThis(repT));
+      nC.Configure(c=>c.For<IRepository<Tag>>().Use(repT));
 
       env.Container.GetInstance<IRepository<Tag>>().ShouldBeOfType<Repository<Tag>>();
       nC.GetInstance<IRepository<Tag>>().ShouldBeOfType<TestRepository<Tag>>();

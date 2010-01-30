@@ -55,8 +55,8 @@ namespace Rf.Sites.Tests
     public void TagcloudActionWorksAsIntended()
     {
       ActionEnv env = new ActionEnv();
-      env.OverloadContainer(ce=> ce.ForRequestedType<Environment>()
-                                   .TheDefault.IsThis(new Environment
+      env.OverloadContainer(ce=> ce.For<Environment>()
+                                   .Use(new Environment
                                                         {
                                                           ApplicationBaseUrl = new Uri("http://localhost"),
                                                           TagcloudSegments = 5

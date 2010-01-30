@@ -1,13 +1,16 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using NUnit.Framework;
 using Rf.Sites.Domain;
 using Rf.Sites.Frame;
+using Rf.Sites.Models;
 using Rf.Sites.Tests.Frame;
 using Spark;
 using Spark.Compiler;
 using Spark.FileSystem;
 using Spark.Web.Mvc;
+using StructureMap;
 
 namespace Rf.Sites.Tests
 {
@@ -20,6 +23,31 @@ namespace Rf.Sites.Tests
       var b = new DbTestBase();
       using (var s = b.Session)
       Debug.Write("OK");
+    }
+
+    [Test]
+    public void NewStructureMapBehavesDifferent()
+    {
+      var cnt = new Container();
+      cnt.Configure(ce=>ce.Scan(s=>
+                                  {
+                                    s.AssemblyContainingType(typeof(IVmExtender<>));
+                                    s.AddAllTypesOf(typeof (IVmExtender<>));
+                                  }));
+      var l = cnt.GetAllInstances<IVmExtender<ContentViewModel>>();
+      l.Count.ShouldBeGreaterThan(0);
+      var c = cnt.GetInstance<ExtenderConsumer>();
+      c.Extender.Count.ShouldBeGreaterThan(0);
+    }
+
+    public class ExtenderConsumer
+    {
+      public IList<IVmExtender<ContentViewModel>> Extender { get; set; }
+
+      public ExtenderConsumer(IList<IVmExtender<ContentViewModel>> extender)
+      {
+        Extender = extender;
+      }
     }
 
     [Test]

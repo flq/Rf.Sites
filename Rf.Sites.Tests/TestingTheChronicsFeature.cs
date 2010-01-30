@@ -45,8 +45,8 @@ namespace Rf.Sites.Tests
 
       env.OverloadContainer(ce=>
                               {
-                                ce.ForRequestedType<IRepository<Content>>().TheDefault.IsThis(repository);
-                                ce.ForRequestedType<ICache>().TheDefault.IsThis(cache.Object);
+                                ce.For<IRepository<Content>>().Use(repository);
+                                ce.For<ICache>().Use(cache.Object);
                               });
     }
 

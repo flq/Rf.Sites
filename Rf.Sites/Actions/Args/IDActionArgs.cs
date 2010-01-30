@@ -11,7 +11,7 @@ namespace Rf.Sites.Actions.Args
 
     public IDActionArgs(ControllerContext ctx)
     {
-      Id = ctx.GetValue1().SafeCast(1);
+      Id = ctx.GetValue1().SafeCast(-1);
     }
 
     protected override object makeObject()

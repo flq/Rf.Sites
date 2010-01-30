@@ -1,6 +1,10 @@
+using System;
 using NHibernate;
+using StructureMap;
 using StructureMap.Attributes;
 using StructureMap.Configuration.DSL;
+using StructureMap.Configuration.DSL.Expressions;
+using StructureMap.Pipeline;
 
 namespace Rf.Sites.Domain.Frame
 {
@@ -9,29 +13,28 @@ namespace Rf.Sites.Domain.Frame
     public DomainRegistry()
     {
       var maker = new SessionFactoryMaker();
-      
-      ForRequestedType<ISessionFactory>()
-        .CacheBy(InstanceScope.Singleton)
-        .TheDefault.Is.ConstructedBy(maker.CreateFactory);
+      ForSingletonOf<ISessionFactory>().Use(maker.CreateFactory);
 
-      ForRequestedType<IValidator>()
-        .CacheBy(InstanceScope.Singleton)
-        .TheDefault.Is.ConstructedBy(()=>new NHBasedValidator(maker.GetValidationEngine()));
+      ForSingletonOf<IValidator>()
+        .Use(()=>new NHBasedValidator(maker.GetValidationEngine()));
 
-      ForRequestedType<ISession>()
-        .CacheBy(InstanceScope.Hybrid)
-        .TheDefault.Is.ConstructedBy(
-        ctx => ctx.GetInstance<ISessionFactory>().OpenSession());
+      For<ISession>()
+        .HybridHttpOrThreadLocalScoped()
+        .Use(ctx => ctx.GetInstance<ISessionFactory>().OpenSession());
 
-      ForRequestedType<IStatelessSession>()
-        .CacheBy(InstanceScope.PerRequest)
-        .TheDefault.Is.ConstructedBy(
-        ctx => ctx.GetInstance<ISessionFactory>().OpenStatelessSession());
+      For<IStatelessSession>()
+        .LifecycleIs(Lifecycles.GetLifecycle(InstanceScope.PerRequest))
+        .Use(ctx => ctx.GetInstance<ISessionFactory>().OpenStatelessSession());
 
-      ForRequestedType(typeof (IRepository<>))
-        .TheDefaultIsConcreteType(typeof (Repository<>));
+      For(typeof (IRepository<>)).Use(typeof (Repository<>));
     }
+  }
 
-    
+  public static class StrMapExtensions
+  {
+    public static void Use<T>(this CreatePluginFamilyExpression<T> expression, Func<T> func)
+    {
+      expression.Use(c => func());
+    }
   }
 }

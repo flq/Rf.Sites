@@ -9,7 +9,7 @@ namespace Rf.Sites.Tests.Frame
     public ActionEnv()
     {
       ControllerCtxMock = TestHelpExtensions.StartControllerContextMock();
-      container.Configure(ce => ce.ForRequestedType<ControllerContext>()
+      container.Configure(ce => ce.For<ControllerContext>()
                                   .TheDefault.Is.ConstructedBy(() => ControllerCtxMock.ControllerContext));
     }
 

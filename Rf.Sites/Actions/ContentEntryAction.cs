@@ -21,10 +21,12 @@ namespace Rf.Sites.Actions
 
     public override ActionResult Execute()
     {
+      if (args.Id == -1)
+        return redirectTo<UnknownAction>();
       var content = repository[args.Id];
-      return createResult(content != null ? 
-        Container.With(content).GetInstance<ContentViewModel>() :
-        null);
+      return content != null
+               ? createResult(Container.With(content).GetInstance<ContentViewModel>())
+               : redirectTo<UnknownAction>();
     }
   }
 }

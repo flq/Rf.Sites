@@ -2,19 +2,18 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Web.Mvc;
 using System.Xml;
 using Moq;
 using NUnit.Framework;
 using Rf.Sites.Actions;
 using Rf.Sites.Actions.Args;
-using Rf.Sites.Actions.TagCloud;
 using Rf.Sites.Domain;
 using Rf.Sites.Domain.Frame;
 using Rf.Sites.Frame;
 using Rf.Sites.Models;
 using Rf.Sites.Tests.DataScenarios;
 using Rf.Sites.Tests.Frame;
-using StructureMap;
 using Moq.Protected;
 using Environment=Rf.Sites.Frame.Environment;
 
@@ -36,22 +35,32 @@ namespace Rf.Sites.Tests
     {
       var mock = new Mock<IRepository<Content>>();
       mock.Setup(rep => rep[1]).Returns(new Content(1) {Title = "Foo", Body = "Bar"});
-
-      var cnt = new Container(
-        cn =>
-          {
-            cn.ForRequestedType<IObjectConverter<Comment, CommentVM>>()
-              .TheDefault.IsThis(ObjectConverter.From((Comment c) => new CommentVM(c, null)));
-            cn.ForRequestedType<IObjectConverter<Attachment, AttachmentVM>>()
-              .TheDefault.IsThis(ObjectConverter.From((Attachment a) => new AttachmentVM(a,null)));
-          });
-
       
-      var action = new ContentEntryAction(ArgsFrom.Id(1), mock.Object) {Container = cnt};
+      var action = new ContentEntryAction(ArgsFrom.Id(1), mock.Object) {Container = actionEnv.Container};
       var model = action.Execute().GetModelFromAction<ContentViewModel>();
       
       model.Title.ShouldBeEqualTo("Foo");
       mock.Verify();
+    }
+
+    [Test]
+    public void ContentEntryRedirectsToUnknownWhenIDCouldNotBeResolved()
+    {
+      var action = new ContentEntryAction(ArgsFrom.Id(-1), null) { Container = actionEnv.Container };
+      var result = action.Execute();
+      result.ShouldBeOfType<RedirectResult>();
+      ((RedirectResult)result).Url.Contains("Unknown").ShouldBeTrue();
+    }
+
+    [Test]
+    public void ContentEntryRedirectsToUnknownWhenIDDoesNotExist()
+    {
+      var mock = new Mock<IRepository<Content>>();
+      mock.Setup(rep => rep[1]).Returns(new Content(1) { Title = "Foo", Body = "Bar" });
+      var action = new ContentEntryAction(ArgsFrom.Id(3), mock.Object) { Container = actionEnv.Container };
+      var result = action.Execute();
+      result.ShouldBeOfType<RedirectResult>();
+      ((RedirectResult)result).Url.Contains("Unknown").ShouldBeTrue();
     }
 
     [Test]
@@ -95,8 +104,8 @@ namespace Rf.Sites.Tests
     {
       var finalResponse = new StringBuilder();
       actionEnv.ControllerCtxMock.ResponseMock.Setup(rB => rB.Output).Returns(new StringWriter(finalResponse));
-      actionEnv.OverloadContainer(ce => ce.ForRequestedType<Environment>()
-                                   .TheDefault.IsThis(new Environment
+      actionEnv.OverloadContainer(ce => ce.For<Environment>()
+                                   .Use(new Environment
                                    {
                                      ApplicationBaseUrl = new Uri("http://localhost")
                                    }));

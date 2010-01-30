@@ -61,7 +61,7 @@ namespace Rf.Sites.Tests
             new Tag {Created = DateTime.Now, Name = "2", Description = "B"}
           };
 
-      mwl.OverloadContainer(c => c.ForRequestedType<IRepository<Tag>>().TheDefault.IsThis(tagR));
+      mwl.OverloadContainer(c => c.For<IRepository<Tag>>().Use(tagR));
       var api = mwl.GetApi();
       var cats = api.GetCategories("1", mwl.Uid, mwl.Pwd);
       cats.ShouldHaveLength(tagR.Count);
@@ -74,7 +74,7 @@ namespace Rf.Sites.Tests
       var mS = new Mock<IMediaStorage>();
       var content = new byte[] {1, 2, 3};
       mS.Setup(m => m.StoreMedia("test", content)).Returns("test");
-      mwl.OverloadContainer(c => c.ForRequestedType<IMediaStorage>().TheDefault.IsThis(mS.Object));
+      mwl.OverloadContainer(c => c.For<IMediaStorage>().Use(mS.Object));
       var api = mwl.GetApi();
 
       var result = api.NewMediaObject("1", mwl.Uid, mwl.Pwd, new MediaObject {name = "test", bits = content});
@@ -93,7 +93,7 @@ namespace Rf.Sites.Tests
       cR[10].AssociateWithTag(new Tag { Name = "Foo"});
       cR[10].AssociateWithTag(new Tag { Name = "Bar" });
 
-      mwl.OverloadContainer(c=>c.ForRequestedType<IRepository<Content>>().TheDefault.IsThis(cR));
+      mwl.OverloadContainer(c=>c.For<IRepository<Content>>().Use(cR));
       var api = mwl.GetApi();
       var p = api.GetPost("10", mwl.Uid, mwl.Pwd);
       p.postid.ShouldBeEqualTo(10);
@@ -111,7 +111,7 @@ namespace Rf.Sites.Tests
       cR[10].AssociateWithTag(new Tag { Name = "Foo" });
       cR[10].AssociateWithTag(new Tag { Name = "Bar" });
 
-      mwl.OverloadContainer(c => c.ForRequestedType<IRepository<Content>>().TheDefault.IsThis(cR));
+      mwl.OverloadContainer(c => c.For<IRepository<Content>>().Use(cR));
       var api = mwl.GetApi();
       api.UpdatePost("10", mwl.Uid, mwl.Pwd, new Post { postid = 10, title = "Hi", description = "Ho"}, true);
 
@@ -130,7 +130,7 @@ namespace Rf.Sites.Tests
       for (int i = 0; i < 5; i++)
         cR.Add(new Content(i) {Title = "A" + i, Created = theDate + TimeSpan.FromDays(i)});
 
-      mwl.OverloadContainer(c => c.ForRequestedType<IRepository<Content>>().TheDefault.IsThis(cR));
+      mwl.OverloadContainer(c => c.For<IRepository<Content>>().Use(cR));
       var api = mwl.GetApi();
 
       var posts = api.GetRecentPosts("1", mwl.Uid, mwl.Pwd, 4);

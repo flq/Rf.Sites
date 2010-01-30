@@ -6,7 +6,6 @@ using Rf.Sites.Domain.Frame;
 using Rf.Sites.MetaWeblogApi;
 using Rf.Sites.Models;
 using Rf.Sites.Models.Extender;
-using Spark;
 using Spark.Web.Mvc;
 using StructureMap;
 using StructureMap.Configuration.DSL;
@@ -18,48 +17,42 @@ namespace Rf.Sites.Frame
     public SiteRegistry()
     {
       ForSingletonOf<Environment>()
-        .TheDefault.Is
-        .ConstructedBy(() => (Environment) ConfigurationManager.GetSection("Environment"));
+        .Use((Environment) ConfigurationManager.GetSection("Environment") ?? new Environment());
       ForSingletonOf<DrupalUrlMap>()
-        .TheDefault.Is
-        .ConstructedBy(() => (DrupalUrlMap)ConfigurationManager.GetSection("DrupalUrlMap"));
-
+        .Use((DrupalUrlMap)ConfigurationManager.GetSection("DrupalUrlMap") ?? new DrupalUrlMap());
+        
       Scan(s =>
       {
         s.AssemblyContainingType<Entity>();
         s.LookForRegistries();
       });
 
-      ForRequestedType<IControllerFactory>()
-        .TheDefaultIsConcreteType<ControllerFactory>();
-      ForRequestedType<IViewEngine>()
-        .TheDefaultIsConcreteType<SparkViewFactory>();
+
+      For<IControllerFactory>().Use<ControllerFactory>();
+      For<IViewEngine>().Use<SparkViewFactory>();
 
       SelectConstructor(() => new SparkViewFactory());
 
       SetAllProperties(s=>s.OfType<IContainer>());
       SetAllProperties(s => s.OfType<Environment>());
 
-      ForRequestedType<IController>()
-        .TheDefaultIsConcreteType<ActionDispatcher>();
-      ForRequestedType<IActionInvoker>()
-        .TheDefaultIsConcreteType<UrlToClassActionInvoker>();
+      For<IController>().Use<ActionDispatcher>();
+      For<IActionInvoker>().Use<UrlToClassActionInvoker>();
 
-      ForSingletonOf<ICache>()
-        .TheDefaultIsConcreteType<WebBasedCache>();
+      ForSingletonOf<ICache>().Use<WebBasedCache>();
 
-      ForRequestedType<IObjectConverter<Comment, CommentVM>>()
-        .TheDefaultIsConcreteType<CommentToVMConverter>();
-      ForRequestedType<IObjectConverter<Attachment, AttachmentVM>>()
-        .TheDefaultIsConcreteType<AttachmentToVMConverter>();
-      ForRequestedType<IObjectConverter<Post, Content>>()
-        .TheDefaultIsConcreteType<PostToContentConverter>();
-      ForRequestedType<IObjectConverter<Content, Post>>()
-        .TheDefaultIsConcreteType<ContentToPostConverter>();
-      ForRequestedType<IMediaStorage>()
-        .TheDefaultIsConcreteType<MediaStorage>();
+      For<IObjectConverter<Comment, CommentVM>>()
+        .Use<CommentToVMConverter>();
+      For<IObjectConverter<Attachment, AttachmentVM>>()
+        .Use<AttachmentToVMConverter>();
+      For<IObjectConverter<Post, Content>>()
+        .Use<PostToContentConverter>();
+      For<IObjectConverter<Content, Post>>()
+        .Use<ContentToPostConverter>();
+      For<IMediaStorage>()
+        .Use<MediaStorage>();
 
-      ForRequestedType<IAction>()
+      For<IAction>()
         .MissingNamedInstanceIs.TheInstanceNamed("unknown");
       Scan(s =>
              {
@@ -69,7 +62,7 @@ namespace Rf.Sites.Frame
                s.AddAllTypesOf(typeof (IVmExtender<>));
              });
 
-      ForRequestedType<IHttpHandler>()
+      For<IHttpHandler>()
         .MissingNamedInstanceIs.TheInstanceNamed("unknown");
       Scan(s=>
              {

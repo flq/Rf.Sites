@@ -19,8 +19,8 @@ namespace Rf.Sites.Actions
     {
       if (drupalQString == null)
         return redirectTo<ContentIndexAction>();
-      var id = map[drupalQString];
-      return id != null ? redirectTo<ContentEntryAction>(id) : redirectTo<UnknownAction>();
+      var url = map[drupalQString];
+      return url != null ? redirectTo(url) : redirectTo<UnknownAction>();
     }
   }
 }

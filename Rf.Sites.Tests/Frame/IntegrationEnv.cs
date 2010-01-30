@@ -49,8 +49,8 @@ namespace Rf.Sites.Tests.Frame
       nestedContainer
         .Configure(c =>
                      {
-                       c.ForRequestedType<ISession>().TheDefault.Is.ConstructedBy(() => InMemoryDB.Session);
-                       c.ForRequestedType<ISessionFactory>().TheDefault.Is.ConstructedBy(() => InMemoryDB.Factory);
+                       c.For<ISession>().TheDefault.Is.ConstructedBy(() => InMemoryDB.Session);
+                       c.For<ISessionFactory>().TheDefault.Is.ConstructedBy(() => InMemoryDB.Factory);
                      });
     }
 
