@@ -3,7 +3,7 @@ using Rf.Sites.Frame;
 
 namespace Rf.Sites.Models.Extender
 {
-  public class CodeHighlightExtension : IVmExtender<ContentViewModel>, IVmExtender<CommentVM>
+  public class CodeHighlightExtension : IVmExtender<CommentVM>, IVmExtender<ContentViewModel>
   {
     private const string csharp = "<pre class=\"sh_csharp\">";
 

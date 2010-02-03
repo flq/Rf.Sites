@@ -24,7 +24,7 @@
   <test if="Model.NeedsCodeHighlighting">
     <link type="text/css" rel="stylesheet" media="all" href="${RootUrl}files/sh_golden.css" />
     <script type="text/javascript" src="${RootUrl}Scripts/sh_main.js"></script>
-    <script type="text/javascript" src="/Scripts/sh_csharp.js"></script>
+    <script type="text/javascript" src="${RootUrl}Scripts/sh_csharp.js"></script>
     <script type="text/javascript">
       $(document).ready(function() {
         sh_highlightDocument();

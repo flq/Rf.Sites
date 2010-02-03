@@ -36,6 +36,8 @@ namespace Rf.Sites.Tests
                                   }));
       var l = cnt.GetAllInstances<IVmExtender<ContentViewModel>>();
       l.Count.ShouldBeGreaterThan(0);
+      var l2 = cnt.GetAllInstances<IVmExtender<CommentVM>>();
+      l2.Count.ShouldBeGreaterThan(0);
       var c = cnt.GetInstance<ExtenderConsumer>();
       c.Extender.Count.ShouldBeGreaterThan(0);
     }
