@@ -20,15 +20,20 @@ namespace Rf.Sites.Frame
         .Select(vm => 
           new SyndicationItem(vm.Title, vm.Teaser, new Uri(env.ApplicationBaseUrl, urlToContentItem + vm.Id.ToString()))
             {
+              Id = vm.Id.ToString(),
               LastUpdatedTime = new DateTimeOffset(vm.Created)
             });
 
       var lastUpdate = fragments.Max(vm => vm.Created);
+      var title = env.SiteTitle + " | " + fragments.Title;
+      var feedId = title.Replace(" ", "").GetHashCode().ToString();
+
 
       feed = new SyndicationFeed(items)
                {
-                 Title = new TextSyndicationContent(fragments.Title, TextSyndicationContentKind.Plaintext),
-                 LastUpdatedTime = new DateTimeOffset(lastUpdate)
+                 Id = feedId,
+                 Title = new TextSyndicationContent(title, TextSyndicationContentKind.Plaintext),
+                 LastUpdatedTime = new DateTimeOffset(lastUpdate),
                };
       feed.Authors.Add(new SyndicationPerson(null, env.SiteMasterName, null));
       feed.Copyright = new TextSyndicationContent(env.CopyrightNotice);

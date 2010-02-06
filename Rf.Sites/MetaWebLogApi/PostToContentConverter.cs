@@ -26,8 +26,8 @@ namespace Rf.Sites.MetaWeblogApi
       var c = new Content
                 {
                   Title = post.title, 
-                  Created = post.dateCreated != 
-                    DateTime.MinValue ? post.dateCreated : DateTime.Now
+                  Created = post.dateCreated.ToUniversalTime() != 
+                    DateTime.MinValue ? post.dateCreated.ToUniversalTime() : DateTime.Now.ToUniversalTime()
                 };
 
       c.SetBody(post.description);

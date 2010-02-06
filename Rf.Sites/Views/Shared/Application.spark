@@ -6,24 +6,24 @@
     <meta name="copyright" content="All content hosted by this site is written by F Quednau. Reproduction only under consent" />
     <meta name="keywords" content="${Keywords}" />
     <title>realfiction - ${Title}</title>    
-    <link rel="shortcut icon" href="${RootUrl}files/rf.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/files/rf.ico" type="image/x-icon" />
     <link rel="alternate" type="application/rss+xml" title="realfiction RSS" href="/rss" />
-    <link type="text/css" rel="stylesheet" media="all" href="${RootUrl}files/site.css" />
-    <link type="text/css" rel="stylesheet" media="screen" href="${RootUrl}files/jquery.facebox.css" />
-    <link type="text/css" rel="stylesheet" media="screen" href="${RootUrl}files/jquery.treeview.css" />
-    <script type="text/javascript" src="${RootUrl}Scripts/jquery.js"></script>
-    <script type="text/javascript" src="${RootUrl}Scripts/jquery.cookie.js" ></script>
-    <script type="text/javascript" src="${RootUrl}Scripts/jquery.facebox.js" ></script>
-    <script type="text/javascript" src="${RootUrl}Scripts/jquery.treeview.js" ></script>
-    <script type="text/javascript" src="${RootUrl}Scripts/jquery.treeview.async.js" ></script>
+    <link type="text/css" rel="stylesheet" media="all" href="/files/site.css" />
+    <link type="text/css" rel="stylesheet" media="screen" href="/files/jquery.facebox.css" />
+    <link type="text/css" rel="stylesheet" media="screen" href="/files/jquery.treeview.css" />
+    <script type="text/javascript" src="/Scripts/jquery.js"></script>
+    <script type="text/javascript" src="/Scripts/jquery.cookie.js" ></script>
+    <script type="text/javascript" src="/Scripts/jquery.facebox.js" ></script>
+    <script type="text/javascript" src="/Scripts/jquery.treeview.js" ></script>
+    <script type="text/javascript" src="/Scripts/jquery.treeview.async.js" ></script>
     
     <script type="text/javascript">
       jQuery(document).ready(function($) {
       $('a[rel*=box]').facebox({
-        loadingImage : '${RootUrl}files/images/facebox/loading.gif',
-        closeImage   : '${RootUrl}files/images/facebox/closelabel.gif'
+        loadingImage : '/files/images/facebox/loading.gif',
+        closeImage   : '/files/images/facebox/closelabel.gif'
         });
-       $('#archive').treeview({ url: "${RootUrl}chronics" });
+       $('#archive').treeview({ url: "/chronics" });
       })
     </script>
     <use content="head" />
@@ -44,5 +44,6 @@
     </div>
      
     <div id="footer"><p>&copy; ${System.DateTime.Now.Year} realfiction</p></div>
+    <Analytics />    
   </body>
 </html>

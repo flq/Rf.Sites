@@ -19,7 +19,7 @@ namespace Rf.Sites.Actions
     protected override ContentFragments produceFragments()
     {
       var items = (from c in repository
-                   where c.Created < DateTime.Now
+                   where c.Created < DateTime.Now.ToUniversalTime()
                    orderby c.Created descending
                    select new ContentFragmentViewModel(c.Id, c.Title, c.Created, c.Teaser))
                    .Take(Environment.FeedItemsPerFeed);

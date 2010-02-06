@@ -22,7 +22,7 @@ namespace Rf.Sites.Actions.CommentPost
                     CommenterEmail = r.Form["email"],
                     Body = r.Form["comment_text"],
                     CommenterWebsite = r.Form["website"],
-                    Created = DateTime.Now
+                    Created = DateTime.Now.ToUniversalTime()
                   };
       commentModelExtensions.Apply(this);
       IsValid = validator != null ? validator.Validate(Comment) : true;
