@@ -6,13 +6,29 @@ it should appear here when you refresh.</p>
 <form id="comment_post" action="${Url.ActionLink<CommentPostAction>()}" method="post">
 <fieldset style="border: none;">
   <input id="id" name="id" type="hidden" value="${ContentId}">
-  <label for="name">Your name&nbsp;&nbsp;&nbsp;:</label>
-  <input id="name" type="text" name="name" size="40"><br>
-  <label for="email">Your email&nbsp;&nbsp;:</label>
-  <input id="email" type="text" name="email" size="40"><br>
-  <label for="website">Your website:</label>
-  <input id="website" type="text" name="website" size="40"><br>
-  <textarea id="comment_text" rows="5" cols="50" name="comment_text"></textarea><br>
-  <input id="comment_submit" type="submit" value="Post">
+  <table>
+    <tr>
+      <td><label for="name">name</label></td>
+      <td><input id="name" type="text" name="name" size="50"></td>
+    </tr>
+    <tr>
+      <td><label for="email">email</label></td>
+      <td><input id="email" type="text" name="email" size="50"></td>
+    </tr>
+    <tr>
+      <td><label for="website">website</label></td>
+      <td><input id="website" type="text" name="website" size="50"></td>
+    </tr>
+    <tr>
+      <td valign="top"><label for="comment_text">comment</label></td>
+      <td>
+      <textarea id="comment_text" rows="5" cols="50" name="comment_text"></textarea>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><input id="comment_submit" type="submit" value="Post"></td>
+    </tr>
+  </table>
 </fieldset>
 </form>

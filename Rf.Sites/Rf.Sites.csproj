@@ -140,6 +140,7 @@
     <Compile Include="Models\CommentVM.cs" />
     <Compile Include="Models\Extender\AttachmentPathModifier.cs" />
     <Compile Include="Models\Extender\AttachmentToVMConverter.cs" />
+    <Compile Include="Actions\CommentPost\AttributeCommentToSiteMaster.cs" />
     <Compile Include="Models\Extender\BuildChronicsNodeText.cs" />
     <Compile Include="Models\Extender\CodeHighlightExtension.cs" />
     <Compile Include="Frame\FrameUtilities.cs" />

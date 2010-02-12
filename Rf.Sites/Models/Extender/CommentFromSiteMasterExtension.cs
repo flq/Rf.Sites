@@ -10,11 +10,15 @@ namespace Rf.Sites.Models.Extender
     private static readonly Random r = new Random();
 
     private readonly string[] siteMasterTitles =
-      new string[]
+      new[]
         {
           "The one who runs this bin",
           "Le grandseigneur du le Site",
-          "The local Borg outlet"
+          "The local Borg outlet",
+          "Delirious master of here",
+          "Ron. The other Ron.",
+          "Quedi",
+          "Majordomus Bloggia"
         };
 
     public CommentFromSiteMasterExtension(Environment env)
