@@ -8,7 +8,10 @@ namespace Rf.Sites.Actions.CommentPost
 {
   public class CommentUpdatePreparer
   {
-    public CommentUpdatePreparer() { }
+    public CommentUpdatePreparer()
+    {
+      IsValid = true;
+    }
 
     public CommentUpdatePreparer(ControllerContext ctx, 
                                  IValidator validator, 

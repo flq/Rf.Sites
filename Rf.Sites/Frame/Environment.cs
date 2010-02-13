@@ -13,6 +13,7 @@ namespace Rf.Sites.Frame
     
     [XmlIgnore]
     public Uri ApplicationBaseUrl { get; set; }
+
     public string ApplicationBaseUrlAsString
     {
       get { return ApplicationBaseUrl.ToString(); }
@@ -37,5 +38,13 @@ namespace Rf.Sites.Frame
     public int TagcloudSegments { get; set; }
 
     public bool CommentingEnabled { get; set; }
+
+    public string MollomPublicKey { get; set; }
+    public string MollomPrivateKey { get; set; }
+
+    public bool IsMollomInfoAvailable()
+    {
+      return !string.IsNullOrEmpty(MollomPublicKey) && !string.IsNullOrEmpty(MollomPrivateKey);
+    }
   }
 }

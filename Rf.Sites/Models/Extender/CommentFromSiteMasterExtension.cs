@@ -18,7 +18,8 @@ namespace Rf.Sites.Models.Extender
           "Delirious master of here",
           "Ron. The other Ron.",
           "Quedi",
-          "Majordomus Bloggia"
+          "Majordomus Bloggia",
+          "Yet Another God"
         };
 
     public CommentFromSiteMasterExtension(Environment env)

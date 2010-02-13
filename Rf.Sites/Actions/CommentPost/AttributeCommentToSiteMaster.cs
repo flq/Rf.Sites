@@ -16,17 +16,16 @@ namespace Rf.Sites.Actions.CommentPost
     public void Inspect(CommentUpdatePreparer commentInfo)
     {
       var c = commentInfo.Comment.Body;
-      if (string.IsNullOrEmpty(c))
+      var passWordTag = "/" + env.SiteMasterPassword;
+
+      if (string.IsNullOrEmpty(c) || !c.EndsWith(passWordTag))
         return;
-      var pwd = env.SiteMasterPassword;
-      if (c.EndsWith("/" + pwd))
-      {
-        var comment = commentInfo.Comment;
-        comment.IsFromSiteMaster = true;
-        comment.CommenterEmail = env.SiteMasterEmail;
-        comment.CommenterWebsite = env.SiteMasterWebPage;
-        comment.Body = c.Replace("/" + pwd, "");
-      }
+      
+      var comment = commentInfo.Comment;
+      comment.IsFromSiteMaster = true;
+      comment.CommenterEmail = env.SiteMasterEmail;
+      comment.CommenterWebsite = env.SiteMasterWebPage;
+      comment.Body = c.Replace(passWordTag, "");
     }
   }
 }

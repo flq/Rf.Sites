@@ -43,6 +43,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\NHibernate.ByteCode.Castle.dll</HintPath>
     </Reference>
+    <Reference Include="NMollom, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\NMollom.dll</HintPath>
+    </Reference>
     <Reference Include="Spark, Version=1.0.0.0, Culture=neutral, PublicKeyToken=7f8549eed921a12c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\Spark.dll</HintPath>
@@ -83,6 +87,7 @@
     <Compile Include="Actions\ChronicsIndexAction.cs" />
     <Compile Include="Actions\CommentPost\CommentPostAction.cs" />
     <Compile Include="Actions\CommentPost\CommentUpdatePreparer.cs" />
+    <Compile Include="Actions\CommentPost\RunCommentThroughMollom.cs" />
     <Compile Include="Actions\ContentIndexAction.cs" />
     <Compile Include="Actions\ContentMonthAction.cs" />
     <Compile Include="Actions\ContentYearAction.cs" />
