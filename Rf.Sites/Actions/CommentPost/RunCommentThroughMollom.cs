@@ -5,6 +5,7 @@ using Environment=Rf.Sites.Frame.Environment;
 
 namespace Rf.Sites.Actions.CommentPost
 {
+  [Order(2)]
   public class RunCommentThroughMollom : IVmExtender<CommentUpdatePreparer>
   {
     private readonly Environment env;

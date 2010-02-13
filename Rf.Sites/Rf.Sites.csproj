@@ -127,6 +127,7 @@
     <Compile Include="Frame\HttpHandlerRegistrar.cs" />
     <Compile Include="Frame\IObjectConverter.cs" />
     <Compile Include="Frame\IResponseWriter.cs" />
+    <Compile Include="Frame\OrderAttribute.cs" />
     <Compile Include="Handlers\404Handler.cs" />
     <Compile Include="Handlers\AbstractHandler.cs" />
     <Compile Include="Handlers\IHttpContext.cs" />

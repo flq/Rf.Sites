@@ -4,6 +4,7 @@ using Environment=Rf.Sites.Frame.Environment;
 
 namespace Rf.Sites.Actions.CommentPost
 {
+  [Order(1)]
   public class AttributeCommentToSiteMaster : IVmExtender<CommentUpdatePreparer>
   {
     private readonly Environment env;
@@ -24,6 +25,7 @@ namespace Rf.Sites.Actions.CommentPost
       var comment = commentInfo.Comment;
       comment.IsFromSiteMaster = true;
       comment.CommenterEmail = env.SiteMasterEmail;
+      comment.CommenterName = env.SiteMasterName;
       comment.CommenterWebsite = env.SiteMasterWebPage;
       comment.Body = c.Replace(passWordTag, "");
     }

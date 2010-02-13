@@ -63,13 +63,15 @@ namespace Rf.Sites.Handlers
 
       public Row(object row)
       {
+
         var columns = (object[]) row;
         Id = (int)columns[0];
         CommentCount = (int) columns[1];
         
         List<DateTime> dateTimes = new List<DateTime> {(DateTime) columns[2]};
-        if (CommentCount > 0)
+        if (CommentCount > 0 && columns[3] != null) // Corrupt comment count through manual delete of comments
           dateTimes.Add((DateTime) columns[3]);
+
         LastUpdate = dateTimes.Max();
       }
     }

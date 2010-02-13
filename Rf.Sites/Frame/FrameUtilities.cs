@@ -6,6 +6,7 @@ using System.Web.Mvc.Html;
 using System.Web.Routing;
 using Rf.Sites.Actions.Args;
 using System.Linq;
+using Rf.Sites.Domain.Frame;
 
 namespace Rf.Sites.Frame
 {
@@ -110,8 +111,15 @@ namespace Rf.Sites.Frame
 
     public static void Apply<T>(this IEnumerable<IVmExtender<T>> extenders, T viewModel)
     {
+      var orderedExtenders =
+        from e in extenders
+        let orderkey =
+          e.GetType().HasAttribute<OrderAttribute>() ? e.GetType().GetAttribute<OrderAttribute>().OrderKey : 1
+          orderby orderkey
+        select e;
+        
       if (extenders != null)
-        foreach (var e in extenders)
+        foreach (var e in orderedExtenders)
           e.Inspect(viewModel);
     }
   }

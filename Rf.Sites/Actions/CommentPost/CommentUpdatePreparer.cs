@@ -27,8 +27,8 @@ namespace Rf.Sites.Actions.CommentPost
                     CommenterWebsite = r.Form["website"],
                     Created = DateTime.Now.ToUniversalTime()
                   };
-      commentModelExtensions.Apply(this);
       IsValid = validator != null ? validator.Validate(Comment) : true;
+      commentModelExtensions.Apply(this);
     }
 
     public Comment Comment { get; set; }
