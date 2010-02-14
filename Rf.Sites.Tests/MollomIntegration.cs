@@ -27,7 +27,7 @@ namespace Rf.Sites.Tests
 
     }
 
-    [Test]
+    [Test,Ignore]
     public void TheProvidedKeysAreValid()
     {
       var m = new Mollom(mPubK, mPrivK);

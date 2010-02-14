@@ -28,7 +28,8 @@ namespace Rf.Sites.Tests
       var api = mwl.GetApi();
       api.AddPost("", mwl.Uid, "", new Post(), false);
     }
-
+    
+    [Test]
     public void UserAuthenticationIntegrityPasses()
     {
       var api = mwl.GetApi();

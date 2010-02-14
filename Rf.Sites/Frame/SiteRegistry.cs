@@ -4,8 +4,6 @@ using System.Web.Mvc;
 using Rf.Sites.Domain;
 using Rf.Sites.Domain.Frame;
 using Rf.Sites.MetaWeblogApi;
-using Rf.Sites.Models;
-using Rf.Sites.Models.Extender;
 using Spark.Web.Mvc;
 using StructureMap;
 using StructureMap.Configuration.DSL;
@@ -38,32 +36,20 @@ namespace Rf.Sites.Frame
 
       For<IController>().Use<ActionDispatcher>();
       For<IActionInvoker>().Use<UrlToClassActionInvoker>();
-
+      For<IMediaStorage>().Use<MediaStorage>();
       ForSingletonOf<ICache>().Use<WebBasedCache>();
 
-      For<IObjectConverter<Comment, CommentVM>>()
-        .Use<CommentToVMConverter>();
-      For<IObjectConverter<Attachment, AttachmentVM>>()
-        .Use<AttachmentToVMConverter>();
-      For<IObjectConverter<Post, Content>>()
-        .Use<PostToContentConverter>();
-      For<IObjectConverter<Content, Post>>()
-        .Use<ContentToPostConverter>();
-      For<IMediaStorage>()
-        .Use<MediaStorage>();
-
-      For<IAction>()
-        .MissingNamedInstanceIs.TheInstanceNamed("unknown");
+      For<IAction>().MissingNamedInstanceIs.TheInstanceNamed("unknown");
       Scan(s =>
              {
                s.AssemblyContainingType<SiteRegistry>();
                s.AddAllTypesOf<IAction>()
                  .NameBy(t => t.Name.Replace("Action", "").ToLowerInvariant());
                s.AddAllTypesOf(typeof (IVmExtender<>));
+               s.ConnectImplementationsToTypesClosing(typeof (IObjectConverter<,>));
              });
 
-      For<IHttpHandler>()
-        .MissingNamedInstanceIs.TheInstanceNamed("unknown");
+      For<IHttpHandler>().MissingNamedInstanceIs.TheInstanceNamed("unknown");
       Scan(s=>
              {
                s.AssemblyContainingType<SiteRegistry>();

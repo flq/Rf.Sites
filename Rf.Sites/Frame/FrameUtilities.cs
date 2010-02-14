@@ -111,16 +111,18 @@ namespace Rf.Sites.Frame
 
     public static void Apply<T>(this IEnumerable<IVmExtender<T>> extenders, T viewModel)
     {
+      if (extenders == null)
+        return;
+
       var orderedExtenders =
         from e in extenders
         let orderkey =
           e.GetType().HasAttribute<OrderAttribute>() ? e.GetType().GetAttribute<OrderAttribute>().OrderKey : 1
-          orderby orderkey
+        orderby orderkey
         select e;
-        
-      if (extenders != null)
-        foreach (var e in orderedExtenders)
-          e.Inspect(viewModel);
+
+      foreach (var e in orderedExtenders)
+        e.Inspect(viewModel);
     }
   }
 

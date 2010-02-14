@@ -26,13 +26,14 @@ namespace Rf.Sites.Tests
     }
 
     [Test]
-    public void NewStructureMapBehavesDifferent()
+    public void StructureMapBehaviourCheck()
     {
       var cnt = new Container();
       cnt.Configure(ce=>ce.Scan(s=>
                                   {
                                     s.AssemblyContainingType(typeof(IVmExtender<>));
                                     s.AddAllTypesOf(typeof (IVmExtender<>));
+                                    s.ConnectImplementationsToTypesClosing(typeof (IObjectConverter<,>));
                                   }));
       var l = cnt.GetAllInstances<IVmExtender<ContentViewModel>>();
       l.Count.ShouldBeGreaterThan(0);
@@ -40,6 +41,8 @@ namespace Rf.Sites.Tests
       l2.Count.ShouldBeGreaterThan(0);
       var c = cnt.GetInstance<ExtenderConsumer>();
       c.Extender.Count.ShouldBeGreaterThan(0);
+      var conv = cnt.GetInstance<IObjectConverter<Comment, CommentVM>>();
+      conv.ShouldNotBeNull();
     }
 
     public class ExtenderConsumer
