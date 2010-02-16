@@ -30,13 +30,6 @@ namespace Rf.Sites.Tests
     }
     
     [Test]
-    public void UserAuthenticationIntegrityPasses()
-    {
-      var api = mwl.GetApi();
-      api.AddPost("", mwl.Uid, mwl.Pwd, new Post(), false);
-    }
-
-    [Test]
     public void UserInfoProvidesSiteTitleAndUrl()
     {
       var api = mwl.GetApi();

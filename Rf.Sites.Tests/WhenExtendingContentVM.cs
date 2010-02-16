@@ -1,3 +1,6 @@
+using System;
+using System.Diagnostics;
+using System.Text.RegularExpressions;
 using Moq;
 using NUnit.Framework;
 using Rf.Sites.Domain;
@@ -49,6 +52,44 @@ namespace Rf.Sites.Tests
       c.AssociateWithTag(new Tag());
       var cVM = new ContentViewModel(c, new[] { new CodeHighlightExtension() });
       cVM.NeedsCodeHighlighting.ShouldBeFalse();
+    }
+
+    [Test]
+    public void AngleBracketsAreEscapedInsideCodeTags()
+    {
+      var s = DataMother.GetContentWithBracketCode();
+
+      CodeBracketReparer.ApplyChanges(ref s);
+
+      var codeBlock = s.Substring(2438, 95);
+      codeBlock.Contains("<").ShouldBeFalse();
+      codeBlock.Contains("&lt;").ShouldBeTrue();
+      codeBlock.Contains(">").ShouldBeFalse();
+      codeBlock.Contains("&gt;").ShouldBeTrue();
+
+    }
+
+    [Test]
+    public void SpeedCheckEscaping()
+    {
+      var s = DataMother.GetContentWithBracketCode();
+      var sw = Stopwatch.StartNew();
+      for (int i = 0; i < 1000; i++)
+      {
+        var x = s;
+        CodeBracketReparer.ApplyChanges(ref x);
+      }
+      Console.WriteLine("Total: {0}, per op: {1}", sw.ElapsedMilliseconds, sw.ElapsedMilliseconds / (float)1000);
+    }
+
+    [Test]
+    public void SingleLineIssue()
+    {
+      var s = DataMother.SecndContentWithBracketCode();
+      CodeBracketReparer.ApplyChanges(ref s);
+      var start = new Regex(@"\<pre").Matches(s).Count;
+      var end = new Regex(@"\</pre").Matches(s).Count;
+      start.ShouldBeEqualTo(end);
     }
   }
 }

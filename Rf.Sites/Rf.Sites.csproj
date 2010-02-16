@@ -148,6 +148,7 @@
     <Compile Include="Models\Extender\AttachmentToVMConverter.cs" />
     <Compile Include="Actions\CommentPost\AttributeCommentToSiteMaster.cs" />
     <Compile Include="Models\Extender\BuildChronicsNodeText.cs" />
+    <Compile Include="Models\Extender\CodeBracketReparer.cs" />
     <Compile Include="Models\Extender\CodeHighlightExtension.cs" />
     <Compile Include="Frame\FrameUtilities.cs" />
     <Compile Include="Frame\IAction.cs" />

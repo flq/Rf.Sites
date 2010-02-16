@@ -3,9 +3,10 @@ using Rf.Sites.Frame;
 
 namespace Rf.Sites.Models.Extender
 {
+  [Order(10)]
   public class CodeHighlightExtension : IVmExtender<CommentVM>, IVmExtender<ContentViewModel>
   {
-    private const string csharp = "<pre class=\"sh_csharp\">";
+    public const string CsharpPreTag = "<pre class=\"sh_csharp\">";
 
     public void Inspect(ContentViewModel viewModel)
     {
@@ -24,19 +25,26 @@ namespace Rf.Sites.Models.Extender
     private static bool applyChanges(ref string body)
     {
       bool changesApplied = false;
-      if (body.Contains("<code>"))
-      {
-        changesApplied = true;
-        body = body.Replace("<code>", csharp);
-        body = body.Replace("</code>", "</pre>");
-      }
-      if (body.Contains("<csharp>"))
-      {
-        changesApplied = true;
-        body = body.Replace("<csharp>", csharp);
-        body = body.Replace("</csharp>", "</pre>");
-      }
+      changesApplied |= getBody(ref body, "code");
+      changesApplied |= getBody(ref body, "csharp");
+      changesApplied |= getBody(ref body, "xmlcode");
+
       return changesApplied;
+    }
+
+    private static bool getBody(ref string body, string checkTag)
+    {
+      var changes = false;
+      var openTag = "<" + checkTag + ">";
+      var closeTag = "</" + checkTag + ">";
+
+      if (body.Contains(openTag))
+      {
+        changes = true;
+        body = body.Replace(openTag, CsharpPreTag);
+        body = body.Replace(closeTag, "</pre>");
+      }
+      return changes;
     }
   }
 }
