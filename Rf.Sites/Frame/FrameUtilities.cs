@@ -34,6 +34,12 @@ namespace Rf.Sites.Frame
       return helper.ActionLink(linkText, tokens[1], tokens[0], args.ToDictionary(), linkAttributes);
     }
 
+    public static string ActionLink<T>(this HtmlHelper helper, string linkText, IDictionary<string, object> linkAttributes) where T : IAction
+    {
+      var tokens = typeof(T).Name.PasCalCaseTokenization();
+      return helper.ActionLink(linkText, tokens[1], tokens[0], null, linkAttributes);
+    }
+
     public static string RelativeUrlToAction<T>(params string[] additionalRouteValues) where T : IAction
     {
       var str = typeof (T).Name.Replace("Action", "").PasCalCaseTokenization();

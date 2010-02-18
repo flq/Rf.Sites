@@ -1,0 +1,13 @@
+﻿<use namespace="Rf.Sites.Frame" />
+<use namespace="Rf.Sites.Actions" />
+<use namespace="Rf.Sites.Actions.Comments" />
+<use namespace="Rf.Sites.Actions.Args" />
+<viewdata model="CommentList" />
+
+<ul>
+  <li each="var c in Model">
+    ${c.TimeOfComment.ToString("yyyy.MM.dd")} 
+    from ${Html.ActionLink<ContentEntryAction>(c.CommenterName, ArgsFrom.Id(c.JumpID))}
+  </li>
+</ul>
+

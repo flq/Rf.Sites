@@ -88,6 +88,9 @@
     <Compile Include="Actions\CommentPost\CommentPostAction.cs" />
     <Compile Include="Actions\CommentPost\CommentUpdatePreparer.cs" />
     <Compile Include="Actions\CommentPost\RunCommentThroughMollom.cs" />
+    <Compile Include="Actions\Comments\CommentFragment.cs" />
+    <Compile Include="Actions\Comments\CommentList.cs" />
+    <Compile Include="Actions\Comments\CommentsIndexAction.cs" />
     <Compile Include="Actions\ContentIndexAction.cs" />
     <Compile Include="Actions\ContentMonthAction.cs" />
     <Compile Include="Actions\ContentYearAction.cs" />
@@ -214,6 +217,8 @@
     <Content Include="Scripts\jquery.js" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Views\Comments\Index.spark" />
+    <None Include="Views\Shared\_Comments.spark" />
     <None Include="Views\Shared\_Analytics.spark" />
     <None Include="WebRelease.config" />
     <None Include="Views\Content\_CommentPost.spark" />

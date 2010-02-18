@@ -8,6 +8,7 @@ using Moq;
 using NUnit.Framework;
 using Rf.Sites.Actions;
 using Rf.Sites.Actions.Args;
+using Rf.Sites.Actions.Comments;
 using Rf.Sites.Domain;
 using Rf.Sites.Domain.Frame;
 using Rf.Sites.Frame;
@@ -16,6 +17,7 @@ using Rf.Sites.Tests.DataScenarios;
 using Rf.Sites.Tests.Frame;
 using Moq.Protected;
 using Environment=Rf.Sites.Frame.Environment;
+using System.Linq;
 
 namespace Rf.Sites.Tests
 {
@@ -135,6 +137,23 @@ namespace Rf.Sites.Tests
       {
         Assert.Fail("Output was not XML.");
       }
+    }
+
+    [Test]
+    public void CommentListReturnsCorrectComments()
+    {
+      actionEnv.UseInMemoryDb();
+      actionEnv.MockTheSessionFactoryForStateless();
+      actionEnv
+        .OverloadContainer(c=>c.For<Environment>()
+          .Use(new Environment { ApplicationBaseUrl = new Uri("http://localhost")}));
+      actionEnv.DataScenario<ContentWithComments>();
+      var a = actionEnv.GetAction<CommentsIndexAction>();
+      var result = a.Execute();
+      var list = result.GetModelFromAction<CommentList>();
+      list.ShouldNotBeNull();
+      list.Count().ShouldBeGreaterThan(3);
+      list.Last().TimeOfComment.Year.ShouldBeEqualTo(2006);
     }
   }
 }

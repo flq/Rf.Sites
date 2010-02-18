@@ -36,6 +36,7 @@
     
     <div id="nav">
       <Tags />
+      <Comments />
       <Archive />
     </div>
     

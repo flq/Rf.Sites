@@ -49,9 +49,16 @@ namespace Rf.Sites.Tests.Frame
       nestedContainer
         .Configure(c =>
                      {
-                       c.For<ISession>().TheDefault.Is.ConstructedBy(() => InMemoryDB.Session);
-                       c.For<ISessionFactory>().TheDefault.Is.ConstructedBy(() => InMemoryDB.Factory);
+                       c.For<ISession>().Use(() => InMemoryDB.Session);
+                       c.For<ISessionFactory>().Use(() => InMemoryDB.Factory);
                      });
+    }
+
+    public void MockTheSessionFactoryForStateless()
+    {
+      if (InMemoryDB == null || nestedContainer == null)
+        throw new InvalidOperationException("This is meant to be used for in-memory db");
+      nestedContainer.Configure(c=>c.For<ISessionFactory>().Use(FactoryForStatelessSession));
     }
 
     public ISessionFactory FactoryForStatelessSession()
