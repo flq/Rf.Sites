@@ -10,6 +10,13 @@ namespace Rf.Sites.Models.Extender
 
     public void Inspect(ContentViewModel viewModel)
     {
+      //Some posts may have been published wit the pre tag already in it:
+      //In this case I assume that all instances have been changed.
+      if (viewModel.Body.Contains(CsharpPreTag))
+      {
+        viewModel.NeedsCodeHighlighting = true;
+        return;
+      }
       string body = viewModel.Body;
       viewModel.NeedsCodeHighlighting = applyChanges(ref body);
       viewModel.Body = body;

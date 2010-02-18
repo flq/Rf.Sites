@@ -9,6 +9,6 @@
       wTag.Text,
       ArgsFrom.Value(wTag.Text),
       new LinkAttributes { { "class", "tagcloud" + wTag.Segment } })}
-  &nbsp;&nbsp;
+  |
 </for>
 
