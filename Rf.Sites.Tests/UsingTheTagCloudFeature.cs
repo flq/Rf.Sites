@@ -59,7 +59,8 @@ namespace Rf.Sites.Tests
                                    .Use(new Environment
                                                         {
                                                           ApplicationBaseUrl = new Uri("http://localhost"),
-                                                          TagcloudSegments = 5
+                                                          TagcloudSegments = 5,
+                                                          TagsToIgnore = "Tag0"
                                                         }));
       var maxSegment = env.Container.GetInstance<Environment>().TagcloudSegments;
       env.UseInMemoryDb();
@@ -71,9 +72,9 @@ namespace Rf.Sites.Tests
       var tl = a.Execute().GetModelFromAction<TagList>();
       tl.ShouldNotBeNull();
       var wTags = tl.ToList();
-      wTags.ShouldHaveCount(3);
+      wTags.ShouldHaveCount(2);
       wTags[0].Segment.ShouldBeEqualTo(1);
-      wTags[2].Segment.ShouldBeEqualTo(maxSegment);
+      wTags[1].Segment.ShouldBeEqualTo(maxSegment);
     }
   }
 }

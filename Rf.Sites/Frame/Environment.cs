@@ -36,6 +36,17 @@ namespace Rf.Sites.Frame
     public int ItemsPerPage { get; set; }
 
     public int TagcloudSegments { get; set; }
+    public string TagsToIgnore { get; set; }
+
+    public string[] TagsToIgnoreAsArray
+    {
+      get
+      {
+        return string.IsNullOrEmpty(TagsToIgnore) ? 
+          new[] {"ACompletelyUnrelatedTag"} : 
+          TagsToIgnore.Split(',');
+      }
+    }
 
     public bool CommentingEnabled { get; set; }
 
