@@ -31,7 +31,7 @@ namespace Rf.Sites.Models
       Name = comment.CommenterName;
       Website = comment.CommenterWebsite;
       Body = comment.Body;
-      Created = comment.Created.ToString(Constants.CommonDateFormat);
+      Created = comment.Created.ToString(Constants.CommonDateFormat) + " UTC";
       CreateGravatarImageSource(comment.CommenterEmail);
       IsFromSiteMaster = comment.IsFromSiteMaster;
     }
