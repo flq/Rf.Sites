@@ -9,11 +9,11 @@ it should appear here when you refresh.</p>
   <table>
     <tr>
       <td><label for="name">name</label></td>
-      <td><input id="name" type="text" name="name" size="50"></td>
+      <td><input id="name" type="text" name="name" class="required" size="50"></td>
     </tr>
     <tr>
       <td><label for="email">email</label></td>
-      <td><input id="email" type="text" name="email" size="50"></td>
+      <td><input id="email" type="text" class="email" name="email" size="50"></td>
     </tr>
     <tr>
       <td><label for="website">website</label></td>
@@ -22,7 +22,7 @@ it should appear here when you refresh.</p>
     <tr>
       <td valign="top"><label for="comment_text">comment</label></td>
       <td>
-      <textarea id="comment_text" rows="5" cols="50" name="comment_text"></textarea>
+      <textarea id="comment_text" rows="5" cols="50" class="required" name="comment_text"></textarea>
       </td>
     </tr>
     <tr>

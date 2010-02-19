@@ -7,20 +7,6 @@
 <set Keywords='Model.Keywords'/>
 
 <content name="head">
-  <script type="text/javascript">
-    $(document).ready(function() {
-      $("#comment_post").submit(function() {
-        var f = $("#comment_post");
-        var act = f.attr("action");
-        var ser = f.serialize();
-        $.post(act, ser, function() { $("#after_comment_post").fadeIn("slow"); });
-        return false;
-      });
-      jQuery().ajaxStart(function() {
-        $("#comment_post").fadeOut("slow");
-      });
-    });
-  </script>
   <test if="Model.NeedsCodeHighlighting">
     <link type="text/css" rel="stylesheet" media="all" href="${RootUrl}files/sh_golden.css" />
     <script type="text/javascript" src="${RootUrl}Scripts/sh_main.js"></script>
