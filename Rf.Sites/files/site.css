@@ -91,7 +91,6 @@ div.comment_body {
   padding-left: 10;
   padding-bottom: 5;
   border-left: 1px solid black;
-  
 }
   
 .content 
@@ -124,4 +123,9 @@ a.tagcloud8 { font-size: 2.7em; font-weight: 800; }
 	padding: 5px 20px 5px 50px;
 	border-top: 2px solid #ffd324;
 	border-bottom: 2px solid #ffd324;
+}
+
+label.error {
+	color: red;
+	font-style: italic
 }

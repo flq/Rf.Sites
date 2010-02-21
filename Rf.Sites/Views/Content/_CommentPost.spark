@@ -8,21 +8,39 @@ it should appear here when you refresh.</p>
   <input id="id" name="id" type="hidden" value="${ContentId}">
   <table>
     <tr>
-      <td><label for="name">name</label></td>
-      <td><input id="name" type="text" name="name" class="required" size="50"></td>
+      <td>
+        <label for="name">name</label>
+      </td>
+      <td>
+        <input id="name" type="text" name="name" class="required" size="50">
+        <span class="tooltip" title="Your name. Srsly, double-please with cream, use your name. It's not like we are in Kindergarden with fantasy names like Captain Bob, or 'Sawyer, the living pimple'.">*)</span>
+      </td>
     </tr>
     <tr>
-      <td><label for="email">email</label></td>
-      <td><input id="email" type="text" class="email" name="email" size="50"></td>
+      <td>
+        <label for="email">email</label>
+      </td>
+      <td>
+        <input id="email" type="text" class="email" name="email" size="50">
+        <span class="tooltip" title="Your email. Not mandatory. Will be used for gravatar lookup if submitted.">*)</span>
+      </td>
     </tr>
     <tr>
-      <td><label for="website">website</label></td>
-      <td><input id="website" type="text" name="website" size="50"></td>
+      <td>
+        <label for="website">website</label>
+      </td>
+      <td>
+        <input id="website" type="text" name="website" size="50">
+        <span class="tooltip" title="Your website. Not mandatory. Will be removed if pointing to some profit or spam sites but your comment is by some weird reason legitimate.">*)</span>
+      </td>
     </tr>
     <tr>
-      <td valign="top"><label for="comment_text">comment</label></td>
+      <td valign="top">
+        <label for="comment_text">comment</label>
+      </td>
       <td>
       <textarea id="comment_text" rows="5" cols="50" class="required" name="comment_text"></textarea>
+      <span class="tooltip" title="Your comment. Mandatory. Kinda obvious.">*)</span>
       </td>
     </tr>
     <tr>

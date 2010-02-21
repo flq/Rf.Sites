@@ -10,6 +10,7 @@
     <link rel="alternate" type="application/rss+xml" title="realfiction RSS" href="/rss" />
     <link type="text/css" rel="stylesheet" media="all" href="/files/site.css" />
     <link type="text/css" rel="stylesheet" media="screen" href="/files/jquery.facebox.css" />
+    <link type="text/css" rel="stylesheet" media="screen" href="/files/jquery.tooltip.css" />
     <link type="text/css" rel="stylesheet" media="screen" href="/files/jquery.treeview.css" />
     <script type="text/javascript" src="/Scripts/jquery.js"></script>
     <script type="text/javascript" src="/Scripts/jquery.cookie.js" ></script>
@@ -17,6 +18,7 @@
     <script type="text/javascript" src="/Scripts/jquery.treeview.js" ></script>
     <script type="text/javascript" src="/Scripts/jquery.treeview.async.js"></script>
     <script type="text/javascript" src="/Scripts/jquery.validate.js" ></script>
+    <script type="text/javascript" src="/Scripts/jquery.tooltip.js" ></script>
     <script type="text/javascript" src="/Scripts/rf.site.js"></script>
     
     <use content="head" />
