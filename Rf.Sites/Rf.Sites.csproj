@@ -198,8 +198,11 @@
     <Content Include="files\images\treeview\treeview-red-line.gif" />
     <Content Include="files\images\treeview\treeview-red.gif" />
     <Content Include="files\jquery.facebox.css" />
+    <Content Include="files\jquery.tooltip.css" />
     <Content Include="files\jquery.treeview.css" />
     <Content Include="files\rf.ico" />
+    <Content Include="Scripts\jquery.tooltip.js" />
+    <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\rf.site.js" />
     <Content Include="files\sh_golden.css" />
     <Content Include="files\site.css" />
