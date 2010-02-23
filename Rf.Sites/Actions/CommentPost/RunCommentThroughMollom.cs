@@ -21,7 +21,7 @@ namespace Rf.Sites.Actions.CommentPost
       if (env == null)
         return;
       var c = viewModel.Comment;
-      Mollom m = new Mollom(env.MollomPublicKey, env.MollomPrivateKey);
+      var m = new Mollom(env.MollomPublicKey, env.MollomPrivateKey);
       var assessment = m.CheckContent("", c.Body, c.CommenterName, c.CommenterEmail, c.CommenterWebsite);
       if (assessment.IsSpam())
         viewModel.IsValid = false;

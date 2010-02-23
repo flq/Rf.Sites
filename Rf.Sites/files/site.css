@@ -129,3 +129,8 @@ label.error {
 	color: red;
 	font-style: italic
 }
+
+div.comment_body h1, div.comment_body h2, div.comment_body h3 
+{
+  font-size:1.1em;
+}

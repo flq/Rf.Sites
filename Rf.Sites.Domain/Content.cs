@@ -51,7 +51,7 @@ namespace Rf.Sites.Domain
       if (body == null)
         throw new ArgumentNullException("body");
       Body = body;
-      Teaser = new TeaserGenerator(200).Process(Body);
+      Teaser = new TagRemover(200).Process(Body);
     }
 
     public virtual void AddComment(Comment comment)

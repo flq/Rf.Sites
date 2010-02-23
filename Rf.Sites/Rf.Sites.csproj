@@ -35,6 +35,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\CookComputing.XmlRpcV2.dll</HintPath>
     </Reference>
+    <Reference Include="MarkdownSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\MarkdownSharp.dll</HintPath>
+    </Reference>
     <Reference Include="NHibernate, Version=2.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\NHibernate.dll</HintPath>
@@ -87,6 +91,7 @@
     <Compile Include="Actions\ChronicsIndexAction.cs" />
     <Compile Include="Actions\CommentPost\CommentPostAction.cs" />
     <Compile Include="Actions\CommentPost\CommentUpdatePreparer.cs" />
+    <Compile Include="Actions\CommentPost\RunCommentThroughMarkdown.cs" />
     <Compile Include="Actions\CommentPost\RunCommentThroughMollom.cs" />
     <Compile Include="Actions\Comments\CommentFragment.cs" />
     <Compile Include="Actions\Comments\CommentList.cs" />

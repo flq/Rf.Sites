@@ -79,7 +79,7 @@
     <Compile Include="Frame\Repository.cs" />
     <Compile Include="Frame\Paginator.cs" />
     <Compile Include="Frame\SessionFactoryMaker.cs" />
-    <Compile Include="Frame\TeaserGenerator.cs" />
+    <Compile Include="Frame\TagRemover.cs" />
     <Compile Include="Frame\WebNHSessionContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tag.cs" />

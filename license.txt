@@ -15,6 +15,11 @@ Facebox
 Lightbox code available without licensing, taken from
 http://famspam.com/facebox
 
+Markdown
+--------
+Markdown is available from http://code.google.com/p/markdownsharp/ and is licensed under the 
+MIT license (http://www.opensource.org/licenses/mit-license.php).
+
 NHibernate
 ----------
 Nhibernate is licensed under the LGPL 2.1 (http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html)
@@ -34,4 +39,5 @@ StructureMap is licensed under the Apache License, Version 2.0
 
 XML-RPC.NET Copyright (c) 2006 Charles Cook
 -------------------------------------------
-The RPC-Net library is licensed under the MIT X11 license (see http://www.opensource.org/licenses/mit-license.html)
+The RPC-Net library is licensed under the MIT X11 license 
+(see http://www.opensource.org/licenses/mit-license.html)

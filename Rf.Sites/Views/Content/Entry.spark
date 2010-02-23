@@ -6,21 +6,6 @@
 <set Title='Model.Title'/>
 <set Keywords='Model.Keywords'/>
 
-<content name="head">
-  <test if="Model.NeedsCodeHighlighting">
-    <link type="text/css" rel="stylesheet" media="all" href="${RootUrl}files/sh_golden.css" />
-    <script type="text/javascript" src="${RootUrl}Scripts/sh_main.js"></script>
-    <script type="text/javascript" src="${RootUrl}Scripts/sh_csharp.js"></script>
-    <script type="text/javascript">
-      $(function() {
-        $('.tooltip').tooltip();
-      });
-      $(document).ready(function() {
-        sh_highlightDocument();
-      });
-    </script>
-  </test>
-</content>
 
 <div class="content">
 	<div class="content_header">

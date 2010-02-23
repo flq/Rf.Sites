@@ -1,9 +1,12 @@
+using System;
+using System.Diagnostics;
 using NUnit.Framework;
 using Rf.Sites.Actions.CommentPost;
 using Rf.Sites.Domain;
 using Rf.Sites.Domain.Frame;
 using Rf.Sites.Tests.DataScenarios;
 using Rf.Sites.Tests.Frame;
+using Rf.Sites.Tests.Support;
 
 namespace Rf.Sites.Tests
 {
@@ -13,7 +16,7 @@ namespace Rf.Sites.Tests
     private ContentWithComments scenario;
     private ActionEnv actionEnv;
     private IRepository<Content> repository;
-
+    
     [TestFixtureSetUp]
     public void Setup()
     {
@@ -57,6 +60,20 @@ namespace Rf.Sites.Tests
         });
       a.Execute();
       repository[scenario.Contents[0].Id].CommentCount.ShouldBeEqualTo(oldCount + 1);
+    }
+
+    [Test]
+    public void ApplyingMarkdownWorks()
+    {
+      var sw = Stopwatch.StartNew();
+      var s = RunCommentThroughMarkdown.RunMarkdown(DataMother.Markdown1());
+      sw.Stop();
+      Console.WriteLine(sw.ElapsedMilliseconds);
+      Console.WriteLine(s);
+      sw.Reset(); sw.Start();
+      s = RunCommentThroughMarkdown.RunMarkdown(DataMother.Markdown1());
+      sw.Stop();
+      Console.WriteLine(sw.ElapsedMilliseconds);
     }
   }
 }

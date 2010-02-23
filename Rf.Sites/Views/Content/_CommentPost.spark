@@ -13,7 +13,9 @@ it should appear here when you refresh.</p>
       </td>
       <td>
         <input id="name" type="text" name="name" class="required" size="50">
-        <span class="tooltip" title="Your name. Srsly, double-please with cream, use your name. It's not like we are in Kindergarden with fantasy names like Captain Bob, or 'Sawyer, the living pimple'.">*)</span>
+        <span class="tooltip" title="Your name. Srsly, double-please with cream, use your name. It's not like we are in Kindergarden with fantasy names like Captain Bob, or 'Sawyer, the living pimple'.">
+        <img src="/files/images/help.png">
+        </span>
       </td>
     </tr>
     <tr>
@@ -22,7 +24,7 @@ it should appear here when you refresh.</p>
       </td>
       <td>
         <input id="email" type="text" class="email" name="email" size="50">
-        <span class="tooltip" title="Your email. Not mandatory. Will be used for gravatar lookup if submitted.">*)</span>
+        <span class="tooltip" title="Your email. Not mandatory. Will be used for gravatar lookup if submitted."><img src="/files/images/help.png"></span>
       </td>
     </tr>
     <tr>
@@ -31,7 +33,9 @@ it should appear here when you refresh.</p>
       </td>
       <td>
         <input id="website" type="text" name="website" size="50">
-        <span class="tooltip" title="Your website. Not mandatory. Will be removed if pointing to some profit or spam sites but your comment is by some weird reason legitimate.">*)</span>
+        <span class="tooltip" title="Your website. Not mandatory. Will be removed if pointing to some profit or spam sites but your comment is by some weird reason legitimate.">
+          <img src="/files/images/help.png">
+        </span>
       </td>
     </tr>
     <tr>
@@ -40,7 +44,9 @@ it should appear here when you refresh.</p>
       </td>
       <td>
       <textarea id="comment_text" rows="5" cols="50" class="required" name="comment_text"></textarea>
-      <span class="tooltip" title="Your comment. Mandatory. Kinda obvious.">*)</span>
+      <span class="tooltip" title="All used tags will be removed, but you can use markdown to format your comment."
+        <a href="http://daringfireball.net/projects/markdown/syntax" target="_blank"><img src="/files/images/help.png" style="border-style: none"></a>
+      </span>
       </td>
     </tr>
     <tr>

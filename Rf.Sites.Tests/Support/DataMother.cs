@@ -19,6 +19,11 @@ namespace Rf.Sites.Tests.Support
       return getFile("2ndPostWTagCheck.txt");
     }
 
+    public static string Markdown1()
+    {
+      return getFile("markdown1.txt");
+    }
+
     private static string getFile(string file)
     {
       var stream = typeof (DataMother).Assembly
