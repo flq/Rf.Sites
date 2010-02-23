@@ -44,7 +44,8 @@ it should appear here when you refresh.</p>
       </td>
       <td>
       <textarea id="comment_text" rows="5" cols="50" class="required" name="comment_text"></textarea>
-      <span class="tooltip" title="All used tags will be removed, but you can use markdown to format your comment."
+      <span class="tooltip" 
+        title="All used tags will be removed, but you can use markdown to format your comment. Click on the help button to open up a page explaining the syntax."
         <a href="http://daringfireball.net/projects/markdown/syntax" target="_blank"><img src="/files/images/help.png" style="border-style: none"></a>
       </span>
       </td>
