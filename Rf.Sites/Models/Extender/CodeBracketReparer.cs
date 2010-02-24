@@ -6,7 +6,7 @@ using Rf.Sites.Frame;
 
 namespace Rf.Sites.Models.Extender
 {
-  [Order(20)]
+  [Order(60)]
   public class CodeBracketReparer : IVmExtender<CommentVM>, IVmExtender<ContentViewModel>
   {
     

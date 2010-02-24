@@ -3,6 +3,7 @@
     var f = $("#comment_post");
     var act = f.attr("action");
     var ser = f.serialize();
+    f.fadeOut("slow");
     $.post(act, ser, function() { $("#after_comment_post").fadeIn("slow"); });
     return false;
   }
@@ -16,11 +17,8 @@ jQuery(document).ready(function($) {
   });
   //treeview support
   $('#archive').treeview({ url: "/chronics" });
+  //validation support
   $("#comment_post").validate();
-  // comment post fadeout on ajax Post
-  jQuery().ajaxStart(function() {
-    $("#comment_post").fadeOut("slow");
-  });
   // tooltips wire-up for comment posting
   $('.tooltip').tooltip();
   // Highlight code stuff if there is any

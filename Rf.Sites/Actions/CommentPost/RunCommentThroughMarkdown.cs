@@ -15,7 +15,7 @@ namespace Rf.Sites.Actions.CommentPost
         return;
       var r = new TagRemover();
       var sAfterTagRemoval = r.Process(viewModel.Comment.Body);
-      var afterMarkdownTransform = md.Transform(sAfterTagRemoval);
+      var afterMarkdownTransform = RunMarkdown(sAfterTagRemoval);
 
       viewModel.Comment.Body = afterMarkdownTransform;
     }

@@ -1,9 +1,11 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using NUnit.Framework;
 using Rf.Sites.Actions.CommentPost;
 using Rf.Sites.Domain;
 using Rf.Sites.Domain.Frame;
+using Rf.Sites.Frame;
 using Rf.Sites.Tests.DataScenarios;
 using Rf.Sites.Tests.Frame;
 using Rf.Sites.Tests.Support;
@@ -74,6 +76,14 @@ namespace Rf.Sites.Tests
       s = RunCommentThroughMarkdown.RunMarkdown(DataMother.Markdown1());
       sw.Stop();
       Console.WriteLine(sw.ElapsedMilliseconds);
+    }
+
+    [Test]
+    public void DoublePreAndCodeIsRemoved()
+    {
+      var model = new CommentUpdatePreparer { Comment = new Comment {Body = DataMother.Markdown2()} };
+      new RunCommentThroughMarkdown().Inspect(model);
+      model.Comment.Body.Contains("<pre><code>").ShouldBeFalse();
     }
   }
 }
