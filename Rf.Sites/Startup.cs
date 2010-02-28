@@ -44,10 +44,17 @@ namespace Rf.Sites
       routes.IgnoreRoute("files/.*");
 
       routes.MapRoute(
+        "Jump",
+        "go/{val1}",
+        new {controller = "Content", action = "Entry", val1 = "", val2 = "", val3 = ""},
+        new {controller = @"[^\.]*"});
+
+
+      routes.MapRoute(
         "Default",
         "{controller}/{action}/{val1}/{val2}/{val3}",
-        new { controller = "Home", action = "Index", val1 = "", val2 = "", val3 = "" },
-        new { controller = @"[^\.]*" }
+        new {controller = "Home", action = "Index", val1 = "", val2 = "", val3 = ""},
+        new {controller = @"[^\.]*"}
         );
     }
   }

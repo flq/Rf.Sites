@@ -33,7 +33,7 @@ it should appear here when you refresh.</p>
       </td>
       <td>
         <input id="website" type="text" name="website" size="50">
-        <span class="tooltip" title="Your website. Not mandatory. Will be removed if pointing to some profit or spam sites but your comment is by some weird reason legitimate.">
+        <span class="tooltip" title="Your website. Not mandatory. Will be removed if pointing to some profit or spam sites but your comment is by some weird reason legitimate. Legit websites are more than welcome :)">
           <img src="/files/images/help.png">
         </span>
       </td>
