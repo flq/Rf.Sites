@@ -62,7 +62,7 @@ namespace Rf.Sites.Domain.Frame
         .IgnoreBase(typeof (Entity))
         .Override<Content>(a =>
                              {
-                               a.HasMany(c => c.Comments).Cascade.AllDeleteOrphan();
+                               a.HasMany(c => c.Comments).Cascade.AllDeleteOrphan().Where("AwaitsModeration = 0");
                                a.HasMany(c => c.Attachments).Cascade.AllDeleteOrphan();
                              });
       additionalModelConfig(model);

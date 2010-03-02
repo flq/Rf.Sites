@@ -22,7 +22,9 @@ namespace Rf.Sites.Actions.Comments
       {
         var q = s.CreateQuery(
           @"select cnt.Id, c.CommenterName, c.Created from 
-            Content cnt join cnt.Comments c order by c.Created desc");
+            Content cnt join cnt.Comments c
+            where c.AwaitsModeration = false
+            order by c.Created desc");
         q.SetMaxResults(10);
         cl = new CommentList(
           q.List(),

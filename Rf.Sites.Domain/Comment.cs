@@ -13,5 +13,7 @@ namespace Rf.Sites.Domain
 
     public virtual bool IsFromSiteMaster { get; set; }
 
+    public virtual bool AwaitsModeration { get; set; }
+
   }
 }

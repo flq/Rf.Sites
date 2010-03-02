@@ -9,6 +9,7 @@ using Rf.Sites.Frame;
 using Rf.Sites.Tests.DataScenarios;
 using Rf.Sites.Tests.Frame;
 using Rf.Sites.Tests.Support;
+using Environment=Rf.Sites.Frame.Environment;
 
 namespace Rf.Sites.Tests
 {
@@ -35,6 +36,14 @@ namespace Rf.Sites.Tests
       var a = actionEnv.GetAction<CommentPostAction,CommentUpdatePreparer>(new CommentUpdatePreparer() { IsValid = false });
       a.Execute();
       repository[scenario.Contents[0].Id].CommentCount.ShouldBeEqualTo(oldCount);
+    }
+
+    [Test]
+    public void CommentingDisabledMeansPostAutomaticallyInvalid()
+    {
+      var cPrepaper = new CommentUpdatePreparer(null, null, new Environment() {CommentingEnabled = false}, null);
+      cPrepaper.ShouldNotBeNull();
+      cPrepaper.IsValid.ShouldBeFalse();
     }
 
     [Test]

@@ -22,10 +22,11 @@ namespace Rf.Sites.Actions.CommentPost
         return;
       var c = viewModel.Comment;
       var m = new Mollom(env.MollomPublicKey, env.MollomPrivateKey);
-      var assessment = m.CheckContent("", c.Body, c.CommenterName, c.CommenterEmail, c.CommenterWebsite);
+      var assessment = m.CheckContent("", c.Body, c.CommenterName, c.CommenterEmail, c.CommenterWebsite, "", "", viewModel.CommenterIPAddress);
       if (assessment.IsSpam())
         viewModel.IsValid = false;
-      
+      if (assessment.IsUnsure())
+        c.AwaitsModeration = true;
     }
   }
 }

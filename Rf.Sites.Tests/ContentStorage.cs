@@ -76,7 +76,33 @@ namespace Rf.Sites.Tests
       Assert.IsNotNull(cDb);
       Assert.That(cDb.Comments, Has.Count(1));
       Assert.AreEqual(comment.CommenterName, cDb.Comments[0].CommenterName);
+    }
 
+    [Test]
+    public void CommentsAwaitingModerationAreNotRetrievedByDefault()
+    {
+      object id;
+
+      var c = Maker.CreateContent();
+      var comment = Maker.CreateComment();
+      var comment2 = Maker.CreateComment();
+      comment2.AwaitsModeration = true;
+      c.AddComment(comment);
+      c.AddComment(comment2);
+
+      using (var tx = Session.BeginTransaction())
+      {
+        id = Session.Save(c);
+        tx.Commit();
+      }
+
+      Session.Clear();
+
+      var cDb = Session.Load<Content>(id);
+      Assert.IsNotNull(cDb);
+      Assert.That(cDb.Comments, Has.Count(1));
+      cDb.Comments[0].AwaitsModeration.ShouldBeFalse();
+      Assert.AreEqual(comment.CommenterName, cDb.Comments[0].CommenterName);
     }
 
     [Test]

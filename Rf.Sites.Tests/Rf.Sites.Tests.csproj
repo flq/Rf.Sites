@@ -122,6 +122,7 @@
     <Compile Include="ContentStorage.cs" />
     <Compile Include="DataScenarios\AFewTagsAndNumerousContent.cs" />
     <Compile Include="DataScenarios\ContentWithComments.cs" />
+    <Compile Include="DataScenarios\ContentWithComments2.cs" />
     <Compile Include="DataScenarios\TagAndContent.cs" />
     <Compile Include="Frame\ActionEnv.cs" />
     <Compile Include="Frame\AssertExtensions.cs" />

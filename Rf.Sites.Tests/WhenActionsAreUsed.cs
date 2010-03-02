@@ -147,13 +147,13 @@ namespace Rf.Sites.Tests
       actionEnv
         .OverloadContainer(c=>c.For<Environment>()
           .Use(new Environment { ApplicationBaseUrl = new Uri("http://localhost")}));
-      actionEnv.DataScenario<ContentWithComments>();
+      actionEnv.DataScenario<ContentWithComments2>();
       var a = actionEnv.GetAction<CommentsIndexAction>();
       var result = a.Execute();
       var list = result.GetModelFromAction<CommentList>();
       list.ShouldNotBeNull();
-      list.Count().ShouldBeGreaterThan(3);
-      list.Last().TimeOfComment.Year.ShouldBeEqualTo(2006);
+      list.Count().ShouldBeEqualTo(2);
+      list.Last().CommenterName.ShouldBeEqualTo("A");
     }
   }
 }
