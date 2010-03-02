@@ -4,6 +4,7 @@ using NMollom;
 using NUnit.Framework;
 using Rf.Sites.Actions.CommentPost;
 using Rf.Sites.Domain;
+using Rf.Sites.Domain.Frame;
 using Rf.Sites.Frame;
 using Rf.Sites.Tests.Frame;
 
@@ -41,7 +42,7 @@ namespace Rf.Sites.Tests
     public void SpamCommentMarksCommentPreparationInvalid()
     {
       var p = getCmtPreparer("Blablabla Hello spam");
-      var e = new RunCommentThroughMollom(new Environment { MollomPublicKey = mPubK, MollomPrivateKey = mPrivK});
+      var e = new RunCommentThroughMollom(new Environment { MollomPublicKey = mPubK, MollomPrivateKey = mPrivK}, new NullLogger());
 
       e.Inspect(p);
 
@@ -53,7 +54,7 @@ namespace Rf.Sites.Tests
     public void HamCommentLeavesCommentPreparationValid()
     {
       var p = getCmtPreparer("Blablabla Hello ham");
-      var e = new RunCommentThroughMollom(new Environment { MollomPublicKey = mPubK, MollomPrivateKey = mPrivK });
+      var e = new RunCommentThroughMollom(new Environment { MollomPublicKey = mPubK, MollomPrivateKey = mPrivK }, new NullLogger());
 
       e.Inspect(p);
 

@@ -35,6 +35,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\CookComputing.XmlRpcV2.dll</HintPath>
     </Reference>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="MarkdownSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\MarkdownSharp.dll</HintPath>
@@ -135,6 +139,7 @@
     <Compile Include="Frame\HttpHandlerRegistrar.cs" />
     <Compile Include="Frame\IObjectConverter.cs" />
     <Compile Include="Frame\IResponseWriter.cs" />
+    <Compile Include="Frame\Log4NetLogger.cs" />
     <Compile Include="Frame\OrderAttribute.cs" />
     <Compile Include="Handlers\404Handler.cs" />
     <Compile Include="Handlers\AbstractHandler.cs" />

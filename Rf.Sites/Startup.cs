@@ -28,6 +28,9 @@ namespace Rf.Sites
 
       registerRoutes(RouteTable.Routes);
       Environment = cnt.GetInstance<Environment>();
+
+      var log = cnt.GetInstance<ILog>();
+      log.Info("Startup performed");
     }
 
     public static Environment Environment { get; private set; }

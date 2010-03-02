@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web;
+using log4net.Config;
 using Rf.Sites.Frame;
 using StructureMap;
 
@@ -10,7 +11,8 @@ namespace Rf.Sites
   {
     static MvcApplication()
     {
-      
+      XmlConfigurator.Configure();
+
       ObjectFactory.Initialize(i => i.AddRegistry<SiteRegistry>());
       ObjectFactory.GetInstance<Startup>();
     }

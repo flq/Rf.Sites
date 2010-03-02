@@ -14,6 +14,9 @@ namespace Rf.Sites.Frame
   {
     public SiteRegistry()
     {
+
+      For<ILog>().Use<Log4NetLogger>();
+
       ForSingletonOf<Environment>()
         .Use((Environment) ConfigurationManager.GetSection("Environment") ?? new Environment());
       ForSingletonOf<DrupalUrlMap>()

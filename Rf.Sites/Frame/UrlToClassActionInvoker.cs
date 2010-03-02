@@ -1,4 +1,6 @@
+using System;
 using System.Web.Mvc;
+using Rf.Sites.Domain.Frame;
 using StructureMap;
 
 namespace Rf.Sites.Frame
@@ -19,10 +21,18 @@ namespace Rf.Sites.Frame
     {
       string instanceKey = formTheName(controllerContext);
 
-      var action = container.With(controllerContext)
-        .GetInstance<IAction>(instanceKey);
-      var result = action.Execute();
-      result.ExecuteResult(controllerContext);
+      try
+      {
+        var action = container.With(controllerContext)
+          .GetInstance<IAction>(instanceKey);
+        var result = action.Execute();
+        result.ExecuteResult(controllerContext);
+      }
+      catch (Exception x)
+      {
+        var log = container.GetInstance<ILog>();
+        log.Error(x);
+      }
       return true;
     }
 

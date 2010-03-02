@@ -71,10 +71,12 @@
     <Compile Include="Frame\DomainRegistry.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="Frame\ICache.cs" />
+    <Compile Include="Frame\ILog.cs" />
     <Compile Include="Frame\IRepository.cs" />
     <Compile Include="Frame\IValidator.cs" />
     <Compile Include="Frame\NHBasedValidator.cs" />
     <Compile Include="Frame\NullCache.cs" />
+    <Compile Include="Frame\NullLogger.cs" />
     <Compile Include="Frame\ReflectionExtensions.cs" />
     <Compile Include="Frame\Repository.cs" />
     <Compile Include="Frame\Paginator.cs" />
