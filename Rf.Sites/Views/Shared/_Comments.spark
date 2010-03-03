@@ -1,6 +1,6 @@
 ﻿<use namespace="Rf.Sites.Actions" />
-<use namespace="Rf.Sites.Actions.Comments" />
+<use namespace="Rf.Sites.Actions.Recent" />
 <use namespace="Rf.Sites.Frame" />
 <use namespace="Rf.Sites.Actions.Args" />
 <h3>More...</h3>
-${Html.ActionLink<CommentsIndexAction>("Recent Comments", new LinkAttributes { { "rel", "box" } })}
+${Html.ActionLink<RecentCommentsAction>("Recent Comments", new LinkAttributes { { "rel", "box" } })}

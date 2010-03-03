@@ -39,6 +39,7 @@ namespace Rf.Sites.Build
   static class Folders
   {
     public abstract class Content { }
+    public abstract class Recent { }
     public abstract class Tagcloud { }
     public abstract class Shared { }
   }

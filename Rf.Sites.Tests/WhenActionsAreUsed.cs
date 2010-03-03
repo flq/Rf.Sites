@@ -8,7 +8,7 @@ using Moq;
 using NUnit.Framework;
 using Rf.Sites.Actions;
 using Rf.Sites.Actions.Args;
-using Rf.Sites.Actions.Comments;
+using Rf.Sites.Actions.Recent;
 using Rf.Sites.Domain;
 using Rf.Sites.Domain.Frame;
 using Rf.Sites.Frame;
@@ -148,12 +148,13 @@ namespace Rf.Sites.Tests
         .OverloadContainer(c=>c.For<Environment>()
           .Use(new Environment { ApplicationBaseUrl = new Uri("http://localhost")}));
       actionEnv.DataScenario<ContentWithComments2>();
-      var a = actionEnv.GetAction<CommentsIndexAction>();
+      var a = actionEnv.GetAction<RecentCommentsAction>();
       var result = a.Execute();
       var list = result.GetModelFromAction<CommentList>();
       list.ShouldNotBeNull();
       list.Count().ShouldBeEqualTo(2);
       list.Last().CommenterName.ShouldBeEqualTo("A");
+      list.All(cf=>cf.ContentTitle == "B").ShouldBeTrue();
     }
   }
 }

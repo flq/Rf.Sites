@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Rf.Sites.Actions.Comments
+namespace Rf.Sites.Actions.Recent
 {
   public class CommentList : IEnumerable<CommentFragment>
   {
@@ -20,7 +20,7 @@ namespace Rf.Sites.Actions.Comments
     {
       return data
         .OfType<object[]>()
-        .Select(o => new CommentFragment(o[1].ToString(), (int)o[0], (DateTime) o[2]))
+        .Select(o => new CommentFragment(o[1].ToString(), (int)o[0], (DateTime) o[2], o[3].ToString()))
         .GetEnumerator();
     }
 

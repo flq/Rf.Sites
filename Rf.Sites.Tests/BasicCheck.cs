@@ -69,7 +69,7 @@ namespace Rf.Sites.Tests
       var batch = new SparkBatchDescriptor()
         .For<Folders.Content>()
         .For<Folders.Tagcloud>()
-        .For<Folders.Comments>()
+        .For<Folders.Recent>()
         .For<Folders.Shared>().Exclude("Application")
         .FromAssembly(typeof (ActionDispatcher).Assembly);
             
@@ -93,7 +93,7 @@ namespace Rf.Sites.Tests
       public abstract class Content { }
       public abstract class Tagcloud { }
       public abstract class Shared { }
-      public abstract class Comments { }
+      public abstract class Recent { }
     }
   }
 }

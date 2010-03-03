@@ -3,13 +3,13 @@ using System.Web.Mvc;
 using NHibernate;
 using Rf.Sites.Frame;
 
-namespace Rf.Sites.Actions.Comments
+namespace Rf.Sites.Actions.Recent
 {
-  public class CommentsIndexAction : AbstractAction
+  public class RecentCommentsAction : AbstractAction
   {
     private readonly ISessionFactory factory;
 
-    public CommentsIndexAction(ISessionFactory factory)
+    public RecentCommentsAction(ISessionFactory factory)
     {
       this.factory = factory;
     }
@@ -21,7 +21,7 @@ namespace Rf.Sites.Actions.Comments
       using (var s = factory.OpenStatelessSession())
       {
         var q = s.CreateQuery(
-          @"select cnt.Id, c.CommenterName, c.Created from 
+          @"select cnt.Id, c.CommenterName, c.Created, cnt.Title from 
             Content cnt join cnt.Comments c
             where c.AwaitsModeration = false
             order by c.Created desc");
