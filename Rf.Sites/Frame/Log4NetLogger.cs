@@ -34,7 +34,7 @@ namespace Rf.Sites.Frame
     {
       x = findDeepest(x);
       var s = string.Format("{0}: {1} - {2}", x.GetType().Name, x.Message, x.StackTrace);
-      logger.Error(s.Substring(0, 3999));
+      logger.Error(s.Length > 4000 ? s.Substring(0, 3999) : s);
     }
 
     private static Exception findDeepest(Exception x)

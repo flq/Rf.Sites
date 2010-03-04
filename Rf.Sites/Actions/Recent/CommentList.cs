@@ -2,31 +2,57 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Rf.Sites.Models;
 
 namespace Rf.Sites.Actions.Recent
 {
-  public class CommentList : IEnumerable<CommentFragment>
+  public abstract class UrlBasedList<T> : IEnumerable<T>
   {
-    private readonly IEnumerable data;
     public Uri BaseURL { get; set; }
 
-    public CommentList(IEnumerable data, Uri baseUrl)
+    protected UrlBasedList(Uri baseUrl)
     {
-      this.data = data;
       BaseURL = baseUrl;
     }
 
-    public IEnumerator<CommentFragment> GetEnumerator()
+    public abstract IEnumerator<T> GetEnumerator();
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+      return GetEnumerator();
+    }
+  }
+
+  public class ContentFragmentList : UrlBasedList<ContentFragmentViewModel>
+  {
+    private readonly IEnumerable<ContentFragmentViewModel> list;
+
+    public ContentFragmentList(IEnumerable<ContentFragmentViewModel> list, Uri baseUrl) : base(baseUrl)
+    {
+      this.list = list;
+    }
+
+    public override IEnumerator<ContentFragmentViewModel> GetEnumerator()
+    {
+      return list.GetEnumerator();
+    }
+  }
+
+  public class CommentList : UrlBasedList<CommentFragment>
+  {
+    private readonly IEnumerable data;
+
+    public CommentList(IEnumerable data, Uri baseUrl) : base(baseUrl)
+    {
+      this.data = data;
+    }
+
+    public override IEnumerator<CommentFragment> GetEnumerator()
     {
       return data
         .OfType<object[]>()
         .Select(o => new CommentFragment(o[1].ToString(), (int)o[0], (DateTime) o[2], o[3].ToString()))
         .GetEnumerator();
-    }
-
-    IEnumerator IEnumerable.GetEnumerator()
-    {
-      return GetEnumerator();
     }
   }
 }

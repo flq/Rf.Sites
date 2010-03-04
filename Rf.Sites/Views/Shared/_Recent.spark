@@ -1,0 +1,8 @@
+﻿<use namespace="Rf.Sites.Actions" />
+<use namespace="Rf.Sites.Actions.Recent" />
+<use namespace="Rf.Sites.Frame" />
+<use namespace="Rf.Sites.Actions.Args" />
+<h3>More...</h3>
+${Html.ActionLink<RecentCommentsAction>("Recent Comments", new LinkAttributes { { "rel", "box" } })}
+<br>
+${Html.ActionLink<RecentContentAction>("Recent Content", new LinkAttributes { { "rel", "box" } })}

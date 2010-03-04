@@ -156,5 +156,20 @@ namespace Rf.Sites.Tests
       list.Last().CommenterName.ShouldBeEqualTo("A");
       list.All(cf=>cf.ContentTitle == "B").ShouldBeTrue();
     }
+
+    [Test]
+    public void ContentListReturnsCorrectContent()
+    {
+      actionEnv.UseInMemoryDb();
+      actionEnv
+        .OverloadContainer(c => c.For<Environment>()
+        .Use(new Environment { ApplicationBaseUrl = new Uri("http://localhost") }));
+      actionEnv.DataScenario<AFewTagsAndNumerousContent>();
+      var a = actionEnv.GetAction<RecentContentAction>();
+      var result = a.Execute();
+      var list = result.GetModelFromAction<ContentFragmentList>();
+      list.ShouldNotBeNull();
+      list.Count().ShouldBeGreaterThan(9);;
+    }
   }
 }

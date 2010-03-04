@@ -114,7 +114,7 @@ namespace Rf.Sites.MetaWeblogApi
                                                MediaObject mediaObject)
     {
       ensureRequestIntegrity(username, password);
-
+      
       var storage = container.GetInstance<IMediaStorage>();
       try
       {

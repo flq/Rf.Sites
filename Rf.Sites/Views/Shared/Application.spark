@@ -34,7 +34,7 @@
     
     <div id="nav">
       <Tags />
-      <Comments />
+      <Recent />
       <Archive />
     </div>
     

@@ -103,6 +103,7 @@
     <Compile Include="Actions\ContentIndexAction.cs" />
     <Compile Include="Actions\ContentMonthAction.cs" />
     <Compile Include="Actions\ContentYearAction.cs" />
+    <Compile Include="Actions\Recent\RecentContentAction.cs" />
     <Compile Include="Actions\RssIndexAction.cs" />
     <Compile Include="Actions\RssTagAction.cs" />
     <Compile Include="Actions\TagCloud\TagcloudIndexAction.cs" />
@@ -232,7 +233,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Views\Recent\Comments.spark" />
-    <None Include="Views\Shared\_Comments.spark" />
+    <None Include="Views\Recent\Content.spark" />
+    <None Include="Views\Shared\_Recent.spark" />
     <None Include="Views\Shared\_Analytics.spark" />
     <None Include="WebRelease.config" />
     <None Include="Views\Content\_CommentPost.spark" />
