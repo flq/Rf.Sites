@@ -36,6 +36,11 @@ namespace Rf.Sites.Build
 
     public override bool Execute()
     {
+      if (UseAssemblies != null)
+      {
+        var assemblies = string.Join(",", UseAssemblies.Select(u => u.ItemSpec).ToArray());
+        Log.LogMessage(MessageImportance.High, "Following assemblies will be referenced: {0}", assemblies);         
+      }
       var useAssemblies = UseAssemblies ?? new ITaskItem[0];
 
       var s = new AppDomainSetup

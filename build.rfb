@@ -1,0 +1,51 @@
+﻿Project "Main"
+  
+  UsingTask -TaskName:CompileSparkView -AssemblyFile:lib/Rf.Sites.Build.dll
+  
+  $Configuration=Debug
+  $OutDir=out
+  $BinDir=$(OutDir)\bin
+  $ViewsDir=$(OutDir)\Views
+  $ScriptsDir=$(OutDir)\Scripts
+  $FilesDir=$(OutDir)\files
+  
+  Target "Prepare"
+    RemoveDir "$OutDir"
+    MakeDir "$(BinDir);$(ViewsDir);$(FilesDir);$(ScriptsDir)"
+    MsBuild "Rf.Sites.sln" -Properties:Configuration=Release
+    
+  Target "BuildApp"
+    @Assemblies=Rf.Sites\bin\*.dll
+    Copy -SourceFiles:@(Assemblies) -DestinationFolder:$(BinDir)
+    
+    @Views=Rf.Sites\Views\**\*.*
+    Copy -SourceFiles:@(Views) -DestinationFolder:$(ViewsDir)\%(RecursiveDir)
+    
+    @Scripts=Rf.Sites\Scripts\**\*.*
+    Copy -SourceFiles:@(Scripts) -DestinationFolder:$(ScriptsDir)\%(RecursiveDir)
+    
+    Copy -SourceFiles:Rf.Sites\WebRelease.config -DestinationFiles:$(OutDir)\Web.config
+    Copy -SourceFiles:Rf.Sites\Global.asax -DestinationFolder:$(OutDir)
+    Copy -SourceFiles:Rf.Sites\Default.aspx -DestinationFolder:$(OutDir)
+    
+    @Files=Rf.Sites\files\**\*.*
+    Copy -SourceFiles:@(Files) -DestinationFolder:$(FilesDir)\%(RecursiveDir)
+    
+    Delete "$(FilesDir)\test.htm;$(FilesDir)\test2.htm"
+    RemoveDir "$(FilesDir)\test2_files"
+  
+  Target "CompileViews"
+    // Assembly visibility for the build
+    Copy -SourceFiles:lib/Rf.Sites.Build.dll -DestinationFolder:$(BinDir)
+    
+    @UseAssemblies=Rf.Sites;Rf.Sites.Domain
+    
+    CompileSparkView 
+      -OutputAssembly:Rf.Sites.Views.dll
+      -CompilationDir:$(BinDir)
+      -UseAssemblies:@(UseAssemblies)
+      -ViewsLocation:Rf.Sites\Views
+      -TargetNamespace:Rf.Sites.Views
+  
+  Target "Main" -DependsOnTargets:Prepare;BuildApp;CompileViews
+    Delete "$(BinDir)\Rf.Sites.Build.dll"

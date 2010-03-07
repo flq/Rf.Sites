@@ -52,10 +52,9 @@
     <!-- This is just for the build -->
     <Copy SourceFiles="lib/Rf.Sites.Build.dll" DestinationFolder="$(BinDir)" />
 
-    <ItemGroup>
-      <UseAssemblies Include="Rf.Sites" />
-      <UseAssemblies Include="Rf.Sites.Domain" />
-    </ItemGroup>
+	<CreateItem Include="Rf.Sites;Rf.Sites.Domain">
+      <Output TaskParameter="Include" ItemName="UseAssemblies" />
+    </CreateItem>
 
     <CompileSparkView
       OutputAssembly="Rf.Sites.Views.dll"
