@@ -24,6 +24,8 @@ namespace Rf.Sites.Actions.CommentPost
       if (env == null)
         return;
       var c = viewModel.Comment;
+      if (c.IsFromSiteMaster)
+        return;
       var m = new Mollom(env.MollomPublicKey, env.MollomPrivateKey);
       log.Info("About to call mollom with comment from IP {0} with name {1}", viewModel.CommenterIPAddress, c.CommenterName);
       var assessment = m.CheckContent("", c.Body, c.CommenterName, c.CommenterEmail, c.CommenterWebsite, "", "", viewModel.CommenterIPAddress);

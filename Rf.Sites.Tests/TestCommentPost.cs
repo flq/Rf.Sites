@@ -41,7 +41,7 @@ namespace Rf.Sites.Tests
     [Test]
     public void CommentingDisabledMeansPostAutomaticallyInvalid()
     {
-      var cPrepaper = new CommentUpdatePreparer(null, null, new Environment() {CommentingEnabled = false}, null);
+      var cPrepaper = new CommentUpdatePreparer(null, null, new Environment() {CommentingEnabled = false}, new NullLogger(), null);
       cPrepaper.ShouldNotBeNull();
       cPrepaper.IsValid.ShouldBeFalse();
     }
@@ -56,6 +56,14 @@ namespace Rf.Sites.Tests
             Comment = actionEnv.Maker.CreateComment()
           });
       a.Execute();
+    }
+
+    [Test]
+    public void SomeToStringChecksOfCommentMayNotThrow()
+    {
+      Console.WriteLine(new Comment().ToString());
+      Console.WriteLine(new Comment { CommenterName = "Foo", Body = "Bar"});
+      Console.WriteLine(new Comment { CommenterName = "Foo", Body = "Plonk".PadRight(2500) });
     }
 
     [Test]

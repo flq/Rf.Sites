@@ -10,16 +10,21 @@ namespace Rf.Sites.Actions.CommentPost
 {
   public class CommentUpdatePreparer
   {
+    private readonly ILog log;
+
     public CommentUpdatePreparer()
     {
       IsValid = true;
+      log = new NullLogger();
     }
 
     public CommentUpdatePreparer(ControllerContext ctx, 
                                  IValidator validator, 
                                  Environment environment,
+                                 ILog log,
                                  IVmExtender<CommentUpdatePreparer>[] commentModelExtensions)
     {
+      this.log = log;
       if (!environment.CommentingEnabled)
       {
         // Somebody trying to post a comment even though there is no form
@@ -37,6 +42,9 @@ namespace Rf.Sites.Actions.CommentPost
                     CommenterWebsite = r.Form["website"],
                     Created = DateTime.Now.ToUniversalTime()
                   };
+
+      log.Info("Starting a Comment process with comment {0}", Comment);
+
       IsValid = validator != null ? validator.Validate(Comment) : true;
       var ip = r.ServerVariables["HTTP_X_FORWARDED_FOR"];
       if (string.IsNullOrEmpty(ip))

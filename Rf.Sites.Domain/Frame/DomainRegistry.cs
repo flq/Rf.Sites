@@ -15,7 +15,7 @@ namespace Rf.Sites.Domain.Frame
       var maker = new SessionFactoryMaker();
       ForSingletonOf<ISessionFactory>().Use(maker.CreateFactory);
 
-      ForSingletonOf<IValidator>()
+      For<IValidator>()
         .Use(()=>new NHBasedValidator(maker.GetValidationEngine()));
 
       For<ISession>()
