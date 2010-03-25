@@ -6,13 +6,14 @@ namespace Rf.Sites.Models.Extender
   [Order(10)]
   public class CodeHighlightExtension : IVmExtender<CommentVM>, IVmExtender<ContentViewModel>
   {
-    public const string CsharpPreTag = "<pre class=\"sh_csharp\">";
+    private const string CsharpEndTag = "</pre>";
+    public const string CsharpStartTag = "<pre name=\"code\" class=\"c#\">";
 
     public void Inspect(ContentViewModel viewModel)
     {
       //Some posts may have been published wit the pre tag already in it:
       //In this case I assume that all instances have been changed.
-      if (viewModel.Body.Contains(CsharpPreTag))
+      if (viewModel.Body.Contains(CsharpStartTag))
       {
         viewModel.NeedsCodeHighlighting = true;
         return;
@@ -48,8 +49,8 @@ namespace Rf.Sites.Models.Extender
       if (body.Contains(openTag))
       {
         changes = true;
-        body = body.Replace(openTag, CsharpPreTag);
-        body = body.Replace(closeTag, "</pre>");
+        body = body.Replace(openTag, CsharpStartTag);
+        body = body.Replace(closeTag, CsharpEndTag);
       }
       return changes;
     }

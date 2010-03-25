@@ -56,7 +56,7 @@ namespace Rf.Sites.Models.Extender
       {
         while (currentIndex != -1)
         {
-          var indexOf = text.IndexOf(CodeHighlightExtension.CsharpPreTag, currentIndex);
+          var indexOf = text.IndexOf(CodeHighlightExtension.CsharpStartTag, currentIndex);
           if (indexOf == -1)
           {
             yield return text.Substring(currentIndex);
@@ -65,9 +65,9 @@ namespace Rf.Sites.Models.Extender
           else
           {
             yield return text.Substring(currentIndex, indexOf - currentIndex);
-            yield return CodeHighlightExtension.CsharpPreTag;
+            yield return CodeHighlightExtension.CsharpStartTag;
             var end = text.IndexOf("</pre>", indexOf);
-            var tmp = text.Substring(indexOf + CodeHighlightExtension.CsharpPreTag.Length, end - indexOf - CodeHighlightExtension.CsharpPreTag.Length);
+            var tmp = text.Substring(indexOf + CodeHighlightExtension.CsharpStartTag.Length, end - indexOf - CodeHighlightExtension.CsharpStartTag.Length);
             tmp = tmp.Replace("<", "&lt;");
             tmp = tmp.Replace(">", "&gt;");
             yield return tmp;

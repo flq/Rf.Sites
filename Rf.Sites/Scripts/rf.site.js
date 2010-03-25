@@ -22,5 +22,5 @@ jQuery(document).ready(function($) {
   // tooltips wire-up for comment posting
   $('.tooltip').tooltip();
   // Highlight code stuff if there is any
-  sh_highlightDocument();
+  dp.SyntaxHighlighter.HighlightAll('code');
 });

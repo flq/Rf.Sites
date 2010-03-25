@@ -12,7 +12,7 @@
     <link type="text/css" rel="stylesheet" media="screen" href="/files/jquery.facebox.css" />
     <link type="text/css" rel="stylesheet" media="screen" href="/files/jquery.tooltip.css" />
     <link type="text/css" rel="stylesheet" media="screen" href="/files/jquery.treeview.css" />
-    <link type="text/css" rel="stylesheet" media="all" href="/files/sh_golden.css" />
+    <link type="text/css" rel="stylesheet" media="all" href="/files/SyntaxHighlighter.css" />
     <script type="text/javascript" src="/Scripts/jquery.js"></script>
     <script type="text/javascript" src="/Scripts/jquery.cookie.js" ></script>
     <script type="text/javascript" src="/Scripts/jquery.facebox.js" ></script>
@@ -20,8 +20,8 @@
     <script type="text/javascript" src="/Scripts/jquery.treeview.async.js"></script>
     <script type="text/javascript" src="/Scripts/jquery.validate.js" ></script>
     <script type="text/javascript" src="/Scripts/jquery.tooltip.js" ></script>
-    <script type="text/javascript" src="/Scripts/sh_main.js"></script>
-    <script type="text/javascript" src="/Scripts/sh_csharp.js"></script>
+    <script type="text/javascript" src="/Scripts/shCore.js"></script>
+    <script type="text/javascript" src="/Scripts/shBrushCSharp.js"></script>
     <script type="text/javascript" src="/Scripts/rf.site.js"></script>
     
     <use content="head" />

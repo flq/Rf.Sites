@@ -11,6 +11,7 @@ using Spark.Compiler;
 using Spark.FileSystem;
 using Spark.Web.Mvc;
 using StructureMap;
+using System.Linq;
 
 namespace Rf.Sites.Tests
 {

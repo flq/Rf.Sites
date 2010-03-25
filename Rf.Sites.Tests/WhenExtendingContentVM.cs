@@ -38,7 +38,7 @@ namespace Rf.Sites.Tests
 
       var cVM = new ContentViewModel(c, new[] { new CodeHighlightExtension() });
 
-      cVM.Body.Contains("<pre class=\"sh_csharp\">").ShouldBeTrue();
+      cVM.Body.Contains("<pre name=\"code\"").ShouldBeTrue();
       cVM.NeedsCodeHighlighting.ShouldBeTrue();
     }
 
@@ -61,7 +61,7 @@ namespace Rf.Sites.Tests
 
       CodeBracketReparer.ApplyChanges(ref s);
 
-      var codeBlock = s.Substring(2438, 95);
+      var codeBlock = s.Substring(2443, 95);
       codeBlock.Contains("<").ShouldBeFalse();
       codeBlock.Contains("&lt;").ShouldBeTrue();
       codeBlock.Contains(">").ShouldBeFalse();

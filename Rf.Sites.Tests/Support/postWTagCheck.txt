@@ -7,12 +7,12 @@
 <p>Let me talk through the example with which I satisfied my longing for some functional mayhem. <a href="http://realfiction.net/files/ValidationTest.htm">You can have a look at it here</a>. It is basically a nano-framework,quite incomplete, to express client-side validation of HTML form fields in a very unobtrusive fashion.</p> 
 <p>What is this unobtrusive java scripting anyway? It all boils down to separation of concerns again. The HTML structures your document, much like xml. Interspersing it with funny javascript calls (like onclick="dofunkyStuff(1, '23')") is not necessarily your friend when it comes down to maintaining your page. Meanwhile most people seem to have grasped the idea of separating structure and styling with the aid of CSS. While in HTML you still tend to have a reference to your CSS, you can inject your programmable logic without any notion of javascript in your HTML code.</p> 
 <p>The idea is simple. I add some metadata to the HTML which I can find once the DOM is fully setup on the client-side.</p> 
-<pre class="sh_csharp"> 
+<pre name="code" class="c#"> 
 <input type="text" validation="numeric" > 
 <input type="text" validation="/cool/i" > 
 </pre> 
 <p>The validation attribute is not part of the known HTML attributes, but it is part of the DOM accessible by javascript. I am not sure how people's opinion is on doing this sort of thing, but from a functional perspective it works pretty well. If you feel this is slightly hackish you could write your document as XHTML, add a new XML-namespace and use elements of that namespace in your document:</p> 
-<pre class="sh_csharp"> 
+<pre name="code" class="c#"> 
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:rf="http://rf.scripting/validation"> 
 ...
 <rf:validation type="numeric"> 
@@ -20,7 +20,7 @@
 </rf:validation> 
 </pre> 
 <p>Since all javascript that would be hacked right into HTML reacts to events probably triggered by the page's user, I may as well attach the event handlers after the DOM has loaded and before the user interacts with it. The jQuery library allows us to do the outlined things quite easily. jQuery provides the <em>ready </em>function to which you can pass a function that is called at the right moment. This is a perfect hook to attach your javascript in said unobtrusive fashion:</p> 
-<pre class="sh_csharp"> 
+<pre name="code" class="c#"> 
 validator = new Validation(errorFeedback,passFeedback);
 $(document).ready(validator.setup);
 </pre> 
