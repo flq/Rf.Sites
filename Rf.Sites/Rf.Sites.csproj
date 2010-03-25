@@ -222,11 +222,8 @@
     <Content Include="Scripts\jquery.facebox.js" />
     <Content Include="Scripts\jquery.treeview.async.js" />
     <Content Include="Scripts\jquery.treeview.js" />
-    <Content Include="Scripts\sh_csharp.js" />
-    <Content Include="Scripts\sh_javascript.js" />
-    <Content Include="Scripts\sh_main.js" />
-    <Content Include="Scripts\sh_ruby.js" />
-    <Content Include="Scripts\sh_xml.js" />
+    <Content Include="Scripts\shBrushCSharp.js" />
+    <Content Include="Scripts\shCore.js" />
     <Content Include="Web.config">
     </Content>
     <Content Include="Scripts\jquery.js" />
