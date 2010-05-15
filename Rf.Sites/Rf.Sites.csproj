@@ -109,6 +109,8 @@
     <Compile Include="Actions\TagCloud\TagcloudIndexAction.cs" />
     <Compile Include="Actions\TagCloud\TagList.cs" />
     <Compile Include="Actions\TagCloud\WeightedTag.cs" />
+    <Compile Include="CronJobs\ChangeCommentPostRoute.cs" />
+    <Compile Include="CronJobs\Cron.cs" />
     <Compile Include="Frame\AbstractFeed.cs" />
     <Compile Include="Frame\AbstractPagedContent.cs" />
     <Compile Include="Actions\Args\ActionArgs.cs" />
@@ -138,6 +140,8 @@
     <Compile Include="Frame\HandlerUrlAttribute.cs" />
     <Compile Include="Frame\HttpHandlerDispatcher.cs" />
     <Compile Include="Frame\HttpHandlerRegistrar.cs" />
+    <Compile Include="Frame\ICron.cs" />
+    <Compile Include="Frame\ICronJob.cs" />
     <Compile Include="Frame\IObjectConverter.cs" />
     <Compile Include="Frame\IResponseWriter.cs" />
     <Compile Include="Frame\Log4NetLogger.cs" />
@@ -223,6 +227,7 @@
     <Content Include="Scripts\jquery.treeview.async.js" />
     <Content Include="Scripts\jquery.treeview.js" />
     <Content Include="Scripts\shBrushCSharp.js" />
+    <Content Include="Scripts\shBrushXml.js" />
     <Content Include="Scripts\shCore.js" />
     <Content Include="Web.config">
     </Content>

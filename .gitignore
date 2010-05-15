@@ -6,6 +6,7 @@ db data
 _ReSharper.*
 *.user
 *.resharper
+*.ReSharper
 *.suo
 *.cache
 *.~

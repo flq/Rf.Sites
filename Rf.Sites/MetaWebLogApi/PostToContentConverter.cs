@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Web;
 using Rf.Sites.Domain;
 using Rf.Sites.Domain.Frame;
 using Rf.Sites.Frame;
@@ -25,7 +26,7 @@ namespace Rf.Sites.MetaWeblogApi
 
       var c = new Content
                 {
-                  Title = post.title, 
+                  Title = HttpUtility.HtmlDecode(post.title), 
                   Created = post.dateCreated.ToUniversalTime() != 
                     DateTime.MinValue ? post.dateCreated.ToUniversalTime() : DateTime.Now.ToUniversalTime()
                 };

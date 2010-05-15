@@ -10,7 +10,7 @@ using Rf.Sites.Tests.Frame;
 
 namespace Rf.Sites.Tests
 {
-  [TestFixture]
+  [TestFixture,Ignore]
   public class MollomIntegration
   {
     private string mPrivK;
@@ -28,7 +28,7 @@ namespace Rf.Sites.Tests
 
     }
 
-    [Test,Ignore]
+    [Test]
     public void TheProvidedKeysAreValid()
     {
       var m = new Mollom(mPubK, mPrivK);
@@ -38,7 +38,7 @@ namespace Rf.Sites.Tests
     // The following tests make sense when your mollom site is in dev mode to ensure proper responses.
     // Place an ignore on them when done.
 
-    [Test,Ignore]
+    [Test]
     public void SpamCommentMarksCommentPreparationInvalid()
     {
       var p = getCmtPreparer("Blablabla Hello spam");
@@ -50,7 +50,7 @@ namespace Rf.Sites.Tests
 
     }
 
-    [Test,Ignore]
+    [Test]
     public void HamCommentLeavesCommentPreparationValid()
     {
       var p = getCmtPreparer("Blablabla Hello ham");

@@ -133,5 +133,17 @@ namespace Rf.Sites.Tests
       posts.ShouldContain(p => p.title == "A4");
     }
 
+    [Test]
+    public void ThePostToContentConverterReEscapesLiveWriterPointlessEscaping()
+    {
+      var post2Content = new PostToContentConverter(new TestRepository<Tag>());
+      var c = post2Content.Convert(new Post
+                                     {
+                                       title = "Some PowerShell Foo...playin&rsquo; with da Task Scheduler",
+                                       description = "<p>needed body</p>"
+                                     });
+      c.Title.ShouldBeEqualTo("Some PowerShell Foo...playin’ with da Task Scheduler");
+    }
+
   }
 }
