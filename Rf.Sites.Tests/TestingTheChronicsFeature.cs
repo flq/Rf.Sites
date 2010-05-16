@@ -63,14 +63,14 @@ namespace Rf.Sites.Tests
     }
 
     [Test]
-    public void ChronicsReturnsMonths()
+    public void ChronicsReturnsMonthsDescending()
     {
       var t = new ChronicsTree(dateTimes);
       var l = t.Query("2005");
       
       l.ShouldHaveLength(3);
       l[0].ShouldBeOfType<ChronicsNode>();
-      l[0].id.ShouldBeEqualTo("2005/1");
+      l[0].id.ShouldBeEqualTo("2005/3");
     }
 
     [Test]
@@ -90,7 +90,7 @@ namespace Rf.Sites.Tests
 
       l.ShouldHaveLength(3);
       l[0].ShouldBeOfType<ChronicsNode>();
-      l[0].count.ShouldBeEqualTo(3);
+      l[2].count.ShouldBeEqualTo(3);
     }
 
     [Test]
