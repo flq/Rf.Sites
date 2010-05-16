@@ -26,6 +26,7 @@
 .treeview li { 
 	margin: 0;
 	padding: 3px 0pt 3px 16px;
+	line-height: 1;
 }
 
 .treeview a.selected {

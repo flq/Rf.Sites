@@ -43,7 +43,8 @@ namespace Rf.Sites.Models
 
       if (years.ContainsKey(query))
         return (from s in years[query]
-               let t = s.Year.ToString() + "/" + s.Month
+               orderby s descending
+               let t = s.Year + "/" + s.Month
                select new ChronicsNode
                   {
                     expanded = false,
@@ -55,11 +56,17 @@ namespace Rf.Sites.Models
       return null;
     }
 
-    private class YearMonth
+    private class YearMonth : IComparable<YearMonth>
     {
       public int Year { get; set; }
       public int Month { get; set; }
       public int Count { get; set; }
+      
+      public int CompareTo(YearMonth other)
+      {
+        return Year != other.Year ? 
+          Year.CompareTo(other.Year) : Month.CompareTo(other.Month);
+      }
     }
   }
 }

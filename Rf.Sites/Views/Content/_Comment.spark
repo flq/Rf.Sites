@@ -1,4 +1,4 @@
-<div class="comment">
+<div class="comment"><a name="${comment.Id}"></a>
 	  <div class="comment_head">
 		  <image src="${comment.GravatarImageSource}" width="50" height="50">
 		  <test if="!string.IsNullOrEmpty(comment.Website)">

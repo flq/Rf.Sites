@@ -21,7 +21,7 @@ namespace Rf.Sites.Actions.Recent
       using (var s = factory.OpenStatelessSession())
       {
         var q = s.CreateQuery(
-          @"select cnt.Id, c.CommenterName, c.Created, cnt.Title from 
+          @"select cnt.Id, c.CommenterName, c.Created, cnt.Title, c.Id from 
             Content cnt join cnt.Comments c
             where c.AwaitsModeration = false
             order by c.Created desc");

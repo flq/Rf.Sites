@@ -19,6 +19,7 @@ namespace Rf.Sites.Models
       extender.Apply(this);
     }
 
+    public int Id { get; private set; }
     public string Website { get; set; }
     public string Created { get; private set; }
     public string Name { get; set; }
@@ -28,6 +29,7 @@ namespace Rf.Sites.Models
 
     private void setUp(Comment comment)
     {
+      Id = comment.Id;
       Name = comment.CommenterName;
       Website = comment.CommenterWebsite;
       Body = comment.Body;

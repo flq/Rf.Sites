@@ -51,7 +51,7 @@ namespace Rf.Sites.Actions.Recent
     {
       return data
         .OfType<object[]>()
-        .Select(o => new CommentFragment(o[1].ToString(), (int)o[0], (DateTime) o[2], o[3].ToString()))
+        .Select(o => new CommentFragment(o[1].ToString(), (int)o[0], (int)o[4], (DateTime)o[2], o[3].ToString()))
         .GetEnumerator();
     }
   }

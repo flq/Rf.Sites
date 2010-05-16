@@ -13,7 +13,7 @@ it should appear here when you refresh.</p>
       </td>
       <td>
         <input id="name" type="text" name="name" class="required" size="50">
-        <span class="tooltip" title="Your name. Srsly, double-please with cream, use your name. It's not like we are in Kindergarden with fantasy names like Captain Bob, or 'Sawyer, the living pimple'.">
+        <span class="tooltip" title="Your name. Please use your real name, the internet is a public space after all.">
         <img src="/files/images/help.png">
         </span>
       </td>
@@ -24,7 +24,7 @@ it should appear here when you refresh.</p>
       </td>
       <td>
         <input id="email" type="text" class="email" name="email" size="50">
-        <span class="tooltip" title="Your email. Not mandatory. Will be used for gravatar lookup if submitted."><img src="/files/images/help.png"></span>
+        <span class="tooltip" title="Your email. Not mandatory. When provided, it will be used for gravatar lookup."><img src="/files/images/help.png"></span>
       </td>
     </tr>
     <tr>

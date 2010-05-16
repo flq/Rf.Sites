@@ -28,6 +28,12 @@ namespace Rf.Sites.Frame
       return helper.ActionLink<T>(linkText, args, null);
     }
 
+    public static string ActionLink<T>(this HtmlHelper helper, string linkText, string fragment, IArgToRoute args) where T : IAction
+    {
+      var tokens = typeof(T).Name.PasCalCaseTokenization();
+      return helper.ActionLink(linkText, tokens[1], tokens[0], null, null, fragment, args.ToDictionary(), null);
+    }
+
     public static string ActionLink<T>(this HtmlHelper helper, string linkText, IArgToRoute args, IDictionary<string,object> linkAttributes) where T : IAction
     {
       var tokens = typeof(T).Name.PasCalCaseTokenization();

@@ -7,6 +7,6 @@
 <ul>
   <li each="var c in Model">
     ${c.CommenterName} on 
-    ${Html.ActionLink<ContentEntryAction>(c.ContentTitle, ArgsFrom.Id(c.JumpID))}
+    ${Html.ActionLink<ContentEntryAction>(c.ContentTitle, c.CommentID.ToString(), ArgsFrom.Id(c.JumpID))}
   </li>
 </ul>
