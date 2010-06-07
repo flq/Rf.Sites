@@ -32,7 +32,7 @@ namespace Rf.Sites.Tests.Frame
 
       var sb = new StringBuilder();
       
-      memorySessions.DropAndRecreateSchema(new StringWriter(sb), Session.Connection);
+      memorySessions.DropAndRecreateSchema(Console.Out, Session.Connection);
     }
 
     public void Dispose()
