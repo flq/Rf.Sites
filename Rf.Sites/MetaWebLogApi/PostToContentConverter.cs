@@ -27,8 +27,9 @@ namespace Rf.Sites.MetaWeblogApi
       var c = new Content
                 {
                   Title = HttpUtility.HtmlDecode(post.title), 
-                  Created = post.dateCreated.ToUniversalTime() != 
-                    DateTime.MinValue ? post.dateCreated.ToUniversalTime() : DateTime.Now.ToUniversalTime()
+                  // Appears that WLW sends the publish date as UTC already.
+                  Created = post.dateCreated != DateTime.MinValue ? 
+                  post.dateCreated : DateTime.Now.ToUniversalTime()
                 };
 
       c.SetBody(post.description);

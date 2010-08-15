@@ -17,3 +17,4 @@ test2_files
 WebRelease.config
 rf.ico
 Rf.Sites/files/images/*.*
+Rf.Sites.Build.dll

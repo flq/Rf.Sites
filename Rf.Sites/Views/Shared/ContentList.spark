@@ -9,7 +9,7 @@
   <div class="content">
 	<div class="content_header">
 		<h2>${f.Title}</h2>
-		<p>${f.WrittenInTime}</p>
+		<p>${f.WrittenInTime} UTC</p>
 	</div>
 	<div class="content_body">
 		${f.Teaser}...${Html.ActionLink<ContentEntryAction>("read more", ArgsFrom.Id(f.Id))}
