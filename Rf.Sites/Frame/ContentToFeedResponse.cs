@@ -48,7 +48,7 @@ namespace Rf.Sites.Frame
     {
       var s = new XmlWriterSettings { Indent = true };
       using (var xw = XmlWriter.Create(writer, s))
-        feed.GetAtom10Formatter().WriteTo(xw);
+        feed.GetRss20Formatter().WriteTo(xw);
     }
   }
 }
