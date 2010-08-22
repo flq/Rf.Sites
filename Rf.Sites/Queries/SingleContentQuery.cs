@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Rf.Sites.Domain;
 using Rf.Sites.Domain.Frame;
 using Rf.Sites.Frame;
@@ -16,7 +17,10 @@ namespace Rf.Sites.Queries
 
     public Content Query(IRepository<Content> repository)
     {
-      return repository[id];
+      var c = repository[id];
+      if (c == null || c.Created >= DateTime.Now.ToUniversalTime())
+        return null;
+      return c;
     }
   }
 }

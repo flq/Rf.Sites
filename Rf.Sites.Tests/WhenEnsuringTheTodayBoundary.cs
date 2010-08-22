@@ -7,6 +7,7 @@ using Rf.Sites.Domain;
 using Rf.Sites.Domain.Frame;
 using Rf.Sites.Frame;
 using Rf.Sites.Models;
+using Rf.Sites.Queries;
 using Rf.Sites.Tests.DataScenarios;
 using Rf.Sites.Tests.Frame;
 using Environment = Rf.Sites.Frame.Environment;
@@ -55,6 +56,23 @@ namespace Rf.Sites.Tests
         new Repository<Content>(actionEnv.InMemoryDB.Factory)) { Environment = new Environment { ItemsPerPage = 5 } };
       var model = action.Execute().GetModelFromAction<List<ContentFragmentViewModel>>();
       model.ShouldHaveCount(2);
+    }
+
+    [Test]
+    public void ContentInTheFutureIsInaccesisbleWithId()
+    {
+      actionEnv.UseInMemoryDb();
+      var rep = actionEnv.Container.GetInstance<IRepository<Content>>();
+      var id = 0;
+      rep.Transacted(r=> id = r.Add(new Content
+                                      {
+                                        Title = "A Test",
+                                        Body = "Hello",
+                                        Created = DateTime.Now.ToUniversalTime().AddHours(2)
+                                      }));
+      id.ShouldBeGreaterThan(0);
+      var cnt = new SingleContentQuery(id).Query(rep);
+      cnt.ShouldBeNull();
     }
   }
 }
