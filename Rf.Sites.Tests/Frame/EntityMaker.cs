@@ -10,7 +10,7 @@ namespace Rf.Sites.Tests
 
     public Content CreateContent()
     {
-      return CreateContent(0, "Title", DateTime.Now);
+      return CreateContent(0, "Title", DateTime.Now.AddDays(-1).ToUniversalTime());
     }
 
     public Content CreateContent(DateTime created)

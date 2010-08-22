@@ -8,6 +8,7 @@ using Rf.Sites.Domain;
 using Rf.Sites.Domain.Frame;
 using Rf.Sites.Frame;
 using Rf.Sites.Models;
+using Rf.Sites.Queries;
 
 namespace Rf.Sites.Actions
 {
@@ -37,8 +38,7 @@ namespace Rf.Sites.Actions
 
     private ChronicsTree createTree()
     {
-      var dateTimes = from c in repository select c.Created;
-      var t = new ChronicsTree(dateTimes);
+      var t = new ChronicsTree(new ValidDateTimesQuery().Query(repository));
       cache.Add("chronics", t);
       return t;
     }

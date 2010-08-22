@@ -5,6 +5,7 @@ using Rf.Sites.Domain;
 using Rf.Sites.Domain.Frame;
 using Rf.Sites.Frame;
 using Rf.Sites.Models;
+using Rf.Sites.Queries;
 
 namespace Rf.Sites.Actions.Recent
 {
@@ -19,10 +20,8 @@ namespace Rf.Sites.Actions.Recent
 
     public override ActionResult Execute()
     {
-      var l =
-        (from c in repository
-         orderby c.Created descending 
-         select new ContentFragmentViewModel(c.Id, c.Title, c.Created, "null"))
+      var l = new ContentInDescendingOrderQuery()
+          .Query(repository)
           .Take(10)
           .ToList();
 

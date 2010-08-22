@@ -61,7 +61,7 @@ namespace Rf.Sites.Tests
 
       CodeBracketReparer.ApplyChanges(ref s);
 
-      var codeBlock = s.Substring(2443, 95);
+      var codeBlock = s.Substring(2443, 91);
       codeBlock.Contains("<").ShouldBeFalse();
       codeBlock.Contains("&lt;").ShouldBeTrue();
       codeBlock.Contains(">").ShouldBeFalse();

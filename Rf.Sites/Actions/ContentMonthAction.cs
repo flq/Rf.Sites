@@ -6,6 +6,7 @@ using Rf.Sites.Domain;
 using Rf.Sites.Domain.Frame;
 using Rf.Sites.Frame;
 using Rf.Sites.Models;
+using Rf.Sites.Queries;
 
 namespace Rf.Sites.Actions
 {
@@ -25,11 +26,7 @@ namespace Rf.Sites.Actions
       get
       {
         var lower = new DateTime(args.Year, args.Month, 1);
-        var upper = lower.AddMonths(1);
-        return from c in repository
-               where c.Created >= lower && c.Created < upper
-               orderby c.Created descending
-               select new ContentFragmentViewModel(c.Id, c.Title, c.Created, c.Teaser);
+        return new ContentOfAMonthQuery(lower).Query(repository);
       }
     }
 

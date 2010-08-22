@@ -6,6 +6,7 @@ using Rf.Sites.Domain;
 using Rf.Sites.Domain.Frame;
 using Rf.Sites.Frame;
 using Rf.Sites.Models;
+using Rf.Sites.Queries;
 
 namespace Rf.Sites.Actions
 {
@@ -24,10 +25,7 @@ namespace Rf.Sites.Actions
     {
       get
       {
-        return from c in repository
-               where c.Tags.Any(t => t.Name == args.Value)
-               orderby c.Created descending 
-               select new ContentFragmentViewModel(c.Id, c.Title, c.Created, c.Teaser);
+        return new ContentOfTagQuery(args.Value).Query(repository);
       }
     }
 

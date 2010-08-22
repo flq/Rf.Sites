@@ -2,6 +2,7 @@ using System;
 using System.Web.Mvc;
 using NHibernate;
 using Rf.Sites.Frame;
+using Rf.Sites.Queries;
 
 namespace Rf.Sites.Actions.TagCloud
 {
@@ -20,17 +21,10 @@ namespace Rf.Sites.Actions.TagCloud
 
       using (var s = sessionFactory.OpenStatelessSession())
       {
-        var q = s.CreateQuery(
-          @"select tag.Name, count(cnt.Id) from 
-            Tag tag join tag.RelatedContent cnt
-            where tag.Name not in (:taglist)
-            group by tag.Name");
-        q.SetParameterList("taglist", Environment.TagsToIgnoreAsArray);
-        
+        var q = new WeightedTagsQuery(Environment.TagsToIgnoreAsArray).Query(s);
         tl = new TagList(
           q.List(), 
           new Uri(Environment.ApplicationBaseUrl, FrameUtilities.RelativeUrlToAction<ContentTagAction>()));
-
       }
 
       tl.Segment(Environment.TagcloudSegments);

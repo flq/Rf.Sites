@@ -5,6 +5,7 @@ using Rf.Sites.Domain.Frame;
 using Rf.Sites.Frame;
 using Rf.Sites.Models;
 using Rf.Sites.Models.Extender;
+using Rf.Sites.Queries;
 
 namespace Rf.Sites.Actions
 {
@@ -23,7 +24,7 @@ namespace Rf.Sites.Actions
     {
       if (args.Id == -1)
         return redirectTo<UnknownAction>();
-      var content = repository[args.Id];
+      var content = new SingleContentQuery(args.Id).Query(repository);
       return content != null
                ? createResult(Container.With(content).GetInstance<ContentViewModel>())
                : redirectTo<UnknownAction>();

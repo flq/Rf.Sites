@@ -138,6 +138,7 @@
     <Compile Include="Frame\HandlerUrlAttribute.cs" />
     <Compile Include="Frame\HttpHandlerDispatcher.cs" />
     <Compile Include="Frame\HttpHandlerRegistrar.cs" />
+    <Compile Include="Frame\IDbQuery.cs" />
     <Compile Include="Frame\IObjectConverter.cs" />
     <Compile Include="Frame\IResponseWriter.cs" />
     <Compile Include="Frame\Log4NetLogger.cs" />
@@ -168,6 +169,14 @@
     <Compile Include="Frame\IAction.cs" />
     <Compile Include="Frame\PeriodOfTimeOutput.cs" />
     <Compile Include="Frame\SiteRegistry.cs" />
+    <Compile Include="Queries\ContentInDescendingOrderQuery.cs" />
+    <Compile Include="Queries\ContentOfAMonthQuery.cs" />
+    <Compile Include="Queries\ContentOfATagQuery.cs" />
+    <Compile Include="Queries\ContentOfYearQuery.cs" />
+    <Compile Include="Queries\RecentCommentsQuery.cs" />
+    <Compile Include="Queries\SingleContentQuery.cs" />
+    <Compile Include="Queries\ValidDateTimesQuery.cs" />
+    <Compile Include="Queries\WeightedTagsQuery.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Frame\UrlToClassActionInvoker.cs" />
     <Compile Include="Frame\WebBasedCache.cs" />
