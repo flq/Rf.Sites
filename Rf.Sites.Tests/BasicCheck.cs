@@ -71,6 +71,7 @@ namespace Rf.Sites.Tests
         .For<Folders.Content>()
         .For<Folders.Tagcloud>()
         .For<Folders.Recent>()
+        .For<Folders.Future>()
         .For<Folders.Shared>().Exclude("Application")
         .FromAssembly(typeof (ActionDispatcher).Assembly);
             
@@ -95,6 +96,7 @@ namespace Rf.Sites.Tests
       public abstract class Tagcloud { }
       public abstract class Shared { }
       public abstract class Recent { }
+      public abstract class Future { }
     }
   }
 }

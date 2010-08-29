@@ -6,3 +6,5 @@
 ${Html.ActionLink<RecentCommentsAction>("Recent Comments", new LinkAttributes { { "rel", "box" } })}
 <br>
 ${Html.ActionLink<RecentContentAction>("Recent Content", new LinkAttributes { { "rel", "box" } })}
+<br>
+${Html.ActionLink<FutureIndexAction>("Future Content", new LinkAttributes { { "rel", "box" } })}

@@ -20,6 +20,7 @@ namespace Rf.Sites.Build
       var batch = new SparkBatchDescriptor()
         .For<Folders.Content>()
         .For<Folders.Tagcloud>()
+        .For<Folders.Future>()
         .For<Folders.Shared>().Exclude("Application")
         .FromAssemblyNamed("Rf.Sites");
       batch.OutputAssembly = args.OutputAssembly;
@@ -42,5 +43,6 @@ namespace Rf.Sites.Build
     public abstract class Recent { }
     public abstract class Tagcloud { }
     public abstract class Shared { }
+    public abstract class Future { }
   }
 }

@@ -97,6 +97,7 @@
     <Compile Include="Actions\CommentPost\CommentUpdatePreparer.cs" />
     <Compile Include="Actions\CommentPost\RunCommentThroughMarkdown.cs" />
     <Compile Include="Actions\CommentPost\RunCommentThroughMollom.cs" />
+    <Compile Include="Actions\FutureIndexAction.cs" />
     <Compile Include="Actions\Recent\CommentFragment.cs" />
     <Compile Include="Actions\Recent\CommentList.cs" />
     <Compile Include="Actions\Recent\RecentCommentsAction.cs" />
@@ -169,10 +170,12 @@
     <Compile Include="Frame\IAction.cs" />
     <Compile Include="Frame\PeriodOfTimeOutput.cs" />
     <Compile Include="Frame\SiteRegistry.cs" />
+    <Compile Include="Models\FutureContentViewModel.cs" />
     <Compile Include="Queries\ContentInDescendingOrderQuery.cs" />
     <Compile Include="Queries\ContentOfAMonthQuery.cs" />
     <Compile Include="Queries\ContentOfATagQuery.cs" />
     <Compile Include="Queries\ContentOfYearQuery.cs" />
+    <Compile Include="Queries\FutureContentQuery.cs" />
     <Compile Include="Queries\RecentCommentsQuery.cs" />
     <Compile Include="Queries\SingleContentQuery.cs" />
     <Compile Include="Queries\ValidDateTimesQuery.cs" />
@@ -239,6 +242,7 @@
     <Content Include="Scripts\jquery.js" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Views\Future\Index.spark" />
     <None Include="Views\Recent\Comments.spark" />
     <None Include="Views\Recent\Content.spark" />
     <None Include="Views\Shared\_Recent.spark" />
