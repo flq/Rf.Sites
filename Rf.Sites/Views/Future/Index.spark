@@ -4,6 +4,6 @@
 <viewdata model="System.Collections.Generic.IList[[FutureContentViewModel]]" />
 <ul>
   <li each="var c in Model">
-      ${c.Title} in ${c.WrittenFuturePublishDate}
+      "${c.Title}" (${c.WrittenFuturePublishDate})
   </li>
 </ul>
