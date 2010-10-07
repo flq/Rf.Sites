@@ -11,6 +11,7 @@ namespace Rf.Sites.Models
   {
     private readonly IObjectConverter<Comment, CommentVM> commentConverter;
     private readonly IObjectConverter<Attachment, AttachmentVM> attachmentConverter;
+    private bool commentingDisabled;
 
     public ContentViewModel(Content content, IVmExtender<ContentViewModel>[] extender)
       : this(content,extender,
@@ -59,7 +60,8 @@ namespace Rf.Sites.Models
     {
       get
       {
-        return Environment != null ? Environment.CommentingEnabled : true;
+        var isCommentingEnabledFromEnvironment = Environment != null ? Environment.CommentingEnabled : true;
+        return isCommentingEnabledFromEnvironment && !commentingDisabled;
       }
     }
 
@@ -70,6 +72,7 @@ namespace Rf.Sites.Models
       WrittenInTime = content.Created.ToString(Constants.CommonDateFormat);
       var o = new PeriodOfTimeOutput(content.Created, DateTime.Now).ToString();
       WrittenInPeriod = string.Format("{0}{1}", o, o == "today" ? "" : " ago");
+      commentingDisabled = content.CommentingDisabled;
       Body = content.Body;
       Keywords = content.MetaKeyWords;
       Tags = content.Tags != null ? content.Tags.Select(t => t.Name) : new string[] {};
