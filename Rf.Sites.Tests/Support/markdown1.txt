@@ -1,8 +1,0 @@
-﻿# Hello
-A paragraph
-
-    public static void Main() {
-      Console.WriteLine("hello");
-    }
-
-Another paragraph with a http://realfiction.net.

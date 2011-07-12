@@ -1,7 +1,6 @@
 obj
 bin
 out
-
 db data
 _ReSharper.*
 *.user
@@ -14,7 +13,8 @@ _ReSharper.*
 test.htm
 test2.htm
 test2_files
-WebRelease.config
+Web.Release.config
+*.nupkg
 rf.ico
 Rf.Sites/files/images/*.*
 Rf.Sites.Build.dll

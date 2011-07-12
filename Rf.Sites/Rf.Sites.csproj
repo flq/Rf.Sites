@@ -1,17 +1,18 @@
-﻿<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>
+    </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{72EC968F-1C03-4C03-A4FF-E7792E1127D7}</ProjectGuid>
-    <ProjectTypeGuids>{603c0e0b-db56-11dc-be95-000d561079b0};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <ProjectGuid>{4F72F520-FAC3-42E2-835C-B3C7C757EF48}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Rf.Sites</RootNamespace>
     <AssemblyName>Rf.Sites</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <MvcBuildViews>false</MvcBuildViews>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -26,262 +27,92 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\</OutputPath>
-    <DefineConstants>TRACE;COMPILEDVIEWS</DefineConstants>
+    <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CookComputing.XmlRpcV2, Version=2.4.0.0, Culture=neutral, PublicKeyToken=a7d6e17aa302004d, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\lib\CookComputing.XmlRpcV2.dll</HintPath>
+    <Reference Include="Bottles">
+      <HintPath>..\packages\Bottles.0.9.0.96\lib\Bottles.dll</HintPath>
     </Reference>
-    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\lib\log4net.dll</HintPath>
+    <Reference Include="FubuCore">
+      <HintPath>..\packages\FubuCore.0.9.1.32\lib\FubuCore.dll</HintPath>
     </Reference>
-    <Reference Include="MarkdownSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\lib\MarkdownSharp.dll</HintPath>
+    <Reference Include="FubuLocalization">
+      <HintPath>..\packages\FubuLocalization.0.9.1.32\lib\FubuLocalization.dll</HintPath>
     </Reference>
-    <Reference Include="NHibernate, Version=2.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\lib\NHibernate.dll</HintPath>
+    <Reference Include="FubuMVC.Core">
+      <HintPath>..\packages\FubuMVC.References.0.9.1.524\lib\FubuMVC.Core.dll</HintPath>
     </Reference>
-    <Reference Include="NHibernate.ByteCode.Castle, Version=2.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\lib\NHibernate.ByteCode.Castle.dll</HintPath>
+    <Reference Include="FubuMVC.Spark">
+      <HintPath>..\packages\FubuMVC.Spark.0.9.1.513\lib\FubuMVC.Spark.dll</HintPath>
     </Reference>
-    <Reference Include="NMollom, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\lib\NMollom.dll</HintPath>
+    <Reference Include="FubuMVC.StructureMap">
+      <HintPath>..\packages\FubuMVC.References.0.9.1.524\lib\FubuMVC.StructureMap.dll</HintPath>
     </Reference>
-    <Reference Include="Spark, Version=1.0.0.0, Culture=neutral, PublicKeyToken=7f8549eed921a12c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\lib\Spark.dll</HintPath>
+    <Reference Include="HtmlTags">
+      <HintPath>..\packages\HtmlTags.1.0.0.23\lib\4.0\HtmlTags.dll</HintPath>
     </Reference>
-    <Reference Include="Spark.Web.Mvc, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\lib\Spark.Web.Mvc.dll</HintPath>
+    <Reference Include="Ionic.Zip">
+      <HintPath>..\packages\DotNetZip.1.9\lib\Ionic.Zip.dll</HintPath>
     </Reference>
-    <Reference Include="StructureMap, Version=2.5.4.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\lib\StructureMap.dll</HintPath>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Core">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="System.ServiceModel.Web">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="System.Web.Mvc, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
+      <HintPath>..\packages\FubuMVC.0.9.1.524\lib\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
+    <Reference Include="Spark">
+      <HintPath>..\packages\Spark.1.6\lib\NET40\Spark.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap">
+      <HintPath>..\packages\structuremap.2.6.2\lib\StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="System.Web.Abstractions" />
-    <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Actions\Args\ChronicsPostArgs.cs" />
-    <Compile Include="Actions\Args\LinkAttributes.cs" />
-    <Compile Include="Actions\Args\MonthArgs.cs" />
-    <Compile Include="Actions\Args\NullArgs.cs" />
-    <Compile Include="Actions\Args\YearArgs.cs" />
-    <Compile Include="Actions\ChronicsIndexAction.cs" />
-    <Compile Include="Actions\CommentPost\CommentPostAction.cs" />
-    <Compile Include="Actions\CommentPost\CommentUpdatePreparer.cs" />
-    <Compile Include="Actions\CommentPost\RunCommentThroughMarkdown.cs" />
-    <Compile Include="Actions\CommentPost\RunCommentThroughMollom.cs" />
-    <Compile Include="Actions\FutureIndexAction.cs" />
-    <Compile Include="Actions\Recent\CommentFragment.cs" />
-    <Compile Include="Actions\Recent\CommentList.cs" />
-    <Compile Include="Actions\Recent\RecentCommentsAction.cs" />
-    <Compile Include="Actions\ContentIndexAction.cs" />
-    <Compile Include="Actions\ContentMonthAction.cs" />
-    <Compile Include="Actions\ContentYearAction.cs" />
-    <Compile Include="Actions\Recent\RecentContentAction.cs" />
-    <Compile Include="Actions\RssIndexAction.cs" />
-    <Compile Include="Actions\RssTagAction.cs" />
-    <Compile Include="Actions\TagCloud\TagcloudIndexAction.cs" />
-    <Compile Include="Actions\TagCloud\TagList.cs" />
-    <Compile Include="Actions\TagCloud\WeightedTag.cs" />
-    <Compile Include="Frame\AbstractFeed.cs" />
-    <Compile Include="Frame\AbstractPagedContent.cs" />
-    <Compile Include="Actions\Args\ActionArgs.cs" />
-    <Compile Include="Actions\Args\ArgsFrom.cs" />
-    <Compile Include="Actions\Args\IPageArgs.cs" />
-    <Compile Include="Actions\Args\PageArgs.cs" />
-    <Compile Include="Actions\Args\ValueArgs.cs" />
-    <Compile Include="Actions\Args\IArgToRoute.cs" />
-    <Compile Include="Actions\ContentEntryAction.cs" />
-    <Compile Include="Actions\ContentTagAction.cs" />
-    <Compile Include="Actions\HomeIndexAction.cs" />
-    <Compile Include="Actions\UnknownAction.cs" />
-    <Compile Include="Frame\ActionDispatcher.cs" />
-    <Compile Include="Frame\AbstractAction.cs" />
-    <Compile Include="Actions\Args\IDActionArgs.cs" />
-    <Compile Include="Frame\Constants.cs" />
-    <Compile Include="Frame\ContentToFeedResponse.cs" />
-    <Compile Include="Frame\ControllerFactory.cs" />
-    <Compile Include="Default.aspx.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Frame\CustomActionResult.cs" />
-    <Compile Include="Frame\DrupalUrlMap.cs" />
-    <Compile Include="Frame\Environment.cs" />
-    <Compile Include="Frame\EnvironmentConfigurationSection.cs" />
-    <Compile Include="Frame\HandlerUrlAttribute.cs" />
-    <Compile Include="Frame\HttpHandlerDispatcher.cs" />
-    <Compile Include="Frame\HttpHandlerRegistrar.cs" />
-    <Compile Include="Frame\IDbQuery.cs" />
-    <Compile Include="Frame\IObjectConverter.cs" />
-    <Compile Include="Frame\IResponseWriter.cs" />
-    <Compile Include="Frame\Log4NetLogger.cs" />
-    <Compile Include="Frame\OrderAttribute.cs" />
-    <Compile Include="Handlers\404Handler.cs" />
-    <Compile Include="Handlers\AbstractHandler.cs" />
-    <Compile Include="Handlers\IHttpContext.cs" />
-    <Compile Include="Handlers\SiteMapHandler.cs" />
-    <Compile Include="Handlers\WebHttpContext.cs" />
-    <Compile Include="MetaWebLogApi\ContentToPostConverter.cs" />
-    <Compile Include="MetaWebLogApi\IMediaStorage.cs" />
-    <Compile Include="MetaWebLogApi\IMetaWeblog.cs" />
-    <Compile Include="MetaWebLogApi\MediaStorage.cs" />
-    <Compile Include="MetaWebLogApi\MetaWeblog.cs" />
-    <Compile Include="MetaWebLogApi\PostToContentConverter.cs" />
-    <Compile Include="MetaWebLogApi\Structs.cs" />
-    <Compile Include="Models\AttachmentVM.cs" />
-    <Compile Include="Models\ChronicsNode.cs" />
-    <Compile Include="Models\ChronicsTree.cs" />
-    <Compile Include="Models\CommentVM.cs" />
-    <Compile Include="Models\Extender\AttachmentPathModifier.cs" />
-    <Compile Include="Models\Extender\AttachmentToVMConverter.cs" />
-    <Compile Include="Actions\CommentPost\AttributeCommentToSiteMaster.cs" />
-    <Compile Include="Models\Extender\BuildChronicsNodeText.cs" />
-    <Compile Include="Models\Extender\CodeBracketReparer.cs" />
-    <Compile Include="Models\Extender\CodeHighlightExtension.cs" />
-    <Compile Include="Frame\FrameUtilities.cs" />
-    <Compile Include="Frame\IAction.cs" />
-    <Compile Include="Frame\PeriodOfTimeOutput.cs" />
-    <Compile Include="Frame\SiteRegistry.cs" />
-    <Compile Include="Models\FutureContentViewModel.cs" />
-    <Compile Include="Queries\ContentInDescendingOrderQuery.cs" />
-    <Compile Include="Queries\ContentOfAMonthQuery.cs" />
-    <Compile Include="Queries\ContentOfATagQuery.cs" />
-    <Compile Include="Queries\ContentOfYearQuery.cs" />
-    <Compile Include="Queries\FutureContentQuery.cs" />
-    <Compile Include="Queries\RecentCommentsQuery.cs" />
-    <Compile Include="Queries\SingleContentQuery.cs" />
-    <Compile Include="Queries\ValidDateTimesQuery.cs" />
-    <Compile Include="Queries\WeightedTagsQuery.cs" />
-    <Compile Include="Startup.cs" />
-    <Compile Include="Frame\UrlToClassActionInvoker.cs" />
-    <Compile Include="Frame\WebBasedCache.cs" />
+    <Content Include="fubu-content\FubuMVC.GettingStarted.dll" />
+    <Content Include="Global.asax" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Bootstrapping\Bootstrapper.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\ContentFragments.cs" />
-    <Compile Include="Models\ContentViewModel.cs" />
-    <Compile Include="Frame\IVMExtender.cs" />
-    <Compile Include="Models\ContentFragmentViewModel.cs" />
-    <Compile Include="Models\Extender\CommentFromSiteMasterExtension.cs" />
-    <Compile Include="Models\Extender\CommentToVMConverter.cs" />
-    <Compile Include="Models\PageInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Default.aspx" />
-    <Content Include="files\images\facebox\b.png" />
-    <Content Include="files\images\facebox\bl.png" />
-    <Content Include="files\images\facebox\br.png" />
-    <Content Include="files\images\facebox\closelabel.gif" />
-    <Content Include="files\images\facebox\loading.gif" />
-    <Content Include="files\images\facebox\tl.png" />
-    <Content Include="files\images\facebox\tr.png" />
-    <Content Include="files\images\info.png" />
-    <Content Include="files\images\treeview\file.gif" />
-    <Content Include="files\images\treeview\folder-closed.gif" />
-    <Content Include="files\images\treeview\folder.gif" />
-    <Content Include="files\images\treeview\minus.gif" />
-    <Content Include="files\images\treeview\plus.gif" />
-    <Content Include="files\images\treeview\treeview-black-line.gif" />
-    <Content Include="files\images\treeview\treeview-black.gif" />
-    <Content Include="files\images\treeview\treeview-default-line.gif" />
-    <Content Include="files\images\treeview\treeview-default.gif" />
-    <Content Include="files\images\treeview\treeview-famfamfam-line.gif" />
-    <Content Include="files\images\treeview\treeview-famfamfam.gif" />
-    <Content Include="files\images\treeview\treeview-gray-line.gif" />
-    <Content Include="files\images\treeview\treeview-gray.gif" />
-    <Content Include="files\images\treeview\treeview-red-line.gif" />
-    <Content Include="files\images\treeview\treeview-red.gif" />
-    <Content Include="files\jquery.facebox.css" />
-    <Content Include="files\jquery.tooltip.css" />
-    <Content Include="files\jquery.treeview.css" />
-    <Content Include="files\rf.ico" />
-    <Content Include="Scripts\jquery.tooltip.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\rf.site.js" />
-    <Content Include="files\sh_golden.css" />
-    <Content Include="files\site.css" />
-    <Content Include="Global.asax" />
-    <Content Include="Scripts\jquery.cookie.js" />
-    <Content Include="Scripts\jquery.facebox.js" />
-    <Content Include="Scripts\jquery.treeview.async.js" />
-    <Content Include="Scripts\jquery.treeview.js" />
-    <Content Include="Scripts\shBrushCSharp.js" />
-    <Content Include="Scripts\shBrushXml.js" />
-    <Content Include="Scripts\shCore.js" />
-    <Content Include="Web.config">
-    </Content>
-    <Content Include="Scripts\jquery.js" />
+    <Content Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Views\Future\Index.spark" />
-    <None Include="Views\Recent\Comments.spark" />
-    <None Include="Views\Recent\Content.spark" />
-    <None Include="Views\Shared\_Recent.spark" />
-    <None Include="Views\Shared\_Analytics.spark" />
-    <None Include="WebRelease.config" />
-    <None Include="Views\Content\_CommentPost.spark" />
-    <None Include="Views\Content\_Attachment.spark" />
-    <None Include="Views\Content\_Comment.spark" />
-    <None Include="Views\Shared\ContentList.spark" />
-    <None Include="Views\Content\Entry.spark" />
-    <None Include="Views\Home\Index.spark" />
-    <None Include="Views\Shared\Application.spark" />
-    <None Include="Views\Shared\404.spark" />
-    <None Include="Views\Shared\_Archive.spark" />
-    <None Include="Views\Shared\_Tags.spark" />
-    <None Include="Views\Tagcloud\Index.spark" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Rf.Sites.Domain\Rf.Sites.Domain.csproj">
-      <Project>{650F3F70-DF4D-49EB-8EAB-552060A1D641}</Project>
-      <Name>Rf.Sites.Domain</Name>
-    </ProjectReference>
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target> -->
-  <Target Name="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
-    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(ProjectDir)\..\$(ProjectName)" />
-  </Target>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <ProjectExtensions>
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>54699</DevelopmentServerPort>
+          <DevelopmentServerPort>61429</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>
@@ -294,4 +125,11 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
 </Project>

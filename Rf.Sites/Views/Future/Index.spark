@@ -1,9 +1,0 @@
-﻿<use namespace="Rf.Sites.Frame" />
-<use namespace="Rf.Sites.Actions" />
-<use namespace="Rf.Sites.Models" />
-<viewdata model="System.Collections.Generic.IList[[FutureContentViewModel]]" />
-<ul>
-  <li each="var c in Model">
-      "${c.Title}" (${c.WrittenFuturePublishDate})
-  </li>
-</ul>

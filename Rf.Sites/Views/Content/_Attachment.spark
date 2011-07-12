@@ -1,3 +1,0 @@
-<p class="attachment">
-  <a href="${attachment.Path}">${a.Name}</a> (${attachment.Size} ${attachment.SizeDimension})
-</p>

@@ -1,26 +1,19 @@
 ﻿using System;
-using System.Web;
-using log4net.Config;
-using Rf.Sites.Frame;
+using System.Web.Routing;
+using FubuMVC.Core;
+using FubuMVC.StructureMap;
+using Rf.Sites.Bootstrapping;
 using StructureMap;
 
 namespace Rf.Sites
 {
-
-  public class MvcApplication : HttpApplication
-  {
-    static MvcApplication()
+    public class Global : System.Web.HttpApplication
     {
-      XmlConfigurator.Configure();
-
-      ObjectFactory.Initialize(i => i.AddRegistry<SiteRegistry>());
-      ObjectFactory.GetInstance<Startup>();
+        protected void Application_Start(object sender, EventArgs e)
+        {
+            FubuApplication.For<Bootstrapper>()
+                .StructureMap(new Container())
+                .Bootstrap(RouteTable.Routes);
+        }
     }
-
-    protected void Application_Start()
-    {
-      //ObjectFactory.Initialize(i => i.AddRegistry<SiteRegistry>());
-      //ObjectFactory.GetInstance<Startup>();
-    }
-  }
 }
