@@ -34,8 +34,6 @@ namespace Rf.Sites.Entities
     public virtual int CommentCount { get; private set; }
     public virtual int AttachmentCount { get; private set; }
 
-    public virtual IList<Comment> Comments { get; private set; }
-
     public virtual IList<Tag> Tags { get; private set; }
 
     public virtual IList<Attachment> Attachments { get; private set; }
@@ -52,12 +50,6 @@ namespace Rf.Sites.Entities
         throw new ArgumentNullException("body");
       Body = body;
       Teaser = new TagRemover(200).Process(Body);
-    }
-
-    public virtual void AddComment(Comment comment)
-    {
-      (Comments ?? (Comments = new List<Comment>())).Add(comment);
-      CommentCount++;
     }
 
     public virtual void AddAttachment(Attachment attachment)

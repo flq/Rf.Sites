@@ -12,7 +12,12 @@ namespace Rf.Sites
         protected void Application_Start(object sender, EventArgs e)
         {
             FubuApplication.For<Bootstrapper>()
-                .StructureMap(new Container())
+                .StructureMapObjectFactory(
+                    ix => ix.Scan(s =>
+                                      {
+                                          s.AssemblyContainingType<Global>();
+                                          s.LookForRegistries();
+                                      }))
                 .Bootstrap(RouteTable.Routes);
         }
     }
