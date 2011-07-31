@@ -120,9 +120,12 @@
     <Compile Include="Entities\Content.cs" />
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="Entities\Tag.cs" />
+    <Compile Include="Frame\ICache.cs" />
     <Compile Include="Frame\IRepository.cs" />
     <Compile Include="Frame\IValidator.cs" />
     <Compile Include="Frame\NHBasedValidator.cs" />
+    <Compile Include="Frame\NullCache.cs" />
+    <Compile Include="Frame\Paginator.cs" />
     <Compile Include="Frame\Repository.cs" />
     <Compile Include="Frame\SessionFactoryMaker.cs" />
     <Compile Include="Frame\TagRemover.cs" />

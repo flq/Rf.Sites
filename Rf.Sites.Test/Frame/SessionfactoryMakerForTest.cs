@@ -11,7 +11,7 @@ namespace Rf.Sites.Test.Frame
 {
     public class SessionfactoryMakerForTest : SessionFactoryMaker
     {
-        protected override IPersistenceConfigurer dbConfig()
+        protected override IPersistenceConfigurer DbConfig()
         {
             return SQLiteConfiguration.Standard
               .Dialect(typeof(SQLiteDialect).AssemblyQualifiedName)
@@ -20,14 +20,14 @@ namespace Rf.Sites.Test.Frame
               .Raw(Environment.ReleaseConnections, "on_close");
         }
 
-        protected override void additionalModelConfig(AutoPersistenceModel model)
+        protected override void AdditionalModelConfig(AutoPersistenceModel model)
         {
             //No specials in testing
         }
 
-        protected override void inspectConfig(Configuration cfg)
+        protected override void InspectConfig(Configuration cfg)
         {
-            base.inspectConfig(cfg);
+            base.InspectConfig(cfg);
             cfg.SetProperty("show_sql", "true");
         }
 
