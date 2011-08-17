@@ -2,6 +2,7 @@
 using NHibernate;
 using Rf.Sites.Entities;
 using Rf.Sites.Frame;
+using Rf.Sites.Frame.Persistence;
 
 namespace Rf.Sites.Test.Frame
 {

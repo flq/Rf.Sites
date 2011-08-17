@@ -1,8 +1,8 @@
-using NHibernate;
+﻿using NHibernate;
 using NHibernate.Context;
 using StructureMap;
 
-namespace Rf.Sites.Frame
+namespace Rf.Sites.Frame.Persistence
 {
   public class WebNhSessionContext : ICurrentSessionContext
   {

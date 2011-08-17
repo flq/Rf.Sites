@@ -1,0 +1,34 @@
+<global type='string' Title='"putting the f-word into reality"' />
+<global type='string' Keywords='"realfiction,Frank Quednau"' />
+<html>
+  <head>
+    <meta name="copyright" content="All content hosted by this site is written by F Quednau. Reproduction only under consent" />
+    <meta name="keywords" content="${Keywords}" />
+    <title>realfiction - ${Title}</title>    
+    <link rel="shortcut icon" href="/files/rf.ico" type="image/x-icon" />
+    <link rel="alternate" type="application/rss+xml" title="realfiction RSS" href="/rss" />
+    <link type="text/css" rel="stylesheet" media="all" href="/files/site.css" />
+    <link type="text/css" rel="stylesheet" media="all" href="/files/SyntaxHighlighter.css" />
+    <script type="text/javascript" src="/Scripts/jquery.js"></script>
+    <script type="text/javascript" src="/Scripts/rf.site.js"></script>
+    
+    <use content="head" />
+  </head>
+  <body>
+    <div id="header">
+      <h1>realfiction</h1>
+      <p>Explore the intersections of fiction and reality. Question them. Leave them behind.</p>
+    </div>
+    
+    <div id="nav">
+     
+    </div>
+    
+    <div class="page">
+      <use content="view"/>
+    </div>
+     
+    <div id="footer"><p>&copy; ${System.DateTime.Now.Year} realfiction</p></div>
+    <Analytics />    
+  </body>
+</html>

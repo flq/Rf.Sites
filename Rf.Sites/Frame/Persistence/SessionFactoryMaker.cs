@@ -1,6 +1,8 @@
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.IO;
+using System.Linq;
 using FluentNHibernate.Automapping;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
@@ -10,11 +12,10 @@ using NHibernate.Tool.hbm2ddl;
 using NHibernate.Validator.Cfg;
 using NHibernate.Validator.Engine;
 using Rf.Sites.Entities;
+using AllDefinitions = NHibernate.Validator.Cfg.Loquacious.AllDefinitions;
 using FluentConfiguration = NHibernate.Validator.Cfg.Loquacious.FluentConfiguration;
-using System.Linq;
-using NHibernate.Validator.Cfg.Loquacious;
 
-namespace Rf.Sites.Frame
+namespace Rf.Sites.Frame.Persistence
 {
     public class SessionFactoryMaker
     {
@@ -86,8 +87,7 @@ namespace Rf.Sites.Frame
         {
             var valCfg = new FluentConfiguration();
             valCfg.Register(
-                typeof(Content).Assembly.GetTypes().Where(t => t.BaseType == typeof(Entity))
-                .ValidationDefinitions())
+                AllDefinitions.ValidationDefinitions((IEnumerable<Type>) typeof(Content).Assembly.GetTypes().Where(t => t.BaseType == typeof(Entity))))
                 .SetDefaultValidatorMode(ValidatorMode.UseAttribute);
 
             _engine = new ValidatorEngine();

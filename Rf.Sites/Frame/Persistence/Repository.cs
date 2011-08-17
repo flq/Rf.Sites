@@ -1,14 +1,14 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using NHibernate;
 using NHibernate.Criterion;
+using NHibernate.Linq;
 using Rf.Sites.Entities;
 using Expression = System.Linq.Expressions.Expression;
-using NHibernate.Linq;
 
-namespace Rf.Sites.Frame
+namespace Rf.Sites.Frame.Persistence
 {
     /// <summary>
     /// Let's take Fabio's statement by heart and make our repository queryable and a collection

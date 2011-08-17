@@ -70,6 +70,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Using_AttachmentVM.cs" />
+    <Compile Include="When_PeriodOfTimeOutput.cs" />
     <Compile Include="When_persisting_content.cs" />
     <Compile Include="Frame\DbTestContext.cs" />
     <Compile Include="Frame\EntityMaker.cs" />

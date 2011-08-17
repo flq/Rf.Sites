@@ -1,0 +1,33 @@
+﻿<viewdata model="Rf.Sites.Models.ContentFragments" />
+<use namespace="System.Linq" />
+<use namespace="Rf.Sites.Frame" />
+<use namespace="Rf.Sites.Actions" />
+<use namespace="Rf.Sites.Actions.Args" />
+<set Title='Model.Title'/>
+
+<for each="var f in Model">
+  <div class="content">
+	<div class="content_header">
+		<h2>${f.Title}</h2>
+		<p>${f.WrittenInTime} UTC</p>
+	</div>
+	<div class="content_body">
+		${f.Teaser}...${Html.ActionLink<ContentEntryAction>("read more", ArgsFrom.Id(f.Id))}
+	</div>
+  </div>
+</for>
+
+<div class="page_selector" if="Model.PageCount > 1">
+	<for each="var page in Model.Pages()">
+	  <test if="!page.IsCurrent">
+	    ${Model.ProduceLinkToAPage(Html, page)}
+	  </test>
+	  <else>
+	    <span>${page.Number}</span>
+	  </else>
+	</for>
+</div>
+
+
+
+

@@ -1,6 +1,7 @@
 using NHibernate;
 using NHibernate.Validator.Engine;
 using Rf.Sites.Frame;
+using Rf.Sites.Frame.Persistence;
 using StructureMap.Configuration.DSL;
 using IValidator = Rf.Sites.Frame.IValidator;
 

@@ -6,6 +6,7 @@ using NHibernate.Context;
 using NHibernate.Dialect;
 using NHibernate.Driver;
 using Rf.Sites.Frame;
+using Rf.Sites.Frame.Persistence;
 
 namespace Rf.Sites.Test.Frame
 {

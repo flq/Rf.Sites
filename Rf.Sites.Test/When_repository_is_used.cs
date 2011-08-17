@@ -3,7 +3,7 @@ using System.Linq;
 using FluentAssertions;
 using NUnit.Framework;
 using Rf.Sites.Entities;
-using Rf.Sites.Frame;
+using Rf.Sites.Frame.Persistence;
 using Rf.Sites.Test.Frame;
 
 namespace Rf.Sites.Test

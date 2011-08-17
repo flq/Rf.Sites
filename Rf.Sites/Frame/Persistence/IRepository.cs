@@ -1,10 +1,10 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using NHibernate.Criterion;
 using Rf.Sites.Entities;
 
-namespace Rf.Sites.Frame
+namespace Rf.Sites.Frame.Persistence
 {
   public interface IRepository<T> : ICollection<T>, IQueryable<T>
     where T : Entity
