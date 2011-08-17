@@ -4,20 +4,20 @@ using System.Linq;
 
 namespace Rf.Sites.Features
 {
-    public class ContentContinuation<Model,ViewModel> where Model : class where ViewModel : class
+    public class ContentContinuation<M,ViewModel> where M : class where ViewModel : class
     {
-        private readonly Model _model;
+        private readonly M _model;
         private object _noContentInputModel = new InputModel404("This resource is not available");
-        private readonly List<dynamic> _conditionalTransfers = new List<dynamic>();
+        private readonly List<dynamic> _transfersDueToModelCondition = new List<dynamic>();
 
-        public ContentContinuation(Model model)
+        public ContentContinuation(M model)
         {
             _model = model;
         }
 
-        public ContentContinuation<Model,ViewModel> ConditionalTransferWhen(Func<Model,bool> predicate, object newInputModel)
+        public ContentContinuation<M,ViewModel> ConditionalTransferWhen(Func<M,bool> predicate, object newInputModel)
         {
-            _conditionalTransfers.Add(new { Predicate = predicate, NewModel = newInputModel });
+            _transfersDueToModelCondition.Add(new { Predicate = predicate, NewModel = newInputModel });
             return this;
         }
 
@@ -30,12 +30,17 @@ namespace Rf.Sites.Features
         {
             get
             {
-                return _model == null
+                return Model == null
                            ? _noContentInputModel
-                           : _conditionalTransfers.FirstOrDefault(@if => @if.Predicate(_model)).NewModel;
+                           : _transfersDueToModelCondition.FirstOrDefault(@if => @if.Predicate(Model)).NewModel;
             }
         }
 
-        public bool TransferRequired { get { return _model != null && _conditionalTransfers.Any(@if => @if.Predicate(_model)); } }
+        public bool TransferRequired { get { return Model != null && _transfersDueToModelCondition.Any(@if => @if.Predicate(Model)); } }
+
+        public M Model
+        {
+            get { return _model; }
+        }
     }
 } 

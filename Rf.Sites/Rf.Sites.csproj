@@ -115,7 +115,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrapping\Bootstrapper.cs" />
+    <Compile Include="Bootstrapping\ContentContinuationBehavior.cs" />
     <Compile Include="Bootstrapping\DataAccessRegistry.cs" />
+    <Compile Include="Bootstrapping\HandleContentContinuation.cs" />
     <Compile Include="Entities\Attachment.cs" />
     <Compile Include="Entities\Content.cs" />
     <Compile Include="Entities\Entity.cs" />
