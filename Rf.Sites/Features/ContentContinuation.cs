@@ -36,7 +36,7 @@ namespace Rf.Sites.Features
             }
         }
 
-        public bool TransferRequired { get { return Model != null && _transfersDueToModelCondition.Any(@if => @if.Predicate(Model)); } }
+        public bool TransferRequired { get { return Model == null || _transfersDueToModelCondition.Any(@if => @if.Predicate(Model)); } }
 
         public M Model
         {

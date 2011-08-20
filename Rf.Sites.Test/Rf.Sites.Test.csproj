@@ -70,7 +70,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataScenarios\SomeContent.cs" />
+    <Compile Include="Frame\IDataScenario.cs" />
+    <Compile Include="Frame\InMemoryRepository.cs" />
     <Compile Include="Using_AttachmentVM.cs" />
+    <Compile Include="In_memory_repository_context.cs" />
+    <Compile Include="Using_single_content.cs" />
     <Compile Include="When_PeriodOfTimeOutput.cs" />
     <Compile Include="When_persisting_content.cs" />
     <Compile Include="Frame\DbTestContext.cs" />

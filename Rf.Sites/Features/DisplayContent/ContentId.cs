@@ -11,5 +11,10 @@ namespace Rf.Sites.Features.DisplayContent
         {
             return cId.Id;
         }
+
+        public static implicit operator ContentId(int id)
+        {
+            return new ContentId { Id = id };
+        }
     }
 }
