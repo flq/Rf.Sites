@@ -2,8 +2,8 @@ using Moq;
 using NUnit.Framework;
 using System.Linq;
 using Rf.Sites.Entities;
-using Rf.Sites.Frame;
 using Rf.Sites.Frame.Persistence;
+using Rf.Sites.Frame.SiteInfrastructure;
 using Rf.Sites.Test.Frame;
 using FluentAssertions;
 

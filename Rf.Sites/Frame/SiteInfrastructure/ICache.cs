@@ -1,4 +1,4 @@
-namespace Rf.Sites.Frame
+﻿namespace Rf.Sites.Frame.SiteInfrastructure
 {
   public interface ICache
   {

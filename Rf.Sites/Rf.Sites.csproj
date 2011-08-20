@@ -115,31 +115,37 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrapping\Bootstrapper.cs" />
-    <Compile Include="Bootstrapping\ContentContinuationBehavior.cs" />
+    <Compile Include="Bootstrapping\ConfigurationRegistry.cs" />
     <Compile Include="Bootstrapping\DataAccessRegistry.cs" />
     <Compile Include="Bootstrapping\HandleContentContinuation.cs" />
+    <Compile Include="Bootstrapping\MainRegistry.cs" />
     <Compile Include="Entities\Attachment.cs" />
     <Compile Include="Entities\Content.cs" />
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="Entities\Tag.cs" />
     <Compile Include="Features\ContentContinuation.cs" />
+    <Compile Include="Features\DisplayContent\AttachmentConverter.cs" />
     <Compile Include="Features\DisplayContent\AttachmentVM.cs" />
     <Compile Include="Features\DisplayContent\ContentId.cs" />
     <Compile Include="Features\DisplayContent\ContentVM.cs" />
     <Compile Include="Features\DisplayContent\SingleContent.cs" />
     <Compile Include="Features\InputModel404.cs" />
     <Compile Include="Frame\Constants.cs" />
-    <Compile Include="Frame\ICache.cs" />
     <Compile Include="Frame\IObjectConverter.cs" />
     <Compile Include="Frame\IValidator.cs" />
+    <Compile Include="Frame\MediaSettings.cs" />
     <Compile Include="Frame\NHBasedValidator.cs" />
-    <Compile Include="Frame\NullCache.cs" />
-    <Compile Include="Frame\Paginator.cs" />
     <Compile Include="Frame\PeriodOfTimeOutput.cs" />
     <Compile Include="Frame\Persistence\IRepository.cs" />
     <Compile Include="Frame\Persistence\Repository.cs" />
     <Compile Include="Frame\Persistence\SessionFactoryMaker.cs" />
     <Compile Include="Frame\Persistence\WebNHSessionContext.cs" />
+    <Compile Include="Frame\SiteInfrastructure\AutoRouteInput.cs" />
+    <Compile Include="Frame\SiteInfrastructure\ContentContinuationBehavior.cs" />
+    <Compile Include="Frame\SiteInfrastructure\HasActionsAttribute.cs" />
+    <Compile Include="Frame\SiteInfrastructure\ICache.cs" />
+    <Compile Include="Frame\SiteInfrastructure\NullCache.cs" />
+    <Compile Include="Frame\SiteInfrastructure\Paginator.cs" />
     <Compile Include="Frame\TagRemover.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

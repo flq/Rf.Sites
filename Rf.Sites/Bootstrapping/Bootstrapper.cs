@@ -1,6 +1,9 @@
 using System;
 using FubuMVC.Core;
 using Rf.Sites.Features;
+using FubuCore.Reflection;
+using Rf.Sites.Frame;
+using Rf.Sites.Frame.SiteInfrastructure;
 
 namespace Rf.Sites.Bootstrapping
 {
@@ -11,14 +14,13 @@ namespace Rf.Sites.Bootstrapping
             // This line turns on the basic diagnostics and request tracing
             IncludeDiagnostics(true);
 
-            // All public methods from concrete classes ending in "Controller"
-            // in this assembly are assumed to be action methods
-            Actions.IncludeClassesSuffixedWithController();
+            Actions.IncludeTypes(t => t.HasAttribute<HasActionsAttribute>());
 
             Policies.Add<HandleContentContinuation>();
 
             Routes
                 .IgnoreControllerNamespaceEntirely()
+                .ModifyRouteDefinitions(AutoRouteInput.Filter, AutoRouteInput.Modification)
                 .RootAtAssemblyNamespace();
 
             // Match views to action methods by matching

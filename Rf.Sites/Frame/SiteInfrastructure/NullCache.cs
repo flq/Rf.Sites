@@ -1,6 +1,6 @@
-using System;
+﻿using System;
 
-namespace Rf.Sites.Frame
+namespace Rf.Sites.Frame.SiteInfrastructure
 {
   public class NullCache : ICache
   {

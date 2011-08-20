@@ -1,8 +1,8 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Rf.Sites.Frame
+namespace Rf.Sites.Frame.SiteInfrastructure
 {
   /// <summary>
   /// Factory for Paginators.
