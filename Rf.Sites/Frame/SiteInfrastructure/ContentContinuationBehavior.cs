@@ -28,7 +28,7 @@ namespace Rf.Sites.Frame.SiteInfrastructure
                 _container.With(output.Model).GetInstance<VM>();
 
             _request.Clear(output.GetType());
-            _request.Set(FubuContinuation.RedirectTo(destination));
+            _request.Set(FubuContinuation.TransferTo(destination));
         }
     }
 }
