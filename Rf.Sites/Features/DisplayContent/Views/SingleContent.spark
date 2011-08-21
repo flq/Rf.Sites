@@ -1,0 +1,24 @@
+<viewdata model="Rf.Sites.Features.DisplayContent.ContentVM" />
+<set Title='Model.Title'/>
+<set Keywords='Model.Keywords'/>
+
+
+<div class="content">
+	<div class="content_header">
+		<h1>${Title}</h1>
+		<p>${Model.WrittenInTime} (${Model.WrittenInPeriod})</p>
+		<p>TODO: Tags</p>
+	</div>
+
+	<div class="content_body">
+	${Model.Body}
+	</div>
+
+  <div class="content_attachments" if="Model.AttachmentCount > 0">
+    <h2>Attachments</h2>
+    <for each="var a in Model.Attachments">
+      <Attachment attachment="a" />
+    </for>
+  </div>
+	
+</div>

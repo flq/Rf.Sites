@@ -7,7 +7,7 @@ namespace Rf.Sites.Features
     public class ContentContinuation<M,ViewModel> where M : class where ViewModel : class
     {
         private readonly M _model;
-        private object _noContentInputModel = new InputModel404("This resource is not available");
+        private readonly object _noContentInputModel = new InputModel404("This resource is not available");
         private readonly List<dynamic> _transfersDueToModelCondition = new List<dynamic>();
 
         public ContentContinuation(M model)
@@ -15,24 +15,18 @@ namespace Rf.Sites.Features
             _model = model;
         }
 
-        public ContentContinuation<M,ViewModel> ConditionalTransferWhen(Func<M,bool> predicate, object newInputModel)
+        public ContentContinuation<M,ViewModel> ConditionalTransfer(Func<M,bool> predicate, Func<M,object> newInputModel)
         {
             _transfersDueToModelCondition.Add(new { Predicate = predicate, NewModel = newInputModel });
             return this;
         }
 
-        public void OverrideDefaultNoContentBehavior(object inputModel)
-        {
-            _noContentInputModel = inputModel;
-        }
 
         public object TransferInputModel
         {
             get
             {
-                return Model == null
-                           ? _noContentInputModel
-                           : _transfersDueToModelCondition.FirstOrDefault(@if => @if.Predicate(Model)).NewModel;
+                return _transfersDueToModelCondition.FirstOrDefault(@if => @if.Predicate(Model)).NewModel(Model) ?? _noContentInputModel; 
             }
         }
 

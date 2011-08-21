@@ -11,13 +11,17 @@ namespace Rf.Sites.Frame.SiteInfrastructure
         private readonly IFubuRequest _request;
         
         private readonly IContainer _container;
+        private readonly IPartialFactory _factory;
 
-        public ContentContinuationBehavior(IFubuRequest request, IContainer container)
+        public ContentContinuationBehavior(IFubuRequest request, IContainer container, IPartialFactory factory)
             : base(PartialBehavior.Executes)
         {
             _request = request;
             _container = container;
+            _factory = factory;
         }
+
+
 
         protected override void afterInsideBehavior()
         {
@@ -28,7 +32,10 @@ namespace Rf.Sites.Frame.SiteInfrastructure
                 _container.With(output.Model).GetInstance<VM>();
 
             _request.Clear(output.GetType());
-            _request.Set(FubuContinuation.TransferTo(destination));
+
+            _request.SetObject(destination);
+            var partial = _factory.BuildPartial(destination.GetType());
+            partial.InvokePartial();
         }
     }
 }

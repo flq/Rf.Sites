@@ -1,8 +1,6 @@
-using System;
 using FubuMVC.Core;
-using Rf.Sites.Features;
+using FubuMVC.Spark;
 using FubuCore.Reflection;
-using Rf.Sites.Frame;
 using Rf.Sites.Frame.SiteInfrastructure;
 
 namespace Rf.Sites.Bootstrapping
@@ -18,6 +16,8 @@ namespace Rf.Sites.Bootstrapping
 
             Policies.Add<HandleContentContinuation>();
 
+            this.UseSpark();
+
             Routes
                 .IgnoreControllerNamespaceEntirely()
                 .ModifyRouteDefinitions(AutoRouteInput.Filter, AutoRouteInput.Modification)
@@ -25,7 +25,7 @@ namespace Rf.Sites.Bootstrapping
 
             // Match views to action methods by matching
             // on model type, view name, and namespace
-            Views.TryToAttachWithDefaultConventions();
+            Views.TryToAttach(ve => ve.by_ViewModel());
         }
     }
 }

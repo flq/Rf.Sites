@@ -16,6 +16,7 @@ namespace Rf.Sites.Bootstrapping
                              let types = new { ContentType = o.GetGenericArguments()[0], WrapperType = o.GetGenericArguments()[1] }
                              let behavior = typeof(ContentContinuationBehavior<,>).MakeGenericType(types.ContentType, types.WrapperType)
                              select new { Call = a, Behavior = behavior };
+
             foreach (var action in activities)
             {
                 action.Call.AddAfter(new Wrapper(action.Behavior));

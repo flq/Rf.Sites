@@ -35,5 +35,15 @@ namespace Rf.Sites.Test
         }
 
 
+        [Test]
+        public void future_content_is_transferred_to_new_model()
+        {
+            ApplyData<SomeFutureContent>();
+            var next = _sc.GetContent(1);
+            next.TransferRequired.Should().BeTrue();
+            next.TransferInputModel.Should().BeAssignableTo<NotYetPublishedVM>();
+        }
+
+
     }
 }

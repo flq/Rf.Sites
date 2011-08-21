@@ -7,6 +7,11 @@ namespace Rf.Sites.Features.DisplayContent
         [RouteInput]
         public int Id { get; set; }
 
+        public override string ToString()
+        {
+            return Id.ToString();
+        }
+
         public static implicit operator int(ContentId cId)
         {
             return cId.Id;

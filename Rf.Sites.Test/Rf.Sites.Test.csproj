@@ -40,6 +40,12 @@
     <Reference Include="FluentNHibernate">
       <HintPath>..\packages\FluentNHibernate.1.2.0.712\lib\FluentNHibernate.dll</HintPath>
     </Reference>
+    <Reference Include="Google.GData.Analytics">
+      <HintPath>..\lib\Google.GData.Analytics.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.GData.Client">
+      <HintPath>..\lib\Google.GData.Client.dll</HintPath>
+    </Reference>
     <Reference Include="Iesi.Collections">
       <HintPath>..\packages\Iesi.Collections.3.1.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
     </Reference>
@@ -73,6 +79,7 @@
     <Compile Include="DataScenarios\SomeContent.cs" />
     <Compile Include="Frame\IDataScenario.cs" />
     <Compile Include="Frame\InMemoryRepository.cs" />
+    <Compile Include="ForbiddenTests.cs" />
     <Compile Include="Using_AttachmentVM.cs" />
     <Compile Include="In_memory_repository_context.cs" />
     <Compile Include="Using_single_content.cs" />

@@ -10,7 +10,16 @@ namespace Rf.Sites.Test.DataScenarios
         public void Accept(IRepository<Content> repository)
         {
             var em = new EntityMaker();
-            repository.Add(em.CreateContent(1, "A title", DateTime.Now));
+            repository.Add(em.CreateContent(1, "A title", new DateTime(2010,1,1)));
+        }
+    }
+
+    internal class SomeFutureContent : IDataScenario<Content>
+    {
+        public void Accept(IRepository<Content> repository)
+        {
+            var em = new EntityMaker();
+            repository.Add(em.CreateContent(1, "A title",DateTime.Now.AddDays(1)));
         }
     }
 }

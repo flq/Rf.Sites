@@ -104,7 +104,10 @@
     <Reference Include="System.Web.Services" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="files\site.css" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\jquery.js" />
+    <Content Include="Scripts\rf.site.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -128,8 +131,10 @@
     <Compile Include="Features\DisplayContent\AttachmentVM.cs" />
     <Compile Include="Features\DisplayContent\ContentId.cs" />
     <Compile Include="Features\DisplayContent\ContentVM.cs" />
+    <Compile Include="Features\DisplayContent\NotYetPublishedVM.cs" />
     <Compile Include="Features\DisplayContent\SingleContent.cs" />
     <Compile Include="Features\InputModel404.cs" />
+    <Compile Include="Features\ViewOutputs.cs" />
     <Compile Include="Frame\Constants.cs" />
     <Compile Include="Frame\IObjectConverter.cs" />
     <Compile Include="Frame\IValidator.cs" />
@@ -156,13 +161,14 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Features\DisplayContent\Views\SingleContent.spark" />
+    <None Include="Features\DisplayContent\Views\_Attachment.spark" />
     <None Include="Shared\Application.spark" />
+    <None Include="Shared\NotFound.spark" />
+    <None Include="Shared\_global.spark" />
     <None Include="Shared\_Analytics.spark" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="files\" />
-    <Folder Include="Scripts\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <ProjectExtensions>

@@ -15,7 +15,7 @@ namespace Rf.Sites.Features.DisplayContent
       Content content, 
       IObjectConverter<Attachment, AttachmentVM> attachmentConverter)
     {
-      this._attachmentConverter = attachmentConverter;
+      _attachmentConverter = attachmentConverter;
       pullData(content);
     }
 
