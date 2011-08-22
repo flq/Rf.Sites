@@ -8,7 +8,6 @@
     <link rel="shortcut icon" href="/files/rf.ico" type="image/x-icon" />
     <link rel="alternate" type="application/rss+xml" title="realfiction RSS" href="/rss" />
     <link type="text/css" rel="stylesheet" media="all" href="/files/site.css" />
-    <link type="text/css" rel="stylesheet" media="all" href="/files/SyntaxHighlighter.css" />
     <script type="text/javascript" src="/Scripts/jquery.js"></script>
     <script type="text/javascript" src="/Scripts/rf.site.js"></script>
     

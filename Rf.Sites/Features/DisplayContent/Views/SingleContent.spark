@@ -1,7 +1,13 @@
 <viewdata model="Rf.Sites.Features.DisplayContent.ContentVM" />
 <set Title='Model.Title'/>
 <set Keywords='Model.Keywords'/>
-
+<content name="head">
+    <if condition="Model.NeedsCodeHighlighting">
+      <link type="text/css" rel="stylesheet" media="all" href="/files/SyntaxHighlighter.css" />
+      <script type="text/javascript" src="/Scripts/shCore.js"></script>
+      <script type="text/javascript" src="/Scripts/shBrushCSharp.js"></script>
+    </if>
+</content>
 
 <div class="content">
 	<div class="content_header">

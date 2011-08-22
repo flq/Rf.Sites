@@ -1,10 +1,10 @@
  html, body {
     margin: 0;
     padding: 0;
-    font-family: Georgia, Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif;
-	  font-size: 16px;
-	  line-height: 1.5em;
-    color: #110000;
+    font-family:  Arial, sans-serif;
+	font-size: 16px;
+	line-height: 1.5em;
+    color: #224400;
   }
   
   #header {
@@ -17,15 +17,14 @@
   
   #header > h1 
   {
-    font-family: Arial, sans-serif;
     margin-top: 20px;
     font-size: 4em;
-    color: #330000;
+    color: #440000;
   }
   
   #header > p 
   {
-    margin-top: 5px;
+    margin-top: 10px;
     margin-left: 80px;
   }
   
@@ -56,8 +55,8 @@
   }
   
 .page {
-  margin-left:15em;
-  margin-right:5em;
+  margin-left:12em;
+  margin-right:8em;
   margin-bottom:50px;
   padding:0 3em 1em;
 }
@@ -67,11 +66,13 @@ div.content_header {
 }
   
 div.content_header > h1 {
-  border-bottom: thin solid #000000;
+  border-bottom: thin solid #777777;
   margin: 0;  
 }
   
-div.content_header > h2 {
+div.content_header > h2 
+{
+  border
   border-bottom: thin solid #000000;
   margin: 0;
 }
@@ -81,29 +82,40 @@ div.content_header > p {
   margin: 0;
 }
   
-div.comment {
-  margin: 20 0 0 0;
-}
-  
-div.comment:hover {
-  background: #ddeeff;
-}
-  
-div.comment_head > img {
-  vertical-align: middle;
-}
-  
-div.comment_body {
-  margin: 5 0 0 25;
-  padding-left: 10;
-  padding-bottom: 5;
-  border-left: 1px solid black;
-}
-  
 .content 
 {
 	margin-bottom: 30px;
 }
+
+.content_body 
+{
+    margin-left:5em;
+    margin-right:5em;
+}
+
+.content_body > p 
+{
+    margin-bottom: 2em;
+}
+
+.content_body > ul 
+{
+    list-style-type: square;
+}
+
+.content_body > ul li
+{
+    margin-bottom:1.5em;
+}
+
+.content_body > p:first-letter {
+ font-size: 150%;
+ font-family :  garamond, bodoni, curly, times, serif;
+ text-transform:uppercase;
+ margin-left : 10px;
+ margin-bottom: 2px;
+}
+
         
 a {
   text-decoration: none;

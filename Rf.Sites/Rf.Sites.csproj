@@ -114,6 +114,7 @@
     <Content Include="Global.asax" />
     <Content Include="Scripts\jquery.js" />
     <Content Include="Scripts\rf.site.js" />
+    <Content Include="Scripts\shCore.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -129,6 +130,7 @@
     <Compile Include="Features\ContentContinuation.cs" />
     <Compile Include="Features\DisplayContent\AttachmentConverter.cs" />
     <Compile Include="Features\DisplayContent\AttachmentVM.cs" />
+    <Compile Include="Features\DisplayContent\CodeHighlighting.cs" />
     <Compile Include="Features\DisplayContent\ContentId.cs" />
     <Compile Include="Features\DisplayContent\ContentVM.cs" />
     <Compile Include="Features\DisplayContent\NotYetPublishedVM.cs" />
