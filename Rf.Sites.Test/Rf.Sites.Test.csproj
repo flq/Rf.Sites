@@ -74,12 +74,12 @@
     <Reference Include="System.Data.SQLite">
       <HintPath>..\lib\System.Data.SQLite.DLL</HintPath>
     </Reference>
+    <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataScenarios\SomeContent.cs" />
     <Compile Include="Frame\IDataScenario.cs" />
     <Compile Include="Frame\InMemoryRepository.cs" />
-    <Compile Include="ForbiddenTests.cs" />
     <Compile Include="Using_AttachmentVM.cs" />
     <Compile Include="In_memory_repository_context.cs" />
     <Compile Include="Using_single_content.cs" />
