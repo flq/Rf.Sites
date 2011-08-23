@@ -1,8 +1,8 @@
-using System;
-using Rf.Sites.Entities;
+﻿using Rf.Sites.Entities;
+using Rf.Sites.Features.Models;
 using Rf.Sites.Frame;
 
-namespace Rf.Sites.Features.DisplayContent
+namespace Rf.Sites.Features
 {
     public class AttachmentConverter : IObjectConverter<Attachment, AttachmentVM>
     {

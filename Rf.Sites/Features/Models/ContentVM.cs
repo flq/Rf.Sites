@@ -1,10 +1,10 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Rf.Sites.Entities;
 using Rf.Sites.Frame;
 
-namespace Rf.Sites.Features.DisplayContent
+namespace Rf.Sites.Features.Models
 {
     public class ContentVM
     {

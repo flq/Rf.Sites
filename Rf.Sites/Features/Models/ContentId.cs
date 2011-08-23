@@ -1,6 +1,6 @@
 ﻿using FubuMVC.Core;
 
-namespace Rf.Sites.Features.DisplayContent
+namespace Rf.Sites.Features.Models
 {
     public class ContentId
     {

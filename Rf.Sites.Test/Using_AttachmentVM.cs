@@ -1,7 +1,8 @@
 using FluentAssertions;
 using NUnit.Framework;
 using Rf.Sites.Entities;
-using Rf.Sites.Features.DisplayContent;
+using Rf.Sites.Features;
+using Rf.Sites.Features.Models;
 
 namespace Rf.Sites.Test
 {

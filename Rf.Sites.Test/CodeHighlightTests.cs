@@ -1,7 +1,8 @@
 using System;
 using System.Text.RegularExpressions;
 using NUnit.Framework;
-using Rf.Sites.Features.DisplayContent;
+using Rf.Sites.Features;
+using Rf.Sites.Features.Models;
 using Rf.Sites.Test.Support;
 using FluentAssertions;
 

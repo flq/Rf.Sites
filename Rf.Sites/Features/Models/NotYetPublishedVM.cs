@@ -1,7 +1,6 @@
-﻿using System;
-using Rf.Sites.Entities;
+﻿using Rf.Sites.Entities;
 
-namespace Rf.Sites.Features.DisplayContent
+namespace Rf.Sites.Features.Models
 {
     public class NotYetPublishedVM
     {

@@ -1,9 +1,10 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using Rf.Sites.Features.Models;
 
-namespace Rf.Sites.Features.DisplayContent
+namespace Rf.Sites.Features
 {
     public class CodeHighlightExtension
     {

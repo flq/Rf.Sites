@@ -1,4 +1,4 @@
-<viewdata model="Rf.Sites.Features.DisplayContent.ContentVM" />
+<viewdata model="Rf.Sites.Features.Models.ContentVM" />
 <set Title='Model.Title'/>
 <set Keywords='Model.Keywords'/>
 <content name="head">

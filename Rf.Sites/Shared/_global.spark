@@ -1,3 +1,4 @@
 <use namespace="System.Linq" />
 <use namespace="Rf.Sites.Frame.SiteInfrastructure" />
 <use namespace="Rf.Sites.Features" />
+<use namespace="Rf.Sites.Features.Models" />

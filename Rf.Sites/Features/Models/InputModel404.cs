@@ -1,4 +1,4 @@
-﻿namespace Rf.Sites.Features
+﻿namespace Rf.Sites.Features.Models
 {
     public class InputModel404
     {

@@ -1,0 +1,15 @@
+<viewdata model="Rf.Sites.Features.Models.Page[[Rf.Sites.Features.Models.ContentTeaserVM]]" />
+
+<set Title='Model.Title'/>
+
+<for each="var f in Model.Elements">
+    <div class="content">
+        <div class="content_header">
+            <h2>${f.Title}</h2>
+            <p>${f.WrittenInTime} UTC</p>
+        </div>
+        <div class="content_body">
+            ${f.Teaser}..."read more"
+	    </div>
+    </div>
+</for>

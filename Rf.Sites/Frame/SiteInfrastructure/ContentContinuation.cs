@@ -1,8 +1,9 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Rf.Sites.Features.Models;
 
-namespace Rf.Sites.Features
+namespace Rf.Sites.Frame.SiteInfrastructure
 {
     public class ContentContinuation<M,ViewModel> where M : class where ViewModel : class
     {

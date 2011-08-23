@@ -1,11 +1,11 @@
 ﻿using System;
 using FubuMVC.Core;
-using FubuMVC.Core.Continuations;
 using Rf.Sites.Entities;
+using Rf.Sites.Features.Models;
 using Rf.Sites.Frame.Persistence;
 using Rf.Sites.Frame.SiteInfrastructure;
 
-namespace Rf.Sites.Features.DisplayContent
+namespace Rf.Sites.Features
 {
     [HasActions]
     public class SingleContent

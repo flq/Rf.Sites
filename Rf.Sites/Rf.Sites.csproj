@@ -122,20 +122,24 @@
     <Compile Include="Bootstrapping\ConfigurationRegistry.cs" />
     <Compile Include="Bootstrapping\DataAccessRegistry.cs" />
     <Compile Include="Bootstrapping\HandleContentContinuation.cs" />
+    <Compile Include="Bootstrapping\HandlePagingOutput.cs" />
     <Compile Include="Bootstrapping\MainRegistry.cs" />
     <Compile Include="Entities\Attachment.cs" />
     <Compile Include="Entities\Content.cs" />
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="Entities\Tag.cs" />
-    <Compile Include="Features\ContentContinuation.cs" />
-    <Compile Include="Features\DisplayContent\AttachmentConverter.cs" />
-    <Compile Include="Features\DisplayContent\AttachmentVM.cs" />
-    <Compile Include="Features\DisplayContent\CodeHighlighting.cs" />
-    <Compile Include="Features\DisplayContent\ContentId.cs" />
-    <Compile Include="Features\DisplayContent\ContentVM.cs" />
-    <Compile Include="Features\DisplayContent\NotYetPublishedVM.cs" />
-    <Compile Include="Features\DisplayContent\SingleContent.cs" />
-    <Compile Include="Features\InputModel404.cs" />
+    <Compile Include="Features\AttachmentConverter.cs" />
+    <Compile Include="Features\CodeHighlighting.cs" />
+    <Compile Include="Features\Models\AttachmentVM.cs" />
+    <Compile Include="Features\Models\ContentId.cs" />
+    <Compile Include="Features\Models\ContentTeaserVM.cs" />
+    <Compile Include="Features\Models\ContentVM.cs" />
+    <Compile Include="Features\Models\InputModel404.cs" />
+    <Compile Include="Features\Models\NotYetPublishedVM.cs" />
+    <Compile Include="Features\Models\Page.cs" />
+    <Compile Include="Features\Models\PagingArgs.cs" />
+    <Compile Include="Features\PagedContent.cs" />
+    <Compile Include="Features\SingleContent.cs" />
     <Compile Include="Features\ViewOutputs.cs" />
     <Compile Include="Frame\AnalyticsTopPagesProvider.cs" />
     <Compile Include="Frame\Constants.cs" />
@@ -149,11 +153,14 @@
     <Compile Include="Frame\Persistence\SessionFactoryMaker.cs" />
     <Compile Include="Frame\Persistence\WebNHSessionContext.cs" />
     <Compile Include="Frame\SiteInfrastructure\AutoRouteInput.cs" />
+    <Compile Include="Frame\SiteInfrastructure\ContentContinuation.cs" />
     <Compile Include="Frame\SiteInfrastructure\ContentContinuationBehavior.cs" />
+    <Compile Include="Frame\PaginationSettings.cs" />
+    <Compile Include="Frame\SiteInfrastructure\PagingBehavior.cs" />
     <Compile Include="Frame\SiteInfrastructure\HasActionsAttribute.cs" />
     <Compile Include="Frame\SiteInfrastructure\ICache.cs" />
     <Compile Include="Frame\SiteInfrastructure\NullCache.cs" />
-    <Compile Include="Frame\SiteInfrastructure\Paginator.cs" />
+    <Compile Include="Frame\SiteInfrastructure\WebBasedCache.cs" />
     <Compile Include="Frame\TagRemover.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -164,8 +171,9 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Features\DisplayContent\Views\SingleContent.spark" />
-    <None Include="Features\DisplayContent\Views\_Attachment.spark" />
+    <None Include="Features\Views\PagedContent.spark" />
+    <None Include="Features\Views\SingleContent.spark" />
+    <None Include="Features\Views\_Attachment.spark" />
     <None Include="Shared\Application.spark" />
     <None Include="Shared\NotFound.spark" />
     <None Include="Shared\_global.spark" />

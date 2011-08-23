@@ -1,6 +1,8 @@
 using FubuMVC.Core;
 using FubuMVC.Spark;
 using FubuCore.Reflection;
+using Rf.Sites.Features;
+using Rf.Sites.Features.Models;
 using Rf.Sites.Frame.SiteInfrastructure;
 
 namespace Rf.Sites.Bootstrapping
@@ -14,14 +16,17 @@ namespace Rf.Sites.Bootstrapping
 
             Actions.IncludeTypes(t => t.HasAttribute<HasActionsAttribute>());
 
-            Policies.Add<HandleContentContinuation>();
+            Policies
+                .Add<HandleContentContinuation>()
+                .Add<HandlePagingOutput>();
 
             this.UseSpark();
 
             Routes
                 .IgnoreControllerNamespaceEntirely()
                 .ModifyRouteDefinitions(AutoRouteInput.Filter, AutoRouteInput.Modification)
-                .RootAtAssemblyNamespace();
+                .RootAtAssemblyNamespace()
+                .HomeIs<PagedContent>(pc => pc.Home());
 
             // Match views to action methods by matching
             // on model type, view name, and namespace
