@@ -1,17 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using Rf.Sites.Frame.SiteInfrastructure;
 
 namespace Rf.Sites.Features.Models
 {
-    public interface IPage
+    public interface IPageSetup
     {
-        int TotalCount { get; set; }
-        string TotalCountCacheKey { get; }
-        int QueryCount { get; }
-        void ExecuteQuery(int itemsPerPage);
+        void PreparePage(ICache cache, int itemsPerPage);
     }
 
-    public class Page<T> : IPage
+    public class Page<T> : IPageSetup
     {
         private readonly PagingArgs _paging;
         private readonly IQueryable<T> _query;
@@ -23,28 +22,39 @@ namespace Rf.Sites.Features.Models
             _query = query;
         }
 
-        public int TotalCount { get; set; }
+        public int TotalCount { get; private set; }
         public int CurrentPage { get; private set; }
-
+        public int Pages { get; private set; }
         public string Title { get { return _paging.Title; } }
-
-        public IQueryable<T> Query
-        {
-            get { return _query; }
-        }
-
-        public int QueryCount { get { return Query.Count(); } }
-
-        public string TotalCountCacheKey
-        {
-            get { return _paging.TotalCountCacheKey; }
-        }
-
         public List<T> Elements { get; private set; }
 
-        public void ExecuteQuery(int itemsPerPage)
+        void IPageSetup.PreparePage(ICache cache, int itemsPerPage)
+        {
+            SetupTotalCount(cache);
+            SetupTotalPageCount(itemsPerPage);
+            PerformQuery(itemsPerPage);
+        }
+
+        private void SetupTotalCount(ICache cache)
+        {
+            if (!cache.HasValue(TotalCountCacheKey))
+                cache.Add(TotalCountCacheKey, _query.Count());
+            TotalCount = cache.Get<int>(TotalCountCacheKey);
+        }
+
+        private void SetupTotalPageCount(int itemsPerPage)
+        {
+            Pages = (int)Math.Ceiling((decimal)TotalCount / itemsPerPage);
+        }
+
+        private void PerformQuery(int itemsPerPage)
         {
             Elements = _query.Skip(_paging.Page * itemsPerPage).Take(itemsPerPage).ToList();
+        }
+
+        private string TotalCountCacheKey
+        {
+            get { return _paging.TotalCountCacheKey; }
         }
     }
 }

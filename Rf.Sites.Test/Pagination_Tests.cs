@@ -1,10 +1,7 @@
-using System;
 using System.Linq;
 using NUnit.Framework;
-using Rf.Sites.Features;
 using Rf.Sites.Features.Models;
 using Rf.Sites.Test.DataScenarios;
-using Rf.Sites.Test.Frame;
 using FluentAssertions;
 
 namespace Rf.Sites.Test
@@ -58,6 +55,12 @@ namespace Rf.Sites.Test
         public void got_two_elements()
         {
             Page.Elements.Should().HaveCount(2);
+        }
+
+        [Test]
+        public void correct_number_of_pages()
+        {
+            Page.Pages.Should().Be(5);
         }
     }
 }
