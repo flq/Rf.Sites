@@ -132,6 +132,7 @@
     <Compile Include="Features\CodeHighlighting.cs" />
     <Compile Include="Features\Models\AttachmentVM.cs" />
     <Compile Include="Features\Models\ContentId.cs" />
+    <Compile Include="Features\Models\ConcretePages.cs" />
     <Compile Include="Features\Models\ContentTeaserVM.cs" />
     <Compile Include="Features\Models\ContentVM.cs" />
     <Compile Include="Features\Models\InputModel404.cs" />
@@ -171,8 +172,12 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Features\Views\PagedContent.spark" />
-    <None Include="Features\Views\SingleContent.spark" />
+    <None Include="Features\Views\PagedContent.spark">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Features\Views\SingleContent.spark">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Features\Views\_Attachment.spark" />
     <None Include="Shared\Application.spark" />
     <None Include="Shared\NotFound.spark" />

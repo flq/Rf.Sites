@@ -1,12 +1,10 @@
-using System.Linq;
 using FubuMVC.Core.Behaviors;
 using FubuMVC.Core.Runtime;
-using Rf.Sites.Features;
 using Rf.Sites.Features.Models;
 
 namespace Rf.Sites.Frame.SiteInfrastructure
 {
-    public class PagingBehavior<T> : BasicBehavior
+    public class PagingBehavior<T> : BasicBehavior where T : class, IPage
     {
         private readonly IFubuRequest _request;
         private readonly ICache _cache;
@@ -19,18 +17,23 @@ namespace Rf.Sites.Frame.SiteInfrastructure
             _settings = settings;
         }
 
-        protected override void afterInsideBehavior()
+        protected override FubuMVC.Core.DoNext performInvoke()
         {
-            var page = _request.Get<Page<T>>();
+            preparePage();
+            return base.performInvoke();
+        }
+
+        private void preparePage()
+        {
+            var page = _request.Get<T>();
             if (page == null)
                 return;
 
             if (!_cache.HasValue(page.TotalCountCacheKey))
-                _cache.Add(page.TotalCountCacheKey, page.Query.Count());
+                _cache.Add(page.TotalCountCacheKey, page.QueryCount);
 
             page.TotalCount = _cache.Get<int>(page.TotalCountCacheKey);
             page.ExecuteQuery(_settings.ItemsPerPage);
-
         }
     }
 }

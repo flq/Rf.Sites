@@ -1,4 +1,4 @@
-<viewdata model="Rf.Sites.Features.Models.Page[[Rf.Sites.Features.Models.ContentTeaserVM]]" />
+<viewdata model="Rf.Sites.Features.Models.ContentTeaserPage" />
 
 <set Title='Model.Title'/>
 

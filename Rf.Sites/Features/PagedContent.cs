@@ -18,19 +18,19 @@ namespace Rf.Sites.Features
             _contentRepository = contentRepository;
         }
 
-        public Page<ContentTeaserVM> Home()
+        public ContentTeaserPage Home()
         {
             return GetContentDefault(new PagingArgs { Page = 0 });
         }
 
         [UrlPattern("all/{Page}")]
-        public Page<ContentTeaserVM> GetContentDefault(PagingArgs paging)
+        public ContentTeaserPage GetContentDefault(PagingArgs paging)
         {
             var query = from c in _contentRepository
                         where c.Created < DateTime.Now.ToUniversalTime()
                         orderby c.Created descending
                         select new ContentTeaserVM(c.Id, c.Title, c.Created, c.Teaser);
-            var page = new Page<ContentTeaserVM>(paging, query);
+            var page = new ContentTeaserPage(paging, query);
             return page;
         }
     }

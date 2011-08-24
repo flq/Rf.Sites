@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using FubuMVC.Core.Runtime;
 using Rf.Sites.Entities;
-using Rf.Sites.Features;
 using Rf.Sites.Features.Models;
 using Rf.Sites.Frame;
 using Rf.Sites.Frame.SiteInfrastructure;
@@ -10,7 +9,7 @@ namespace Rf.Sites.Test
 {
     internal class Pagination_context : In_memory_repository_context<Content>
     {
-        protected PagingBehavior<ContentTeaserVM> Pagebehavior;
+        protected PagingBehavior<ContentTeaserPage> Pagebehavior;
         protected InMemoryFubuRequest FubuRequest;
         protected PagingArgs PagingArgs;
         protected Page<ContentTeaserVM> Page;
@@ -23,7 +22,7 @@ namespace Rf.Sites.Test
         {
             FubuRequest = new InMemoryFubuRequest();
             _cache = new InMemoryCache();
-            Pagebehavior = new PagingBehavior<ContentTeaserVM>(FubuRequest, _cache, _settings);
+            Pagebehavior = new PagingBehavior<ContentTeaserPage>(FubuRequest, _cache, _settings);
             SetItemsPerPage(3);
         }
 
@@ -34,7 +33,7 @@ namespace Rf.Sites.Test
 
         protected void InvokeBehavior()
         {
-            Page = new Page<ContentTeaserVM>(PagingArgs, _query);
+            Page = new ContentTeaserPage(PagingArgs, _query);
             FubuRequest.SetObject(Page);
             Pagebehavior.Invoke();
         }

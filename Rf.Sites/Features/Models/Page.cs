@@ -3,9 +3,15 @@ using System.Linq;
 
 namespace Rf.Sites.Features.Models
 {
-    //public ContentTeaserPage
+    public interface IPage
+    {
+        int TotalCount { get; set; }
+        string TotalCountCacheKey { get; }
+        int QueryCount { get; }
+        void ExecuteQuery(int itemsPerPage);
+    }
 
-    public class Page<T>
+    public class Page<T> : IPage
     {
         private readonly PagingArgs _paging;
         private readonly IQueryable<T> _query;
@@ -26,6 +32,8 @@ namespace Rf.Sites.Features.Models
         {
             get { return _query; }
         }
+
+        public int QueryCount { get { return Query.Count(); } }
 
         public string TotalCountCacheKey
         {
