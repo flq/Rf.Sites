@@ -1,0 +1,11 @@
+﻿<bindings>
+    <element name="Form">
+        <start>this.FormFor&lt;@model&gt;().Attr("class", "validate")</start>
+        <end>this.EndForm()</end>
+    </element>
+    <element name="LabelFor">this.LabelFor(m =&gt; m.@property)</element>
+    <element name="InputFor">this.InputFor(m =&gt; m.@property)</element>
+    <element name="LinkToAction">this.LinkTo&lt;@controller&gt;(c =&gt; c.@action()).Text("@text")</element>
+    <element name="LinkTo">this.LinkTo&lt;@model&gt;().Text("@text")</element>
+    <element name="LinkToContent">this.LinkTo(new ContentId(@contentId)).Text(@text)</element>
+</bindings>

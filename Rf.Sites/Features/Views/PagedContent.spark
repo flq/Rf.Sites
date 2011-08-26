@@ -9,7 +9,7 @@
               total_count:${Model.TotalCount},
               element: $('#pagination'),
               link_to:'${Model.UrlTemplate}__id__',
-              num_display_entries: 23,
+              num_display_entries: 17,
               current_page:${Model.CurrentPage},
               items_per_page:${Model.ItemsPerPage},
               load_first_page:false
@@ -19,10 +19,10 @@
 </content>
 
 <for each="var f in Model.Elements">
-    <div class="content">
-        <div class="content_header">
-            <h2>${f.Title}</h2>
-            <p>${f.WrittenInTime} UTC</p>
+    <div class="page_item">
+        <div class="page_item_header">
+            <h2><LinkToContent contentId="f.Id" text="f.Title" /></h2>
+            <p>${f.WrittenInTime}</p>
         </div>
         <div class="content_body">
             ${f.Teaser}..."read more"

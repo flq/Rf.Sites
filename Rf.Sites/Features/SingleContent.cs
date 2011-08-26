@@ -1,5 +1,7 @@
 ﻿using System;
 using FubuMVC.Core;
+using FubuMVC.Core.Continuations;
+using FubuMVC.Core.Urls;
 using Rf.Sites.Entities;
 using Rf.Sites.Features.Models;
 using Rf.Sites.Frame.Persistence;
@@ -31,9 +33,10 @@ namespace Rf.Sites.Features
         }
 
         [UrlPattern("Content/Entry/{Id}")]
-        public ContentContinuation<Content, ContentVM> GetAlternateContent(ContentId contentId)
+        [UrlRegistryCategory("Legacy")]
+        public FubuContinuation GetAlternateContent(ContentId contentId)
         {
-            return GetContent(contentId);
+            return FubuContinuation.RedirectTo<SingleContent>(sc=>sc.GetContent(contentId));
         }
     }
 }

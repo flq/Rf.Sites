@@ -119,6 +119,7 @@
     <Content Include="Scripts\rf.site.js" />
     <Content Include="Scripts\shBrushCSharp.js" />
     <Content Include="Scripts\shCore.js" />
+    <Content Include="Shared\bindings.xml" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

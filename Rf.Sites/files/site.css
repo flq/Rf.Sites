@@ -54,6 +54,12 @@
     padding:0;
   }
   
+  #pagination 
+  {
+      margin-left:10%;
+      margin-right:10%;
+  }
+  
 .page {
   margin-left:12em;
   margin-right:8em;
@@ -72,7 +78,6 @@ div.content_header > h1 {
   
 div.content_header > h2 
 {
-  border
   border-bottom: thin solid #000000;
   margin: 0;
 }
@@ -116,6 +121,30 @@ div.content_header > p {
  margin-bottom: 2px;
 }
 
+div.page_item 
+{
+    margin-bottom:30px;
+    border: 1px solid;
+    border-radius:15px;
+    margin-right:10%;
+    padding:10px;
+}
+
+.page_item_header {
+  margin-bottom : 1em;
+}
+
+.page_item_header > p
+{
+    background-color: #DDEEDD;
+    border: 1px solid;
+    border-radius:10px;
+    float: right;
+    margin-right: -60px;
+    margin-top: -30px;
+    padding: 5px;
+    text-align: right;
+}
         
 a {
   text-decoration: none;

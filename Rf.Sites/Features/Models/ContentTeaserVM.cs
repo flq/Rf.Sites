@@ -18,7 +18,7 @@ namespace Rf.Sites.Features.Models
 
         public string WrittenInTime
         {
-            get { return Created.ToString("dd.MM.yyyy - HH:mm"); }
+            get { return Created.ToString("dd.MM.yyyy"); }
         }
 
         public DateTime Created { get; private set; }
