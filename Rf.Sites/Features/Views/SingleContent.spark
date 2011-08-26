@@ -6,6 +6,11 @@
       <link type="text/css" rel="stylesheet" media="all" href="/files/SyntaxHighlighter.css" />
       <script type="text/javascript" src="/Scripts/shCore.js"></script>
       <script type="text/javascript" src="/Scripts/shBrushCSharp.js"></script>
+        <script type="text/javascript">
+            jQuery(document).ready(function($) {
+              turn_on_code_highlight();
+            });
+        </script>
     </if>
 </content>
 

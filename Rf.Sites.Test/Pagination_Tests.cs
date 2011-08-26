@@ -60,7 +60,7 @@ namespace Rf.Sites.Test
         [Test]
         public void correct_number_of_pages()
         {
-            Page.Pages.Should().Be(5);
+            Page.ItemsPerPage.Should().Be(2);
         }
     }
 }

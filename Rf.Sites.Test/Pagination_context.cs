@@ -1,5 +1,7 @@
 ﻿using System.Linq;
+using FubuMVC.Core.Registration.Querying;
 using FubuMVC.Core.Runtime;
+using FubuMVC.Core.Urls;
 using Rf.Sites.Entities;
 using Rf.Sites.Features.Models;
 using Rf.Sites.Frame;
@@ -22,7 +24,7 @@ namespace Rf.Sites.Test
         {
             FubuRequest = new InMemoryFubuRequest();
             _cache = new InMemoryCache();
-            Pagebehavior = new PagingBehavior<ContentTeaserPage>(FubuRequest, _cache, _settings);
+            Pagebehavior = new PagingBehavior<ContentTeaserPage>(FubuRequest, _cache, null, _settings);
             SetItemsPerPage(3);
         }
 

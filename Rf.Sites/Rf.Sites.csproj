@@ -110,10 +110,14 @@
     <Reference Include="System.Web.Services" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="files\pagination.css" />
     <Content Include="files\site.css" />
+    <Content Include="files\SyntaxHighlighter.css" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\jquery.js" />
+    <Content Include="Scripts\jquery.pagination.js" />
     <Content Include="Scripts\rf.site.js" />
+    <Content Include="Scripts\shBrushCSharp.js" />
     <Content Include="Scripts\shCore.js" />
     <Content Include="Web.config" />
   </ItemGroup>

@@ -1,17 +1,18 @@
 ﻿
-jQuery(document).ready(function($) {
-  /* // facebox support
-  $('a[rel*=box]').facebox({
-    loadingImage: '/files/images/facebox/loading.gif',
-    closeImage: '/files/images/facebox/closelabel.gif'
-  });
-  //treeview support
-  $('#archive').treeview({ url: "/chronics" });
-  //validation support
-  $("#comment_post").validate();
-  // tooltips wire-up for comment posting
-  $('.tooltip').tooltip();
-  */
-  // Highlight code stuff if there is any
-  dp.SyntaxHighlighter.HighlightAll('code');
-});
+function init_pagination(opts) 
+{
+    var total_count = opts.total_count;
+    var element = opts.element;
+    var url = opts.url_template;
+
+    delete opts.element;
+    delete opts.total_count;
+
+    opts["callback"] = function (new_page_index, pagination_container) { return true; }
+
+    $('#pagination').pagination(total_count, opts);
+}
+
+function turn_on_code_highlight() {
+    dp.SyntaxHighlighter.HighlightAll('code');
+}

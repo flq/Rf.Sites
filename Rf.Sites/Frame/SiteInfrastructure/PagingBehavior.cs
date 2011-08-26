@@ -1,5 +1,7 @@
+using System;
 using FubuMVC.Core.Behaviors;
 using FubuMVC.Core.Runtime;
+using FubuMVC.Core.Urls;
 using Rf.Sites.Features.Models;
 
 namespace Rf.Sites.Frame.SiteInfrastructure
@@ -9,11 +11,17 @@ namespace Rf.Sites.Frame.SiteInfrastructure
         private readonly IFubuRequest _request;
         private readonly ICache _cache;
         private readonly PaginationSettings _settings;
+        private Func<object,string> _registry;
 
-        public PagingBehavior(IFubuRequest request, ICache cache, PaginationSettings settings) : base(PartialBehavior.Executes)
+        public PagingBehavior(
+            IFubuRequest request, 
+            ICache cache, 
+            IUrlRegistry registry,
+            PaginationSettings settings) : base(PartialBehavior.Executes)
         {
             _request = request;
             _cache = cache;
+            _registry = registry != null ? new Func<object, string>(registry.UrlFor) : model => "No registry";
             _settings = settings;
         }
 
@@ -21,7 +29,7 @@ namespace Rf.Sites.Frame.SiteInfrastructure
         {
             var page = _request.Get<T>();
             if (page != null)
-                page.PreparePage(_cache, _settings.ItemsPerPage);
+                page.PreparePage(_cache, _settings.ItemsPerPage, _registry);
             return base.performInvoke();
         }
     }
