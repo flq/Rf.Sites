@@ -1,4 +1,5 @@
 using FubuMVC.Core;
+using FubuMVC.Core.Registration.Nodes;
 using FubuMVC.Spark;
 using FubuCore.Reflection;
 using Rf.Sites.Features;
@@ -19,6 +20,8 @@ namespace Rf.Sites.Bootstrapping
             Policies
                 .Add<HandleContentContinuation>()
                 .Add<HandlePagingOutput>();
+
+            Output.ToJson.WhenTheOutputModelIs<JsonResponse>();
 
             this.UseSpark();
 

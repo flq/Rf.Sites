@@ -1,33 +1,6 @@
+<use master="Page" />
 <viewdata model="Rf.Sites.Features.Models.ContentTeaserPage" />
-<set Title='Model.Title'/>
-<content name="head">
-    <link type="text/css" rel="stylesheet" media="all" href="/files/pagination.css" />
-    <script type="text/javascript" src="/Scripts/jquery.pagination.js"></script>
-    <script type="text/javascript">
-        jQuery(document).ready(function($) {
-            init_pagination({
-              total_count:${Model.TotalCount},
-              element: $('#pagination'),
-              link_to:'${Model.UrlTemplate}__id__',
-              num_display_entries: 17,
-              current_page:${Model.CurrentPage},
-              items_per_page:${Model.ItemsPerPage},
-              load_first_page:false
-            });
-        });
-    </script>
-</content>
 
 <for each="var f in Model.Elements">
-    <div class="page_item">
-        <div class="page_item_header">
-            <h2><LinkToContent contentId="f.Id" text="f.Title" /></h2>
-            <p>${f.WrittenInTime}</p>
-        </div>
-        <div class="content_body">
-            ${f.Teaser}..."read more"
-	    </div>
-    </div>
+    <ContentTeaser teaser="f" />
 </for>
-
-<div id="pagination"></div>

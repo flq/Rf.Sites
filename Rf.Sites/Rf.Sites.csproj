@@ -162,6 +162,7 @@
     <Compile Include="Frame\SiteInfrastructure\ContentContinuation.cs" />
     <Compile Include="Frame\SiteInfrastructure\ContentContinuationBehavior.cs" />
     <Compile Include="Frame\PaginationSettings.cs" />
+    <Compile Include="Frame\SiteInfrastructure\JsonResponse.cs" />
     <Compile Include="Frame\SiteInfrastructure\PagingBehavior.cs" />
     <Compile Include="Frame\SiteInfrastructure\HasActionsAttribute.cs" />
     <Compile Include="Frame\SiteInfrastructure\ICache.cs" />
@@ -177,6 +178,8 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Shared\_Pagination.spark" />
+    <None Include="Features\Views\_ContentTeaser.spark" />
     <None Include="Features\Views\PagedContent.spark">
       <SubType>Designer</SubType>
     </None>
@@ -185,6 +188,7 @@
     </None>
     <None Include="Features\Views\_Attachment.spark" />
     <None Include="Shared\Application.spark" />
+    <None Include="Shared\Page.spark" />
     <None Include="Shared\NotFound.spark" />
     <None Include="Shared\_global.spark" />
     <None Include="Shared\_Analytics.spark" />

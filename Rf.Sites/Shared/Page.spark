@@ -1,0 +1,11 @@
+<use master="Application" />
+<set Title='Model.Title'/>
+<content name="head">
+    <link type="text/css" rel="stylesheet" media="all" href="/files/pagination.css" />
+    <Pagination page="Model" />
+</content>
+
+<div id="page">
+  <use content="view" />
+</div>
+<div id="pagination"></div>

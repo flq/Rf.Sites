@@ -1,0 +1,15 @@
+<script type="text/javascript" src="/Scripts/jquery.pagination.js"></script>    
+<script type="text/javascript">
+    jQuery(document).ready(function($) {
+        init_pagination({
+            total_count:${page.TotalCount},
+            element: $('#pagination'),
+            link_to:'${page.UrlTemplate}__id__',
+            url_template:'${page.UrlTemplate}',
+            num_display_entries: 17,
+            current_page:${page.CurrentPage},
+            items_per_page:${page.ItemsPerPage},
+            load_first_page:false
+        });
+    });
+</script>

@@ -1,0 +1,11 @@
+<div class="page_item">
+    <div class="page_item_header">
+        <h2>
+            <LinkToContent contentId="teaser.Id" text="teaser.Title" />
+        </h2>
+        <p>${teaser.WrittenInTime}</p>
+    </div>
+    <div class="content_body">
+        ${teaser.Teaser}
+    </div>
+</div>

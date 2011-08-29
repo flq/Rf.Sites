@@ -24,7 +24,7 @@
     </div>
     
     <div class="page">
-      <use content="view"/>
+        <use content="view" />
     </div>
      
     <div id="footer"><p>&copy; ${System.DateTime.Now.Year} realfiction</p></div>
