@@ -23,7 +23,7 @@ namespace Rf.Sites.Features
             return GetContentDefault(new PagingArgs { Page = 0 });
         }
 
-        [UrlPattern("all/{Page}")]
+        [UrlPattern("all/{Page:0}")]
         public ContentTeaserPage GetContentDefault(PagingArgs paging)
         {
             var query = from c in _contentRepository
@@ -32,6 +32,37 @@ namespace Rf.Sites.Features
                         select new ContentTeaserVM(c.Id, c.Title, c.Created, c.Teaser);
             var page = new ContentTeaserPage(paging, query);
             return page;
+        }
+
+        [UrlPattern("year/{Year}/{Page:0}")]
+        public ContentTeaserPage GetContentByYear(YearPaging paging)
+        {
+            var lower = new DateTime(paging.Year, 1, 1);
+            var upper = new DateTime(paging.Year, 12, 31);
+            return new ContentTeaserPage(paging, GetBetweenQuery(lower, upper));
+        }
+
+        [UrlPattern("month/{Year}/{Month}/{Page:0}")]
+        public ContentTeaserPage GetContentByMonth(MonthPaging paging)
+        {
+            var lower = new DateTime(paging.Year, SanitizeMonth(paging.Month), 1);
+            var upper = lower.AddMonths(1);
+            return new ContentTeaserPage(paging, GetBetweenQuery(lower,upper));
+        }
+
+        private IQueryable<ContentTeaserVM> GetBetweenQuery(DateTime lower, DateTime upper)
+        {
+            return from c in _contentRepository
+                   where c.Created >= lower && c.Created <= upper && c.Created < DateTime.Now.ToUniversalTime()
+                   orderby c.Created descending
+                   select new ContentTeaserVM(c.Id, c.Title, c.Created, c.Teaser);
+        }
+
+        private static int SanitizeMonth(int month)
+        {
+            if (month < 1) return 1;
+            if (month > 12) return 12;
+            return month;
         }
     }
 }

@@ -187,8 +187,12 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Features\Views\_Attachment.spark" />
-    <None Include="Shared\Application.spark" />
-    <None Include="Shared\Page.spark" />
+    <None Include="Shared\Application.spark">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Shared\Page.spark">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Shared\NotFound.spark" />
     <None Include="Shared\_global.spark" />
     <None Include="Shared\_Analytics.spark" />
