@@ -19,6 +19,10 @@ function init_pagination(opts)
     $('#pagination').pagination(total_count, opts);
 }
 
+function init_searchbar(search_element) {
+    search_element.autocomplete("options", "source", "/lookup");
+}
+
 function turn_on_code_highlight() {
     dp.SyntaxHighlighter.HighlightAll('code');
 }

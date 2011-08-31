@@ -110,10 +110,13 @@
     <Reference Include="System.Web.Services" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="files\jquery-ui.css" />
     <Content Include="files\pagination.css" />
     <Content Include="files\site.css" />
     <Content Include="files\SyntaxHighlighter.css" />
+    <Content Include="files\wait.gif" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\jquery-ui-1.8.12.custom.min.js" />
     <Content Include="Scripts\jquery.js" />
     <Content Include="Scripts\jquery.pagination.js" />
     <Content Include="Scripts\rf.site.js" />
@@ -144,7 +147,9 @@
     <Compile Include="Features\Models\NotYetPublishedVM.cs" />
     <Compile Include="Features\Models\Page.cs" />
     <Compile Include="Features\Models\PagingArgs.cs" />
+    <Compile Include="Features\Models\SearchFunctionality.cs" />
     <Compile Include="Features\PagedContent.cs" />
+    <Compile Include="Features\Search.cs" />
     <Compile Include="Features\SingleContent.cs" />
     <Compile Include="Features\ViewOutputs.cs" />
     <Compile Include="Frame\AnalyticsTopPagesProvider.cs" />

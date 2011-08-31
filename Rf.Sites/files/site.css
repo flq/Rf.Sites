@@ -22,7 +22,7 @@
     color: #440000;
   }
   
-  #header > p 
+  #subtitle
   {
     margin-top: 10px;
     margin-left: 80px;
@@ -182,3 +182,20 @@ div.comment_body h1, div.comment_body h2, div.comment_body h3
 {
   font-size:1.1em;
 }
+
+
+.search 
+{
+    float: right;
+    font-size: 14pt;
+}
+
+#search 
+{
+    border: 1px solid #cccccc;
+    margin-right: 200px;
+    width: 300px;
+    font-size: 14pt;
+}
+
+.ui-autocomplete-loading { background: white url('/files/wait.gif') right center no-repeat; }
