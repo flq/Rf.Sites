@@ -9,10 +9,17 @@ function init_pagination(opts)
     delete opts.url_template;
     delete opts.total_count;
 
+    var handlers = {
+      on_error: function (x, e) {
+        alert("Something bad happened, the server returned" + x.status + ", sorry!"); 
+      },
+      on_data: function (data) {
+        $("#page").fadeOut(100, function () { $(this).html(data); }).fadeIn(400);
+      }
+    };
+
     opts["callback"] = function (new_page_index, pagination_container) {
-        $.get(url + new_page_index, function (data) {
-            $("#page").fadeOut(100, function () { $(this).html(data); }).fadeIn(400);
-        }).error(function (x, e) { alert("Something bad happened, the server returned" + x.status + ", sorry!"); });
+        $.get(url + new_page_index, handlers.on_data).error(onerror);
         return false;
     }
 
@@ -20,7 +27,7 @@ function init_pagination(opts)
 }
 
 function init_searchbar(search_element) {
-    search_element.autocomplete("options", "source", "/lookup");
+    search_element.autocomplete({ source: '/lookup/' });  
 }
 
 function turn_on_code_highlight() {

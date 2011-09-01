@@ -14,7 +14,9 @@
     <script type="text/javascript" src="/Scripts/rf.site.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-          $('#search').autocomplete({ source: '/lookup/'});
+          var srch = $('#search');
+          init_searchbar(srch);
+          srch.focus();
         });
     </script>
     <use content="head" />
