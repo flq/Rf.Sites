@@ -3,7 +3,15 @@ using FubuMVC.Core;
 
 namespace Rf.Sites.Features.Models
 {
-    public class PagingArgs
+    public interface IPagingArgs
+    {
+        int Page { get; set; }
+
+        string TotalCountCacheKey { get; }
+        string Title { get; }
+    }
+
+    public class PagingArgs : IPagingArgs
     {
         [RouteInput]
         public int Page { get; set; }

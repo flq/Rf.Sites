@@ -144,6 +144,7 @@
     <Compile Include="Features\Models\ContentTeaserVM.cs" />
     <Compile Include="Features\Models\ContentVM.cs" />
     <Compile Include="Features\Models\InputModel404.cs" />
+    <Compile Include="Features\Models\InputTag.cs" />
     <Compile Include="Features\Models\NotYetPublishedVM.cs" />
     <Compile Include="Features\Models\Page.cs" />
     <Compile Include="Features\Models\PagingArgs.cs" />

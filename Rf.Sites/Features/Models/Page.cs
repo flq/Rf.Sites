@@ -12,10 +12,10 @@ namespace Rf.Sites.Features.Models
 
     public class Page<T> : IPageSetup
     {
-        private readonly PagingArgs _paging;
+        private readonly IPagingArgs _paging;
         private readonly IQueryable<T> _query;
 
-        public Page(PagingArgs paging, IQueryable<T> query)
+        public Page(IPagingArgs paging, IQueryable<T> query)
         {
             _paging = paging;
             CurrentPage = _paging.Page;

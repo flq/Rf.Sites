@@ -8,4 +8,5 @@
     <element name="LinkToAction">this.LinkTo&lt;@controller&gt;(c =&gt; c.@action()).Text("@text")</element>
     <element name="LinkTo">this.LinkTo&lt;@model&gt;().Text("@text")</element>
     <element name="LinkToContent">this.LinkTo(new ContentId(@contentId)).Text(@text)</element>
+    <element name="Join">string.Join("@separator", @items)</element>
 </bindings>

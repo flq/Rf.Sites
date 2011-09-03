@@ -25,14 +25,14 @@ namespace Rf.Sites.Bootstrapping
 
             this.UseSpark();
 
+            var autoRouteInput = new AutoRouteInput();
+
             Routes
                 .IgnoreControllerNamespaceEntirely()
-                .ModifyRouteDefinitions(AutoRouteInput.Filter, AutoRouteInput.Modification)
+                .ModifyRouteDefinitions(autoRouteInput.Filter, autoRouteInput.Modification)
                 .RootAtAssemblyNamespace()
                 .HomeIs<PagedContent>(pc => pc.Home());
 
-            // Match views to action methods by matching
-            // on model type, view name, and namespace
             Views.TryToAttach(ve => ve.by_ViewModel());
         }
     }

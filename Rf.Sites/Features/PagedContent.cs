@@ -50,6 +50,16 @@ namespace Rf.Sites.Features
             return new ContentTeaserPage(paging, GetBetweenQuery(lower,upper));
         }
 
+        [UrlPattern("tag/{Tag}/{Page}")]
+        public ContentTeaserPage GetbyTag(InputTag tag)
+        {
+            var query = from c in _contentRepository
+                        where c.Created < DateTime.Now.ToUniversalTime() && c.Tags.Any(t => t.Name == tag.Tag)
+                        orderby c.Created descending
+                        select new ContentTeaserVM(c.Id, c.Title, c.Created, c.Teaser);
+            return new ContentTeaserPage(tag, query);
+        }
+
         private IQueryable<ContentTeaserVM> GetBetweenQuery(DateTime lower, DateTime upper)
         {
             return from c in _contentRepository
