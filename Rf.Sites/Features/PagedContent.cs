@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using FubuMVC.Core;
 using Rf.Sites.Entities;
 using Rf.Sites.Features.Models;
 using Rf.Sites.Frame.Persistence;
@@ -20,11 +19,10 @@ namespace Rf.Sites.Features
 
         public ContentTeaserPage Home()
         {
-            return GetContentDefault(new PagingArgs { Page = 0 });
+            return All(new PagingArgs { Page = 0 });
         }
 
-        [UrlPattern("all/{Page:0}")]
-        public ContentTeaserPage GetContentDefault(PagingArgs paging)
+        public ContentTeaserPage All(PagingArgs paging)
         {
             var query = from c in _contentRepository
                         where c.Created < DateTime.Now.ToUniversalTime()
@@ -34,24 +32,21 @@ namespace Rf.Sites.Features
             return page;
         }
 
-        [UrlPattern("year/{Year}/{Page:0}")]
-        public ContentTeaserPage GetContentByYear(YearPaging paging)
+        public ContentTeaserPage Year(YearPaging paging)
         {
             var lower = new DateTime(paging.Year, 1, 1);
             var upper = new DateTime(paging.Year, 12, 31);
             return new ContentTeaserPage(paging, GetBetweenQuery(lower, upper));
         }
 
-        [UrlPattern("month/{Year}/{Month}/{Page:0}")]
-        public ContentTeaserPage GetContentByMonth(MonthPaging paging)
+        public ContentTeaserPage Month(MonthPaging paging)
         {
             var lower = new DateTime(paging.Year, SanitizeMonth(paging.Month), 1);
             var upper = lower.AddMonths(1);
             return new ContentTeaserPage(paging, GetBetweenQuery(lower,upper));
         }
 
-        [UrlPattern("tag/{Tag}/{Page}")]
-        public ContentTeaserPage GetbyTag(InputTag tag)
+        public ContentTeaserPage Tag(TagPaging tag)
         {
             var query = from c in _contentRepository
                         where c.Created < DateTime.Now.ToUniversalTime() && c.Tags.Any(t => t.Name == tag.Tag)
@@ -71,8 +66,7 @@ namespace Rf.Sites.Features
         private static int SanitizeMonth(int month)
         {
             if (month < 1) return 1;
-            if (month > 12) return 12;
-            return month;
+            return month > 12 ? 12 : month;
         }
     }
 }

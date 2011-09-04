@@ -1,9 +1,7 @@
 using FubuMVC.Core;
-using FubuMVC.Core.Registration.Nodes;
 using FubuMVC.Spark;
 using FubuCore.Reflection;
 using Rf.Sites.Features;
-using Rf.Sites.Features.Models;
 using Rf.Sites.Frame.SiteInfrastructure;
 
 namespace Rf.Sites.Bootstrapping
@@ -25,11 +23,10 @@ namespace Rf.Sites.Bootstrapping
 
             this.UseSpark();
 
-            var autoRouteInput = new AutoRouteInput();
-
             Routes
+                .IgnoreControllerNamesEntirely()
                 .IgnoreControllerNamespaceEntirely()
-                .ModifyRouteDefinitions(autoRouteInput.Filter, autoRouteInput.Modification)
+                .ModifyRouteDefinitions(AutoRouteInput.Filter, AutoRouteInput.Modification)
                 .RootAtAssemblyNamespace()
                 .HomeIs<PagedContent>(pc => pc.Home());
 

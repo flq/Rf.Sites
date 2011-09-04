@@ -114,6 +114,7 @@
   <ItemGroup>
     <Compile Include="CodeHighlightTests.cs" />
     <Compile Include="DataScenarios\SomeContent.cs" />
+    <Compile Include="FixedListComparerTests.cs" />
     <Compile Include="Frame\IDataScenario.cs" />
     <Compile Include="Frame\InMemoryRepository.cs" />
     <Compile Include="Pagination_context.cs" />

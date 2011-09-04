@@ -1,5 +1,6 @@
 ﻿using System;
 using FubuMVC.Core;
+using Rf.Sites.Frame.SiteInfrastructure;
 
 namespace Rf.Sites.Features.Models
 {
@@ -13,7 +14,7 @@ namespace Rf.Sites.Features.Models
 
     public class PagingArgs : IPagingArgs
     {
-        [RouteInput]
+        [RouteInput("0")]
         public int Page { get; set; }
 
         public virtual string TotalCountCacheKey
@@ -27,6 +28,7 @@ namespace Rf.Sites.Features.Models
         }
     }
 
+    [RouteParameterSorter("Year", "Page")]
     public class YearPaging : PagingArgs
     {
         [RouteInput]
@@ -43,6 +45,7 @@ namespace Rf.Sites.Features.Models
         }
     }
 
+    [RouteParameterSorter("Year", "Month", "Page")]
     public class MonthPaging : YearPaging
     {
         [RouteInput]
@@ -57,5 +60,20 @@ namespace Rf.Sites.Features.Models
         {
             get { return "content" + Year + Month; }
         }
+    }
+
+    [RouteParameterSorter("Tag", "Page")]
+    public class TagPaging : PagingArgs
+    {
+        public TagPaging() { }
+
+        public TagPaging(string tag) { Tag = tag; }
+
+        [RouteInput]
+        public string Tag { get; set; }
+
+        public override string TotalCountCacheKey { get { return "tag" + Tag; } }
+
+        public override string Title { get { return "Content tagged " + Tag; } }
     }
 }
