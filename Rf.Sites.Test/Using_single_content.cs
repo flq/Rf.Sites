@@ -45,5 +45,10 @@ namespace Rf.Sites.Test
         }
 
 
+        [TearDown]
+        public void Reset()
+        {
+            Repository.Clear();
+        }
     }
 }

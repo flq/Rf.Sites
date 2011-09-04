@@ -12,7 +12,7 @@ namespace Rf.Sites.Bootstrapping
         {
             var activities = from a in graph.Actions()
                              let o = a.OutputType().BaseType
-                             where o.IsGenericType && o.GetGenericTypeDefinition().Equals(typeof(Page<>))
+                             where o != null && o.IsGenericType && o.GetGenericTypeDefinition().Equals(typeof(Page<>))
                              let behavior = typeof(PagingBehavior<>).MakeGenericType(a.OutputType())
                              select new { Call = a, Behavior = behavior };
 

@@ -144,6 +144,7 @@
     <Compile Include="Features\Models\ContentTeaserVM.cs" />
     <Compile Include="Features\Models\ContentVM.cs" />
     <Compile Include="Features\Models\InputModel404.cs" />
+    <Compile Include="Features\Models\SiteMapModel.cs" />
     <Compile Include="Features\Models\TagPaging.cs" />
     <Compile Include="Features\Models\NotYetPublishedVM.cs" />
     <Compile Include="Features\Models\Page.cs" />
@@ -152,6 +153,7 @@
     <Compile Include="Features\PagedContent.cs" />
     <Compile Include="Features\Search.cs" />
     <Compile Include="Features\SingleContent.cs" />
+    <Compile Include="Features\SiteMap.cs" />
     <Compile Include="Features\ViewOutputs.cs" />
     <Compile Include="Frame\AnalyticsTopPagesProvider.cs" />
     <Compile Include="Frame\Constants.cs" />
@@ -169,12 +171,14 @@
     <Compile Include="Frame\SiteInfrastructure\ContentContinuation.cs" />
     <Compile Include="Frame\SiteInfrastructure\ContentContinuationBehavior.cs" />
     <Compile Include="Frame\PaginationSettings.cs" />
-    <Compile Include="Frame\SiteInfrastructure\JsonResponse.cs" />
+    <Compile Include="Frame\SiteInfrastructure\IJsonResponse.cs" />
     <Compile Include="Frame\SiteInfrastructure\PagingBehavior.cs" />
     <Compile Include="Frame\SiteInfrastructure\HasActionsAttribute.cs" />
     <Compile Include="Frame\SiteInfrastructure\ICache.cs" />
     <Compile Include="Frame\SiteInfrastructure\NullCache.cs" />
     <Compile Include="Frame\SiteInfrastructure\RouteParameterSorterAttribute.cs" />
+    <Compile Include="Frame\SiteInfrastructure\ServerVariables.cs" />
+    <Compile Include="Frame\SiteInfrastructure\StreamOutput.cs" />
     <Compile Include="Frame\SiteInfrastructure\WebBasedCache.cs" />
     <Compile Include="Frame\TagRemover.cs" />
     <Compile Include="Global.asax.cs">

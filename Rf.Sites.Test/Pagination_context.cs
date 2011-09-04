@@ -2,6 +2,7 @@
 using FubuMVC.Core.Registration.Querying;
 using FubuMVC.Core.Runtime;
 using FubuMVC.Core.Urls;
+using NUnit.Framework;
 using Rf.Sites.Entities;
 using Rf.Sites.Features.Models;
 using Rf.Sites.Frame;
@@ -48,6 +49,12 @@ namespace Rf.Sites.Test
         protected void SetQuery(IQueryable<ContentTeaserVM> query)
         {
             _query = query;
+        }
+
+        [TearDown]
+        public void Reset()
+        {
+            Repository.Clear();
         }
     }
 }

@@ -8,12 +8,6 @@ namespace Rf.Sites.Test
     {
         protected readonly InMemoryRepository<T> Repository = new InMemoryRepository<T>();
 
-        [TearDown]
-        public void Reset()
-        {
-            Repository.Clear();
-        }
-
         protected void ApplyData<D>() where D : IDataScenario<T>, new()
         {
             var d = new D();

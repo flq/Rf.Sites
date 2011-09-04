@@ -1,3 +1,5 @@
+using System;
+using System.Web;
 using Rf.Sites.Frame;
 using Rf.Sites.Frame.SiteInfrastructure;
 using StructureMap.Configuration.DSL;
@@ -9,6 +11,7 @@ namespace Rf.Sites.Bootstrapping
         public MainRegistry()
         {
             ForSingletonOf<ICache>().Use<WebBasedCache>();
+            For<ServerVariables>().Use(ctx => new ServerVariables(ctx.GetInstance<HttpContextBase>().Request.ServerVariables));
             Scan(s => { s.TheCallingAssembly(); s.ConnectImplementationsToTypesClosing(typeof(IObjectConverter<,>)); });
         }
     }

@@ -9,7 +9,7 @@ namespace Rf.Sites.Features.Models
         public string term { get; set; }
     }
 
-    public class SearchTextResponse : JsonResponse, IEnumerable<SearchResult>
+    public class SearchTextResponse : IJsonResponse, IEnumerable<SearchResult>
     {
 
         public SearchTextResponse()

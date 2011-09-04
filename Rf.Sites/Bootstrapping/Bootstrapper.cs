@@ -19,7 +19,9 @@ namespace Rf.Sites.Bootstrapping
                 .Add<HandleContentContinuation>()
                 .Add<HandlePagingOutput>();
 
-            Output.ToJson.WhenTheOutputModelIs<JsonResponse>();
+            Output.ToJson.WhenTheOutputModelIs<IJsonResponse>();
+            Output.To<StreamingOutput>().WhenTheOutputModelIs<IStreamOutput>();
+            
 
             this.UseSpark();
 
