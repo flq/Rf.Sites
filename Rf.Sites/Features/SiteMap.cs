@@ -18,7 +18,7 @@ namespace Rf.Sites.Features
         public SiteMap(IRepository<Content> contents, IUrlRegistry urlRegistry, ServerVariables vars)
         {
             _contents = contents;
-            _urlTemplate = string.Format("http://{0}:{1}{2}", vars[ServerVariables.SERVER_NAME], vars[ServerVariables.SERVER_PORT], urlRegistry.TemplateFor(new ContentId()));
+            _urlTemplate = urlRegistry.BuildAbsoluteUrlTemplate(vars, r => r.TemplateFor(new ContentId()));
         }
 
         [UrlPattern("sitemap.site")]

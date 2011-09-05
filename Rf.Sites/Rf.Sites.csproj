@@ -99,6 +99,7 @@
       <HintPath>..\packages\structuremap.2.6.2\lib\StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="System.Data" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -138,11 +139,14 @@
     <Compile Include="Entities\Tag.cs" />
     <Compile Include="Features\AttachmentConverter.cs" />
     <Compile Include="Features\CodeHighlighting.cs" />
+    <Compile Include="Features\FeedProvision.cs" />
     <Compile Include="Features\Models\AttachmentVM.cs" />
     <Compile Include="Features\Models\ContentId.cs" />
     <Compile Include="Features\Models\ConcretePages.cs" />
     <Compile Include="Features\Models\ContentTeaserVM.cs" />
     <Compile Include="Features\Models\ContentVM.cs" />
+    <Compile Include="Features\Models\FeedModel.cs" />
+    <Compile Include="Features\Models\FeedSetup.cs" />
     <Compile Include="Features\Models\InputModel404.cs" />
     <Compile Include="Features\Models\SiteMapModel.cs" />
     <Compile Include="Features\Models\TagPaging.cs" />
@@ -179,7 +183,9 @@
     <Compile Include="Frame\SiteInfrastructure\RouteParameterSorterAttribute.cs" />
     <Compile Include="Frame\SiteInfrastructure\ServerVariables.cs" />
     <Compile Include="Frame\SiteInfrastructure\StreamOutput.cs" />
+    <Compile Include="Frame\SiteInfrastructure\UrlregistryExtensions.cs" />
     <Compile Include="Frame\SiteInfrastructure\WebBasedCache.cs" />
+    <Compile Include="Frame\SiteSettings.cs" />
     <Compile Include="Frame\TagRemover.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
