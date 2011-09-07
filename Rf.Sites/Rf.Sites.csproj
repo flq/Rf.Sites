@@ -155,7 +155,7 @@
     <Compile Include="Features\Models\PagingArgs.cs" />
     <Compile Include="Features\Models\SearchFunctionality.cs" />
     <Compile Include="Features\PagedContent.cs" />
-    <Compile Include="Features\Search.cs" />
+    <Compile Include="Features\Searching\Search.cs" />
     <Compile Include="Features\SingleContent.cs" />
     <Compile Include="Features\SiteMap.cs" />
     <Compile Include="Features\ViewOutputs.cs" />

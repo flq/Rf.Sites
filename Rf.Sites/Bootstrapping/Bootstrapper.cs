@@ -13,7 +13,8 @@ namespace Rf.Sites.Bootstrapping
             // This line turns on the basic diagnostics and request tracing
             IncludeDiagnostics(true);
 
-            Actions.IncludeTypes(t => t.HasAttribute<HasActionsAttribute>());
+            Actions
+                .IncludeTypes(t => t.HasAttribute<HasActionsAttribute>());
 
             Policies
                 .Add<HandleContentContinuation>()
