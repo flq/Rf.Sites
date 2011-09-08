@@ -120,6 +120,7 @@
     <Compile Include="Frame\InMemoryRepository.cs" />
     <Compile Include="Pagination_context.cs" />
     <Compile Include="Pagination_Tests.cs" />
+    <Compile Include="SearchFeature\PartiallyEmptyCacheUsageInit.cs" />
     <Compile Include="SearchFeature\SearchFeatureContext.cs" />
     <Compile Include="SearchFeature\SearchFeatureTests.cs" />
     <Compile Include="Support\DataMother.cs" />

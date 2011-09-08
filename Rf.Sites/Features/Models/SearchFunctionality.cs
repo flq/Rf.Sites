@@ -11,15 +11,16 @@ namespace Rf.Sites.Features.Models
 
     public class SearchTextResponse : IJsonResponse, IEnumerable<SearchResult>
     {
+        private readonly IEnumerable<SearchResult> _results;
 
-        public SearchTextResponse()
+        public SearchTextResponse(IEnumerable<SearchResult> results)
         {
-
+            _results = results;
         }
 
         public IEnumerator<SearchResult> GetEnumerator()
         {
-            yield return new SearchResult { id = "A", value = "A test"};
+            return _results.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
@@ -30,7 +31,13 @@ namespace Rf.Sites.Features.Models
 
     public class SearchResult
     {
-        public string id { get; set; }
-        public string value { get; set; }
+        public string prefixtext { get; set; }
+        public Link[] values { get; set; }
+    }
+
+    public class Link
+    {
+        public string link;
+        public string linktext;
     }
 }

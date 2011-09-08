@@ -1,11 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using FubuMVC.Core.Urls;
+using Moq;
 using NUnit.Framework;
 using Rf.Sites.Entities;
+using Rf.Sites.Features.Models;
 using Rf.Sites.Features.Searching;
 using Rf.Sites.Frame.Persistence;
 using Rf.Sites.Frame.SiteInfrastructure;
 using Rf.Sites.Test.Frame;
 using FluentAssertions;
+using System.Linq;
 
 namespace Rf.Sites.Test.SearchFeature
 {
@@ -15,18 +20,27 @@ namespace Rf.Sites.Test.SearchFeature
         private InMemoryCache _cache;
         protected bool ContentFactoryWasCalled;
         protected bool TagFactoryWasCalled;
+        private IJsonResponse _response;
+        private Mock<IUrlRegistry> _urlRegistry;
 
         [TestFixtureSetUp]
         public void Given()
         {
             _cache = new InMemoryCache();
             Setup();
-            _search = new Search(GetContentFactory, GetTagFactory, _cache);
+            _urlRegistry = new Mock<IUrlRegistry>();
+            _urlRegistry.Setup(u => u.TemplateFor(It.IsAny<ContentId>())).Returns("/go/{0}");
+            _search = new Search(GetContentFactory, GetTagFactory, _cache, _urlRegistry.Object);
         }
 
         protected virtual void Setup()
         {
             
+        }
+
+        protected void Search(string term)
+        {
+            _response = _search.Lookup(new SearchTerm { term = term });
         }
 
         protected virtual IRepository<Content> GetContentFactory()
@@ -43,7 +57,7 @@ namespace Rf.Sites.Test.SearchFeature
 
         protected void AddTitlesToCache(params string[] titles)
         {
-            _cache.Add("titles", new List<string>(titles));
+            _cache.Add("titles", new List<Tuple<int,string>>(titles.Select((s,i)=> Tuple.Create(i, s))));
         }
 
         protected void AddTagsToCache(params string[] tags)
@@ -60,6 +74,15 @@ namespace Rf.Sites.Test.SearchFeature
             return rep;
         }
 
+        protected void SearchReturnedPost(string title, string link)
+        {
+            _response.Should().NotBeNull();
+            var found = ((IEnumerable<SearchResult>)_response).FirstOrDefault(sr => sr.values.Any(v => v.linktext.Equals(title)));
+            found.Should().NotBeNull("link with text " + title + " should exist");
+            var lnk = found.values.First(v => v.linktext.Equals(title));
+            lnk.link.Should().Be(link);
+        }
+
         protected IRepository<Tag> TagFactoryWithTags(params string[] tags)
         {
             var em = new EntityMaker();
@@ -73,8 +96,8 @@ namespace Rf.Sites.Test.SearchFeature
         {
             if (!_cache.HasValue("titles"))
                 Assert.Fail("Titles have not been cached");
-            var titles = _cache.Get<List<string>>("titles");
-            titles.Should().BeEquivalentTo(cachedTitles);
+            var titles = _cache.Get<List<Tuple<int,string>>>("titles");
+            titles.Select(t => t.Item2).Should().BeEquivalentTo(cachedTitles);
         }
     }
 }
