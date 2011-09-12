@@ -1,3 +1,4 @@
+using System;
 using NUnit.Framework;
 using FluentAssertions;
 
@@ -29,7 +30,7 @@ namespace Rf.Sites.Test.SearchFeature
     {
         protected override void Setup()
         {
-            AddTitlesToCache("A view to a kill", "Descriptive measures", "Reassuring evidence", "Colossal uUtcome", "Crisp Shit");
+            AddTitlesToCache("A view to a kill", "Descriptive measures", "Reassuring evidence", "Colossal uUtcome", "Crisp Shit", "Wild guesses from insanity");
             AddTagsToCache("wcf", "wpf", "programming");
         }
 
@@ -38,6 +39,20 @@ namespace Rf.Sites.Test.SearchFeature
         {
             Search("a");
             SearchReturnedPost("A view to a kill", "/go/0");
+        }
+
+        [Test]
+        public void tag_search()
+        {
+            Search("pr");
+            SearchReturnedTag("programming");
+        }
+
+        [Test]
+        public void tag_search_two_tags()
+        {
+            Search("w");
+            SearchReturnedTagGroupContaining("wcf", "wpf");
         }
     }
 }

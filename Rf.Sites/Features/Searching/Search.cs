@@ -17,6 +17,7 @@ namespace Rf.Sites.Features.Searching
         private readonly Func<IRepository<Tag>> _tagFactory;
         private readonly ICache _cache;
         private readonly string _contentLinkTemplate;
+        private string _tagLinkTemplate;
 
         public Search(Func<IRepository<Content>> contentFactory, Func<IRepository<Tag>> tagFactory, ICache cache, IUrlRegistry urlRegistry)
         {
@@ -24,6 +25,7 @@ namespace Rf.Sites.Features.Searching
             _tagFactory = tagFactory;
             _cache = cache;
             _contentLinkTemplate = urlRegistry.TemplateFor(new ContentId());
+            _tagLinkTemplate = urlRegistry.TemplateFor(new TagPaging());
             EnsureCached();
         }
 
@@ -31,7 +33,21 @@ namespace Rf.Sites.Features.Searching
         public IJsonResponse Lookup(SearchTerm search)
         {
             var titleResult = SearchTitles(search.term);
-            return new SearchTextResponse(titleResult);
+            var tagResult = SearchTags(search.term);
+            return new SearchTextResponse(titleResult.Concat(tagResult));
+        }
+
+        private IEnumerable<SearchResult> SearchTags(string term)
+        {
+            var links =
+                from title in _cache.Get<List<string>>("tags")
+                where title.StartsWith(term, StringComparison.InvariantCultureIgnoreCase)
+                select new Link
+                           {
+                               linktext = title,
+                               link = _tagLinkTemplate.Replace("{0}", title)
+                           };
+            yield return new SearchResult { prefixtext = "Tags", values = links.ToArray() };
         }
 
         private IEnumerable<SearchResult> SearchTitles(string term)

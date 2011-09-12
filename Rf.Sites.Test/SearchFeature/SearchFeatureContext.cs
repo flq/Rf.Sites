@@ -30,6 +30,7 @@ namespace Rf.Sites.Test.SearchFeature
             Setup();
             _urlRegistry = new Mock<IUrlRegistry>();
             _urlRegistry.Setup(u => u.TemplateFor(It.IsAny<ContentId>())).Returns("/go/{0}");
+            _urlRegistry.Setup(u => u.TemplateFor(It.IsAny<TagPaging>())).Returns("/tag/{0}");
             _search = new Search(GetContentFactory, GetTagFactory, _cache, _urlRegistry.Object);
         }
 
@@ -81,6 +82,20 @@ namespace Rf.Sites.Test.SearchFeature
             found.Should().NotBeNull("link with text " + title + " should exist");
             var lnk = found.values.First(v => v.linktext.Equals(title));
             lnk.link.Should().Be(link);
+        }
+
+        protected void SearchReturnedTag(string tag)
+        {
+            _response.Should().NotBeNull();
+            var found = ((IEnumerable<SearchResult>)_response).FirstOrDefault(sr => sr.values.Any(v => v.linktext.Equals(tag)));
+            found.Should().NotBeNull("tag-link with text " + tag + " should exist");
+        }
+
+        protected void SearchReturnedTagGroupContaining(params string[] tags)
+        {
+            _response.Should().NotBeNull();
+            var found = ((IEnumerable<SearchResult>)_response).FirstOrDefault(sr => sr.values.Any(v => v.linktext.Equals(tags.First())));
+            found.values.Select(l => l.linktext).Should().BeEquivalentTo(tags);
         }
 
         protected IRepository<Tag> TagFactoryWithTags(params string[] tags)
