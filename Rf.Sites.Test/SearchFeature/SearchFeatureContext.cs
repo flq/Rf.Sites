@@ -29,8 +29,8 @@ namespace Rf.Sites.Test.SearchFeature
             _cache = new InMemoryCache();
             Setup();
             _urlRegistry = new Mock<IUrlRegistry>();
-            _urlRegistry.Setup(u => u.TemplateFor(It.IsAny<ContentId>())).Returns("/go/{0}");
-            _urlRegistry.Setup(u => u.TemplateFor(It.IsAny<TagPaging>())).Returns("/tag/{0}");
+            _urlRegistry.Setup(u => u.TemplateFor(It.IsAny<ContentId>())).Returns("/go/{Id}");
+            _urlRegistry.Setup(u => u.TemplateFor(It.IsAny<TagPaging>())).Returns("/tag/{Tag}/{Page}");
             _search = new Search(GetContentFactory, GetTagFactory, _cache, _urlRegistry.Object);
         }
 
@@ -78,24 +78,20 @@ namespace Rf.Sites.Test.SearchFeature
         protected void SearchReturnedPost(string title, string link)
         {
             _response.Should().NotBeNull();
-            var found = ((IEnumerable<SearchResult>)_response).FirstOrDefault(sr => sr.values.Any(v => v.linktext.Equals(title)));
+            var found = ((IEnumerable<Link>)_response).FirstOrDefault(v => v.linktext.Equals(title));
             found.Should().NotBeNull("link with text " + title + " should exist");
-            var lnk = found.values.First(v => v.linktext.Equals(title));
-            lnk.link.Should().Be(link);
+            found.linktext.Equals(title);
+            found.link.Should().Be(link);
         }
 
-        protected void SearchReturnedTag(string tag)
+        protected void SearchReturnedTags(params string[] tags)
         {
             _response.Should().NotBeNull();
-            var found = ((IEnumerable<SearchResult>)_response).FirstOrDefault(sr => sr.values.Any(v => v.linktext.Equals(tag)));
-            found.Should().NotBeNull("tag-link with text " + tag + " should exist");
-        }
-
-        protected void SearchReturnedTagGroupContaining(params string[] tags)
-        {
-            _response.Should().NotBeNull();
-            var found = ((IEnumerable<SearchResult>)_response).FirstOrDefault(sr => sr.values.Any(v => v.linktext.Equals(tags.First())));
-            found.values.Select(l => l.linktext).Should().BeEquivalentTo(tags);
+            var links = (IEnumerable<Link>)_response;
+            foreach (var t in tags)
+            {
+                links.Select(l => l.linktext).Contains("Content from " + t).Should().BeTrue("Tag " + t + " is contained");
+            }
         }
 
         protected IRepository<Tag> TagFactoryWithTags(params string[] tags)

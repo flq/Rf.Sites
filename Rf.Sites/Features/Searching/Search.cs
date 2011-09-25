@@ -17,7 +17,7 @@ namespace Rf.Sites.Features.Searching
         private readonly Func<IRepository<Tag>> _tagFactory;
         private readonly ICache _cache;
         private readonly string _contentLinkTemplate;
-        private string _tagLinkTemplate;
+        private readonly string _tagLinkTemplate;
 
         public Search(Func<IRepository<Content>> contentFactory, Func<IRepository<Tag>> tagFactory, ICache cache, IUrlRegistry urlRegistry)
         {
@@ -25,7 +25,7 @@ namespace Rf.Sites.Features.Searching
             _tagFactory = tagFactory;
             _cache = cache;
             _contentLinkTemplate = urlRegistry.TemplateFor(new ContentId());
-            _tagLinkTemplate = urlRegistry.TemplateFor(new TagPaging());
+            _tagLinkTemplate = urlRegistry.TemplateFor(new TagPaging()).Replace("/{Page}", "");
             EnsureCached();
         }
 
@@ -37,34 +37,26 @@ namespace Rf.Sites.Features.Searching
             return new SearchTextResponse(titleResult.Concat(tagResult));
         }
 
-        private IEnumerable<SearchResult> SearchTags(string term)
+        private IEnumerable<Link> SearchTags(string term)
         {
-            var links =
+            return
                 from title in _cache.Get<List<string>>("tags")
                 where title.StartsWith(term, StringComparison.InvariantCultureIgnoreCase)
                 select new Link
                            {
-                               linktext = title,
-                               link = _tagLinkTemplate.Replace("{0}", title)
+                               linktext = "Content from " + title,
+                               link = _tagLinkTemplate.Replace("{Tag}", title)
                            };
-            yield return new SearchResult { prefixtext = "Tags", values = links.ToArray() };
         }
 
-        private IEnumerable<SearchResult> SearchTitles(string term)
+        private IEnumerable<Link> SearchTitles(string term)
         {
-            return from title in _cache.Get<List<Tuple<int,string>>>("titles")
+            return from title in _cache.Get<List<Tuple<int, string>>>("titles")
                    where title.Item2.StartsWith(term, StringComparison.InvariantCultureIgnoreCase)
-                   select new SearchResult
+                   select new Link
                               {
-                                  prefixtext = "Post", 
-                                  values = new[]
-                                               {
-                                                   new Link
-                                                       {
-                                                           linktext = title.Item2, 
-                                                           link = _contentLinkTemplate.Replace("{0}", title.Item1.ToString())
-                                                       }
-                                               }
+                                  linktext = title.Item2,
+                                  link = _contentLinkTemplate.Replace("{Id}", title.Item1.ToString())
                               };
         }
 
@@ -89,7 +81,9 @@ namespace Rf.Sites.Features.Searching
         private void CacheTitles()
         {
             var rep = _contentFactory();
-            var titles = rep.Select(r => Tuple.Create(r.Id, r.Title)).OrderBy(t => t.Item2).ToList();
+            var titles = rep.Select(r => new { r.Id, r.Title }).OrderBy(r => r.Title)
+                .ToList()
+                .Select(r => Tuple.Create(r.Id, r.Title)).ToList();
             _cache.Add("titles", titles);
         }
 

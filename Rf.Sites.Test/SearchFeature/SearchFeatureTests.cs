@@ -45,14 +45,15 @@ namespace Rf.Sites.Test.SearchFeature
         public void tag_search()
         {
             Search("pr");
-            SearchReturnedTag("programming");
+            SearchReturnedTags("programming");
         }
 
         [Test]
-        public void tag_search_two_tags()
+        public void search_returns_tags_and_titles()
         {
             Search("w");
-            SearchReturnedTagGroupContaining("wcf", "wpf");
+            SearchReturnedTags("wcf", "wpf");
+            SearchReturnedPost("Wild guesses from insanity", "/go/5");
         }
     }
 }

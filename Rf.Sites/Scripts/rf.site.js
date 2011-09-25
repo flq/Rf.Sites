@@ -27,7 +27,25 @@ function init_pagination(opts)
 }
 
 function init_searchbar(search_element) {
-    search_element.autocomplete({ source: '/lookup/' });  
+    // working with the following structure
+    // [{linktext: "bla", link: "http:..." }, ...]
+
+    var render = function (ul, value) {
+        var link = "<a href=\"" + value.link + "\">" + value.linktext + "</a>";
+        return $("<li></li>")
+				.data("item.autocomplete", value)
+				.append(link)
+				.appendTo(ul);
+    };
+
+    search_element.autocomplete({
+        source: '/lookup/',
+        select: function (event, ui) {
+            window.location = ui.item.link;
+            return true;
+        }
+    })
+    .data("autocomplete")._renderItem = render;
 }
 
 function turn_on_code_highlight() {

@@ -9,30 +9,24 @@ namespace Rf.Sites.Features.Models
         public string term { get; set; }
     }
 
-    public class SearchTextResponse : IJsonResponse, IEnumerable<SearchResult>
+    public class SearchTextResponse : IJsonResponse, IEnumerable<Link>
     {
-        private readonly IEnumerable<SearchResult> _results;
+        private readonly IEnumerable<Link> _links;
 
-        public SearchTextResponse(IEnumerable<SearchResult> results)
+        public SearchTextResponse(IEnumerable<Link> links)
         {
-            _results = results;
+            _links = links;
         }
 
-        public IEnumerator<SearchResult> GetEnumerator()
+        public IEnumerator<Link> GetEnumerator()
         {
-            return _results.GetEnumerator();
+            return _links.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
         }
-    }
-
-    public class SearchResult
-    {
-        public string prefixtext { get; set; }
-        public Link[] values { get; set; }
     }
 
     public class Link
