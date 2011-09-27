@@ -21,6 +21,7 @@ namespace Rf.Sites.Test.SearchFeature
         [Test]
         public void content_repository_was_called()
         {
+            Search("x");
             ContentFactoryWasCalled.Should().BeTrue();
         }
 

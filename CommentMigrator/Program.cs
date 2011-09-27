@@ -30,6 +30,7 @@ namespace CommentMigrator
                    db.Comments.CommenterName, 
                    db.Comments.CommenterEmail, 
                    db.Comments.CommenterWebsite,
+                   db.Comments.IsFromSiteMaster,
                    db.Comments.Created,
                    db.Comments.Body,
                    db.Comments.Id, 
@@ -40,6 +41,7 @@ namespace CommentMigrator
 
             foreach (var comment in q.ToList())
             {
+                var fromSiteMaster = comment.IsFromSiteMaster;
                 if (comment.ContentId != currentContentId)
                 {
                     item = new XElement("item", new XElement("title", comment.Title), new XElement("link", "http://realfiction.net/go/" + comment.ContentId));
@@ -48,11 +50,13 @@ namespace CommentMigrator
                 }
                 item.Add(
                   new XElement(content + "encoded", new XCData("")),
+                  new XElement(dsq + "thread_identifier", comment.ContentId),
                   new XElement(wp + "post_date_gmt", comment.ContentCreated.ToString("yyyy-MM-dd HH:mm:ss")),
+                  new XElement(wp + "comment_status", "open"),
                   new XElement(wp + "comment", 
                     new XElement(wp + "comment_id", comment.Id),
                     new XElement(wp + "comment_author", comment.CommenterName),
-                    new XElement(wp + "comment_email", comment.CommenterEmail),
+                    new XElement(wp + "comment_email", fromSiteMaster ? "fquednau@gmail.com" : comment.CommenterEmail),
                     new XElement(wp + "comment_author_url", comment.CommenterWebsite),
                     new XElement(wp + "comment_author_IP", ""),
                     new XElement(wp + "comment_date_gmt", comment.Created.ToString("yyyy-MM-dd HH:mm:ss")),

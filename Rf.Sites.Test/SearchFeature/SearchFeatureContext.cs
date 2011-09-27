@@ -29,9 +29,12 @@ namespace Rf.Sites.Test.SearchFeature
             _cache = new InMemoryCache();
             Setup();
             _urlRegistry = new Mock<IUrlRegistry>();
-            _urlRegistry.Setup(u => u.TemplateFor(It.IsAny<ContentId>())).Returns("/go/{Id}");
-            _urlRegistry.Setup(u => u.TemplateFor(It.IsAny<TagPaging>())).Returns("/tag/{Tag}/{Page}");
-            _search = new Search(GetContentFactory, GetTagFactory, _cache, _urlRegistry.Object);
+            _urlRegistry.Setup(u => u.UrlFor(It.IsAny<ContentId>())).Returns((ContentId ci) => "/go/" + ci.Id);
+            _urlRegistry.Setup(u => u.UrlFor(It.IsAny<TagPaging>())).Returns((TagPaging p) => "/tag/" + p.Tag);
+            _search = new Search(new ISearchPlugin[] {
+                new SearchOnPosts(_cache, _urlRegistry.Object, GetContentFactory), 
+                new SearchOnTags(_cache, _urlRegistry.Object, GetTagFactory)
+            });
         }
 
         protected virtual void Setup()
