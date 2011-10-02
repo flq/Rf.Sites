@@ -39,11 +39,11 @@ namespace Rf.Sites.Entities
 
     public virtual void AssociateWithTag(Tag tag)
     {
-      (Tags ?? (Tags = new List<Tag>())).Add(tag);
-      tag.RelatedContent.Add(this);
+        (Tags ?? (Tags = new List<Tag>())).Add(tag);
+        tag.RelatedContent.Add(this);
     }
 
-    public virtual void SetBody(string body)
+      public virtual void SetBody(string body)
     {
       if (body == null)
         throw new ArgumentNullException("body");

@@ -16,6 +16,15 @@ namespace Rf.Sites.Test.DataScenarios
         }
     }
 
+    internal class FunnyTitle : IDataScenario<Content>
+    {
+        public void Accept(IRepository<Content> repository)
+        {
+            var em = new EntityMaker();
+            repository.Add(em.CreateContent(1, "Lord's best item is \" - da crazy shizzle's", new DateTime(2010, 1, 1)));
+        }
+    }
+
     internal class SomeFutureContent : IDataScenario<Content>
     {
         public void Accept(IRepository<Content> repository)

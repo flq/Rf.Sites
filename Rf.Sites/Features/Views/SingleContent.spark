@@ -22,7 +22,7 @@
 	</div>
 
 	<div class="content_body">
-	${Model.Body}
+	  ${Model.Body}
 	</div>
 
   <div class="content_attachments" if="Model.AttachmentCount > 0">
@@ -31,5 +31,5 @@
       <Attachment attachment="a" />
     </for>
   </div>
-	
 </div>
+<Comments contentIdentifier="Model.ContentId" siteIdentifier="Model.DisqusSiteIdentifier" pageTitle="Model.JsonTitle" fullUrl="Model.AbsoluteUrlToContent" />

@@ -75,7 +75,7 @@ namespace Rf.Sites.Test
 
         private static ContentVM GetContentVm(string body)
         {
-            return new ContentVM(null, null) { Body = body };
+            return new ContentVM(null, null, null, null, null) { Body = body };
         }
     }
 }

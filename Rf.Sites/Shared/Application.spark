@@ -23,7 +23,7 @@
   </head>
   <body>
     <div id="header">
-      <h1>realfiction <div class="search">Find: <input id="search" /></div></h1>
+      <h1><a href="/">realfiction</a> <div class="search">Find: <input id="search" /></div></h1>
       <p id="subtitle">Explore the intersections of fiction and reality. Question them. Leave them behind.</p>
       
     </div>

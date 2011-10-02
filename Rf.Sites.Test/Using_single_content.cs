@@ -34,6 +34,17 @@ namespace Rf.Sites.Test
             next.Model.Should().NotBeNull();
         }
 
+        [Test]
+        public void title_is_available_for_javascript_var()
+        {
+            ApplyData<FunnyTitle>();
+            var next = _sc.GetContent(1);
+            var vm = new ContentVM(next.Model, null, null, null, null);
+            var jsonTitle = vm.JsonTitle;
+            jsonTitle.Should().Contain("\\u0027");
+            jsonTitle.Should().Contain("\\\"");
+        }
+
 
         [Test]
         public void future_content_is_transferred_to_new_model()

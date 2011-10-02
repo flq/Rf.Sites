@@ -56,7 +56,7 @@ namespace CommentMigrator
                   new XElement(wp + "comment", 
                     new XElement(wp + "comment_id", comment.Id),
                     new XElement(wp + "comment_author", comment.CommenterName),
-                    new XElement(wp + "comment_email", fromSiteMaster ? "fquednau@gmail.com" : comment.CommenterEmail),
+                    new XElement(wp + "comment_author_email", fromSiteMaster ? "fquednau@gmail.com" : comment.CommenterEmail),
                     new XElement(wp + "comment_author_url", comment.CommenterWebsite),
                     new XElement(wp + "comment_author_IP", ""),
                     new XElement(wp + "comment_date_gmt", comment.Created.ToString("yyyy-MM-dd HH:mm:ss")),

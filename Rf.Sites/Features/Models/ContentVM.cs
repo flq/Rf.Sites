@@ -1,28 +1,45 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using FubuMVC.Core.Urls;
 using Rf.Sites.Entities;
 using Rf.Sites.Frame;
+using Rf.Sites.Frame.SiteInfrastructure;
 
 namespace Rf.Sites.Features.Models
 {
     public class ContentVM
     {
-        private readonly MediaSettings _settings;
-        private bool commentingDisabled;
+        private readonly MediaSettings _mediaSettings;
+        private readonly SiteSettings _siteSettings;
 
         public ContentVM(
           Content content,
-          MediaSettings settings)
+          MediaSettings mediaSettings, 
+          SiteSettings siteSettings, 
+          ServerVariables vars,
+          IUrlRegistry registry)
         {
-            _settings = settings;
+            _mediaSettings = mediaSettings;
+            _siteSettings = siteSettings;
+            if (registry != null && vars != null)
+              AbsoluteUrlToContent = registry.BuildAbsoluteUrlTemplate(vars, r => r.UrlFor(new ContentId(content.Id)));
             if (content != null)
               MapData(content);
         }
 
+        public string AbsoluteUrlToContent { get; private set; }
+
+        public string DisqusSiteIdentifier { get { return _siteSettings.DisqusSiteIdentifier; } }
+
         public string ContentId { get; private set; }
 
         public string Title { get; private set; }
+
+        public string JsonTitle
+        {
+            get { return HtmlTags.JsonUtil.ToJson(Title); }
+        }
 
         public string Keywords { get; private set; }
 
@@ -49,7 +66,6 @@ namespace Rf.Sites.Features.Models
             SetTimeInfo(content);
             HandleAttachments(content);
             
-            commentingDisabled = content.CommentingDisabled;
             Tags = content.Tags != null ? content.Tags.Select(t => t.Name) : new string[] { };
         }
 
@@ -77,7 +93,7 @@ namespace Rf.Sites.Features.Models
 
             if (AttachmentCount > 0)
             {
-                var converter = new AttachmentConverter(_settings);
+                var converter = new AttachmentConverter(_mediaSettings);
                 Attachments = content.Attachments.Select(converter.Convert);
             }
         }

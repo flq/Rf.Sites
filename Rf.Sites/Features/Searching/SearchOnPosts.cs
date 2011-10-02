@@ -27,7 +27,7 @@ namespace Rf.Sites.Features.Searching
             if (TitlesAreNotCached)
                 CacheTitles();
             return from title in _cache.Get<List<Tuple<int, string>>>("titles")
-                   where title.Item2.StartsWith(searchTerm, StringComparison.InvariantCultureIgnoreCase)
+                   where title.Item2.IndexOf(searchTerm, 0, StringComparison.InvariantCultureIgnoreCase) > -1
                    select new Link
                               {
                                   linktext = title.Item2,
