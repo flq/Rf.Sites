@@ -20,3 +20,4 @@ Rf.Sites/files/images/*.*
 Rf.Sites.Build.dll
 ForbiddenTests.cs
 CommentMigrator/packages
+packages/Fubu*/src
