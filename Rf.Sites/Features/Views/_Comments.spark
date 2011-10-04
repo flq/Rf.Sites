@@ -1,11 +1,11 @@
 <div id="disqus_thread"></div>
 <script type="text/javascript">
 
-    var disqus_shortname = '${siteIdentifier}';
-    var disqus_identifier = '${contentIdentifier}';
-    var disqus_title = ${pageTitle};
-    var disqus_developer = 1;
-    var disqus_url = '${fullUrl}';
+    var disqus_shortname = '${CommentData.DisqusSiteIdentifier}';
+    var disqus_identifier = '${CommentData.Identifier}';
+    var disqus_title = ${CommentData.Title};
+    var disqus_developer = ${CommentData.DisqusDeveloperMode};
+    var disqus_url = '${CommentData.AbsoluteUrlToContent}';
 
     (function() {
     var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

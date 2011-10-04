@@ -3,6 +3,7 @@ using NUnit.Framework;
 using Rf.Sites.Entities;
 using Rf.Sites.Features;
 using Rf.Sites.Features.Models;
+using Rf.Sites.Frame;
 using Rf.Sites.Test.DataScenarios;
 
 namespace Rf.Sites.Test
@@ -39,8 +40,8 @@ namespace Rf.Sites.Test
         {
             ApplyData<FunnyTitle>();
             var next = _sc.GetContent(1);
-            var vm = new ContentVM(next.Model, null, null, null, null);
-            var jsonTitle = vm.JsonTitle;
+            var vm = new ContentVM(next.Model, null, new SiteSettings(), null, null);
+            var jsonTitle = vm.CommentData.Title;
             jsonTitle.Should().Contain("\\u0027");
             jsonTitle.Should().Contain("\\\"");
         }

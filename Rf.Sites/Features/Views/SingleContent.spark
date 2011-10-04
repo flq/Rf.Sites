@@ -32,4 +32,4 @@
     </for>
   </div>
 </div>
-<Comments contentIdentifier="Model.ContentId" siteIdentifier="Model.DisqusSiteIdentifier" pageTitle="Model.JsonTitle" fullUrl="Model.AbsoluteUrlToContent" />
+<Comments CommentData="Model.CommentData" />

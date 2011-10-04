@@ -22,24 +22,25 @@ namespace Rf.Sites.Features.Models
         {
             _mediaSettings = mediaSettings;
             _siteSettings = siteSettings;
-            if (registry != null && vars != null)
-              AbsoluteUrlToContent = registry.BuildAbsoluteUrlTemplate(vars, r => r.UrlFor(new ContentId(content.Id)));
+            
             if (content != null)
-              MapData(content);
+            {
+                var url = registry != null && vars != null ? registry.BuildAbsoluteUrlTemplate(vars, r => r.UrlFor(new ContentId(content.Id))) : null;
+                CommentData = new CommentDataVM(
+                    content.Id, 
+                    url,
+                    _siteSettings.DisqusSiteIdentifier, 
+                    _siteSettings.DisqusDeveloperMode,
+                    HtmlTags.JsonUtil.ToJson(content.Title));
+                MapData(content);
+            }
         }
 
-        public string AbsoluteUrlToContent { get; private set; }
-
-        public string DisqusSiteIdentifier { get { return _siteSettings.DisqusSiteIdentifier; } }
+        public CommentDataVM CommentData { get; private set; }
 
         public string ContentId { get; private set; }
 
         public string Title { get; private set; }
-
-        public string JsonTitle
-        {
-            get { return HtmlTags.JsonUtil.ToJson(Title); }
-        }
 
         public string Keywords { get; private set; }
 
@@ -52,8 +53,6 @@ namespace Rf.Sites.Features.Models
         public bool NeedsCodeHighlighting { get; set; }
 
         public int AttachmentCount { get; private set; }
-
-        public int CommentCount { get; set; }
 
         public IEnumerable<string> Tags { get; private set; }
 
@@ -97,5 +96,30 @@ namespace Rf.Sites.Features.Models
                 Attachments = content.Attachments.Select(converter.Convert);
             }
         }
+    }
+
+    public class CommentDataVM
+    {
+        public CommentDataVM(int id, string buildAbsoluteUrlTemplate, string disqusSiteIdentifier, string disqusDeveloperMode, string titleInJson)
+        {
+            Identifier = id.ToString();
+            AbsoluteUrlToContent = buildAbsoluteUrlTemplate;
+            DisqusSiteIdentifier = disqusSiteIdentifier;
+            DisqusDeveloperMode = disqusDeveloperMode;
+            Title = titleInJson;
+        }
+
+        public string Identifier { get; private set; }
+
+        public string AbsoluteUrlToContent { get; private set; }
+
+        public string DisqusSiteIdentifier { get; private set; }
+
+        /// <summary>
+        /// Required for local testing
+        /// </summary>
+        public string DisqusDeveloperMode { get; private set; }
+
+        public string Title { get; private set; }
     }
 }
