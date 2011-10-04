@@ -1,7 +1,14 @@
+using System;
 using FubuMVC.Core;
+using FubuMVC.Core.Diagnostics;
+using FubuMVC.Core.Registration;
+using FubuMVC.Core.Registration.Conventions;
+using FubuMVC.Core.Registration.Nodes;
+using FubuMVC.Core.Registration.Routes;
 using FubuMVC.Spark;
 using FubuCore.Reflection;
 using Rf.Sites.Features;
+using Rf.Sites.Features.Administration;
 using Rf.Sites.Frame.SiteInfrastructure;
 
 namespace Rf.Sites.Bootstrapping
@@ -18,7 +25,8 @@ namespace Rf.Sites.Bootstrapping
 
             Policies
                 .Add<HandleContentContinuation>()
-                .Add<HandlePagingOutput>();
+                .Add<HandlePagingOutput>()
+                .Add<HandleContentAdmin>();
 
             Output.ToJson.WhenTheOutputModelIs<IJsonResponse>();
             Output.To<StreamingOutput>().WhenTheOutputModelIs<IStreamOutput>();
@@ -29,7 +37,8 @@ namespace Rf.Sites.Bootstrapping
             Routes
                 .IgnoreControllerNamesEntirely()
                 .IgnoreControllerNamespaceEntirely()
-                .ModifyRouteDefinitions(AutoRouteInput.Filter, AutoRouteInput.Modification)
+                .ModifyRouteDefinitions(InputParameterCustomization.Filter, InputParameterCustomization.Modification)
+                .ModifyRouteDefinitions(ContentAdminCustomization.Filter, ContentAdminCustomization.Modification)
                 .RootAtAssemblyNamespace()
                 .HomeIs<PagedContent>(pc => pc.Home());
 

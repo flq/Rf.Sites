@@ -136,6 +136,7 @@
     <Compile Include="Entities\Content.cs" />
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="Entities\Tag.cs" />
+    <Compile Include="Features\Administration\ContentAdmin.cs" />
     <Compile Include="Features\AttachmentConverter.cs" />
     <Compile Include="Features\CodeHighlighting.cs" />
     <Compile Include="Features\FeedProvision.cs" />
@@ -173,7 +174,10 @@
     <Compile Include="Frame\Persistence\Repository.cs" />
     <Compile Include="Frame\Persistence\SessionFactoryMaker.cs" />
     <Compile Include="Frame\Persistence\WebNHSessionContext.cs" />
-    <Compile Include="Frame\SiteInfrastructure\AutoRouteInput.cs" />
+    <Compile Include="Frame\SiteInfrastructure\AdminActionsPolicy.cs" />
+    <Compile Include="Frame\SiteInfrastructure\ContentAdminCustomization.cs" />
+    <Compile Include="Frame\SiteInfrastructure\HandleContentAdmin.cs" />
+    <Compile Include="Frame\SiteInfrastructure\InputParameterCustomization.cs" />
     <Compile Include="Frame\SiteInfrastructure\ContentContinuation.cs" />
     <Compile Include="Frame\SiteInfrastructure\ContentContinuationBehavior.cs" />
     <Compile Include="Frame\PaginationSettings.cs" />
@@ -182,6 +186,7 @@
     <Compile Include="Frame\SiteInfrastructure\HasActionsAttribute.cs" />
     <Compile Include="Frame\SiteInfrastructure\ICache.cs" />
     <Compile Include="Frame\SiteInfrastructure\NullCache.cs" />
+    <Compile Include="Frame\SiteInfrastructure\RequestHeaders.cs" />
     <Compile Include="Frame\SiteInfrastructure\RouteParameterSorterAttribute.cs" />
     <Compile Include="Frame\SiteInfrastructure\ServerVariables.cs" />
     <Compile Include="Frame\SiteInfrastructure\StreamOutput.cs" />

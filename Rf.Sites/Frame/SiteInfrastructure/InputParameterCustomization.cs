@@ -7,7 +7,7 @@ using FubuMVC.Core.Registration.Routes;
 
 namespace Rf.Sites.Frame.SiteInfrastructure
 {
-    public static class AutoRouteInput
+    public static class InputParameterCustomization
     {
         public static bool Filter(ActionCall call)
         {
