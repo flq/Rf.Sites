@@ -22,18 +22,17 @@ namespace Rf.Sites.Features.Models
         {
             _mediaSettings = mediaSettings;
             _siteSettings = siteSettings;
-            
-            if (content != null)
-            {
-                var url = registry != null && vars != null ? registry.BuildAbsoluteUrlTemplate(vars, r => r.UrlFor(new ContentId(content.Id))) : null;
-                CommentData = new CommentDataVM(
-                    content.Id, 
-                    url,
-                    _siteSettings.DisqusSiteIdentifier, 
-                    _siteSettings.DisqusDeveloperMode,
-                    HtmlTags.JsonUtil.ToJson(content.Title));
-                MapData(content);
-            }
+
+            if (content == null) return;
+
+            var url = registry != null && vars != null ? registry.BuildAbsoluteUrlTemplate(vars, r => r.UrlFor(new ContentId(content.Id))) : null;
+            CommentData = new CommentDataVM(
+                content.Id, 
+                url,
+                _siteSettings.DisqusSiteIdentifier, 
+                _siteSettings.DisqusDeveloperMode,
+                HtmlTags.JsonUtil.ToJson(content.Title));
+            MapData(content);
         }
 
         public CommentDataVM CommentData { get; private set; }

@@ -31,5 +31,5 @@
       <Attachment attachment="a" />
     </for>
   </div>
+  <Comments CommentData="Model.CommentData" />
 </div>
-<Comments CommentData="Model.CommentData" />

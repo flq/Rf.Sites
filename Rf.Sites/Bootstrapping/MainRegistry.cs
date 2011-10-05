@@ -1,6 +1,4 @@
-using System;
 using System.Web;
-using FubuCore.Binding;
 using Rf.Sites.Features.Searching;
 using Rf.Sites.Frame;
 using Rf.Sites.Frame.SiteInfrastructure;
@@ -13,8 +11,6 @@ namespace Rf.Sites.Bootstrapping
         public MainRegistry()
         {
             ForSingletonOf<ICache>().Use<WebBasedCache>();
-
-            For<IBindingLogger>().Use<NulloBindingLogger>();
 
             For<ServerVariables>().Use(ctx => new ServerVariables(ctx.GetInstance<HttpContextBase>().Request.ServerVariables));
             For<RequestHeaders>().Use(ctx => new RequestHeaders(ctx.GetInstance<HttpContextBase>().Request.Headers));
