@@ -1,3 +1,5 @@
+using System;
+using System.IO;
 using FubuMVC.Core;
 using FubuMVC.Core.Runtime;
 using Rf.Sites.Entities;
@@ -11,9 +13,9 @@ namespace Rf.Sites.Features.Administration
     public class ContentAdmin
     {
         private readonly IFubuRequest _req;
-        private readonly IRepository<Content> _content;
+        private readonly IRepository<Entities.Content> _content;
 
-        public ContentAdmin(IFubuRequest req, IRepository<Content> content)
+        public ContentAdmin(IFubuRequest req, IRepository<Entities.Content> content)
         {
             _req = req;
             _content = content;
@@ -26,18 +28,15 @@ namespace Rf.Sites.Features.Administration
         }
 
         [UrlRegistryCategory("Admin")]
-        public void Post(ContentAdministration content)
+        public void Post(Content content)
         {
-            
+            var access = content.DynamicAccessToJson();
+            var stuff = access.test;
         }
 
         [UrlRegistryCategory("Admin")]
-        public void Put(ContentAdministration content)
+        public void Put(Content content)
         {
         }
-    }
-
-    public class ContentAdministration
-    {
     }
 }

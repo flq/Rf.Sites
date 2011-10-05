@@ -14,6 +14,7 @@ namespace Rf.Sites.Bootstrapping
 
             For<ServerVariables>().Use(ctx => new ServerVariables(ctx.GetInstance<HttpContextBase>().Request.ServerVariables));
             For<RequestHeaders>().Use(ctx => new RequestHeaders(ctx.GetInstance<HttpContextBase>().Request.Headers));
+
             Scan(s =>
                      {
                          s.TheCallingAssembly();

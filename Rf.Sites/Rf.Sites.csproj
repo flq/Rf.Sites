@@ -97,6 +97,7 @@
       <HintPath>..\packages\structuremap.2.6.3\lib\StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System" />
@@ -133,6 +134,8 @@
     <Compile Include="Bootstrapping\HandleContentContinuation.cs" />
     <Compile Include="Bootstrapping\HandlePagingOutput.cs" />
     <Compile Include="Bootstrapping\MainRegistry.cs" />
+    <Compile Include="Features\Administration\Content.cs" />
+    <Compile Include="Frame\DynamicJson.cs" />
     <Compile Include="Entities\Attachment.cs" />
     <Compile Include="Entities\Content.cs" />
     <Compile Include="Entities\Entity.cs" />

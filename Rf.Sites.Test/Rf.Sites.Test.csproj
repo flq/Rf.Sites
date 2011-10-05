@@ -106,9 +106,7 @@
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\FubuMVC.cs" />
     <Compile Include="CodeHighlightTests.cs" />
-    <Compile Include="ConfigureFubuMVC.cs" />
     <Compile Include="DataScenarios\ContentForSitemapScenario.cs" />
     <Compile Include="DataScenarios\SomeContent.cs" />
     <Compile Include="FixedListComparerTests.cs" />
@@ -133,8 +131,6 @@
     <Compile Include="When_repository_is_used.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="fubu-content\basic-getting-started.zip" />
-    <None Include="fubu-content\fubumvc-diagnostics.zip" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
