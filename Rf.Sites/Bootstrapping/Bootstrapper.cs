@@ -1,8 +1,5 @@
-using System;
 using System.Reflection;
-using FubuCore.Binding;
 using FubuMVC.Core;
-using FubuMVC.Core.Runtime;
 using FubuMVC.Spark;
 using FubuCore.Reflection;
 using Rf.Sites.Features;
@@ -29,7 +26,7 @@ namespace Rf.Sites.Bootstrapping
             Output.ToJson.WhenTheOutputModelIs<IJsonResponse>();
             Output.To<StreamingOutput>().WhenTheOutputModelIs<IStreamOutput>();
 
-            Models.BindModelsWith<DynamicJsonBinding>();
+            Models.BindModelsWith<DynamicBinding>();
             
 
             this.UseSpark();
@@ -43,25 +40,6 @@ namespace Rf.Sites.Bootstrapping
                 .HomeIs<PagedContent>(pc => pc.Home());
 
             Views.TryToAttach(ve => ve.by_ViewModel());
-        }
-    }
-
-    public class DynamicJsonBinding : IModelBinder
-    {
-        public bool Matches(Type type)
-        {
-            return type == typeof(Content);
-        }
-
-        public void Bind(Type type, object instance, IBindingContext context)
-        {
-
-        }
-
-        public object Bind(Type type, IBindingContext context)
-        {
-            var data = context.Service<IStreamingData>();
-            return new Content(data.InputText());
         }
     }
 }

@@ -28,10 +28,9 @@ namespace Rf.Sites.Features.Administration
         }
 
         [UrlRegistryCategory("Admin")]
-        public void Post(Content content)
+        public void Post(dynamic content)
         {
-            var access = content.DynamicAccessToJson();
-            var stuff = access.test;
+            var stuff = content.test;
         }
 
         [UrlRegistryCategory("Admin")]

@@ -9,8 +9,5 @@ namespace Rf.Sites.Frame
         public string SiteCopyright { get; set; }
         public string DisqusSiteIdentifier { get; set; }
         public string DisqusDeveloperMode { get; set; }
-
-        public string AdminUser { get; set; }
-        public string AdminPassword { get; set; }
     }
 }
