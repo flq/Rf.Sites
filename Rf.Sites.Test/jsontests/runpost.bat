@@ -1,1 +1,1 @@
-curl -H X-RfSite-Username:user -H X-RfSite-Password:pwd -H Content-Type:application/json -d @%1.txt -s -D- http://localhost:3939/admin/post
+curl -H X-RfSite-AdminToken:token -H Content-Type:application/json -d @%1.txt -s -D- http://localhost:3939/admin/post

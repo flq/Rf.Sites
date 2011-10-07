@@ -1,4 +1,5 @@
 using System.Web;
+using Rf.Sites.Features.Administration;
 using Rf.Sites.Features.Searching;
 using Rf.Sites.Frame;
 using Rf.Sites.Frame.SiteInfrastructure;
@@ -14,6 +15,8 @@ namespace Rf.Sites.Bootstrapping
 
             For<ServerVariables>().Use(ctx => new ServerVariables(ctx.GetInstance<HttpContextBase>().Request.ServerVariables));
             For<RequestHeaders>().Use(ctx => new RequestHeaders(ctx.GetInstance<HttpContextBase>().Request.Headers));
+
+            For<IContentAdministration>().Use<ContentAdminImpl>();
 
             Scan(s =>
                      {

@@ -1,1 +1,1 @@
-curl -H X-RfSite-Username:user -H X-RfSite-Password:pwd -H -s -D- http://localhost:3939/admin/gettags
+curl -H X-RfSite-Username:user -H X-RfSite-AdminToken:token -s -D- http://localhost:3939/admin/tags

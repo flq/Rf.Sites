@@ -1,33 +1,29 @@
 using FubuMVC.Core;
-using FubuMVC.Core.Runtime;
-using Rf.Sites.Entities;
 using Rf.Sites.Features.Models;
-using Rf.Sites.Frame.Persistence;
 using Rf.Sites.Frame.SiteInfrastructure;
-using System.Linq;
 
 namespace Rf.Sites.Features.Administration
 {
     [HasActions]
     public class ContentAdmin
     {
-        private readonly IRepository<Tag> _tags;
+        private readonly IContentAdministration _contentAdministration;
 
-        public ContentAdmin(IRepository<Entities.Tag> tags)
+        public ContentAdmin(IContentAdministration contentAdministration)
         {
-            _tags = tags;
+            _contentAdministration = contentAdministration;
         }
 
         [UrlRegistryCategory("Admin")]
-        public IJsonResponse Get(ContentId contentId)
+        public object Get(ContentId contentId)
         {
-            return null;
+            return new { contentId.Id, Cool = "Text" };
         }
 
         [UrlRegistryCategory("Admin")]
-        public object GetTags()
+        public object Tags()
         {
-            return _tags.Select(t => t.Name).ToArray();
+            return _contentAdministration.GetTags();
         }
 
         [UrlRegistryCategory("Admin")]
@@ -37,7 +33,7 @@ namespace Rf.Sites.Features.Administration
         }
 
         [UrlRegistryCategory("Admin")]
-        public void Put(Content content)
+        public void Put(dynamic content)
         {
         }
     }

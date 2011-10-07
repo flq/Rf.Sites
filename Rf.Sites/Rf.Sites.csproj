@@ -135,8 +135,10 @@
     <Compile Include="Bootstrapping\HandlePagingOutput.cs" />
     <Compile Include="Bootstrapping\MainRegistry.cs" />
     <Compile Include="Features\Administration\AdminActionsPolicy.cs" />
-    <Compile Include="Features\Administration\Content.cs" />
+    <Compile Include="Features\Administration\ContentAdminCustomization.cs" />
+    <Compile Include="Features\Administration\IContentAdministration.cs" />
     <Compile Include="Frame\AdminSettings.cs" />
+    <Compile Include="Frame\ContentAdminImpl.cs" />
     <Compile Include="Frame\DynamicJson.cs" />
     <Compile Include="Entities\Attachment.cs" />
     <Compile Include="Entities\Content.cs" />
@@ -180,8 +182,7 @@
     <Compile Include="Frame\Persistence\Repository.cs" />
     <Compile Include="Frame\Persistence\SessionFactoryMaker.cs" />
     <Compile Include="Frame\Persistence\WebNHSessionContext.cs" />
-    <Compile Include="Frame\SiteInfrastructure\AdminActionsPolicy.cs" />
-    <Compile Include="Frame\SiteInfrastructure\ContentAdminCustomization.cs" />
+    <Compile Include="Frame\SiteInfrastructure\DoNextExtensions.cs" />
     <Compile Include="Frame\SiteInfrastructure\DynamicBinding.cs" />
     <Compile Include="Frame\SiteInfrastructure\HandleContentAdmin.cs" />
     <Compile Include="Frame\SiteInfrastructure\InputParameterCustomization.cs" />

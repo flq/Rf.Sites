@@ -53,15 +53,15 @@ namespace Rf.Sites.Features.Administration
 
         private bool AuthorizeHeadersExist()
         {
-            var headersExist = _headers.Value("X-RfSite-Username") != null && _headers.Value("X-RfSite-Password") != null;
-            if (!headersExist)
+            var headerExist = _headers.Value("X-RfSite-AdminToken") != null;
+            if (!headerExist)
                 Forbidden();
-            return headersExist;
+            return headerExist;
         }
 
         private bool AuthorizationMatches()
         {
-            var match = _headers.Value("X-RfSite-Username").Equals(_adminSettings.AdminUser) && _headers.Value("X-RfSite-Password").Equals(_adminSettings.AdminPassword);
+            var match = _headers.Value("X-RfSite-AdminToken").Equals(_adminSettings.AdminToken);
             if (!match)
                 Forbidden();
             return match;
