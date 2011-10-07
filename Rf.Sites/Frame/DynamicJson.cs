@@ -67,7 +67,16 @@ namespace Rf.Sites.Frame
         /// <summary>create JsonSring from primitive or IEnumerable or Object({public property name:property value})</summary>
         public static string Serialize(object obj)
         {
-            return CreateJsonString(new XStreamingElement("root", CreateTypeAttr(GetJsonType(obj)), CreateJsonNode(obj)));
+            using (var ms = new MemoryStream())
+            {
+                CreateJsonString(new XStreamingElement("root", CreateTypeAttr(GetJsonType(obj)), CreateJsonNode(obj)), ms);
+                return Encoding.Unicode.GetString(ms.ToArray());
+            }
+        }
+
+        public static void Serialize(object obj, Stream stream)
+        {
+            CreateJsonString(new XStreamingElement("root", CreateTypeAttr(GetJsonType(obj)), CreateJsonNode(obj)), stream);
         }
 
         // private static methods
@@ -164,14 +173,12 @@ namespace Rf.Sites.Frame
                 .Select(a => new XStreamingElement(a.Name, CreateTypeAttr(GetJsonType(a.Value)), CreateJsonNode(a.Value)));
         }
 
-        private static string CreateJsonString(XStreamingElement element)
+        private static void CreateJsonString(XStreamingElement element, Stream stream)
         {
-            using (var ms = new MemoryStream())
-            using (var writer = JsonReaderWriterFactory.CreateJsonWriter(ms, Encoding.Unicode))
+            using (var writer = JsonReaderWriterFactory.CreateJsonWriter(stream, Encoding.Unicode))
             {
                 element.WriteTo(writer);
                 writer.Flush();
-                return Encoding.Unicode.GetString(ms.ToArray());
             }
         }
 
@@ -425,7 +432,7 @@ namespace Rf.Sites.Frame
             {
                 elem.RemoveNodes();
             }
-            return CreateJsonString(new XStreamingElement("root", CreateTypeAttr(jsonType), xml.Elements()));
+            return Serialize(this);
         }
     }
 }

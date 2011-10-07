@@ -134,6 +134,7 @@
     <Compile Include="Bootstrapping\HandleContentContinuation.cs" />
     <Compile Include="Bootstrapping\HandlePagingOutput.cs" />
     <Compile Include="Bootstrapping\MainRegistry.cs" />
+    <Compile Include="Features\Administration\AdminActionsPolicy.cs" />
     <Compile Include="Features\Administration\Content.cs" />
     <Compile Include="Frame\AdminSettings.cs" />
     <Compile Include="Frame\DynamicJson.cs" />
