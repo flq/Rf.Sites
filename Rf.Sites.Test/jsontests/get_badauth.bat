@@ -1,0 +1,1 @@
+curl -H X-RfSite-Username:user -H X-RfSite-AdminToken:nope -s -D- http://localhost:3939/admin/13

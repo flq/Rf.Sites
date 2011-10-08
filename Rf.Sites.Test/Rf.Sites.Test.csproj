@@ -106,6 +106,8 @@
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\AdministrationContext.cs" />
+    <Compile Include="Admin\MissingAuthToken.cs" />
     <Compile Include="CodeHighlightTests.cs" />
     <Compile Include="DataScenarios\ContentForSitemapScenario.cs" />
     <Compile Include="DataScenarios\SomeContent.cs" />

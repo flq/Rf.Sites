@@ -69,7 +69,7 @@ namespace Rf.Sites.Test
                                }
                            })
                            .ExecutionTime()
-                           .ShouldNotExceed(TimeSpan.FromMilliseconds(100));
+                           .ShouldNotExceed(TimeSpan.FromMilliseconds(110));
         }
 
 

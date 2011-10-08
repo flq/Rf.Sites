@@ -134,9 +134,15 @@
     <Compile Include="Bootstrapping\HandleContentContinuation.cs" />
     <Compile Include="Bootstrapping\HandlePagingOutput.cs" />
     <Compile Include="Bootstrapping\MainRegistry.cs" />
-    <Compile Include="Features\Administration\AdminActionsPolicy.cs" />
+    <Compile Include="Features\Administration\Behavior\AdminActionBasicBehavior.cs" />
+    <Compile Include="Features\Administration\Behavior\GetBehavior.cs" />
     <Compile Include="Features\Administration\ContentAdminCustomization.cs" />
+    <Compile Include="Features\Administration\ContentAdminException.cs" />
+    <Compile Include="Features\Administration\HandleContentAdmin.cs" />
     <Compile Include="Features\Administration\IContentAdministration.cs" />
+    <Compile Include="Features\Administration\Behavior\InsertBehavior.cs" />
+    <Compile Include="Features\Administration\OutputWriterExtensions.cs" />
+    <Compile Include="Features\Administration\Behavior\PutBehavior.cs" />
     <Compile Include="Frame\AdminSettings.cs" />
     <Compile Include="Frame\ContentAdminImpl.cs" />
     <Compile Include="Frame\DynamicJson.cs" />
@@ -183,8 +189,8 @@
     <Compile Include="Frame\Persistence\SessionFactoryMaker.cs" />
     <Compile Include="Frame\Persistence\WebNHSessionContext.cs" />
     <Compile Include="Frame\SiteInfrastructure\DoNextExtensions.cs" />
+    <Compile Include="Frame\SiteInfrastructure\DynamicBindException.cs" />
     <Compile Include="Frame\SiteInfrastructure\DynamicBinding.cs" />
-    <Compile Include="Frame\SiteInfrastructure\HandleContentAdmin.cs" />
     <Compile Include="Frame\SiteInfrastructure\InputParameterCustomization.cs" />
     <Compile Include="Frame\SiteInfrastructure\ContentContinuation.cs" />
     <Compile Include="Frame\SiteInfrastructure\ContentContinuationBehavior.cs" />

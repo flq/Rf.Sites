@@ -1,4 +1,7 @@
+using System;
 using FubuMVC.Core;
+using FubuMVC.Core.Runtime;
+using FubuMVC.Core.Urls;
 using Rf.Sites.Features.Models;
 using Rf.Sites.Frame.SiteInfrastructure;
 
@@ -8,16 +11,25 @@ namespace Rf.Sites.Features.Administration
     public class ContentAdmin
     {
         private readonly IContentAdministration _contentAdministration;
+        private readonly IFubuRequest _request;
+        private readonly IUrlRegistry _urls;
+        private readonly ServerVariables _vars;
 
-        public ContentAdmin(IContentAdministration contentAdministration)
+        public ContentAdmin(IContentAdministration contentAdministration, IFubuRequest request, IUrlRegistry urls, ServerVariables vars)
         {
             _contentAdministration = contentAdministration;
+            _request = request;
+            _urls = urls;
+            _vars = vars;
         }
 
         [UrlRegistryCategory("Admin")]
         public object Get(ContentId contentId)
         {
-            return new { contentId.Id, Cool = "Text" };
+            var @return = _contentAdministration.GetContent(contentId.Id);
+            if (@return == null)
+                throw new ContentAdminException("NotFound");
+            return @return;
         }
 
         [UrlRegistryCategory("Admin")]
@@ -29,12 +41,34 @@ namespace Rf.Sites.Features.Administration
         [UrlRegistryCategory("Admin")]
         public void Post(dynamic content)
         {
-            var stuff = content.test;
+            var newId = _contentAdministration.InsertContent(content);
+            _request.Set(new InsertInfo(_urls.UrlFor(new ContentId(newId), "Admin")));
         }
 
         [UrlRegistryCategory("Admin")]
         public void Put(dynamic content)
         {
+            int id;
+            if (!GetId(out id))
+                throw new ContentAdminException("Id");
+            _contentAdministration.UpdateContent(id, content);
         }
+
+        private bool GetId(out int id)
+        {
+            var url = _vars[ServerVariables.URL];
+            var sId = url.Substring(url.LastIndexOf("/") + 1);
+            return int.TryParse(sId, out id);
+        }
+    }
+
+    public class InsertInfo
+    {
+        public InsertInfo(string url)
+        {
+            Url = url;
+        }
+
+        public string Url { get; set; }
     }
 }

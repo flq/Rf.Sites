@@ -1,0 +1,1 @@
+curl -H X-RfSite-AdminToken:token -H Content-Type:application/json -d @simple.txt -s -D- --request PUT http://localhost:3939/admin/13
