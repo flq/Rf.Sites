@@ -10,11 +10,6 @@ namespace Rf.Sites.Test.Admin
     [TestFixture]
     internal class MissingAuthToken : AdministrationContext<AdminActionBasicBehavior>
     {
-        protected override IDictionary<string, object> GetRequestParameters()
-        {
-            return new Dictionary<string, object>();
-        }
-
         protected override AdminActionBasicBehavior CreateBehavior()
         {
             return new AdminActionBasicBehavior(RequestData, OutputWriter, AdminSettings);
@@ -36,6 +31,37 @@ namespace Rf.Sites.Test.Admin
         public void Inner_behavior_was_not_called()
         {
             InnerWasNotCalled();
+        }
+    }
+
+    [TestFixture]
+    internal class InInsertionArgumentExceptionCaught : AdministrationContext<InsertBehavior>
+    {
+        protected override InsertBehavior CreateBehavior()
+        {
+            return new InsertBehavior(RequestData, OutputWriter, AdminSettings, Request);
+        }
+
+        [TestFixtureSetUp]
+        public void Given()
+        {
+            EnsureSuccessfulAuthentication();
+            WhenInnerIsCalledDoThis(() =>
+                                        {
+                                            throw new ArgumentException("Id");
+                                        });
+            Invoke();
+        }
+
+        [Test]
+        public void Inner_behavior_was_called()
+        {
+            InnerWasCalled();
+        }
+
+        public void Bad_request_is_sent_back()
+        {
+            ThisStatusWasReturned(HttpStatusCode.BadRequest);
         }
     }
 }

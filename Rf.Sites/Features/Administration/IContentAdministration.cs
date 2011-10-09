@@ -2,9 +2,9 @@ namespace Rf.Sites.Features.Administration
 {
     public interface IContentAdministration
     {
-        object GetContent(int id);
+        dynamic GetContent(string id);
         string[] GetTags();
-        void UpdateContent(int id, dynamic content);
-        int InsertContent(dynamic content);
+        void UpdateContent(string id, dynamic content);
+        string InsertContent(dynamic content);
     }
 }

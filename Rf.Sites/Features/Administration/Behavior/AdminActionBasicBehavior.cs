@@ -17,6 +17,7 @@ namespace Rf.Sites.Features.Administration
 
         protected Action<DynamicBindException> DynamicBindExceptionHandler = _ => { };
         protected Action<ContentAdminException> ContentAdminExceptionHandler = _ => { };
+        protected Action<ArgumentException> ArgumentExceptionHandler = _ => { };
 
         public AdminActionBasicBehavior(IRequestData headers, IOutputWriter writer, AdminSettings adminSettings)
         {
@@ -49,6 +50,11 @@ namespace Rf.Sites.Features.Administration
                     if (x.InnerException is ContentAdminException)
                     {
                         ContentAdminExceptionHandler((ContentAdminException)x.InnerException);
+                        return;
+                    }
+                    if (x.InnerException is ArgumentException)
+                    {
+                        ArgumentExceptionHandler((ArgumentException)x.InnerException);
                         return;
                     }
                 }
@@ -89,5 +95,6 @@ namespace Rf.Sites.Features.Administration
         protected void UnsupportedMediaType() { Writer.WriteResponseCode(HttpStatusCode.UnsupportedMediaType); }
         protected void NotFound() { Writer.WriteResponseCode(HttpStatusCode.NotFound); }
         protected void ServerError() { Writer.WriteResponseCode(HttpStatusCode.InternalServerError); }
+        protected void StatusCreated() { Writer.WriteResponseCode(HttpStatusCode.Created); }
     }
 }

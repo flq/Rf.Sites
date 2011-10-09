@@ -15,7 +15,7 @@ namespace Rf.Sites.Frame
             _tagRepFactory = tagRepFactory;
         }
 
-        public object GetContent(int id)
+        public dynamic GetContent(string id)
         {
             return null;
         }
@@ -25,14 +25,14 @@ namespace Rf.Sites.Frame
             return _tagRepFactory().Select(t => t.Name).ToArray();
         }
 
-        public void UpdateContent(int id, dynamic content)
+        public void UpdateContent(string id, dynamic content)
         {
             
         }
 
-        public int InsertContent(dynamic content)
+        public string InsertContent(dynamic content)
         {
-            return 12;
+            return "12";
         }
     }
 }

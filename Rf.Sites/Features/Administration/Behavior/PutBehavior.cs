@@ -18,13 +18,18 @@ namespace Rf.Sites.Features.Administration
                                                };
             ContentAdminExceptionHandler += x =>
                                                 {
-                                                    if (x.Message.Equals("Id"))
-                                                        BadRequest();
-                                                    else if (x.Message.Equals("NotFound"))
+                                                    if (x.Message.Equals("NotFound"))
                                                         NotFound();
                                                     else
                                                         ServerError();
                                                 };
+            ArgumentExceptionHandler += x =>
+                                            {
+                                                if (x.Message.Equals("Id"))
+                                                    BadRequest();
+                                                else
+                                                    ServerError();
+                                            };
         }
     }
 }

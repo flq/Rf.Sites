@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using FluentAssertions;
 using FubuCore.Binding;
+using FubuMVC.Core;
 using FubuMVC.Core.Behaviors;
 using FubuMVC.Core.Runtime;
 using Moq;
@@ -16,12 +17,14 @@ namespace Rf.Sites.Test.Admin
     {
         private readonly Mock<IOutputWriter> _outputWriter;
         protected T AdminBehavior;
-        protected IRequestData RequestData;
+        protected InMemoryRequestData RequestData;
         protected AdminSettings AdminSettings;
         protected TestBehavior Inner;
+        protected InMemoryFubuRequest Request;
 
         protected AdministrationContext()
         {
+            Request = new InMemoryFubuRequest();
             AdminSettings = new AdminSettings();
             _outputWriter = new Mock<IOutputWriter>();
             RequestData = new InMemoryRequestData(GetRequestParameters());
@@ -35,7 +38,10 @@ namespace Rf.Sites.Test.Admin
             get { return _outputWriter.Object; }
         }
 
-        protected abstract IDictionary<string, object> GetRequestParameters();
+        protected virtual IDictionary<string, object> GetRequestParameters()
+        {
+            return new Dictionary<string, object>();
+        }
 
         protected abstract T CreateBehavior();
 
@@ -49,22 +55,6 @@ namespace Rf.Sites.Test.Admin
             _outputWriter.Verify(ow => ow.WriteResponseCode(code));
         }
 
-        internal class TestBehavior : IActionBehavior
-        {
-            public void Invoke()
-            {
-                WasCalled = true;
-                
-            }
-
-            void IActionBehavior.InvokePartial()
-            {
-                throw new NotImplementedException();
-            }
-
-            public bool WasCalled { get; set; }
-        }
-
         protected void InnerWasNotCalled()
         {
             Inner.WasCalled.Should().BeFalse();
@@ -73,6 +63,48 @@ namespace Rf.Sites.Test.Admin
         protected void InnerWasCalled()
         {
             Inner.WasCalled.Should().BeTrue();
+        }
+
+        protected void EnsureSuccessfulAuthentication()
+        {
+            RequestData["X-RfSite-AdminToken"] = "bar";
+            AdminSettings.AdminToken = "bar";
+        }
+
+        internal class TestBehavior : IActionBehavior
+        {
+            private Action _action = () => { };
+
+            public void Invoke()
+            {
+                WasCalled = true;
+                // Impl Detail! Fubu wraps exceptions into its own !!
+                try
+                {
+                    _action();
+                }
+                catch (Exception x)
+                {
+                    throw new FubuException(666, x, "Yo! Bang!");
+                }
+            }
+
+            void IActionBehavior.InvokePartial()
+            {
+                throw new NotImplementedException();
+            }
+
+            public bool WasCalled { get; set; }
+
+            public void SetAction(Action action)
+            {
+                _action += action;
+            }
+        }
+
+        protected void WhenInnerIsCalledDoThis(Action action)
+        {
+            Inner.SetAction(action);
         }
     }
 }

@@ -138,6 +138,7 @@
     <Compile Include="Features\Administration\Behavior\GetBehavior.cs" />
     <Compile Include="Features\Administration\ContentAdminCustomization.cs" />
     <Compile Include="Features\Administration\ContentAdminException.cs" />
+    <Compile Include="Features\Administration\ContentId.cs" />
     <Compile Include="Features\Administration\HandleContentAdmin.cs" />
     <Compile Include="Features\Administration\IContentAdministration.cs" />
     <Compile Include="Features\Administration\Behavior\InsertBehavior.cs" />

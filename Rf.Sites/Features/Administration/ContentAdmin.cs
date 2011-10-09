@@ -2,7 +2,6 @@ using System;
 using FubuMVC.Core;
 using FubuMVC.Core.Runtime;
 using FubuMVC.Core.Urls;
-using Rf.Sites.Features.Models;
 using Rf.Sites.Frame.SiteInfrastructure;
 
 namespace Rf.Sites.Features.Administration
@@ -48,17 +47,15 @@ namespace Rf.Sites.Features.Administration
         [UrlRegistryCategory("Admin")]
         public void Put(dynamic content)
         {
-            int id;
-            if (!GetId(out id))
-                throw new ContentAdminException("Id");
+            var id = GetId();
             _contentAdministration.UpdateContent(id, content);
         }
 
-        private bool GetId(out int id)
+        private string GetId()
         {
             var url = _vars[ServerVariables.URL];
             var sId = url.Substring(url.LastIndexOf("/") + 1);
-            return int.TryParse(sId, out id);
+            return sId;
         }
     }
 

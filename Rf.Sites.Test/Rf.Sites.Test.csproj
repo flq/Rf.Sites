@@ -107,7 +107,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Admin\AdministrationContext.cs" />
+    <Compile Include="Admin\AuthSuccess.cs" />
     <Compile Include="Admin\MissingAuthToken.cs" />
+    <Compile Include="Admin\WrongAuthToken.cs" />
     <Compile Include="CodeHighlightTests.cs" />
     <Compile Include="DataScenarios\ContentForSitemapScenario.cs" />
     <Compile Include="DataScenarios\SomeContent.cs" />

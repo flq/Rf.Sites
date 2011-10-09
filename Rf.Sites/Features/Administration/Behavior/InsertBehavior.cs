@@ -1,4 +1,5 @@
-﻿using FubuCore.Binding;
+﻿using System;
+using FubuCore.Binding;
 using FubuMVC.Core.Runtime;
 using Rf.Sites.Frame;
 
@@ -23,6 +24,7 @@ namespace Rf.Sites.Features.Administration
                 var info = _request.Get<InsertInfo>();
                 var url = info.Url;
                 Writer.WriteHeader("Location", url);
+                StatusCreated();
             }
         }
     }
