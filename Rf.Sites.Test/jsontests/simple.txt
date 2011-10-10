@@ -1,1 +1,6 @@
-{ "test":"test" }
+{
+  "title": "Very nice",
+  "body": "Awesome body",
+  "publishdate": "/Date(1140681960000)/",
+  "isMarkdown": "true"
+}

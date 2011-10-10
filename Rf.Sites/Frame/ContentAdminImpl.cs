@@ -9,15 +9,25 @@ namespace Rf.Sites.Frame
     public class ContentAdminImpl : IContentAdministration
     {
         private readonly Func<IRepository<Tag>> _tagRepFactory;
+        private readonly Func<IRepository<Content>> _contentRepFactory;
 
-        public ContentAdminImpl(Func<IRepository<Tag>> tagRepFactory)
+        public ContentAdminImpl(Func<IRepository<Tag>> tagRepFactory, Func<IRepository<Content>> contentRepFactory)
         {
             _tagRepFactory = tagRepFactory;
+            _contentRepFactory = contentRepFactory;
         }
 
         public dynamic GetContent(string id)
         {
-            return null;
+            int i;
+            if (!int.TryParse(id, out i))
+                throw new ArgumentException("Id");
+            var c = _contentRepFactory()[i];
+            return new {
+                         title = c.Title,
+                         body = c.Body,
+                         publishdate = c.Created
+                       };
         }
 
         public string[] GetTags()
@@ -32,7 +42,21 @@ namespace Rf.Sites.Frame
 
         public string InsertContent(dynamic content)
         {
-            return "12";
+            var id = -1;
+            _contentRepFactory().Transacted(r => id = r.Add(CreateContent(content)));
+            return id.ToString();
+        }
+
+        private Content CreateContent(dynamic content)
+        {
+            var c = new Content
+            {
+                Title = content.title,
+                Created = content.publishdate,
+                IsMarkdown = content.isMarkdown
+            };
+            c.SetBody(content.body);
+            return c;
         }
     }
 }

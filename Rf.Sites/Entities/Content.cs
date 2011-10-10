@@ -5,56 +5,55 @@ using Rf.Sites.Frame;
 
 namespace Rf.Sites.Entities
 {
-  public class Content : Entity
-  {
-    public Content() { }
-
-    public Content(int id)
+    public class Content : Entity
     {
-      Id = id;
+        public Content() { }
+
+        public Content(int id)
+        {
+            Id = id;
+        }
+
+        [NotNullNotEmpty, Length(255)]
+        public virtual string Title { get; set; }
+
+        [NotNullNotEmpty]
+        public virtual string Body { get; set; }
+
+        [Length(200)]
+        public virtual string Teaser { get; private set; }
+
+        public virtual string MetaKeyWords { get; set; }
+
+        [NotNull]
+        public virtual bool Published { get; set; }
+
+        public virtual int AttachmentCount { get; private set; }
+
+        public virtual bool? IsMarkdown { get; set; }
+
+        public virtual IList<Tag> Tags { get; private set; }
+
+        public virtual IList<Attachment> Attachments { get; private set; }
+
+        public virtual void AssociateWithTag(Tag tag)
+        {
+            (Tags ?? (Tags = new List<Tag>())).Add(tag);
+            tag.RelatedContent.Add(this);
+        }
+
+        public virtual void SetBody(string body)
+        {
+            if (body == null)
+                throw new ArgumentNullException("body");
+            Body = body;
+            Teaser = new TagRemover(200).Process(Body);
+        }
+
+        public virtual void AddAttachment(Attachment attachment)
+        {
+            (Attachments ?? (Attachments = new List<Attachment>())).Add(attachment);
+            AttachmentCount++;
+        }
     }
-
-    [NotNullNotEmpty, Length(255)]
-    public virtual string Title { get; set; }
-    
-    [NotNullNotEmpty]
-    public virtual string Body { get; set; }
-
-    [Length(200)]
-    public virtual string Teaser { get; private set; }
-
-    public virtual string MetaKeyWords { get; set; }
-
-    [NotNull]
-    public virtual bool Published { get; set; }
-
-    [NotNull]
-    public virtual bool CommentingDisabled { get; set; }
-
-    public virtual int AttachmentCount { get; private set; }
-
-    public virtual IList<Tag> Tags { get; private set; }
-
-    public virtual IList<Attachment> Attachments { get; private set; }
-
-    public virtual void AssociateWithTag(Tag tag)
-    {
-        (Tags ?? (Tags = new List<Tag>())).Add(tag);
-        tag.RelatedContent.Add(this);
-    }
-
-      public virtual void SetBody(string body)
-    {
-      if (body == null)
-        throw new ArgumentNullException("body");
-      Body = body;
-      Teaser = new TagRemover(200).Process(Body);
-    }
-
-    public virtual void AddAttachment(Attachment attachment)
-    {
-      (Attachments ?? (Attachments = new List<Attachment>())).Add(attachment);
-      AttachmentCount++;
-    }
-  }
 }

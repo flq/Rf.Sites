@@ -17,6 +17,7 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization.Json;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Xml;
 using System.Xml.Linq;
 
@@ -24,6 +25,9 @@ namespace Rf.Sites.Frame
 {
     public class DynamicJson : DynamicObject
     {
+        private static readonly Regex DateMatch = new Regex(@"/Date\((?'date'\d+?)\)/", RegexOptions.Compiled);
+        private static readonly DateTime TimestampStartpoint = new DateTime(1970,1,1);
+
         private enum JsonType
         {
             @string, number, boolean, @object, array, @null
@@ -83,6 +87,8 @@ namespace Rf.Sites.Frame
 
         private static dynamic ToValue(XElement element)
         {
+            //TODO: Match sth like /Date(1318197600000)/, sadly this ends up under string, so we'll do some hacking over here
+            
             var type = (JsonType)Enum.Parse(typeof(JsonType), element.Attribute("type").Value);
             switch (type)
             {
@@ -91,7 +97,7 @@ namespace Rf.Sites.Frame
                 case JsonType.number:
                     return (double)element;
                 case JsonType.@string:
-                    return (string)element;
+                    return HandleStringValue(element);
                 case JsonType.@object:
                 case JsonType.array:
                     return new DynamicJson(element, type);
@@ -99,6 +105,26 @@ namespace Rf.Sites.Frame
                 default:
                     return null;
             }
+        }
+
+        private static object HandleStringValue(XElement element)
+        {
+            // The Json XML thingy maps a Date specification as provided e.g. by the JavascriptSerializer
+            // in System.web.Script.Serialization to a string, so we need to check any string if it matches
+            // the rule of having been specified as Date.
+            var stringValue = (string) element;
+            if (DateMatch.IsMatch(stringValue))
+            {
+                var matches = DateMatch.Matches(stringValue);
+                var dateStamp = matches[0].Groups["date"].Value;
+                double timeSpan;
+                if (double.TryParse(dateStamp, out timeSpan))
+                {
+                    var dt = TimestampStartpoint + TimeSpan.FromMilliseconds(timeSpan);
+                    return dt;
+                }
+            }
+            return stringValue;
         }
 
         private static JsonType GetJsonType(object obj)
