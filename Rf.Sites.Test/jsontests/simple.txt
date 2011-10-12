@@ -1,6 +1,7 @@
 {
   "title": "Very nice",
   "body": "Awesome body",
-  "publishdate": "/Date(1140681960000)/",
-  "isMarkdown": "true"
+  "publishdate": "/Date(1318420800000)/",
+  "isMarkdown": true,
+  "tags": ["unknown", "membus"]
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Rf.Sites.Entities;
 using Rf.Sites.Features.Administration;
@@ -26,7 +27,9 @@ namespace Rf.Sites.Frame
             return new {
                          title = c.Title,
                          body = c.Body,
-                         publishdate = c.Created
+                         publishdate = c.Created,
+                         isMarkdown = c.IsMarkdown.HasValue ? (bool)c.IsMarkdown : false,
+                         tags = c.Tags.Select(t => t.Name).ToArray()
                        };
         }
 
@@ -52,11 +55,23 @@ namespace Rf.Sites.Frame
             var c = new Content
             {
                 Title = content.title,
-                Created = content.publishdate,
-                IsMarkdown = content.isMarkdown
+                Created = content.publishdate() ? content.publishdate : DateTime.UtcNow,
+                IsMarkdown = content.isMarkdown() ? content.isMarkdown : false,
+                MetaKeyWords = content.metaKeywords() ? content.metaKeywords : null,
             };
             c.SetBody(content.body);
+            if (content.tags())
+            {
+                var tags = FindAllKnownTags((string[])content.tags);
+                foreach (var t in tags)
+                    c.AssociateWithTag(t);
+            }
             return c;
+        }
+
+        private IEnumerable<Tag> FindAllKnownTags(IEnumerable<string> tags)
+        {
+            return _tagRepFactory().Where(dbTag => tags.Contains(dbTag.Name)).ToList();
         }
     }
 }
