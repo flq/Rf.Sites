@@ -13,6 +13,13 @@ namespace Rf.Sites.Features.Administration
             : base(headers, writer, adminSettings)
         {
             _request = request;
+            DynamicBindExceptionHandler += x =>
+                                               {
+                                                   if (x.Message.Equals("Content-Type"))
+                                                       BadRequest();
+                                                   if (x.Message.Equals("Parse"))
+                                                       UnsupportedMediaType();
+                                               };
         }
 
         protected override void HandleAfterInsideInvoke()
