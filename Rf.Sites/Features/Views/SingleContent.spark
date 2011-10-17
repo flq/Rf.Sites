@@ -3,7 +3,7 @@
 <set Keywords='Model.Keywords'/>
 <content name="head">
     <if condition="Model.NeedsCodeHighlighting">
-      <link type="text/css" rel="stylesheet" media="all" href="/files/SyntaxHighlighter.css" />
+      <link type="text/css" rel="stylesheet" media="all" href="/files/rfsite/SyntaxHighlighter.css" />
       <script type="text/javascript" src="/Scripts/shCore.js"></script>
       <script type="text/javascript" src="/Scripts/shBrushCSharp.js"></script>
         <script type="text/javascript">
@@ -31,5 +31,5 @@
       <Attachment attachment="a" />
     </for>
   </div>
-  <Comments CommentData="Model.CommentData" />
 </div>
+<Comments CommentData="Model.CommentData" />

@@ -5,10 +5,10 @@
     <meta name="copyright" content="All content hosted by this site is written by F Quednau. Reproduction only under consent" />
     <meta name="keywords" content="${Keywords}" />
     <title>realfiction - ${Title}</title>    
-    <link rel="shortcut icon" href="/files/rf.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/files/rfsite/rf.ico" type="image/x-icon" />
     <link rel="alternate" type="application/rss+xml" title="realfiction RSS" href="/rss" />
-    <link type="text/css" rel="stylesheet" media="all" href="/files/site.css" />
-    <link type="text/css" rel="stylesheet" media="all" href="/files/jquery-ui.css" />
+    <link type="text/css" rel="stylesheet" media="all" href="/files/rfsite/site.css" />
+    <link type="text/css" rel="stylesheet" media="all" href="/files/rfsite/jquery-ui.css" />
     <script type="text/javascript" src="/Scripts/jquery.js"></script>
     <script type="text/javascript" src="/Scripts/jquery-ui-1.8.12.custom.min.js"></script>
     <script type="text/javascript" src="/Scripts/rf.site.js"></script>
@@ -36,7 +36,9 @@
         <use content="view" />
     </div>
      
-    <div id="footer"><p>&copy; ${System.DateTime.Now.Year} realfiction</p></div>
+    <div id="footer">
+        <p>&copy; ${System.DateTime.Now.Year} realfiction. Comments powered by <a href="http://disqus.com" class="dsq-brlink"> <span class="logo-disqus">Disqus</span></a></p>
+    </div>
     <Analytics />    
   </body>
 </html>

@@ -1,5 +1,4 @@
-﻿using System;
-using FubuCore.Binding;
+﻿using FubuCore.Binding;
 using FubuMVC.Core.Runtime;
 using Rf.Sites.Frame;
 

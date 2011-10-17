@@ -1,7 +1,7 @@
 <use master="Application" />
 <set Title='Model.Title'/>
 <content name="head">
-    <link type="text/css" rel="stylesheet" media="all" href="/files/pagination.css" />
+    <link type="text/css" rel="stylesheet" media="all" href="/files/rfsite/pagination.css" />
     <Pagination page="Model" />
 </content>
 

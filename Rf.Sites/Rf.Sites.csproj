@@ -139,6 +139,7 @@
     <Compile Include="Features\Administration\ContentAdminCustomization.cs" />
     <Compile Include="Features\Administration\ContentAdminException.cs" />
     <Compile Include="Features\Administration\ContentId.cs" />
+    <Compile Include="Features\Administration\FeedsCustomization.cs" />
     <Compile Include="Features\Administration\HandleContentAdmin.cs" />
     <Compile Include="Features\Administration\IContentAdministration.cs" />
     <Compile Include="Features\Administration\Behavior\InsertBehavior.cs" />
@@ -197,6 +198,7 @@
     <Compile Include="Frame\SiteInfrastructure\ContentContinuationBehavior.cs" />
     <Compile Include="Frame\PaginationSettings.cs" />
     <Compile Include="Frame\SiteInfrastructure\IJsonResponse.cs" />
+    <Compile Include="Frame\SiteInfrastructure\IRouteDefinitionExtension.cs" />
     <Compile Include="Frame\SiteInfrastructure\PagingBehavior.cs" />
     <Compile Include="Frame\SiteInfrastructure\HasActionsAttribute.cs" />
     <Compile Include="Frame\SiteInfrastructure\ICache.cs" />

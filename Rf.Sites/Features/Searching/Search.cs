@@ -15,10 +15,10 @@ namespace Rf.Sites.Features.Searching
             _searchPlugins = searchPlugins;
         }
 
-        [UrlPattern("lookup")]
+        
         public IJsonResponse Lookup(SearchTerm search)
         {
-            return new SearchTextResponse(_searchPlugins.SelectMany(sp => sp.LinksFor(search.term)).ToList());
+            return new SearchTextResponse(_searchPlugins.SelectMany(sp => sp.LinksFor(search.term)).Take(15).ToList());
         }
     }
 }

@@ -2,7 +2,6 @@
 using FubuCore.Reflection;
 using FubuMVC.Core.Registration.Nodes;
 using FubuMVC.Core.Registration.Routes;
-using Rf.Sites.Features.Models;
 using Rf.Sites.Frame.SiteInfrastructure;
 
 namespace Rf.Sites.Features.Administration
@@ -43,7 +42,5 @@ namespace Rf.Sites.Features.Administration
 
             route.Prepend("admin");
         }
-
-       
     }
 }

@@ -36,6 +36,7 @@ namespace Rf.Sites.Bootstrapping
                 .IgnoreControllerNamespaceEntirely()
                 .ModifyRouteDefinitions(InputParameterCustomization.Filter, InputParameterCustomization.Modification)
                 .ModifyRouteDefinitions(ContentAdminCustomization.Filter, ContentAdminCustomization.Modification)
+                .ModifyRouteDefinitions(FeedsCustomization.Filter, FeedsCustomization.Modification)
                 .RootAtAssemblyNamespace()
                 .HomeIs<PagedContent>(pc => pc.Home());
 
