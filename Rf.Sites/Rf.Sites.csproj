@@ -23,6 +23,9 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <ExcludeGeneratedDebugSymbol>true</ExcludeGeneratedDebugSymbol>
+    <ExcludeApp_Data>true</ExcludeApp_Data>
+    <PublishDatabases>true</PublishDatabases>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -110,11 +113,12 @@
     <Reference Include="System.Web.Services" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="files\jquery-ui.css" />
-    <Content Include="files\pagination.css" />
-    <Content Include="files\site.css" />
-    <Content Include="files\SyntaxHighlighter.css" />
-    <Content Include="files\wait.gif" />
+    <Content Include="files\rfsite\jquery-ui.css" />
+    <Content Include="files\rfsite\pagination.css" />
+    <Content Include="files\rfsite\rf.ico" />
+    <Content Include="files\rfsite\site.css" />
+    <Content Include="files\rfsite\SyntaxHighlighter.css" />
+    <Content Include="files\rfsite\wait.gif" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\jquery-ui-1.8.12.custom.min.js" />
     <Content Include="Scripts\jquery.js" />

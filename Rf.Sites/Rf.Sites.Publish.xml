@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<publishData>
+  <publishProfile publishUrl="C:\Users\flq\Desktop\test" deleteExistingFiles="False" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="Profile1" publishMethod="FileSystem" replaceMatchingFiles="True" userName="" savePWD="False" userPWD="" SelectedForPublish="True">
+    <file relUrl="bin/Google.GData.Analytics.dll" publishTime="08/20/2011 14:18:35" />
+    <file relUrl="bin/de/NHibernate.Validator.resources.dll" publishTime="07/14/2011 21:49:40" />
+    <file relUrl="bin/FubuCore.dll" publishTime="10/05/2011 19:47:20" />
+    <file relUrl="Scripts/shCore.js" publishTime="06/07/2010 22:18:51" />
+    <file relUrl="bin/FubuMVC.Core.dll" publishTime="10/05/2011 19:47:22" />
+    <file relUrl="Global.asax" publishTime="07/12/2011 22:00:37" />
+    <file relUrl="bin/NHibernate.ByteCode.Castle.xml" publishTime="07/14/2011 21:49:25" />
+    <file relUrl="bin/fa/NHibernate.Validator.resources.dll" publishTime="07/14/2011 21:49:40" />
+    <file relUrl="files/rfsite/wait.gif" publishTime="05/16/2011 15:38:01" />
+    <file relUrl="bin/FubuMVC.Spark.dll" publishTime="10/03/2011 22:41:55" />
+    <file relUrl="bin/HtmlTags.xml" publishTime="07/12/2011 21:53:58" />
+    <file relUrl="bin/NHibernate.ByteCode.Castle.dll" publishTime="07/14/2011 21:49:25" />
+    <file relUrl="bin/Microsoft.Practices.ServiceLocation.xml" publishTime="07/12/2011 21:53:57" />
+    <file relUrl="bin/it/NHibernate.Validator.resources.dll" publishTime="07/14/2011 21:49:40" />
+    <file relUrl="bin/Iesi.Collections.dll" publishTime="07/14/2011 21:49:24" />
+    <file relUrl="bin/lv/NHibernate.Validator.resources.dll" publishTime="07/14/2011 21:49:40" />
+    <file relUrl="bin/es/NHibernate.Validator.resources.dll" publishTime="07/14/2011 21:49:40" />
+    <file relUrl="files/rfsite/jquery-ui.css" publishTime="05/16/2011 15:38:51" />
+    <file relUrl="bin/NHibernate.Validator.Specific.xml" publishTime="07/14/2011 21:49:40" />
+    <file relUrl="bin/pl/NHibernate.Validator.resources.dll" publishTime="07/14/2011 21:49:40" />
+    <file relUrl="bin/Google.GData.Client.dll" publishTime="08/20/2011 14:18:34" />
+    <file relUrl="files/rfsite/rf.ico" publishTime="09/26/2009 12:55:12" />
+    <file relUrl="bin/NHibernate.dll" publishTime="07/14/2011 21:49:24" />
+    <file relUrl="files/rfsite/SyntaxHighlighter.css" publishTime="06/07/2010 22:18:51" />
+    <file relUrl="Scripts/rf.site.js" publishTime="09/25/2011 23:14:19" />
+    <file relUrl="bin/HtmlTags.dll" publishTime="07/12/2011 21:53:58" />
+    <file relUrl="bin/Microsoft.Practices.ServiceLocation.dll" publishTime="07/12/2011 21:53:57" />
+    <file relUrl="bin/Castle.Core.dll" publishTime="07/14/2011 21:49:25" />
+    <file relUrl="bin/Spark.dll" publishTime="07/12/2011 21:53:57" />
+    <file relUrl="packages.config" publishTime="10/05/2011 20:03:06" />
+    <file relUrl="bin/fr/NHibernate.Validator.resources.dll" publishTime="07/14/2011 21:49:40" />
+    <file relUrl="bin/Castle.Core.xml" publishTime="07/14/2011 21:49:25" />
+    <file relUrl="bin/Bottles.dll" publishTime="10/05/2011 19:47:21" />
+    <file relUrl="bin/NHibernate.Validator.xml" publishTime="07/14/2011 21:49:40" />
+    <file relUrl="bin/StructureMap.xml" publishTime="10/03/2011 22:41:55" />
+    <file relUrl="bin/pt-BR/NHibernate.Validator.resources.dll" publishTime="07/14/2011 21:49:40" />
+    <file relUrl="bin/NHibernate.Validator.dll" publishTime="07/14/2011 21:49:40" />
+    <file relUrl="bin/nl/NHibernate.Validator.resources.dll" publishTime="07/14/2011 21:49:40" />
+    <file relUrl="bin/StructureMap.dll" publishTime="10/03/2011 22:41:55" />
+    <file relUrl="Scripts/jquery.pagination.js" publishTime="08/26/2011 14:50:32" />
+    <file relUrl="Scripts/jquery-ui-1.8.12.custom.min.js" publishTime="05/14/2011 11:20:40" />
+    <file relUrl="files/rfsite/site.css" publishTime="10/17/2011 16:08:01" />
+    <file relUrl="bin/hr/NHibernate.Validator.resources.dll" publishTime="07/14/2011 21:49:40" />
+    <file relUrl="Scripts/shBrushCSharp.js" publishTime="06/07/2010 22:18:51" />
+    <file relUrl="bin/Rf.Sites.dll" publishTime="10/17/2011 16:49:05" />
+    <file relUrl="bin/Microsoft.Web.Infrastructure.dll" publishTime="10/05/2011 19:47:24" />
+    <file relUrl="Web.config" publishTime="10/07/2011 21:34:48" />
+    <file relUrl="bin/FubuMVC.StructureMap.dll" publishTime="10/05/2011 19:47:22" />
+    <file relUrl="Scripts/jquery.js" publishTime="08/02/2011 21:41:05" />
+    <file relUrl="bin/FluentNHibernate.dll" publishTime="07/14/2011 21:49:25" />
+    <file relUrl="Shared/bindings.xml" publishTime="09/03/2011 15:23:51" />
+    <file relUrl="files/rfsite/pagination.css" publishTime="08/26/2011 21:23:00" />
+    <file relUrl="bin/NHibernate.Validator.Specific.dll" publishTime="07/14/2011 21:49:40" />
+    <file relUrl="bin/FubuLocalization.dll" publishTime="10/05/2011 19:47:21" />
+  </publishProfile>
+</publishData>
