@@ -1,6 +1,6 @@
 obj
 bin
-out
+publish
 db data
 _ReSharper.*
 *.user
