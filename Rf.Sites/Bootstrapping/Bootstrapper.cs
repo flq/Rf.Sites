@@ -12,8 +12,10 @@ namespace Rf.Sites.Bootstrapping
     {
         public Bootstrapper()
         {
-            // This line turns on the basic diagnostics and request tracing
+            #if DEBUG
             IncludeDiagnostics(true);
+            #endif
+            
 
             Actions
                 .IncludeTypes(t => t.HasAttribute<HasActionsAttribute>());

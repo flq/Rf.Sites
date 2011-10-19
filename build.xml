@@ -9,6 +9,7 @@
 	<SharedViewsDir>$(OutDir)\Shared</SharedViewsDir>
     <ScriptsDir>$(OutDir)\Scripts</ScriptsDir>
     <FilesDir>$(OutDir)\files\rfsite</FilesDir>
+	<Local>false</Local>
   </PropertyGroup>
   
   <Target Name="Prepare">
@@ -34,7 +35,8 @@
     <Copy SourceFiles="@(Scripts)" DestinationFolder="$(ScriptsDir)\%(RecursiveDir)" />
 
     <!-- Root files -->
-    <Copy SourceFiles="Rf.Sites\WebRelease.config" DestinationFiles="$(OutDir)\Web.config" />
+    <Copy Condition="$(Local)==false" SourceFiles="Rf.Sites\WebRelease.config" DestinationFiles="$(OutDir)\Web.config" />
+	<Copy Condition="$(Local)==true" SourceFiles="Rf.Sites\Web.config" DestinationFiles="$(OutDir)\Web.config" />
     <Copy SourceFiles="Rf.Sites\Global.asax" DestinationFolder="$(OutDir)" />
   </Target>
 
