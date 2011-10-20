@@ -10,17 +10,14 @@ namespace Rf.Sites.Features.Models
 {
     public class ContentVM
     {
-        private readonly MediaSettings _mediaSettings;
         private readonly SiteSettings _siteSettings;
 
         public ContentVM(
           Content content,
-          MediaSettings mediaSettings, 
           SiteSettings siteSettings, 
           ServerVariables vars,
           IUrlRegistry registry)
         {
-            _mediaSettings = mediaSettings;
             _siteSettings = siteSettings;
 
             if (content == null) return;
@@ -91,7 +88,7 @@ namespace Rf.Sites.Features.Models
 
             if (AttachmentCount > 0)
             {
-                var converter = new AttachmentConverter(_mediaSettings);
+                var converter = new AttachmentConverter(_siteSettings);
                 Attachments = content.Attachments.Select(converter.Convert);
             }
         }

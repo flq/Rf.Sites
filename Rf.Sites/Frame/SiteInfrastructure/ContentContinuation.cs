@@ -11,9 +11,17 @@ namespace Rf.Sites.Frame.SiteInfrastructure
         private readonly object _noContentInputModel = new InputModel404("This resource is not available");
         private readonly List<dynamic> _transfersDueToModelCondition = new List<dynamic>();
 
+        private readonly List<Func<M,M>> _pipeline = new List<Func<M, M>>();
+
         public ContentContinuation(M model)
         {
             _model = model;
+        }
+
+        public ContentContinuation<M,ViewModel> AddPipeline(Func<M,M> pipeline)
+        {
+            _pipeline.Add(pipeline);
+            return this;
         }
 
         public ContentContinuation<M,ViewModel> ConditionalTransfer(Func<M,bool> predicate, Func<M,object> newInputModel)
@@ -35,7 +43,7 @@ namespace Rf.Sites.Frame.SiteInfrastructure
 
         public M Model
         {
-            get { return _model; }
+            get { return _pipeline.Count > 0 ? _pipeline.Aggregate(_model, (m, pipeline) => pipeline(m)) : _model; }
         }
     }
 } 

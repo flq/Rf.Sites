@@ -72,6 +72,9 @@
     <Reference Include="Iesi.Collections">
       <HintPath>..\packages\Iesi.Collections.3.1.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
     </Reference>
+    <Reference Include="MarkdownSharp">
+      <HintPath>..\packages\MarkdownSharp.1.13.0.0\lib\35\MarkdownSharp.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Practices.ServiceLocation">
       <HintPath>..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
@@ -149,6 +152,7 @@
     <Compile Include="Features\Administration\Behavior\InsertBehavior.cs" />
     <Compile Include="Features\Administration\OutputWriterExtensions.cs" />
     <Compile Include="Features\Administration\Behavior\PutBehavior.cs" />
+    <Compile Include="Features\Models\MarkdownFilter.cs" />
     <Compile Include="Frame\AdminSettings.cs" />
     <Compile Include="Frame\ContentAdminImpl.cs" />
     <Compile Include="Frame\DynamicJson.cs" />
@@ -187,7 +191,6 @@
     <Compile Include="Frame\FixedListComparer.cs" />
     <Compile Include="Frame\IObjectConverter.cs" />
     <Compile Include="Frame\IValidator.cs" />
-    <Compile Include="Frame\MediaSettings.cs" />
     <Compile Include="Frame\NHBasedValidator.cs" />
     <Compile Include="Frame\PeriodOfTimeOutput.cs" />
     <Compile Include="Frame\Persistence\IRepository.cs" />

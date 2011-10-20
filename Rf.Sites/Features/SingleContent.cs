@@ -22,13 +22,14 @@ namespace Rf.Sites.Features
         [UrlPattern("go/{Id}")]
         public ContentContinuation<Content, ContentVM> GetContent(ContentId contentId)
         {
-            return 
+            return
                 new ContentContinuation<Content, ContentVM>(_repository[contentId])
+                  .AddPipeline(content => new MarkdownFilter(content))
                   .ConditionalTransfer(
-                    model => model == null, 
+                    model => model == null,
                     model => new InputModel404("Content with id " + contentId + " does not exist"))
                   .ConditionalTransfer(
-                    model => model.Created > DateTime.UtcNow, 
+                    model => model.Created > DateTime.UtcNow,
                     model => new NotYetPublishedVM(model));
         }
 

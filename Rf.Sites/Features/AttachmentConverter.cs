@@ -6,16 +6,16 @@ namespace Rf.Sites.Features
 {
     public class AttachmentConverter : IObjectConverter<Attachment, AttachmentVM>
     {
-        private readonly MediaSettings _mediaSettings;
+        private readonly SiteSettings _siteSettings;
 
-        public AttachmentConverter(MediaSettings mediaSettings)
+        public AttachmentConverter(SiteSettings siteSettings)
         {
-            _mediaSettings = mediaSettings;
+            _siteSettings = siteSettings;
         }
 
         public AttachmentVM Convert(Attachment @in)
         {
-            return new AttachmentVM(@in) { DropZone = _mediaSettings.AttachmentDropZone };
+            return new AttachmentVM(@in) { DropZone = _siteSettings.AttachmentDropZone };
         }
     }
 }

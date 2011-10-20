@@ -4,6 +4,7 @@ namespace Rf.Sites.Frame
 {
     public class SiteSettings
     {
+        public string AttachmentDropZone { get; set; }
         public string SiteAuthor { get; set; }
         public string SiteTitle { get; set; }
         public string SiteCopyright { get; set; }

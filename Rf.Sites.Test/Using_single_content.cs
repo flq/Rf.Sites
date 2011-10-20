@@ -40,7 +40,7 @@ namespace Rf.Sites.Test
         {
             ApplyData<FunnyTitle>();
             var next = _sc.GetContent(1);
-            var vm = new ContentVM(next.Model, null, new SiteSettings(), null, null);
+            var vm = new ContentVM(next.Model, new SiteSettings(), null, null);
             var jsonTitle = vm.CommentData.Title;
             jsonTitle.Should().Contain("\\u0027");
             jsonTitle.Should().Contain("\\\"");
@@ -56,6 +56,14 @@ namespace Rf.Sites.Test
             next.TransferInputModel.Should().BeAssignableTo<NotYetPublishedVM>();
         }
 
+        [Test]
+        public void markdown_filter_is_applied()
+        {
+            ApplyData<MarkdownContent>();
+            var next = _sc.GetContent(1);
+            next.TransferRequired.Should().BeFalse();
+            next.Model.Body.Should().Contain("<h1>Hello World</h1>");
+        }
 
         [TearDown]
         public void Reset()
