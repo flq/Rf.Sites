@@ -14,7 +14,6 @@ test.htm
 test2.htm
 test2_files
 WebRelease.config
-*.nupkg
 rf.ico
 Rf.Sites/files/images/*.*
 Rf.Sites.Build.dll
