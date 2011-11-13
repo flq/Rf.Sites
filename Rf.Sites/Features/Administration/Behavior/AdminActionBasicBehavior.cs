@@ -35,8 +35,11 @@ namespace Rf.Sites.Features.Administration
                 DoNext.Continue
                     .When(AuthorizeHeadersExist)
                     .When(AuthorizationMatches)
-                    .Finally(InsideBehavior.Invoke);
-                HandleAfterInsideInvoke();
+                    .Finally(()=>
+                                 {
+                                     InsideBehavior.Invoke();
+                                     HandleAfterInsideInvoke();
+                                 });
             }
             catch (FubuException x)
             {
