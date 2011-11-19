@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using NHibernate.Validator.Constraints;
 using Rf.Sites.Frame;
 
 namespace Rf.Sites.Entities
@@ -13,19 +12,15 @@ namespace Rf.Sites.Entities
         {
             Id = id;
         }
-
-        [NotNullNotEmpty, Length(255)]
+        
         public virtual string Title { get; set; }
-
-        [NotNullNotEmpty]
+        
         public virtual string Body { get; set; }
-
-        [Length(200)]
+        
         public virtual string Teaser { get; private set; }
 
         public virtual string MetaKeyWords { get; set; }
 
-        [NotNull]
         public virtual bool Published { get; set; }
 
         public virtual int AttachmentCount { get; private set; }

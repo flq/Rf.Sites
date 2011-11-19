@@ -1,9 +1,6 @@
 using NHibernate;
-using NHibernate.Validator.Engine;
-using Rf.Sites.Frame;
 using Rf.Sites.Frame.Persistence;
 using StructureMap.Configuration.DSL;
-using IValidator = Rf.Sites.Frame.IValidator;
 
 namespace Rf.Sites.Bootstrapping
 {
@@ -13,9 +10,6 @@ namespace Rf.Sites.Bootstrapping
         {
             var maker = new SessionFactoryMaker();
             ForSingletonOf<ISessionFactory>().Use(maker.CreateFactory);
-
-            For<ValidatorEngine>().Use(maker.GetValidationEngine);
-            For<IValidator>().Use<NHBasedValidator>();
 
             For<ISession>()
                 .HybridHttpOrThreadLocalScoped()

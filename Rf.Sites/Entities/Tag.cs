@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using NHibernate.Validator.Constraints;
 
 namespace Rf.Sites.Entities
 {
@@ -7,10 +6,7 @@ namespace Rf.Sites.Entities
   {
     private IList<Content> relatedContent;
 
-    [NotNullNotEmpty, Length(255)]
     public virtual string Name { get; set; }
-
-    [Length(255)]
     public virtual string Description { get; set; }
 
     public virtual IList<Content> RelatedContent

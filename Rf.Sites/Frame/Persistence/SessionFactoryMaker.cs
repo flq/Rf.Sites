@@ -1,26 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.IO;
-using System.Linq;
 using FluentNHibernate.Automapping;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using NHibernate;
 using NHibernate.Cfg;
 using NHibernate.Tool.hbm2ddl;
-using NHibernate.Validator.Cfg;
-using NHibernate.Validator.Engine;
 using Rf.Sites.Entities;
-using AllDefinitions = NHibernate.Validator.Cfg.Loquacious.AllDefinitions;
-using FluentConfiguration = NHibernate.Validator.Cfg.Loquacious.FluentConfiguration;
 
 namespace Rf.Sites.Frame.Persistence
 {
     public class SessionFactoryMaker
     {
         private static Configuration _config;
-        private static ValidatorEngine _engine;
         private ISessionFactory _factory;
 
         public ISessionFactory CreateFactory()
@@ -35,16 +28,10 @@ namespace Rf.Sites.Frame.Persistence
 
         public void DropAndRecreateSchema(TextWriter w, IDbConnection con)
         {
-            CreateValidationEngine();
-            _config.Initialize(_engine);
             var se = new SchemaExport(_config);
             se.Execute(false, true, false, con, w);
         }
 
-        public ValidatorEngine GetValidationEngine()
-        {
-            return _engine;
-        }
 
         protected virtual IPersistenceConfigurer DbConfig()
         {
@@ -79,20 +66,6 @@ namespace Rf.Sites.Frame.Persistence
 
             if (sessionContextType != null)
                 _config.SetProperty("current_session_context_class", sessionContextType.AssemblyQualifiedName);
-            var engine = CreateValidationEngine();
-            cfg.Initialize(engine);
-        }
-
-        private static ValidatorEngine CreateValidationEngine()
-        {
-            var valCfg = new FluentConfiguration();
-            valCfg.Register(
-                AllDefinitions.ValidationDefinitions((IEnumerable<Type>) typeof(Content).Assembly.GetTypes().Where(t => t.BaseType == typeof(Entity))))
-                .SetDefaultValidatorMode(ValidatorMode.UseAttribute);
-
-            _engine = new ValidatorEngine();
-            _engine.Configure(valCfg);
-            return _engine;
         }
     }
 }
