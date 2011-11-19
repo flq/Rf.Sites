@@ -3,7 +3,6 @@ using FubuMVC.Spark;
 using FubuCore.Reflection;
 using Rf.Sites.Features;
 using Rf.Sites.Features.Administration;
-using Rf.Sites.Frame;
 using Rf.Sites.Frame.SiteInfrastructure;
 
 namespace Rf.Sites.Bootstrapping

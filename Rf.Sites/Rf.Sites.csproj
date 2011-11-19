@@ -147,6 +147,7 @@
     <Compile Include="Features\Administration\OutputWriterExtensions.cs" />
     <Compile Include="Features\Administration\Behavior\PutBehavior.cs" />
     <Compile Include="Features\Models\MarkdownFilter.cs" />
+    <Compile Include="Features\Searching\SearchOnTime.cs" />
     <Compile Include="Frame\AdminSettings.cs" />
     <Compile Include="Frame\ContentAdminImpl.cs" />
     <Compile Include="Frame\DynamicJson.cs" />
