@@ -122,6 +122,7 @@
     <Compile Include="SearchFeature\PartiallyEmptyCacheUsageInit.cs" />
     <Compile Include="SearchFeature\SearchFeatureContext.cs" />
     <Compile Include="SearchFeature\SearchFeatureTests.cs" />
+    <Compile Include="SearchFeature\TimeSearchTests.cs" />
     <Compile Include="Support\DataMother.cs" />
     <Compile Include="Using_AttachmentVM.cs" />
     <Compile Include="In_memory_repository_context.cs" />

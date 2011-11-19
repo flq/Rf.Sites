@@ -38,5 +38,10 @@ namespace Rf.Sites.Frame.SiteInfrastructure
         {
             return _d.ContainsKey(key);
         }
+
+        public void Clear()
+        {
+            _d.Clear();
+        }
     }
 }

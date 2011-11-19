@@ -1,11 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using FubuMVC.Core.Urls;
 using NHibernate;
 using Rf.Sites.Features.Models;
 using Rf.Sites.Frame.SiteInfrastructure;
-using System.Linq;
 
 namespace Rf.Sites.Features.Searching
 {
@@ -27,15 +27,17 @@ namespace Rf.Sites.Features.Searching
             if (TimesAreNotCached)
                 CacheTimes();
 
-            var results = 
-                Nodes.Where(y => y.Year.StartsWith(searchTerm))
+            return GetResults(searchTerm);
+        }
+
+        private IEnumerable<Link> GetResults(string searchTerm)
+        {
+            return Nodes.Where(y => y.Year.StartsWith(searchTerm))
                 .Select(n => new Link
                                  {
                                      link = _urls.UrlFor(new YearPaging { Year = int.Parse(n.Year) }),
                                      linktext = "Content from Year " + n.Year
                                  });
-
-            return results;
         }
 
         private void CacheTimes()
@@ -71,7 +73,7 @@ namespace Rf.Sites.Features.Searching
             }
 
             public string Year { get; private set; }
-            public HashSet<string> Months { get; private set; }
+            private HashSet<string> Months { get; set; }
         }
     }
 }

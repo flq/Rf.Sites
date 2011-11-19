@@ -22,18 +22,20 @@ namespace Rf.Sites.Test.SearchFeature
         protected bool TagFactoryWasCalled;
         private IJsonResponse _response;
         private Mock<IUrlRegistry> _urlRegistry;
+        private DbTestContext _dbContext;
 
         [TestFixtureSetUp]
         public void Given()
         {
             _cache = new InMemoryCache();
-            Setup();
             _urlRegistry = new Mock<IUrlRegistry>();
-            _urlRegistry.Setup(u => u.UrlFor(It.IsAny<ContentId>())).Returns((ContentId ci) => "/go/" + ci.Id);
-            _urlRegistry.Setup(u => u.UrlFor(It.IsAny<TagPaging>())).Returns((TagPaging p) => "/tag/" + p.Tag);
+            SetupUrlRegistry();
+            _dbContext = new DbTestContext();
+            Setup();
             _search = new Search(new ISearchPlugin[] {
                 new SearchOnPosts(_cache, _urlRegistry.Object, GetContentFactory), 
-                new SearchOnTags(_cache, _urlRegistry.Object, GetTagFactory)
+                new SearchOnTags(_cache, _urlRegistry.Object, GetTagFactory),
+                new SearchOnTime(_cache, _urlRegistry.Object, ()=>DBContext.Session)
             });
         }
 
@@ -42,9 +44,48 @@ namespace Rf.Sites.Test.SearchFeature
             
         }
 
+        protected DbTestContext DBContext
+        {
+            get { return _dbContext; }
+        }
+
         protected void Search(string term)
         {
             _response = _search.Lookup(new SearchTerm { term = term });
+        }
+
+        protected void SearchReturnedThisLink(string title, string link)
+        {
+            _response.Should().NotBeNull();
+            var found = ((IEnumerable<Link>)_response).FirstOrDefault(v => v.linktext.Equals(title));
+            found.Should().NotBeNull("link with text " + title + " should exist");
+            found.linktext.Equals(title);
+            found.link.Should().Be(link);
+        }
+
+        protected void SearchReturnedNothing()
+        {
+            _response.Should().NotBeNull();
+            var count = ((IEnumerable<Link>)_response).Count();
+            count.Should().Be(0);
+        }
+
+        protected void SearchReturnedTags(params string[] tags)
+        {
+            _response.Should().NotBeNull();
+            var links = (IEnumerable<Link>)_response;
+            foreach (var t in tags)
+            {
+                links.Select(l => l.linktext).Contains("Content from " + t).Should().BeTrue("Tag " + t + " is contained");
+            }
+        }
+
+        protected void CachedTitlesAre(params string[] cachedTitles)
+        {
+            if (!_cache.HasValue("titles"))
+                Assert.Fail("Titles have not been cached");
+            var titles = _cache.Get<List<Tuple<int, string>>>("titles");
+            titles.Select(t => t.Item2).Should().BeEquivalentTo(cachedTitles);
         }
 
         protected virtual IRepository<Content> GetContentFactory()
@@ -69,34 +110,6 @@ namespace Rf.Sites.Test.SearchFeature
             _cache.Add("tags", new List<string>(tags));
         }
 
-        protected IRepository<Content> ContentFactoryWithTitles(params string[] titles)
-        {
-            var em = new EntityMaker();
-            var rep = new InMemoryRepository<Content>();
-            foreach (var t in titles)
-                rep.Add(em.CreateContent(t));
-            return rep;
-        }
-
-        protected void SearchReturnedPost(string title, string link)
-        {
-            _response.Should().NotBeNull();
-            var found = ((IEnumerable<Link>)_response).FirstOrDefault(v => v.linktext.Equals(title));
-            found.Should().NotBeNull("link with text " + title + " should exist");
-            found.linktext.Equals(title);
-            found.link.Should().Be(link);
-        }
-
-        protected void SearchReturnedTags(params string[] tags)
-        {
-            _response.Should().NotBeNull();
-            var links = (IEnumerable<Link>)_response;
-            foreach (var t in tags)
-            {
-                links.Select(l => l.linktext).Contains("Content from " + t).Should().BeTrue("Tag " + t + " is contained");
-            }
-        }
-
         protected IRepository<Tag> TagFactoryWithTags(params string[] tags)
         {
             var em = new EntityMaker();
@@ -106,12 +119,25 @@ namespace Rf.Sites.Test.SearchFeature
             return rep;
         }
 
-        protected void CachedTitlesAre(params string[] cachedTitles)
+        protected IRepository<Content> ContentFactoryWithTitles(params string[] titles)
         {
-            if (!_cache.HasValue("titles"))
-                Assert.Fail("Titles have not been cached");
-            var titles = _cache.Get<List<Tuple<int,string>>>("titles");
-            titles.Select(t => t.Item2).Should().BeEquivalentTo(cachedTitles);
+            var em = new EntityMaker();
+            var rep = new InMemoryRepository<Content>();
+            foreach (var t in titles)
+                rep.Add(em.CreateContent(t));
+            return rep;
+        }
+
+        protected void ClearCache()
+        {
+            _cache.Clear();
+        }
+
+        private void SetupUrlRegistry()
+        {
+            _urlRegistry.Setup(u => u.UrlFor(It.IsAny<ContentId>())).Returns((ContentId ci) => "/go/" + ci.Id);
+            _urlRegistry.Setup(u => u.UrlFor(It.IsAny<TagPaging>())).Returns((TagPaging p) => "/tag/" + p.Tag);
+            _urlRegistry.Setup(u => u.UrlFor(It.IsAny<YearPaging>())).Returns((YearPaging p) => "/year/" + p.Year);
         }
     }
 }

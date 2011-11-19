@@ -38,7 +38,7 @@ namespace Rf.Sites.Test.SearchFeature
         public void case_insensitive_search()
         {
             Search("a");
-            SearchReturnedPost("A view to a kill", "/go/0");
+            SearchReturnedThisLink("A view to a kill", "/go/0");
         }
 
         [Test]
@@ -53,7 +53,7 @@ namespace Rf.Sites.Test.SearchFeature
         {
             Search("w");
             SearchReturnedTags("wcf", "wpf");
-            SearchReturnedPost("Wild guesses from insanity", "/go/5");
+            SearchReturnedThisLink("Wild guesses from insanity", "/go/5");
         }
     }
 }
