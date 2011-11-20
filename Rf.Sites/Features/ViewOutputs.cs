@@ -18,5 +18,11 @@ namespace Rf.Sites.Features
         {
             return vm;
         }
+
+        [FubuPartial]
+        public NotYetPublishedVM InputModel404(NotYetPublishedVM vm)
+        {
+            return vm;
+        }
     }
 }

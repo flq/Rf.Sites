@@ -17,21 +17,6 @@ namespace Rf.Sites.Features
             _contentRepository = contentRepository;
         }
 
-        public ContentTeaserPage Home()
-        {
-            return All(new PagingArgs { Page = 0 });
-        }
-
-        public ContentTeaserPage All(PagingArgs paging)
-        {
-            var query = from c in _contentRepository
-                        where c.Created < DateTime.Now.ToUniversalTime()
-                        orderby c.Created descending
-                        select new ContentTeaserVM(c.Id, c.Title, c.Created, c.Teaser);
-            var page = new ContentTeaserPage(paging, query);
-            return page;
-        }
-
         public ContentTeaserPage Year(YearPaging paging)
         {
             var lower = new DateTime(paging.Year, 1, 1);

@@ -39,7 +39,7 @@ namespace Rf.Sites.Bootstrapping
                 .ModifyRouteDefinitions(ContentAdminCustomization.Filter, ContentAdminCustomization.Modification)
                 .ModifyRouteDefinitions(FeedsCustomization.Filter, FeedsCustomization.Modification)
                 .RootAtAssemblyNamespace()
-                .HomeIs<PagedContent>(pc => pc.Home());
+                .HomeIs<Home>(pc => pc.Index());
 
             Views.TryToAttach(ve => ve.by_ViewModel());
         }

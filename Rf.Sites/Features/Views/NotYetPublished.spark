@@ -1,0 +1,14 @@
+<viewdata model="Rf.Sites.Features.Models.NotYetPublishedVM" />
+<set Title='Model.Title'/>
+<set Keywords='Model.Keywords'/>
+
+<div class="content">
+	<div class="content_header">
+		<h1>${Title}</h1>
+        <p>${Model.WrittenInTime}</p>
+	</div>
+
+	<div class="content_body">
+        <p>Well, this post is not published yet, you still need to wait ${Model.TimeUntilPublish}</p>
+	</div>
+</div>

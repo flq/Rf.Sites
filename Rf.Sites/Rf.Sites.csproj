@@ -146,7 +146,9 @@
     <Compile Include="Features\Administration\Behavior\InsertBehavior.cs" />
     <Compile Include="Features\Administration\OutputWriterExtensions.cs" />
     <Compile Include="Features\Administration\Behavior\PutBehavior.cs" />
+    <Compile Include="Features\Home.cs" />
     <Compile Include="Features\Models\MarkdownFilter.cs" />
+    <Compile Include="Features\Models\PersonalEntryModel.cs" />
     <Compile Include="Features\Searching\SearchOnTime.cs" />
     <Compile Include="Frame\AdminSettings.cs" />
     <Compile Include="Frame\ContentAdminImpl.cs" />
@@ -210,6 +212,7 @@
     <Compile Include="Frame\SiteInfrastructure\UrlregistryExtensions.cs" />
     <Compile Include="Frame\SiteInfrastructure\WebBasedCache.cs" />
     <Compile Include="Frame\SiteSettings.cs" />
+    <Compile Include="Frame\SubdomainSettings.cs" />
     <Compile Include="Frame\TagRemover.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -220,6 +223,12 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Features\Views\PersonalHomePage.spark">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Features\Views\NotYetPublished.spark">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Features\Views\_Comments.spark" />
     <None Include="Shared\_Pagination.spark" />
     <None Include="Features\Views\_ContentTeaser.spark" />

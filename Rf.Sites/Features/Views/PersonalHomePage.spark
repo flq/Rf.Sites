@@ -1,0 +1,12 @@
+<use master="Page" />
+<viewdata model="Rf.Sites.Features.Models.PersonalEntryPage" />
+<content name="specials">
+    <div class="alert" style="margin-bottom:20px;">
+      <h1>Hi there!</h1>
+      <p>It seems you are visiting my page through my name domain. You can learn a little bit more about myself by <a href="/go/23">following this link</a></p>
+    </div>
+</content>
+
+<for each="var f in Model.Elements">
+    <ContentTeaser teaser="f" />
+</for>

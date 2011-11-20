@@ -16,7 +16,7 @@ namespace Rf.Sites.Features.Models
         {
             if (_content != null && _content.IsMarkdown != null && _content.IsMarkdown.Value)
             {
-                var md = new Markdown(new MarkdownOptions() { AutoHyperlink = true});
+                var md = new Markdown(new MarkdownOptions { AutoHyperlink = true});
                 // Code is converted to <pre><code>, I just want the code tag:
                 var html = md.Transform(_content.Body).Replace("<pre><code>", "<code>").Replace("</code></pre>", "</code>");
                 _content.SetBody(html);

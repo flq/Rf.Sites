@@ -4,7 +4,7 @@
     <link type="text/css" rel="stylesheet" media="all" href="/files/rfsite/pagination.css" />
     <Pagination page="Model" />
 </content>
-
+<use content="specials" />
 <div id="page">
   <use content="view" />
 </div>
