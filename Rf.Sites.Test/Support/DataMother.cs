@@ -34,6 +34,11 @@ namespace Rf.Sites.Test.Support
       return getFile("markdown3.txt");
     }
 
+    public static string Markdown4()
+    {
+        return getFile("markdown4.txt");
+    }
+
     private static string getFile(string file)
     {
       var stream = typeof (DataMother).Assembly

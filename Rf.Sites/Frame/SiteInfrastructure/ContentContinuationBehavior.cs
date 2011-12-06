@@ -1,7 +1,5 @@
 ﻿using FubuMVC.Core.Behaviors;
-using FubuMVC.Core.Continuations;
 using FubuMVC.Core.Runtime;
-using Rf.Sites.Features;
 using StructureMap;
 
 namespace Rf.Sites.Frame.SiteInfrastructure

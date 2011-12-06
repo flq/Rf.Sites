@@ -4,6 +4,7 @@ using Rf.Sites.Entities;
 using Rf.Sites.Features;
 using Rf.Sites.Features.Models;
 using Rf.Sites.Frame;
+using Rf.Sites.Frame.SiteInfrastructure;
 using Rf.Sites.Test.DataScenarios;
 
 namespace Rf.Sites.Test
@@ -63,6 +64,25 @@ namespace Rf.Sites.Test
             var next = _sc.GetContent(1);
             next.TransferRequired.Should().BeFalse();
             next.Model.Body.Should().Contain("<h1>Hello World</h1>");
+        }
+
+        [Test]
+        public void code_display_will_work_correctly()
+        {
+            ApplyData<MarkdownContentWithFSharpCode>();
+            var next = _sc.GetContent(1);
+            var vm = GetContentVm(next.Model);
+        }
+
+        [Test]
+        public void content_continuation_pipeline_only_once()
+        {
+            int i = 0;
+            var c = new ContentContinuation<object, ContentVM>(new object()).AddPipeline(o => { i++; return o; });
+            var _ = c.TransferRequired;
+            i.Should().Be(1);
+            var __ = c.Model;
+            i.Should().Be(1);
         }
 
         [TearDown]

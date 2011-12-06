@@ -7,7 +7,8 @@ namespace Rf.Sites.Frame.SiteInfrastructure
 {
     public class ContentContinuation<M,ViewModel> where M : class where ViewModel : class
     {
-        private readonly M _model;
+        private M _model;
+        private bool _pipelineHasRun;
         private readonly object _noContentInputModel = new InputModel404("This resource is not available");
         private readonly List<dynamic> _transfersDueToModelCondition = new List<dynamic>();
 
@@ -43,7 +44,15 @@ namespace Rf.Sites.Frame.SiteInfrastructure
 
         public M Model
         {
-            get { return _pipeline.Count > 0 ? _pipeline.Aggregate(_model, (m, pipeline) => pipeline(m)) : _model; }
+            get
+            {
+                // Any pipeline defs will run only once
+                if (_pipelineHasRun || _pipeline.Count == 0)
+                    return _model;
+                _model = _pipeline.Aggregate(_model, (m, pipeline) => pipeline(m));
+                _pipelineHasRun = true;
+                return _model;
+            }
         }
     }
 } 

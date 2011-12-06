@@ -1,0 +1,59 @@
+﻿> "Atomic activities may not be confused with consecutive code" - _Arthur X. Brannigan_<br>
+> "Ideally, atomic activities can be read as consecutive code" - _Arthur X. Brannigan_
+
+What Arthur is trying to say is that sometimes you have an atomic activity (something that should happen completely or not at all) whose parts are separated by arbitrary amounts of code. What would be desirable is that such an activity can also be read as such. That is, as a consecutive block of code, even though its parts may run at different points of the program execution. This will also encourage reusability, since a consecutive code block can easily be refactored via _"extract method"_
+
+The using pattern with _IDisposable_ can help us creating such activities. We introduce a class that can run arbitrary code and implements _IDisposable_:
+
+    public class AdHocDisposable : IDisposable
+    {
+        private readonly Action _end;
+        public static IDisposable Create(Action start, Action end)
+        {
+            return new AdHocDisposable(start, end);
+        }
+        public AdHocDisposable(Action start, Action end)
+        {
+            _end = end;
+            start();
+        }
+        public void Dispose()
+        {
+            _end();
+        }
+    }
+
+Usage may be encapsulated in a single private method of the class in need of the switching:
+
+    private IDisposable FooEnabled()
+    {
+        return AdHocDisposable.Create(() => _foo = true, () => _foo = false);
+    }
+
+After which we can use it in the following way:
+
+    using (FooEnabled())
+    {
+      // Doing funny stuff
+    }
+
+The repetitiveness has been dragged into its own method. The before/after 
+parts are written in close vicinity to each other, making it clear to a future reader what must be understood to be an _atomic activity_.
+
+In a functional language like F#, such patterns would probably be evolved with functional features.
+The following is a quick example based on function definitions, written as a test.
+
+    [<TestFixture>] 
+    type ``Atomic Tests`` ()=
+    
+      let mutable i = 0
+      let enclose (A,O) x = A(); x(); O();
+      let encloseWithI = ((fun() -> i <- 1), (fun() -> i <- 0)) |> enclose
+      let dispose = DisposableBuilder()
+    
+      [<Test>] member test.``test with the lambda`` ()=
+        encloseWithI (fun() -> i |> should equal 1)
+        i |> should equal 0
+
+It makes use of currying (_encloseWithI_) to specialize the _enclose_ function with the desired effect of changing the value of ___i___ before and after some other
+activity. _A(lpha)_ and _O(mega)_ are expected to be functions that are run before and after the third function _x()_

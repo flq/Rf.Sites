@@ -4,6 +4,7 @@ using Rf.Sites.Entities;
 using Rf.Sites.Frame.Persistence;
 using Rf.Sites.Test.Frame;
 using NHibernate.Linq;
+using Rf.Sites.Test.Support;
 
 namespace Rf.Sites.Test.DataScenarios
 {
@@ -41,6 +42,18 @@ namespace Rf.Sites.Test.DataScenarios
             var em = new EntityMaker();
             var content = em.CreateContent(1, "A title", DateTime.Now.AddDays(-1));
             content.SetBody("# Hello World" + Environment.NewLine);
+            content.IsMarkdown = true;
+            repository.Add(content);
+        }
+    }
+
+    internal class MarkdownContentWithFSharpCode : IDataScenario<Content>
+    {
+        public void Accept(IRepository<Content> repository)
+        {
+            var em = new EntityMaker();
+            var content = em.CreateContent(1, "A title", DateTime.Now.AddDays(-1));
+            content.SetBody(DataMother.Markdown4());
             content.IsMarkdown = true;
             repository.Add(content);
         }
