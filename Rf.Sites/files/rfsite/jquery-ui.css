@@ -306,7 +306,7 @@
 /* workarounds */
 * html .ui-autocomplete { width:1px; } /* without this, the menu expands to 100% in IE6 */
 
-.ui-autocomplete-loading { background: white url('images/ui-anim_basic_16x16.gif') right center no-repeat; }
+.ui-autocomplete-loading { background: white url('wait.gif') right center no-repeat; }
 
 /*
  * jQuery UI Menu 1.8.12
