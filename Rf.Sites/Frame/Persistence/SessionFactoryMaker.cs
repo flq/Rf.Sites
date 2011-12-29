@@ -46,7 +46,10 @@ namespace Rf.Sites.Frame.Persistence
 
         protected virtual void AdditionalModelConfig(AutoPersistenceModel model)
         {
-            model.Override<Content>(a => a.Map(c => c.Body).CustomSqlType("nvarchar(MAX)"));
+            // 29.12.2011 - Who would have thought that apparently only know I managed to surpass 4000 chars.
+            // seems crazy but anyways, here's a fix for NH cutting off my text
+            model.Override<Content>(
+                a => a.Map(c => c.Body).Length(4001).CustomSqlType("nvarchar(MAX)"));
         }
 
         private AutoPersistenceModel ModelConfig()
