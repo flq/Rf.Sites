@@ -19,15 +19,5 @@ namespace Rf.Sites.Features.Models
         {
             return Id.ToString();
         }
-
-        public static implicit operator int(ContentId cId)
-        {
-            return cId.Id;
-        }
-
-        public static implicit operator ContentId(int id)
-        {
-            return new ContentId { Id = id };
-        }
     }
 }

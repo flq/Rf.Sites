@@ -16,7 +16,7 @@ namespace Rf.Sites.Test.SearchFeature
 {
     public class SearchFeatureContext
     {
-        private Search _search;
+        private SearchEndpoint _search;
         private InMemoryCache _cache;
         protected bool ContentFactoryWasCalled;
         protected bool TagFactoryWasCalled;
@@ -32,7 +32,7 @@ namespace Rf.Sites.Test.SearchFeature
             SetupUrlRegistry();
             _dbContext = new DbTestContext();
             Setup();
-            _search = new Search(new ISearchPlugin[] {
+            _search = new SearchEndpoint(new ISearchPlugin[] {
                 new SearchOnPosts(_cache, _urlRegistry.Object, GetContentFactory), 
                 new SearchOnTags(_cache, _urlRegistry.Object, GetTagFactory),
                 new SearchOnTime(_cache, _urlRegistry.Object, ()=>DBContext.Session)
@@ -135,9 +135,9 @@ namespace Rf.Sites.Test.SearchFeature
 
         private void SetupUrlRegistry()
         {
-            _urlRegistry.Setup(u => u.UrlFor(It.IsAny<ContentId>())).Returns((ContentId ci) => "/go/" + ci.Id);
-            _urlRegistry.Setup(u => u.UrlFor(It.IsAny<TagPaging>())).Returns((TagPaging p) => "/tag/" + p.Tag);
-            _urlRegistry.Setup(u => u.UrlFor(It.IsAny<YearPaging>())).Returns((YearPaging p) => "/year/" + p.Year);
+            _urlRegistry.Setup(u => u.UrlFor(It.IsAny<ContentId>(),null)).Returns((ContentId ci) => "/go/" + ci.Id);
+            _urlRegistry.Setup(u => u.UrlFor(It.IsAny<TagPaging>(),null)).Returns((TagPaging p) => "/tag/" + p.Tag);
+            _urlRegistry.Setup(u => u.UrlFor(It.IsAny<YearPaging>(),null)).Returns((YearPaging p) => "/year/" + p.Year);
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using FubuCore.Reflection;
 using FubuMVC.Core;
 using FubuMVC.Core.Registration.Nodes;
@@ -11,7 +10,7 @@ namespace Rf.Sites.Frame.SiteInfrastructure
     {
         public static bool Filter(ActionCall call)
         {
-            return call.HandlerType.HasAttribute<HasActionsAttribute>() && call.HasInput;
+            return call.HandlerType.Name.EndsWith("Endpoint") && call.HasInput;
         }
 
         public static void Modification(IRouteDefinition route)

@@ -17,19 +17,19 @@ namespace Rf.Sites.Entities
         
         public virtual string Body { get; set; }
         
-        public virtual string Teaser { get; private set; }
+        public virtual string Teaser { get; protected set; }
 
         public virtual string MetaKeyWords { get; set; }
 
         public virtual bool Published { get; set; }
 
-        public virtual int AttachmentCount { get; private set; }
+        public virtual int AttachmentCount { get; protected set; }
 
         public virtual bool? IsMarkdown { get; set; }
 
-        public virtual IList<Tag> Tags { get; private set; }
+        public virtual IList<Tag> Tags { get; protected set; }
 
-        public virtual IList<Attachment> Attachments { get; private set; }
+        public virtual IList<Attachment> Attachments { get; protected set; }
 
         public virtual void AssociateWithTag(Tag tag)
         {

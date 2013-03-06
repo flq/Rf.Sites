@@ -1,7 +1,8 @@
 using System.Web;
-using Rf.Sites.Features.Administration;
+using NHibernate;
 using Rf.Sites.Features.Searching;
 using Rf.Sites.Frame;
+using Rf.Sites.Frame.Persistence;
 using Rf.Sites.Frame.SiteInfrastructure;
 using StructureMap.Configuration.DSL;
 
@@ -16,7 +17,18 @@ namespace Rf.Sites.Bootstrapping
             For<ServerVariables>().Use(ctx => new ServerVariables(ctx.GetInstance<HttpContextBase>().Request.ServerVariables));
             For<RequestHeaders>().Use(ctx => new RequestHeaders(ctx.GetInstance<HttpContextBase>().Request.Headers));
 
-            For<IContentAdministration>().Use<ContentAdminImpl>();
+            var maker = new SessionFactoryMaker();
+            ForSingletonOf<ISessionFactory>().Use(maker.CreateFactory);
+
+            For<ISession>()
+                .HybridHttpOrThreadLocalScoped()
+                .Use(ctx => ctx.GetInstance<ISessionFactory>().OpenSession());
+
+            For<IStatelessSession>()
+                .HybridHttpOrThreadLocalScoped()
+                .Use(ctx => ctx.GetInstance<ISessionFactory>().OpenStatelessSession());
+
+            For(typeof(IRepository<>)).Use(typeof(Repository<>));
 
             Scan(s =>
                      {

@@ -11,8 +11,8 @@ namespace Rf.Sites.Bootstrapping
         public void Configure(BehaviorGraph graph)
         {
             var activities = from a in graph.Actions()
-                             let o = a.OutputType().BaseType
-                             where o != null && o.IsGenericType && o.GetGenericTypeDefinition().Equals(typeof(Page<>))
+                             let o = a.OutputType() != null ? a.OutputType().BaseType : null 
+                             where o != null && o.IsGenericType && o.GetGenericTypeDefinition() == typeof(Page<>)
                              let behavior = typeof(PagingBehavior<>).MakeGenericType(a.OutputType())
                              select new { Call = a, Behavior = behavior };
 

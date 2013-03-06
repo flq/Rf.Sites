@@ -21,7 +21,7 @@ namespace Rf.Sites
                                             s.LookForRegistries();
                                         });
                         })
-                .Bootstrap(RouteTable.Routes);
+                .Bootstrap();
         }
     }
 }

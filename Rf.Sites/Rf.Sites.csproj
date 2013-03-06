@@ -14,6 +14,8 @@
     <AssemblyName>Rf.Sites</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <UseIISExpress>false</UseIISExpress>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -36,29 +38,60 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Bottles, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bottles.0.9.1.124\lib\Bottles.dll</HintPath>
+    <Reference Include="Bottles, Version=1.0.0.443, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Bottles.1.0.0.443\lib\Bottles.dll</HintPath>
     </Reference>
-    <Reference Include="Castle.Core">
-      <HintPath>..\packages\Castle.Core.2.5.2\lib\NET35\Castle.Core.dll</HintPath>
+    <Reference Include="FluentNHibernate, Version=1.3.0.733, Culture=neutral, PublicKeyToken=8aa435e3cb308880, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\FluentNHibernate.1.3.0.733\lib\FluentNHibernate.dll</HintPath>
     </Reference>
-    <Reference Include="FluentNHibernate">
-      <HintPath>..\packages\FluentNHibernate.1.2.0.712\lib\FluentNHibernate.dll</HintPath>
+    <Reference Include="FubuCore, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\FubuCore.1.0.0.225\lib\FubuCore.dll</HintPath>
     </Reference>
-    <Reference Include="FubuCore, Version=0.9.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FubuCore.0.9.2.71\lib\FubuCore.dll</HintPath>
+    <Reference Include="FubuLocalization, Version=0.9.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\FubuLocalization.0.9.5.126\lib\FubuLocalization.dll</HintPath>
     </Reference>
-    <Reference Include="FubuLocalization, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FubuLocalization.0.9.2.71\lib\FubuLocalization.dll</HintPath>
+    <Reference Include="FubuMVC.Core, Version=1.0.1.1410, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\FubuMVC.Core.1.0.1.1410\lib\net40\FubuMVC.Core.dll</HintPath>
     </Reference>
-    <Reference Include="FubuMVC.Core, Version=0.9.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FubuMVC.References.0.9.1.571\lib\net40\FubuMVC.Core.dll</HintPath>
+    <Reference Include="FubuMVC.Core.Assets">
+      <HintPath>..\packages\FubuMVC.Core.Assets.0.9.9.325\lib\net40\FubuMVC.Core.Assets.dll</HintPath>
     </Reference>
-    <Reference Include="FubuMVC.Spark, Version=0.9.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FubuMVC.Spark.0.9.1.568\lib\net40\FubuMVC.Spark.dll</HintPath>
+    <Reference Include="FubuMVC.Core.UI">
+      <HintPath>..\packages\FubuMVC.Core.UI.1.0.1.351\lib\net40\FubuMVC.Core.UI.dll</HintPath>
     </Reference>
-    <Reference Include="FubuMVC.StructureMap, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FubuMVC.References.0.9.1.571\lib\net40\FubuMVC.StructureMap.dll</HintPath>
+    <Reference Include="FubuMVC.Core.View">
+      <HintPath>..\packages\FubuMVC.Core.View.1.0.0.383\lib\net40\FubuMVC.Core.View.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuMVC.Diagnostics">
+      <HintPath>..\packages\FubuMVC.Diagnostics.0.9.6.215\lib\net40\FubuMVC.Diagnostics.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuMVC.JQueryUI">
+      <HintPath>..\packages\FubuMVC.JQueryUI.0.5.0.226\lib\net40\FubuMVC.JQueryUI.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuMVC.Media">
+      <HintPath>..\packages\FubuMVC.Media.0.9.5.318\lib\net40\FubuMVC.Media.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuMVC.Navigation">
+      <HintPath>..\packages\FubuMVC.Navigation.0.9.0.88\lib\net40\FubuMVC.Navigation.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuMVC.SlickGrid">
+      <HintPath>..\packages\FubuMVC.SlickGrid.0.0.0.435\lib\net40\FubuMVC.SlickGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuMVC.Spark, Version=1.0.0.383, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\FubuMVC.Spark.1.0.0.383\lib\net40\FubuMVC.Spark.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuMVC.StructureMap, Version=1.0.1.1410, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\FubuMVC.StructureMap.1.0.1.1410\lib\net40\FubuMVC.StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuMVC.TwitterBootstrap">
+      <HintPath>..\packages\FubuMVC.TwitterBootstrap.0.0.0.433\lib\net40\FubuMVC.TwitterBootstrap.dll</HintPath>
     </Reference>
     <Reference Include="Google.GData.Analytics">
       <HintPath>..\lib\Google.GData.Analytics.dll</HintPath>
@@ -66,35 +99,28 @@
     <Reference Include="Google.GData.Client">
       <HintPath>..\lib\Google.GData.Client.dll</HintPath>
     </Reference>
-    <Reference Include="HtmlTags">
-      <HintPath>..\packages\HtmlTags.1.0.0.23\lib\4.0\HtmlTags.dll</HintPath>
+    <Reference Include="HtmlTags, Version=1.2.0.150, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\HtmlTags.1.2.0.150\lib\4.0\HtmlTags.dll</HintPath>
     </Reference>
-    <Reference Include="Iesi.Collections">
-      <HintPath>..\packages\Iesi.Collections.3.1.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
+    <Reference Include="Iesi.Collections, Version=1.0.1.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Iesi.Collections.3.2.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
     </Reference>
     <Reference Include="MarkdownSharp">
       <HintPath>..\packages\MarkdownSharp.1.13.0.0\lib\35\MarkdownSharp.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.Practices.ServiceLocation">
-      <HintPath>..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\FubuMVC.0.9.1.571\lib\Microsoft.Web.Infrastructure.dll</HintPath>
-    </Reference>
-    <Reference Include="NHibernate">
-      <HintPath>..\packages\NHibernate.3.1.0.4000\lib\Net35\NHibernate.dll</HintPath>
-    </Reference>
-    <Reference Include="NHibernate.ByteCode.Castle">
-      <HintPath>..\packages\NHibernate.Castle.3.1.0.4000\lib\Net35\NHibernate.ByteCode.Castle.dll</HintPath>
-    </Reference>
-    <Reference Include="Spark">
-      <HintPath>..\packages\Spark.1.6\lib\NET40\Spark.dll</HintPath>
-    </Reference>
-    <Reference Include="StructureMap, Version=2.6.3.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
+    <Reference Include="NHibernate, Version=3.3.1.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\structuremap.2.6.3\lib\StructureMap.dll</HintPath>
+      <HintPath>..\packages\NHibernate.3.3.2.4000\lib\Net35\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="Spark, Version=1.7.0.0, Culture=neutral, PublicKeyToken=7f8549eed921a12c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Spark.1.7.5.1\lib\NET40\Spark.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap, Version=2.6.4.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Serialization" />
@@ -131,36 +157,24 @@
   <ItemGroup>
     <Compile Include="Bootstrapping\Bootstrapper.cs" />
     <Compile Include="Bootstrapping\ConfigurationRegistry.cs" />
-    <Compile Include="Bootstrapping\DataAccessRegistry.cs" />
-    <Compile Include="Bootstrapping\HandleContentContinuation.cs" />
+    <Compile Include="Bootstrapping\FeedsCustomization.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Bootstrapping\HandlePagingOutput.cs" />
     <Compile Include="Bootstrapping\MainRegistry.cs" />
-    <Compile Include="Features\Administration\Behavior\AdminActionBasicBehavior.cs" />
-    <Compile Include="Features\Administration\Behavior\GetBehavior.cs" />
-    <Compile Include="Features\Administration\ContentAdminCustomization.cs" />
-    <Compile Include="Features\Administration\ContentAdminException.cs" />
-    <Compile Include="Features\Administration\ContentId.cs" />
-    <Compile Include="Features\Administration\FeedsCustomization.cs" />
-    <Compile Include="Features\Administration\HandleContentAdmin.cs" />
-    <Compile Include="Features\Administration\IContentAdministration.cs" />
-    <Compile Include="Features\Administration\Behavior\InsertBehavior.cs" />
-    <Compile Include="Features\Administration\OutputWriterExtensions.cs" />
-    <Compile Include="Features\Administration\Behavior\PutBehavior.cs" />
-    <Compile Include="Features\Home.cs" />
+    <Compile Include="Features\HomeEndpoint.cs" />
     <Compile Include="Features\Models\MarkdownFilter.cs" />
     <Compile Include="Features\Models\PersonalEntryModel.cs" />
     <Compile Include="Features\Searching\SearchOnTime.cs" />
     <Compile Include="Frame\AdminSettings.cs" />
-    <Compile Include="Frame\ContentAdminImpl.cs" />
     <Compile Include="Frame\DynamicJson.cs" />
     <Compile Include="Entities\Attachment.cs" />
     <Compile Include="Entities\Content.cs" />
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="Entities\Tag.cs" />
-    <Compile Include="Features\Administration\ContentAdmin.cs" />
     <Compile Include="Features\AttachmentConverter.cs" />
     <Compile Include="Features\CodeHighlighting.cs" />
-    <Compile Include="Features\FeedProvision.cs" />
+    <Compile Include="Features\FeedProvisionEndpoint.cs" />
     <Compile Include="Features\Models\AttachmentVM.cs" />
     <Compile Include="Features\Models\ContentId.cs" />
     <Compile Include="Features\Models\ConcretePages.cs" />
@@ -175,14 +189,14 @@
     <Compile Include="Features\Models\Page.cs" />
     <Compile Include="Features\Models\PagingArgs.cs" />
     <Compile Include="Features\Models\SearchFunctionality.cs" />
-    <Compile Include="Features\PagedContent.cs" />
+    <Compile Include="Features\PagedContentEndpoint.cs" />
     <Compile Include="Features\Searching\ISearchPlugin.cs" />
-    <Compile Include="Features\Searching\Search.cs" />
+    <Compile Include="Features\Searching\SearchEndpoint.cs" />
     <Compile Include="Features\Searching\SearchOnPosts.cs" />
     <Compile Include="Features\Searching\SearchOnTags.cs" />
-    <Compile Include="Features\SingleContent.cs" />
-    <Compile Include="Features\SiteMap.cs" />
-    <Compile Include="Features\ViewOutputs.cs" />
+    <Compile Include="Features\SingleContentEndpoint.cs" />
+    <Compile Include="Features\SiteMapEndpoint.cs" />
+    <Compile Include="Features\ViewOutputsEndpoints.cs" />
     <Compile Include="Frame\AnalyticsTopPagesProvider.cs" />
     <Compile Include="Frame\Constants.cs" />
     <Compile Include="Frame\FixedListComparer.cs" />
@@ -196,13 +210,10 @@
     <Compile Include="Frame\SiteInfrastructure\DynamicBindException.cs" />
     <Compile Include="Frame\SiteInfrastructure\DynamicBinding.cs" />
     <Compile Include="Frame\SiteInfrastructure\InputParameterCustomization.cs" />
-    <Compile Include="Frame\SiteInfrastructure\ContentContinuation.cs" />
-    <Compile Include="Frame\SiteInfrastructure\ContentContinuationBehavior.cs" />
     <Compile Include="Frame\PaginationSettings.cs" />
     <Compile Include="Frame\SiteInfrastructure\IJsonResponse.cs" />
     <Compile Include="Frame\SiteInfrastructure\IRouteDefinitionExtension.cs" />
     <Compile Include="Frame\SiteInfrastructure\PagingBehavior.cs" />
-    <Compile Include="Frame\SiteInfrastructure\HasActionsAttribute.cs" />
     <Compile Include="Frame\SiteInfrastructure\ICache.cs" />
     <Compile Include="Frame\SiteInfrastructure\NullCache.cs" />
     <Compile Include="Frame\SiteInfrastructure\RequestHeaders.cs" />
@@ -223,22 +234,22 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Features\Views\PersonalHomePage.spark">
+    <None Include="Shared\PersonalHomePage.spark">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Features\Views\NotYetPublished.spark">
+    <None Include="Shared\NotYetPublished.spark">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Features\Views\_Comments.spark" />
+    <None Include="Shared\_Comments.spark" />
     <None Include="Shared\_Pagination.spark" />
-    <None Include="Features\Views\_ContentTeaser.spark" />
-    <None Include="Features\Views\PagedContent.spark">
+    <None Include="Shared\_ContentTeaser.spark" />
+    <None Include="Shared\PagedContent.spark">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Features\Views\SingleContent.spark">
+    <None Include="Shared\SingleContent.spark">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Features\Views\_Attachment.spark" />
+    <None Include="Shared\_Attachment.spark" />
     <None Include="Shared\Application.spark">
       <SubType>Designer</SubType>
     </None>
@@ -249,7 +260,9 @@
     <None Include="Shared\_global.spark" />
     <None Include="Shared\_Analytics.spark" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Features\Views\" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <ProjectExtensions>
@@ -271,6 +284,7 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

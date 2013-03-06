@@ -1,6 +1,6 @@
 ﻿using System;
 using FubuCore.Binding;
-using FubuMVC.Core.Runtime;
+using FubuMVC.Core.Http;
 using System.Linq;
 
 namespace Rf.Sites.Frame.SiteInfrastructure

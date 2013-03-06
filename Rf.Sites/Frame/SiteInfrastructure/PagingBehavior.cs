@@ -21,7 +21,7 @@ namespace Rf.Sites.Frame.SiteInfrastructure
         {
             _request = request;
             _cache = cache;
-            _registry = registry != null ? new Func<object, string>(registry.UrlFor) : model => "No registry";
+            _registry = registry != null ? new Func<object, string>(o => registry.UrlFor(o)) : model => "No registry";
             _settings = settings;
         }
 
