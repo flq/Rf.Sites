@@ -1,1 +1,0 @@
-curl -H X-RfSite-AdminToken:token -x 127.0.0.1:7654 -H Content-Type:application/json -d @%2.txt -s -D- http://me:%1/admin/post

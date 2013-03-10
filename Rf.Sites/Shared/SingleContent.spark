@@ -22,7 +22,7 @@
 	</div>
 
 	<div class="content_body">
-	  ${Model.Body}
+	  !{Model.Body}
 	</div>
 
   <div class="content_attachments" if="Model.AttachmentCount > 0">

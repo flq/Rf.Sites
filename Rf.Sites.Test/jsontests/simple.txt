@@ -1,7 +1,0 @@
-{
-  "title": "First Markdown attack",
-  "body": "# Test\n\n* One\n* Two\n\n    public class Geez {\n      private bool bang;\n    }\n\n## Hello World\n\nBlaBla, `hehe`",
-  "publishdate": "/Date(1318420800000)/",
-  "isMarkdown": true,
-  "tags": ["unknown", "membus"]
-}

@@ -93,12 +93,6 @@
     <Reference Include="FubuMVC.TwitterBootstrap">
       <HintPath>..\packages\FubuMVC.TwitterBootstrap.0.0.0.433\lib\net40\FubuMVC.TwitterBootstrap.dll</HintPath>
     </Reference>
-    <Reference Include="Google.GData.Analytics">
-      <HintPath>..\lib\Google.GData.Analytics.dll</HintPath>
-    </Reference>
-    <Reference Include="Google.GData.Client">
-      <HintPath>..\lib\Google.GData.Client.dll</HintPath>
-    </Reference>
     <Reference Include="HtmlTags, Version=1.2.0.150, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\HtmlTags.1.2.0.150\lib\4.0\HtmlTags.dll</HintPath>
@@ -197,7 +191,6 @@
     <Compile Include="Features\SingleContentEndpoint.cs" />
     <Compile Include="Features\SiteMapEndpoint.cs" />
     <Compile Include="Features\ViewOutputsEndpoints.cs" />
-    <Compile Include="Frame\AnalyticsTopPagesProvider.cs" />
     <Compile Include="Frame\Constants.cs" />
     <Compile Include="Frame\FixedListComparer.cs" />
     <Compile Include="Frame\IObjectConverter.cs" />
@@ -206,9 +199,6 @@
     <Compile Include="Frame\Persistence\Repository.cs" />
     <Compile Include="Frame\Persistence\SessionFactoryMaker.cs" />
     <Compile Include="Frame\Persistence\WebNHSessionContext.cs" />
-    <Compile Include="Frame\SiteInfrastructure\DoNextExtensions.cs" />
-    <Compile Include="Frame\SiteInfrastructure\DynamicBindException.cs" />
-    <Compile Include="Frame\SiteInfrastructure\DynamicBinding.cs" />
     <Compile Include="Frame\SiteInfrastructure\InputParameterCustomization.cs" />
     <Compile Include="Frame\PaginationSettings.cs" />
     <Compile Include="Frame\SiteInfrastructure\IJsonResponse.cs" />
@@ -235,9 +225,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Shared\PersonalHomePage.spark">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Shared\NotYetPublished.spark">
       <SubType>Designer</SubType>
     </None>
     <None Include="Shared\_Comments.spark" />

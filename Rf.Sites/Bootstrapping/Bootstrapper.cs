@@ -19,9 +19,6 @@ namespace Rf.Sites.Bootstrapping
                 p.ModifyWith<StreamOutput>();
             });
 
-            Models.BindModelsWith<DynamicBinding>();
-            
-
             Routes
                 .IgnoreControllerNamesEntirely()
                 .IgnoreControllerNamespaceEntirely()
