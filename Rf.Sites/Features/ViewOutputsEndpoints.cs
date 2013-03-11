@@ -1,27 +1,16 @@
 using FubuMVC.Core;
+using FubuMVC.Core.Continuations;
 using Rf.Sites.Features.Models;
-using Rf.Sites.Frame.SiteInfrastructure;
 
 namespace Rf.Sites.Features
 {
     public class ViewOutputsEndpoints
     {
         [FubuPartial]
-        public ContentVM ContentVM(ContentVM vm)
+        public FubuContinuation InputModel404(InputModel404 vm)
         {
-            return vm;
+            return FubuContinuation.RedirectTo("~/404.htm");
         }
 
-        [FubuPartial]
-        public InputModel404 InputModel404(InputModel404 vm)
-        {
-            return vm;
-        }
-
-        [FubuPartial]
-        public NotYetPublishedVM InputModel404(NotYetPublishedVM vm)
-        {
-            return vm;
-        }
-    }
+     }
 }

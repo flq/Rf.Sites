@@ -130,6 +130,7 @@
     <Reference Include="System.Web.Services" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="404.htm" />
     <Content Include="files\rfsite\jquery-ui.css" />
     <Content Include="files\rfsite\pagination.css" />
     <Content Include="files\rfsite\rf.ico" />

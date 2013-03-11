@@ -1,6 +1,7 @@
 using FubuMVC.Core;
 using FubuCore.Reflection;
 using Rf.Sites.Features;
+using Rf.Sites.Features.Models;
 using Rf.Sites.Frame.SiteInfrastructure;
 
 namespace Rf.Sites.Bootstrapping
@@ -17,6 +18,12 @@ namespace Rf.Sites.Bootstrapping
             {
                 p.Where.ResourceTypeImplements<IStreamOutput>();
                 p.ModifyWith<StreamOutput>();
+            });
+
+            Policies.Add(p =>
+            {
+                p.Where.InputTypeIs<ContentId>();
+                p.Add.BehaviorToEnd<SingleContentEndpoint.NullTo404Behavior>();
             });
 
             Routes

@@ -1,3 +1,6 @@
+<use master="Application" />
 <viewdata model="Rf.Sites.Features.Models.InputModel404" />
-<set Title='Model.Title'/>
+
+<content name="head"></content>
+
 <p>${Model.Message}</p>
