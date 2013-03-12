@@ -2,6 +2,7 @@
 using FubuMVC.Core;
 using FubuMVC.Core.Behaviors;
 using FubuMVC.Core.Continuations;
+using FubuMVC.Core.Http;
 using FubuMVC.Core.Registration.Nodes;
 using FubuMVC.Core.Registration.Querying;
 using FubuMVC.Core.Runtime;
@@ -39,15 +40,15 @@ namespace Rf.Sites.Features
         public class NullTo404Behavior : BasicBehavior
         {
             private readonly IFubuRequest _request;
-            private readonly IPartialFactory _factory;
-            private readonly IChainResolver _resolver;
+            private readonly IHttpWriter _writer;
+            private readonly IUrlRegistry _urls;
 
-            public NullTo404Behavior(IFubuRequest request, IPartialFactory factory, IChainResolver resolver)
+            public NullTo404Behavior(IFubuRequest request, IHttpWriter writer, IUrlRegistry urls)
                 : base(PartialBehavior.Executes)
             {
                 _request = request;
-                _factory = factory;
-                _resolver = resolver;
+                _writer = writer;
+                _urls = urls;
             }
 
             protected override DoNext performInvoke()
@@ -56,10 +57,8 @@ namespace Rf.Sites.Features
                 
                 if (bla == null)
                 {
-                    var inputModel404 = new InputModel404("Content not found");
-                    _request.Set(inputModel404);
-                    var p = _factory.BuildPartial(_resolver.FindUnique(inputModel404));
-                    p.InvokePartial();
+                    var url = _urls.UrlFor(new RedirectTo404());
+                    _writer.Redirect(url);
                     return DoNext.Stop;
                 }
                 

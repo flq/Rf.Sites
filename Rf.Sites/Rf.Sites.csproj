@@ -177,7 +177,7 @@
     <Compile Include="Features\Models\ContentVM.cs" />
     <Compile Include="Features\Models\FeedModel.cs" />
     <Compile Include="Features\Models\FeedSetup.cs" />
-    <Compile Include="Features\Models\InputModel404.cs" />
+    <Compile Include="Features\Models\RedirectTo404.cs" />
     <Compile Include="Features\Models\SiteMapModel.cs" />
     <Compile Include="Features\Models\TagPaging.cs" />
     <Compile Include="Features\Models\NotYetPublishedVM.cs" />
@@ -191,7 +191,7 @@
     <Compile Include="Features\Searching\SearchOnTags.cs" />
     <Compile Include="Features\SingleContentEndpoint.cs" />
     <Compile Include="Features\SiteMapEndpoint.cs" />
-    <Compile Include="Features\ViewOutputsEndpoints.cs" />
+    <Compile Include="Features\Handle404Endpoint.cs" />
     <Compile Include="Frame\Constants.cs" />
     <Compile Include="Frame\FixedListComparer.cs" />
     <Compile Include="Frame\IObjectConverter.cs" />
@@ -225,6 +225,9 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Shared\NotFound.spark">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Shared\PersonalHomePage.spark">
       <SubType>Designer</SubType>
     </None>
@@ -244,7 +247,6 @@
     <None Include="Shared\Page.spark">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Shared\NotFound.spark" />
     <None Include="Shared\_global.spark" />
     <None Include="Shared\_Analytics.spark" />
   </ItemGroup>
