@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.IO;
+using System.Threading.Tasks;
 using FluentNHibernate.Automapping;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
@@ -14,16 +15,26 @@ namespace Rf.Sites.Frame.Persistence
     public class SessionFactoryMaker
     {
         private static Configuration _config;
-        private ISessionFactory _factory;
+        private readonly Task<ISessionFactory> _factoryTask;
+
+        public SessionFactoryMaker()
+        {
+            _factoryTask = new Task<ISessionFactory>(() =>
+            {
+                var factory = Fluently.Configure()
+                  .Database(DbConfig())
+                  .Mappings(m => m.AutoMappings.Add(ModelConfig()))
+                  .ExposeConfiguration(InspectConfig)
+                  .BuildSessionFactory();
+                return factory;
+            });
+            _factoryTask.Start();
+        }
 
         public ISessionFactory CreateFactory()
         {
-            _factory = Fluently.Configure()
-              .Database(DbConfig())
-              .Mappings(m => m.AutoMappings.Add(ModelConfig()))
-              .ExposeConfiguration(InspectConfig)
-              .BuildSessionFactory();
-            return _factory;
+            _factoryTask.Wait();
+            return _factoryTask.Result;
         }
 
         public void DropAndRecreateSchema(TextWriter w, IDbConnection con)

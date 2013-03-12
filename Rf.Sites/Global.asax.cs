@@ -3,6 +3,7 @@ using System.Web.Routing;
 using FubuMVC.Core;
 using FubuMVC.StructureMap;
 using Rf.Sites.Bootstrapping;
+using Rf.Sites.Frame.Persistence;
 
 namespace Rf.Sites
 {
