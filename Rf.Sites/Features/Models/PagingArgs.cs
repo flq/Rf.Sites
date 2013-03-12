@@ -28,7 +28,6 @@ namespace Rf.Sites.Features.Models
         }
     }
 
-    [RouteParameterSorter("Year", "Page")]
     public class YearPaging : PagingArgs
     {
         [RouteInput]
@@ -62,7 +61,6 @@ namespace Rf.Sites.Features.Models
         }
     }
 
-    [RouteParameterSorter("Tag", "Page")]
     public class TagPaging : PagingArgs
     {
         public TagPaging() { }

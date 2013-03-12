@@ -37,6 +37,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Bottles.1.0.0.443\lib\Bottles.dll</HintPath>
     </Reference>
+    <Reference Include="DropNet">
+      <HintPath>..\packages\DropNet.1.9.3\lib\net35\DropNet.dll</HintPath>
+    </Reference>
     <Reference Include="FluentAssertions, Version=2.0.1.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\FluentAssertions.2.0.1\lib\net40\FluentAssertions.dll</HintPath>
@@ -84,9 +87,6 @@
     <Reference Include="Iesi.Collections, Version=1.0.1.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <HintPath>..\packages\Iesi.Collections.3.2.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
     </Reference>
-    <Reference Include="Moq">
-      <HintPath>..\packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
-    </Reference>
     <Reference Include="NHibernate, Version=3.3.1.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\NHibernate.3.3.2.4000\lib\Net35\NHibernate.dll</HintPath>
@@ -94,6 +94,9 @@
     <Reference Include="nunit.framework, Version=2.6.2.12296, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\NUnit.2.6.2\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp">
+      <HintPath>..\packages\DropNet.1.9.3\lib\net35\RestSharp.dll</HintPath>
     </Reference>
     <Reference Include="Spark, Version=1.7.0.0, Culture=neutral, PublicKeyToken=7f8549eed921a12c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -128,6 +131,7 @@
     <Compile Include="SearchFeature\SearchFeatureTests.cs" />
     <Compile Include="SearchFeature\TimeSearchTests.cs" />
     <Compile Include="Support\DataMother.cs" />
+    <Compile Include="Support\TestUrlRegistry.cs" />
     <Compile Include="Using_AttachmentVM.cs" />
     <Compile Include="In_memory_repository_context.cs" />
     <Compile Include="Using_single_content.cs" />

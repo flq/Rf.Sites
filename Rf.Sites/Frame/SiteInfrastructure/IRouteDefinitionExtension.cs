@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Text.RegularExpressions;
 using FubuMVC.Core.Registration.Routes;
+using System.Linq;
 
 namespace Rf.Sites.Frame.SiteInfrastructure
 {
@@ -17,6 +17,19 @@ namespace Rf.Sites.Frame.SiteInfrastructure
 
             while (q.Count > 0)
                 def.Append(q.Dequeue().ReplaceString(tobeReplaced, replacement, StringComparison.InvariantCultureIgnoreCase));
+        }
+
+        public static void ReorderParts(this IRouteDefinition def, IComparer<string> comparer)
+        {
+            var parts = new List<string>(def.Pattern.Split('/').Where(s => s.StartsWith("{")) .Select(p => p.Replace("{", "").Replace("}", "")));
+
+            for (var i = 0; i < parts.Count; i++)
+                def.RemoveLastPatternPart();
+
+            parts.Sort(comparer);
+
+            foreach (var p in parts)
+                def.Append("{" + p + "}");
         }
 
         /// <summary>

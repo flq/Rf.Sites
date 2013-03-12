@@ -63,12 +63,12 @@ namespace Rf.Sites.Features
 
         private class ReplacedStringGen : IEnumerable<string>
         {
-            private readonly string text;
-            private int currentIndex;
+            private readonly string _text;
+            private int _currentIndex;
 
             public ReplacedStringGen(string text)
             {
-                this.text = text;
+                _text = text;
             }
 
             public void ForEach(Action<string> action)
@@ -79,24 +79,24 @@ namespace Rf.Sites.Features
 
             public IEnumerator<string> GetEnumerator()
             {
-                while (currentIndex != -1)
+                while (_currentIndex != -1)
                 {
-                    var indexOf = text.IndexOf(CsharpStartTag, currentIndex);
+                    var indexOf = _text.IndexOf(CsharpStartTag, _currentIndex, StringComparison.Ordinal);
                     if (indexOf == -1)
                     {
-                        yield return text.Substring(currentIndex);
-                        currentIndex = -1;
+                        yield return _text.Substring(_currentIndex);
+                        _currentIndex = -1;
                     }
                     else
                     {
-                        yield return text.Substring(currentIndex, indexOf - currentIndex);
+                        yield return _text.Substring(_currentIndex, indexOf - _currentIndex);
                         yield return CsharpStartTag;
-                        var end = text.IndexOf("</pre>", indexOf);
-                        var tmp = text.Substring(indexOf + CsharpStartTag.Length, end - indexOf - CsharpStartTag.Length);
+                        var end = _text.IndexOf("</pre>", indexOf, StringComparison.Ordinal);
+                        var tmp = _text.Substring(indexOf + CsharpStartTag.Length, end - indexOf - CsharpStartTag.Length);
                         tmp = tmp.Replace("<", "&lt;");
                         tmp = tmp.Replace(">", "&gt;");
                         yield return tmp;
-                        currentIndex = end;
+                        _currentIndex = end;
                     }
                 }
             }

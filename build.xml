@@ -18,25 +18,23 @@
     <MSBuild Projects="Rf.Sites.sln" Properties="Configuration=$(Configuration)" />
   </Target>
 
-  <Target Name="BuildApp">
-    
-	<ItemGroup>
-	  <Assemblies Include="Rf.Sites\bin\*.dll" />
-	  <FeatureViews Include="Rf.Sites\Features\Views\*.spark" />
-	  <SharedViews Include="Rf.Sites\Shared\*.*" />
-	  <Files Include="Rf.Sites\files\rfsite\**\*.*" />
-	  <Scripts Include="Rf.Sites\Scripts\*.*" />
-	</ItemGroup>
-	
+  <Target Name="BuildApp">  
+  	<ItemGroup>
+  	  <Assemblies Include="Rf.Sites\bin\*.dll" />
+  	  <SharedViews Include="Rf.Sites\Shared\*.*" />
+  	  <Files Include="Rf.Sites\files\rfsite\**\*.*" />
+  	  <Scripts Include="Rf.Sites\Scripts\*.*" />
+  	</ItemGroup>
+  	
     <Copy SourceFiles="@(Assemblies)" DestinationFolder="$(BinDir)" />
-    <Copy SourceFiles="@(FeatureViews)" DestinationFolder="$(FeatureViewsDir)\%(RecursiveDir)" />
-	<Copy SourceFiles="@(SharedViews)" DestinationFolder="$(SharedViewsDir)\%(RecursiveDir)" />
-	<Copy SourceFiles="@(Files)" DestinationFolder="$(FilesDir)\%(RecursiveDir)" />
+      
+  	<Copy SourceFiles="@(SharedViews)" DestinationFolder="$(SharedViewsDir)\%(RecursiveDir)" />
+  	<Copy SourceFiles="@(Files)" DestinationFolder="$(FilesDir)\%(RecursiveDir)" />
     <Copy SourceFiles="@(Scripts)" DestinationFolder="$(ScriptsDir)\%(RecursiveDir)" />
 
     <!-- Root files -->
     <Copy Condition="$(Local)==false" SourceFiles="Rf.Sites\WebRelease.config" DestinationFiles="$(OutDir)\Web.config" />
-	<Copy Condition="$(Local)==true" SourceFiles="Rf.Sites\Web.config" DestinationFiles="$(OutDir)\Web.config" />
+  	<Copy Condition="$(Local)==true" SourceFiles="Rf.Sites\Web.config" DestinationFiles="$(OutDir)\Web.config" />
     <Copy SourceFiles="Rf.Sites\Global.asax" DestinationFolder="$(OutDir)" />
   </Target>
 

@@ -14,7 +14,7 @@ namespace Rf.Sites.Test
 
         public Using_single_content()
         {
-            _sc = new SingleContentEndpoint(Repository,SiteSettings,ServerVariables,Reg.Object);
+            _sc = new SingleContentEndpoint(Repository,SiteSettings,ServerVariables,Reg);
         }
 
         [Test]
@@ -43,15 +43,7 @@ namespace Rf.Sites.Test
             jsonTitle.Should().Contain("\\\"");
         }
 
-
-        [Test, Ignore("Currently not supported")]
-        public void future_content_is_transferred_to_new_model()
-        {
-            ApplyData<SomeFutureContent>();
-            
-        }
-
-        [Test, Ignore("Broken!")]
+        [Test]
         public void markdown_filter_is_applied()
         {
             ApplyData<MarkdownContent>();

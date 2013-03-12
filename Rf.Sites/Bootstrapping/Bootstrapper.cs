@@ -1,5 +1,4 @@
 using FubuMVC.Core;
-using FubuCore.Reflection;
 using Rf.Sites.Features;
 using Rf.Sites.Features.Models;
 using Rf.Sites.Frame.SiteInfrastructure;
@@ -14,6 +13,7 @@ namespace Rf.Sites.Bootstrapping
             Actions.IncludeClassesSuffixedWithEndpoint();
 
             Policies.Add<HandlePagingOutput>();
+
             Policies.Add(p =>
             {
                 p.Where.ResourceTypeImplements<IStreamOutput>();
@@ -23,7 +23,7 @@ namespace Rf.Sites.Bootstrapping
             Policies.Add(p =>
             {
                 p.Where.InputTypeIs<ContentId>();
-                p.Add.BehaviorToEnd<SingleContentEndpoint.NullTo404Behavior>();
+                p.Add.BehaviorToEnd<NullTo404Behavior<ContentVM>>();
             });
 
             Routes

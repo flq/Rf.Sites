@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using FubuMVC.Core.Urls;
-using Moq;
 using NUnit.Framework;
 using Rf.Sites.Entities;
 using Rf.Sites.Features.Models;
@@ -11,6 +10,7 @@ using Rf.Sites.Frame.SiteInfrastructure;
 using Rf.Sites.Test.Frame;
 using FluentAssertions;
 using System.Linq;
+using Rf.Sites.Test.Support;
 
 namespace Rf.Sites.Test.SearchFeature
 {
@@ -21,21 +21,20 @@ namespace Rf.Sites.Test.SearchFeature
         protected bool ContentFactoryWasCalled;
         protected bool TagFactoryWasCalled;
         private IJsonResponse _response;
-        private Mock<IUrlRegistry> _urlRegistry;
+        private IUrlRegistry _urlRegistry;
         private DbTestContext _dbContext;
 
         [TestFixtureSetUp]
         public void Given()
         {
             _cache = new InMemoryCache();
-            _urlRegistry = new Mock<IUrlRegistry>();
-            SetupUrlRegistry();
+            _urlRegistry = new TestUrlRegistry();
             _dbContext = new DbTestContext();
             Setup();
             _search = new SearchEndpoint(new ISearchPlugin[] {
-                new SearchOnPosts(_cache, _urlRegistry.Object, GetContentFactory), 
-                new SearchOnTags(_cache, _urlRegistry.Object, GetTagFactory),
-                new SearchOnTime(_cache, _urlRegistry.Object, ()=>DBContext.Session)
+                new SearchOnPosts(_cache, _urlRegistry, GetContentFactory), 
+                new SearchOnTags(_cache, _urlRegistry, GetTagFactory),
+                new SearchOnTime(_cache, _urlRegistry, ()=>DBContext.Session)
             });
         }
 
@@ -59,7 +58,7 @@ namespace Rf.Sites.Test.SearchFeature
             _response.Should().NotBeNull();
             var found = ((IEnumerable<Link>)_response).FirstOrDefault(v => v.linktext.Equals(title));
             found.Should().NotBeNull("link with text " + title + " should exist");
-            found.linktext.Equals(title);
+            found.linktext.Should().Be(title);
             found.link.Should().Be(link);
         }
 
@@ -131,13 +130,6 @@ namespace Rf.Sites.Test.SearchFeature
         protected void ClearCache()
         {
             _cache.Clear();
-        }
-
-        private void SetupUrlRegistry()
-        {
-            _urlRegistry.Setup(u => u.UrlFor(It.IsAny<ContentId>(),null)).Returns((ContentId ci) => "/go/" + ci.Id);
-            _urlRegistry.Setup(u => u.UrlFor(It.IsAny<TagPaging>(),null)).Returns((TagPaging p) => "/tag/" + p.Tag);
-            _urlRegistry.Setup(u => u.UrlFor(It.IsAny<YearPaging>(),null)).Returns((YearPaging p) => "/year/" + p.Year);
         }
     }
 }

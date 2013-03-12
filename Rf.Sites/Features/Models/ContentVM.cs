@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using FubuMVC.Core.Urls;
+using MarkdownSharp;
 using Rf.Sites.Entities;
 using Rf.Sites.Frame;
 using Rf.Sites.Frame.SiteInfrastructure;
@@ -68,7 +69,9 @@ namespace Rf.Sites.Features.Models
         {
             ContentId = content.Id.ToString();
             Title = content.Title;
-            Body = content.Body;
+            Body = content.IsMarkdown.HasValue && (bool)content.IsMarkdown ? 
+                new Markdown().Transform(content.Body) :
+                content.Body;
 
             new CodeHighlightExtension().Inspect(this);
 

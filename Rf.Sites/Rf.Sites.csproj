@@ -42,6 +42,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Bottles.1.0.0.443\lib\Bottles.dll</HintPath>
     </Reference>
+    <Reference Include="DropNet">
+      <HintPath>..\packages\DropNet.1.9.3\lib\net35\DropNet.dll</HintPath>
+    </Reference>
     <Reference Include="FluentNHibernate, Version=1.3.0.733, Culture=neutral, PublicKeyToken=8aa435e3cb308880, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\FluentNHibernate.1.3.0.733\lib\FluentNHibernate.dll</HintPath>
@@ -108,6 +111,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\NHibernate.3.3.2.4000\lib\Net35\NHibernate.dll</HintPath>
     </Reference>
+    <Reference Include="RestSharp">
+      <HintPath>..\packages\DropNet.1.9.3\lib\net35\RestSharp.dll</HintPath>
+    </Reference>
     <Reference Include="Spark, Version=1.7.0.0, Culture=neutral, PublicKeyToken=7f8549eed921a12c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Spark.1.7.5.1\lib\NET40\Spark.dll</HintPath>
@@ -130,7 +136,6 @@
     <Reference Include="System.Web.Services" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="404.htm" />
     <Content Include="files\rfsite\jquery-ui.css" />
     <Content Include="files\rfsite\pagination.css" />
     <Content Include="files\rfsite\rf.ico" />
@@ -152,7 +157,7 @@
   <ItemGroup>
     <Compile Include="Bootstrapping\Bootstrapper.cs" />
     <Compile Include="Bootstrapping\ConfigurationRegistry.cs" />
-    <Compile Include="Bootstrapping\FeedsCustomization.cs">
+    <Compile Include="Bootstrapping\RouteCustomizations.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Bootstrapping\HandlePagingOutput.cs" />
@@ -200,10 +205,10 @@
     <Compile Include="Frame\Persistence\Repository.cs" />
     <Compile Include="Frame\Persistence\SessionFactoryMaker.cs" />
     <Compile Include="Frame\Persistence\WebNHSessionContext.cs" />
-    <Compile Include="Frame\SiteInfrastructure\InputParameterCustomization.cs" />
     <Compile Include="Frame\PaginationSettings.cs" />
     <Compile Include="Frame\SiteInfrastructure\IJsonResponse.cs" />
     <Compile Include="Frame\SiteInfrastructure\IRouteDefinitionExtension.cs" />
+    <Compile Include="Frame\SiteInfrastructure\NullTo404Behavior.cs" />
     <Compile Include="Frame\SiteInfrastructure\PagingBehavior.cs" />
     <Compile Include="Frame\SiteInfrastructure\ICache.cs" />
     <Compile Include="Frame\SiteInfrastructure\NullCache.cs" />
