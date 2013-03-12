@@ -1,46 +1,45 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Main" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
-  <UsingTask TaskName="CompileSparkView" AssemblyFile="lib/Rf.Sites.Build.dll" />
-  <PropertyGroup>
-    <Configuration>Release</Configuration>
-    <OutDir>publish</OutDir>
-    <BinDir>$(OutDir)\bin</BinDir>
-    <FeatureViewsDir>$(OutDir)\Features\Views</FeatureViewsDir>
-	<SharedViewsDir>$(OutDir)\Shared</SharedViewsDir>
-    <ScriptsDir>$(OutDir)\Scripts</ScriptsDir>
-    <FilesDir>$(OutDir)\files\rfsite</FilesDir>
+	<UsingTask TaskName="CompileSparkView" AssemblyFile="lib/Rf.Sites.Build.dll" />
+	<PropertyGroup>
+		<Configuration>Release</Configuration>
+		<OutDir>publish</OutDir>
+		<BinDir>$(OutDir)\bin</BinDir>
+		<SharedViewsDir>$(OutDir)\Shared</SharedViewsDir>
+		<ScriptsDir>$(OutDir)\Scripts</ScriptsDir>
+		<FilesDir>$(OutDir)\files\rfsite</FilesDir>
 	<Local>false</Local>
-  </PropertyGroup>
-  
-  <Target Name="Prepare">
-    <RemoveDir Directories="$(OutDir)" />
-    <MakeDir Directories="$(BinDir);$(FeatureViewsDir);$(FilesDir);$(ScriptsDir)" />
-    <MSBuild Projects="Rf.Sites.sln" Properties="Configuration=$(Configuration)" />
-  </Target>
+	</PropertyGroup>
+	
+	<Target Name="Prepare">
+		<RemoveDir Directories="$(OutDir)" />
+		<MakeDir Directories="$(BinDir);$(FilesDir);$(ScriptsDir)" />
+		<MSBuild Projects="Rf.Sites.sln" Properties="Configuration=$(Configuration)" />
+	</Target>
 
-  <Target Name="BuildApp">  
-  	<ItemGroup>
-  	  <Assemblies Include="Rf.Sites\bin\*.dll" />
-  	  <SharedViews Include="Rf.Sites\Shared\*.*" />
-  	  <Files Include="Rf.Sites\files\rfsite\**\*.*" />
-  	  <Scripts Include="Rf.Sites\Scripts\*.*" />
-  	</ItemGroup>
-  	
-    <Copy SourceFiles="@(Assemblies)" DestinationFolder="$(BinDir)" />
-      
-  	<Copy SourceFiles="@(SharedViews)" DestinationFolder="$(SharedViewsDir)\%(RecursiveDir)" />
-  	<Copy SourceFiles="@(Files)" DestinationFolder="$(FilesDir)\%(RecursiveDir)" />
-    <Copy SourceFiles="@(Scripts)" DestinationFolder="$(ScriptsDir)\%(RecursiveDir)" />
+	<Target Name="BuildApp">  
+		<ItemGroup>
+			<Assemblies Include="Rf.Sites\bin\*.dll" />
+			<SharedViews Include="Rf.Sites\Shared\*.*" />
+			<Files Include="Rf.Sites\files\rfsite\**\*.*" />
+			<Scripts Include="Rf.Sites\Scripts\*.*" />
+		</ItemGroup>
+		
+		<Copy SourceFiles="@(Assemblies)" DestinationFolder="$(BinDir)" />
+			
+		<Copy SourceFiles="@(SharedViews)" DestinationFolder="$(SharedViewsDir)\%(RecursiveDir)" />
+		<Copy SourceFiles="@(Files)" DestinationFolder="$(FilesDir)\%(RecursiveDir)" />
+		<Copy SourceFiles="@(Scripts)" DestinationFolder="$(ScriptsDir)\%(RecursiveDir)" />
 
-    <!-- Root files -->
-    <Copy Condition="$(Local)==false" SourceFiles="Rf.Sites\WebRelease.config" DestinationFiles="$(OutDir)\Web.config" />
-  	<Copy Condition="$(Local)==true" SourceFiles="Rf.Sites\Web.config" DestinationFiles="$(OutDir)\Web.config" />
-    <Copy SourceFiles="Rf.Sites\Global.asax" DestinationFolder="$(OutDir)" />
-  </Target>
+		<!-- Root files -->
+		<Copy Condition="$(Local)==false" SourceFiles="Rf.Sites\WebRelease.config" DestinationFiles="$(OutDir)\Web.config" />
+		<Copy Condition="$(Local)==true" SourceFiles="Rf.Sites\Web.config" DestinationFiles="$(OutDir)\Web.config" />
+		<Copy SourceFiles="Rf.Sites\Global.asax" DestinationFolder="$(OutDir)" />
+	</Target>
 
-  
-  <Target Name="Main" DependsOnTargets="Prepare;BuildApp">
-    <Message Text="Finished deployment to --&gt; $(OutDir)" Importance="High" />
-  </Target>
-  
+	
+	<Target Name="Main" DependsOnTargets="Prepare;BuildApp">
+		<Message Text="Finished deployment to --&gt; $(OutDir)" Importance="High" />
+	</Target>
+	
 </Project>
