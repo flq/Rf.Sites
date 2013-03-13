@@ -1,10 +1,12 @@
 using System.Web;
+using Bottles;
 using NHibernate;
 using Rf.Sites.Features.Searching;
 using Rf.Sites.Frame;
 using Rf.Sites.Frame.Persistence;
 using Rf.Sites.Frame.SiteInfrastructure;
 using StructureMap.Configuration.DSL;
+using WebBackgrounder;
 
 namespace Rf.Sites.Bootstrapping
 {
@@ -30,10 +32,13 @@ namespace Rf.Sites.Bootstrapping
 
             For(typeof(IRepository<>)).Use(typeof(Repository<>));
 
+            ForSingletonOf<IActivator>().Use<JobsBootstrapper>();
+
             Scan(s =>
                      {
                          s.TheCallingAssembly();
                          s.AddAllTypesOf<ISearchPlugin>();
+                         s.AddAllTypesOf<IJob>();
                          s.ConnectImplementationsToTypesClosing(typeof(IObjectConverter<,>));
                      });
         }

@@ -9,7 +9,7 @@ namespace Rf.Sites.Bootstrapping
     {
         public Bootstrapper()
         {
-
+            base.
             Actions.IncludeClassesSuffixedWithEndpoint();
 
             Policies.Add<HandlePagingOutput>();

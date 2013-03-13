@@ -134,6 +134,9 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
+    <Reference Include="WebBackgrounder">
+      <HintPath>..\packages\WebBackgrounder.0.2.0\lib\net40\WebBackgrounder.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="files\rfsite\jquery-ui.css" />
@@ -156,7 +159,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrapping\Bootstrapper.cs" />
+    <Compile Include="Bootstrapping\CheckDropboxForNewPosts.cs" />
     <Compile Include="Bootstrapping\ConfigurationRegistry.cs" />
+    <Compile Include="Bootstrapping\JobBootstrapper.cs" />
     <Compile Include="Bootstrapping\RouteCustomizations.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -199,6 +204,7 @@
     <Compile Include="Features\Handle404Endpoint.cs" />
     <Compile Include="Frame\Constants.cs" />
     <Compile Include="Frame\FixedListComparer.cs" />
+    <Compile Include="Frame\IDropboxFacade.cs" />
     <Compile Include="Frame\IObjectConverter.cs" />
     <Compile Include="Frame\PeriodOfTimeOutput.cs" />
     <Compile Include="Frame\Persistence\IRepository.cs" />

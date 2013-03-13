@@ -1,17 +1,17 @@
 ﻿using System;
-using System.Web.Routing;
 using FubuMVC.Core;
 using FubuMVC.StructureMap;
 using Rf.Sites.Bootstrapping;
-using Rf.Sites.Frame.Persistence;
 
 namespace Rf.Sites
 {
     public class Global : System.Web.HttpApplication
     {
+        private static FubuRuntime _runtime;
+
         protected void Application_Start(object sender, EventArgs e)
         {
-            FubuApplication.For<Bootstrapper>()
+            _runtime = FubuApplication.For<Bootstrapper>()
                 .StructureMapObjectFactory(
                     ix =>
                         {
@@ -23,6 +23,12 @@ namespace Rf.Sites
                                         });
                         })
                 .Bootstrap();
+        }
+
+        protected void Application_End(object sender, EventArgs e)
+        {
+            if (_runtime != null)
+                _runtime.Dispose();
         }
     }
 }
