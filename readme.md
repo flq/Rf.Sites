@@ -1,7 +1,7 @@
 # README #
 ## Licensing of Rf.Sites ##
 
-Copyright 2011 Frank-Leonardo Quednau ([realfiction.net](http://realfiction.net)) 
+Copyright 2013 Frank-Leonardo Quednau ([realfiction.net](http://realfiction.net)) 
 Licensed under the Apache License, Version 2.0 (the "License"); 
 you may not use this solution except in compliance with the License. 
 You may obtain a copy of the License at 
@@ -24,7 +24,7 @@ FubuMVC is licensed under the Apache License, Version 2.0
 
 Spark is licensed under the Apache License, Version 2.0
 
-### NHibernate
+### NHibernate (https://github.com/nhibernate)
 
 NHibernate is licensed under the  GNU Lesser General Public License
 
@@ -32,6 +32,6 @@ NHibernate is licensed under the  GNU Lesser General Public License
 
 Fluent NHibernate runs under a BSD license
 
-### StructureMap (https://github.com/SparkViewEngine/spark)
+### StructureMap (https://github.com/structuremap)
 
 StructureMap is licensed under the Apache License, Version 2.0
