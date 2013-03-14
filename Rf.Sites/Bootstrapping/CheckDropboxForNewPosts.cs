@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Rf.Sites.Frame;
+using Rf.Sites.Frame.DropboxSupport;
 using WebBackgrounder;
 
 namespace Rf.Sites.Bootstrapping
@@ -16,7 +17,8 @@ namespace Rf.Sites.Bootstrapping
 
         public Task Execute()
         {
-            
+            return new Task(() => {});
+            //var unpublishedFiles = _dropbox().GetAllUnpublished();
         }
 
         public string Name { get { return "Check dropbox for new blog posts."; } }

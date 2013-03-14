@@ -1,5 +1,4 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.IO;
 using System.Text;
 using DropNet;
@@ -8,29 +7,9 @@ using NUnit.Framework;
 
 namespace Rf.Sites.Test.DropboxSupport
 {
-
     [TestFixture, Category("Manual")]
-    public class BasicDropboxAPITests
+    public class BasicDropboxAPITests : DropboxAPIIntegrationContext
     {
-        private const string DropboxapikeysTxt = @"..\..\dropboxapikeys.txt";
-
-        [TestFixtureSetUp]
-        public void Given()
-        {
-            if (!File.Exists(DropboxapikeysTxt))
-                throw new ArgumentException("Need a file containing apiKey,appSecret,userToken,userSecret - obviously not checked in. Create one yourself and get on with life :)");
-            var tokens = File.ReadAllText(DropboxapikeysTxt).Split(',');
-            ApiKey = tokens[0];
-            AppSecret = tokens[1];
-            UserToken = tokens[2];
-            UserSecret = tokens[3];
-        }
-
-        private string ApiKey { get; set; }
-        private string AppSecret { get; set; }
-        private string UserToken { get; set; }
-        private string UserSecret { get; set; }
-
         [Test]
         public void fire_up_the_client()
         {
@@ -45,7 +24,7 @@ namespace Rf.Sites.Test.DropboxSupport
         [Test]
         public void account_info()
         {
-            var dropnet = FullyAuthorizedBitch();
+            var dropnet = GetAuthorizedClient();
             var info = dropnet.AccountInfo();
             Debug.WriteLine(info.email);
         }
@@ -53,7 +32,7 @@ namespace Rf.Sites.Test.DropboxSupport
         [Test]
         public void get_metadata()
         {
-            var dropnet = FullyAuthorizedBitch();
+            var dropnet = GetAuthorizedClient();
             try
             {
                 var metadata = dropnet.GetMetaData();
@@ -75,7 +54,7 @@ namespace Rf.Sites.Test.DropboxSupport
         [Test]
         public void get_file()
         {
-            var dropnet = FullyAuthorizedBitch();
+            var dropnet = GetAuthorizedClient();
             var filecontent = Encoding.Unicode.GetString(dropnet.GetFile("/test.txt"));
             Debug.WriteLine(filecontent);
         }
@@ -83,17 +62,8 @@ namespace Rf.Sites.Test.DropboxSupport
         [Test]
         public void upload_file()
         {
-            var dropnet = FullyAuthorizedBitch();
+            var dropnet = GetAuthorizedClient();
             dropnet.UploadFile("/", Path.GetRandomFileName() + ".txt", Encoding.Unicode.GetBytes("test. A real test."));
-        }
-
-        private DropNetClient FullyAuthorizedBitch()
-        {
-            var dropnet = new DropNetClient(ApiKey, AppSecret, UserToken, UserSecret)
-            {
-                UseSandbox = true
-            };
-            return dropnet;
         }
     }
 

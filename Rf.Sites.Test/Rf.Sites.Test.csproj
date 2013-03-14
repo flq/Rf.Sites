@@ -121,6 +121,8 @@
     <Compile Include="DataScenarios\ContentForSitemapScenario.cs" />
     <Compile Include="DataScenarios\SomeContent.cs" />
     <Compile Include="DropboxSupport\BasicDropboxAPITests.cs" />
+    <Compile Include="DropboxSupport\DropboxAPIIntegrationContext.cs" />
+    <Compile Include="DropboxSupport\RetrieveUnpublishedFiles.cs" />
     <Compile Include="DynamicJsonTests.cs" />
     <Compile Include="FixedListComparerTests.cs" />
     <Compile Include="Frame\IDataScenario.cs" />

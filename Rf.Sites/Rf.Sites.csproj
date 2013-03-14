@@ -172,6 +172,8 @@
     <Compile Include="Features\Models\PersonalEntryModel.cs" />
     <Compile Include="Features\Searching\SearchOnTime.cs" />
     <Compile Include="Frame\AdminSettings.cs" />
+    <Compile Include="Frame\DropboxSupport\DropboxFacade.cs" />
+    <Compile Include="Frame\DropboxSupport\IDropboxFacade.cs" />
     <Compile Include="Frame\DynamicJson.cs" />
     <Compile Include="Entities\Attachment.cs" />
     <Compile Include="Entities\Content.cs" />
@@ -204,7 +206,6 @@
     <Compile Include="Features\Handle404Endpoint.cs" />
     <Compile Include="Frame\Constants.cs" />
     <Compile Include="Frame\FixedListComparer.cs" />
-    <Compile Include="Frame\IDropboxFacade.cs" />
     <Compile Include="Frame\IObjectConverter.cs" />
     <Compile Include="Frame\PeriodOfTimeOutput.cs" />
     <Compile Include="Frame\Persistence\IRepository.cs" />
