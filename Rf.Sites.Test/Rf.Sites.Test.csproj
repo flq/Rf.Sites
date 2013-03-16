@@ -122,6 +122,7 @@
     <Compile Include="DataScenarios\SomeContent.cs" />
     <Compile Include="DropboxSupport\BasicDropboxAPITests.cs" />
     <Compile Include="DropboxSupport\DropboxAPIIntegrationContext.cs" />
+    <Compile Include="DropboxSupport\RenameOfPublishedFiles.cs" />
     <Compile Include="DropboxSupport\RetrieveUnpublishedFiles.cs" />
     <Compile Include="DynamicJsonTests.cs" />
     <Compile Include="FixedListComparerTests.cs" />

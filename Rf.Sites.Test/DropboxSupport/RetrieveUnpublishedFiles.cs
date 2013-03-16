@@ -26,15 +26,6 @@ namespace Rf.Sites.Test.DropboxSupport
             client.UploadFile("/", _publishedFile, GetFileContent());
         }
 
-        [TestFixtureTearDown]
-        public void Teardown()
-        {
-            var c = GetAuthorizedClient();
-            c.Delete("/" + _randomFile1);
-            c.Delete("/" + _randomFile2);
-            c.Delete("/" + _publishedFile);
-        }
-
         [Test]
         public void the_two_unpublished_files_are_obtained()
         {
@@ -49,6 +40,14 @@ namespace Rf.Sites.Test.DropboxSupport
             files[1].Name.Should().BeOneOf(_randomFile1, _randomFile2);
             Guid.TryParse(files[1].RawContents, out guid).Should().BeTrue("file contents 2 was a guid");
         }
-    }
 
+        [TestFixtureTearDown]
+        public void Teardown()
+        {
+            var c = GetAuthorizedClient();
+            c.Delete("/" + _randomFile1);
+            c.Delete("/" + _randomFile2);
+            c.Delete("/" + _publishedFile);
+        }
+    }
 }

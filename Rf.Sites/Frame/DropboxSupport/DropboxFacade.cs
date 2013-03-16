@@ -30,6 +30,15 @@ namespace Rf.Sites.Frame.DropboxSupport
                 .ToList();
         }
 
+        public void UpdatePublishState(IList<MarkdownFile> files)
+        {
+            var dropNetClient = _clientProvider();
+            foreach (var f in files)
+            {
+                dropNetClient.Move("/" + f.Name, "/" + f.PublishedName);
+            }
+        }
+
         private static bool UnpublishedMarkdownFiles(MetaData arg)
         {
             var withoutExtension = Path.GetFileNameWithoutExtension(arg.Name);
