@@ -168,12 +168,12 @@
     <Compile Include="Bootstrapping\HandlePagingOutput.cs" />
     <Compile Include="Bootstrapping\MainRegistry.cs" />
     <Compile Include="Features\HomeEndpoint.cs" />
-    <Compile Include="Features\Models\MarkdownFilter.cs" />
+    <Compile Include="Features\Models\MarkdownTransformer.cs" />
     <Compile Include="Features\Models\PersonalEntryModel.cs" />
     <Compile Include="Features\Searching\SearchOnTime.cs" />
     <Compile Include="Frame\AdminSettings.cs" />
     <Compile Include="Frame\DropboxSupport\DropboxFacade.cs" />
-    <Compile Include="Frame\DropboxSupport\IDropboxFacade.cs" />
+    <Compile Include="Frame\DropboxSupport\ICloudStorageFacade.cs" />
     <Compile Include="Frame\DynamicJson.cs" />
     <Compile Include="Entities\Attachment.cs" />
     <Compile Include="Entities\Content.cs" />

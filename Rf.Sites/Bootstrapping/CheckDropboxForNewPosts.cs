@@ -8,9 +8,9 @@ namespace Rf.Sites.Bootstrapping
 {
     public class CheckDropboxForNewPosts : IJob
     {
-        private readonly Func<IDropboxFacade> _dropbox;
+        private readonly Func<ICloudStorageFacade> _dropbox;
 
-        public CheckDropboxForNewPosts(Func<IDropboxFacade> dropbox)
+        public CheckDropboxForNewPosts(Func<ICloudStorageFacade> dropbox)
         {
             _dropbox = dropbox;
         }

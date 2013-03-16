@@ -70,7 +70,7 @@ namespace Rf.Sites.Features.Models
             ContentId = content.Id.ToString();
             Title = content.Title;
             Body = content.IsMarkdown.HasValue && (bool)content.IsMarkdown ? 
-                new Markdown().Transform(content.Body) :
+                new MarkdownTransformer(content.Body) :
                 content.Body;
 
             new CodeHighlightExtension().Inspect(this);

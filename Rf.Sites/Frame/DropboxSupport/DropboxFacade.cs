@@ -7,7 +7,7 @@ using DropNet.Models;
 
 namespace Rf.Sites.Frame.DropboxSupport
 {
-    public class DropboxFacade : IDropboxFacade
+    public class DropboxFacade : ICloudStorageFacade
     {
         public const string PublishedMarker = "-published";
 

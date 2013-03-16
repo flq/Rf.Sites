@@ -8,11 +8,11 @@ using Rf.Sites.Frame.DropboxSupport;
 
 namespace Rf.Sites.Test.DropboxSupport
 {
-    [TestFixture]
+    [TestFixture,Category("Manual")]
     public class RenameOfPublishedFiles : DropboxAPIIntegrationContext
     {
         private string _randomFile1;
-        private IDropboxFacade _f;
+        private ICloudStorageFacade _f;
         private MarkdownFile _file;
         private MetaData _meta;
 

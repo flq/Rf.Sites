@@ -33,7 +33,7 @@ namespace Rf.Sites.Test.DropboxSupport
             
         }
 
-        protected IDropboxFacade GetDropboxFacade()
+        protected ICloudStorageFacade GetDropboxFacade()
         {
             return new DropboxFacade(GetAuthorizedClient);
         }

@@ -1,4 +1,10 @@
-﻿# Hello
+﻿Title: A new post
+publish: 20.03.2013
+Tags: programming,.net
+
+
+
+# Hello
 A paragraph
 
     public static void Main() {

@@ -122,6 +122,7 @@
     <Compile Include="DataScenarios\SomeContent.cs" />
     <Compile Include="DropboxSupport\BasicDropboxAPITests.cs" />
     <Compile Include="DropboxSupport\DropboxAPIIntegrationContext.cs" />
+    <Compile Include="DropboxSupport\ParsingOfMarkdownHeaders.cs" />
     <Compile Include="DropboxSupport\RenameOfPublishedFiles.cs" />
     <Compile Include="DropboxSupport\RetrieveUnpublishedFiles.cs" />
     <Compile Include="DynamicJsonTests.cs" />
@@ -160,7 +161,7 @@
   <ItemGroup>
     <EmbeddedResource Include="Support\2ndPostWTagCheck.txt" />
     <EmbeddedResource Include="Support\contentmodsample1.txt" />
-    <EmbeddedResource Include="Support\markdown1.txt" />
+    <EmbeddedResource Include="Support\markdown_fullheader.txt" />
     <EmbeddedResource Include="Support\markdown2.txt" />
     <EmbeddedResource Include="Support\markdown3.txt" />
     <EmbeddedResource Include="Support\postWTagCheck.txt" />
