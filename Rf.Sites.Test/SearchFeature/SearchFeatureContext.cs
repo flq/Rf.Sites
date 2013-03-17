@@ -20,7 +20,7 @@ namespace Rf.Sites.Test.SearchFeature
         private InMemoryCache _cache;
         protected bool ContentFactoryWasCalled;
         protected bool TagFactoryWasCalled;
-        private IJsonResponse _response;
+        private SearchTextResponse _response;
         private IUrlRegistry _urlRegistry;
         private DbTestContext _dbContext;
 
@@ -56,7 +56,7 @@ namespace Rf.Sites.Test.SearchFeature
         protected void SearchReturnedThisLink(string title, string link)
         {
             _response.Should().NotBeNull();
-            var found = ((IEnumerable<Link>)_response).FirstOrDefault(v => v.linktext.Equals(title));
+            var found = _response.FirstOrDefault(v => v.linktext.Equals(title));
             found.Should().NotBeNull("link with text " + title + " should exist");
             found.linktext.Should().Be(title);
             found.link.Should().Be(link);
@@ -65,7 +65,7 @@ namespace Rf.Sites.Test.SearchFeature
         protected void SearchReturnedNothing()
         {
             _response.Should().NotBeNull();
-            var count = ((IEnumerable<Link>)_response).Count();
+            var count = _response.Count();
             count.Should().Be(0);
         }
 

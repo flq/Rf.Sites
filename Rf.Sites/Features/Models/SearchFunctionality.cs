@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Rf.Sites.Frame.SiteInfrastructure;
 
 namespace Rf.Sites.Features.Models
 {
@@ -9,7 +8,7 @@ namespace Rf.Sites.Features.Models
         public string term { get; set; }
     }
 
-    public class SearchTextResponse : IJsonResponse, IEnumerable<Link>
+    public class SearchTextResponse : IEnumerable<Link>
     {
         private readonly IEnumerable<Link> _links;
 

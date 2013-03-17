@@ -9,7 +9,7 @@ namespace Rf.Sites.Features.Models
 {
     public class FeedModel : IStreamOutput
     {
-        private readonly SyndicationFeed feed;
+        private readonly SyndicationFeed _feed;
         private readonly FeedType _feedTypeToGenerate;
 
         public FeedModel(FeedSetup feedSetup)
@@ -24,14 +24,14 @@ namespace Rf.Sites.Features.Models
 
             var lastUpdate = feedSetup.Content.Max(vm => vm.Created);
             
-            feed = new SyndicationFeed(items)
+            _feed = new SyndicationFeed(items)
             {
                 Id = feedSetup.FeedId,
                 Title = new TextSyndicationContent(feedSetup.Title, TextSyndicationContentKind.Plaintext),
                 LastUpdatedTime = new DateTimeOffset(lastUpdate),
             };
-            feed.Authors.Add(new SyndicationPerson(null, feedSetup.SiteMasterName, null));
-            feed.Copyright = new TextSyndicationContent(feedSetup.CopyrightNotice);
+            _feed.Authors.Add(new SyndicationPerson(null, feedSetup.SiteMasterName, null));
+            _feed.Copyright = new TextSyndicationContent(feedSetup.CopyrightNotice);
             _feedTypeToGenerate = feedSetup.FeedType;
         }
 
@@ -55,9 +55,9 @@ namespace Rf.Sites.Features.Models
             switch (_feedTypeToGenerate)
             {
                 case FeedType.Atom:
-                    formatter = feed.GetAtom10Formatter(); break;
+                    formatter = _feed.GetAtom10Formatter(); break;
                 default:
-                    formatter = feed.GetRss20Formatter(); break;
+                    formatter = _feed.GetRss20Formatter(); break;
             }
             return formatter;
         }

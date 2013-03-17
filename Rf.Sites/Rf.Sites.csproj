@@ -160,7 +160,6 @@
   <ItemGroup>
     <Compile Include="Bootstrapping\Bootstrapper.cs" />
     <Compile Include="Bootstrapping\CheckCloudForNewPosts.cs" />
-    <Compile Include="Bootstrapping\ConfigurationRegistry.cs" />
     <Compile Include="Bootstrapping\JobBootstrapper.cs" />
     <Compile Include="Bootstrapping\RouteCustomizations.cs">
       <SubType>Code</SubType>
@@ -171,7 +170,6 @@
     <Compile Include="Features\Models\MarkdownTransformer.cs" />
     <Compile Include="Features\Models\PersonalEntryModel.cs" />
     <Compile Include="Features\Searching\SearchOnTime.cs" />
-    <Compile Include="Frame\AdminSettings.cs" />
     <Compile Include="Frame\CloudStorageSupport\DropboxFacade.cs" />
     <Compile Include="Frame\CloudStorageSupport\FileSystemFacade.cs" />
     <Compile Include="Frame\CloudStorageSupport\ICloudStorageFacade.cs" />
@@ -195,7 +193,6 @@
     <Compile Include="Features\Models\RedirectTo404.cs" />
     <Compile Include="Features\Models\SiteMapModel.cs" />
     <Compile Include="Features\Models\TagPaging.cs" />
-    <Compile Include="Features\Models\NotYetPublishedVM.cs" />
     <Compile Include="Features\Models\Page.cs" />
     <Compile Include="Features\Models\PagingArgs.cs" />
     <Compile Include="Features\Models\SearchFunctionality.cs" />
@@ -215,8 +212,7 @@
     <Compile Include="Frame\Persistence\SessionFactoryMaker.cs" />
     <Compile Include="Frame\Persistence\WebNHSessionContext.cs" />
     <Compile Include="Frame\PaginationSettings.cs" />
-    <Compile Include="Frame\SiteInfrastructure\IJsonResponse.cs" />
-    <Compile Include="Frame\SiteInfrastructure\IRouteDefinitionExtension.cs" />
+    <Compile Include="Frame\SiteInfrastructure\RouteDefinitionExtensions.cs" />
     <Compile Include="Frame\SiteInfrastructure\NullTo404Behavior.cs" />
     <Compile Include="Frame\SiteInfrastructure\PagingBehavior.cs" />
     <Compile Include="Frame\SiteInfrastructure\ICache.cs" />
