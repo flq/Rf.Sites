@@ -159,7 +159,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrapping\Bootstrapper.cs" />
-    <Compile Include="Bootstrapping\CheckDropboxForNewPosts.cs" />
+    <Compile Include="Bootstrapping\CheckCloudForNewPosts.cs" />
     <Compile Include="Bootstrapping\ConfigurationRegistry.cs" />
     <Compile Include="Bootstrapping\JobBootstrapper.cs" />
     <Compile Include="Bootstrapping\RouteCustomizations.cs">

@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
-using Rf.Sites.Frame;
 using Rf.Sites.Frame.CloudStorageSupport;
 using WebBackgrounder;
 using System.Linq;
@@ -24,6 +24,10 @@ namespace Rf.Sites.Bootstrapping
             {
                 var cloud = _cloud();
                 var files = cloud.GetAllUnpublished();
+
+                if (!files.Any())
+                    return;
+
                 using (var db = _storer())
                 {
                     db.Store(files);
@@ -34,7 +38,7 @@ namespace Rf.Sites.Bootstrapping
         }
 
         public string Name { get { return "Check cloud for new blog posts."; } }
-        public TimeSpan Interval { get { return TimeSpan.FromHours(1); } }
+        public TimeSpan Interval { get { return TimeSpan.FromMinutes(1); } }
         public TimeSpan Timeout { get { return TimeSpan.FromMinutes(5); } }
     }
 }

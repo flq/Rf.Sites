@@ -12,7 +12,7 @@ namespace Rf.Sites.Frame.CloudStorageSupport
         public MarkdownFile(string name, byte[] getFile)
         {
             Name = name;
-            RawContents = Encoding.Unicode.GetString(getFile);
+            RawContents = Encoding.UTF8.GetString(getFile);
             
             using (var r = new StringReader(RawContents))
             {

@@ -32,11 +32,12 @@ namespace Rf.Sites.Frame.CloudStorageSupport
                     var c = new Content
                     {
                         IsMarkdown = true,
-                        Body = file.PostBody,
                         Published = true,
                         Created = file.Publish.HasValue ? file.Publish.Value : DateTime.UtcNow,
                         Title = file.Title
                     };
+
+                    c.SetBody(file.PostBody);
 
                     chosenTags.ForEach(c.AssociateWithTag);
 
