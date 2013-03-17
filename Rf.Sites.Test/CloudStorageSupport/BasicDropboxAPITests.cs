@@ -5,7 +5,7 @@ using DropNet;
 using DropNet.Exceptions;
 using NUnit.Framework;
 
-namespace Rf.Sites.Test.DropboxSupport
+namespace Rf.Sites.Test.CloudStorageSupport
 {
     [TestFixture, Category("Manual")]
     public class BasicDropboxAPITests : DropboxAPIIntegrationContext

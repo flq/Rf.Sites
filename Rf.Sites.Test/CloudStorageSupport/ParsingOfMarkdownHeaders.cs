@@ -2,11 +2,11 @@
 using System.Text;
 using DropNet.Models;
 using NUnit.Framework;
-using Rf.Sites.Frame.DropboxSupport;
+using Rf.Sites.Frame.CloudStorageSupport;
 using Rf.Sites.Test.Support;
 using FluentAssertions;
 
-namespace Rf.Sites.Test.DropboxSupport
+namespace Rf.Sites.Test.CloudStorageSupport
 {
 
     [TestFixture]

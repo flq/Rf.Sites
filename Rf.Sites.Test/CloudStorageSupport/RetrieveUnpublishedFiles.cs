@@ -2,9 +2,9 @@
 using System.IO;
 using NUnit.Framework;
 using FluentAssertions;
-using Rf.Sites.Frame.DropboxSupport;
+using Rf.Sites.Frame.CloudStorageSupport;
 
-namespace Rf.Sites.Test.DropboxSupport
+namespace Rf.Sites.Test.CloudStorageSupport
 {
 
     [TestFixture,Category("Manual")]

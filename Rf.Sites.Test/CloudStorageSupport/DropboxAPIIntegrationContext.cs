@@ -3,9 +3,9 @@ using System.IO;
 using System.Text;
 using DropNet;
 using NUnit.Framework;
-using Rf.Sites.Frame.DropboxSupport;
+using Rf.Sites.Frame.CloudStorageSupport;
 
-namespace Rf.Sites.Test.DropboxSupport
+namespace Rf.Sites.Test.CloudStorageSupport
 {
     public class DropboxAPIIntegrationContext
     {

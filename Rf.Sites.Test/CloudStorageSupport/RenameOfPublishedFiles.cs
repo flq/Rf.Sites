@@ -4,9 +4,9 @@ using DropNet.Exceptions;
 using DropNet.Models;
 using FluentAssertions;
 using NUnit.Framework;
-using Rf.Sites.Frame.DropboxSupport;
+using Rf.Sites.Frame.CloudStorageSupport;
 
-namespace Rf.Sites.Test.DropboxSupport
+namespace Rf.Sites.Test.CloudStorageSupport
 {
     [TestFixture,Category("Manual")]
     public class RenameOfPublishedFiles : DropboxAPIIntegrationContext

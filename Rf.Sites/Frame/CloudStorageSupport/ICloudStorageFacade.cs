@@ -6,7 +6,7 @@ using System.Text;
 using DropNet.Models;
 using System.Linq;
 
-namespace Rf.Sites.Frame.DropboxSupport
+namespace Rf.Sites.Frame.CloudStorageSupport
 {
     public interface ICloudStorageFacade
     {
@@ -53,6 +53,8 @@ namespace Rf.Sites.Frame.DropboxSupport
         public IList<string> Tags { get; private set; }
 
         public string PostBody { get; private set; }
+
+        public bool HasBeenStoredLocally { get; set; }
 
         private bool ParseRaw(TextReader reader)
         {

@@ -172,8 +172,9 @@
     <Compile Include="Features\Models\PersonalEntryModel.cs" />
     <Compile Include="Features\Searching\SearchOnTime.cs" />
     <Compile Include="Frame\AdminSettings.cs" />
-    <Compile Include="Frame\DropboxSupport\DropboxFacade.cs" />
-    <Compile Include="Frame\DropboxSupport\ICloudStorageFacade.cs" />
+    <Compile Include="Frame\CloudStorageSupport\DropboxFacade.cs" />
+    <Compile Include="Frame\CloudStorageSupport\ICloudStorageFacade.cs" />
+    <Compile Include="Frame\CloudStorageSupport\StoreToDb.cs" />
     <Compile Include="Frame\DynamicJson.cs" />
     <Compile Include="Entities\Attachment.cs" />
     <Compile Include="Entities\Content.cs" />

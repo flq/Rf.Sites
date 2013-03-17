@@ -117,14 +117,15 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CloudStorageSupport\MarkdownfileLocalStorageTests.cs" />
     <Compile Include="CodeHighlightTests.cs" />
     <Compile Include="DataScenarios\ContentForSitemapScenario.cs" />
     <Compile Include="DataScenarios\SomeContent.cs" />
-    <Compile Include="DropboxSupport\BasicDropboxAPITests.cs" />
-    <Compile Include="DropboxSupport\DropboxAPIIntegrationContext.cs" />
-    <Compile Include="DropboxSupport\ParsingOfMarkdownHeaders.cs" />
-    <Compile Include="DropboxSupport\RenameOfPublishedFiles.cs" />
-    <Compile Include="DropboxSupport\RetrieveUnpublishedFiles.cs" />
+    <Compile Include="CloudStorageSupport\BasicDropboxAPITests.cs" />
+    <Compile Include="CloudStorageSupport\DropboxAPIIntegrationContext.cs" />
+    <Compile Include="CloudStorageSupport\ParsingOfMarkdownHeaders.cs" />
+    <Compile Include="CloudStorageSupport\RenameOfPublishedFiles.cs" />
+    <Compile Include="CloudStorageSupport\RetrieveUnpublishedFiles.cs" />
     <Compile Include="DynamicJsonTests.cs" />
     <Compile Include="FixedListComparerTests.cs" />
     <Compile Include="Frame\IDataScenario.cs" />

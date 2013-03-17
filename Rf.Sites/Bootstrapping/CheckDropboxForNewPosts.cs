@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Rf.Sites.Frame;
-using Rf.Sites.Frame.DropboxSupport;
+using Rf.Sites.Frame.CloudStorageSupport;
 using WebBackgrounder;
 
 namespace Rf.Sites.Bootstrapping

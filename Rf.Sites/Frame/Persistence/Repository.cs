@@ -107,7 +107,7 @@ namespace Rf.Sites.Frame.Persistence
             //LINQNH does not do contains. Implement whether the Id exists in DB
             return (from e in this
                     where e.Id == item.Id
-                    select e.Id).Count() > 0;
+                    select e.Id).Any();
         }
 
         public void CopyTo(T[] array, int arrayIndex)

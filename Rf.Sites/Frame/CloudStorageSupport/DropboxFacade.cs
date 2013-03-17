@@ -5,7 +5,7 @@ using DropNet;
 using System.Linq;
 using DropNet.Models;
 
-namespace Rf.Sites.Frame.DropboxSupport
+namespace Rf.Sites.Frame.CloudStorageSupport
 {
     public class DropboxFacade : ICloudStorageFacade
     {
