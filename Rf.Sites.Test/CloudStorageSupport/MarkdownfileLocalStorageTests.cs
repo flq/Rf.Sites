@@ -1,5 +1,4 @@
 ﻿using System.Text;
-using DropNet.Models;
 using NHibernate.Linq;
 using NUnit.Framework;
 using Rf.Sites.Entities;
@@ -15,16 +14,16 @@ namespace Rf.Sites.Test.CloudStorageSupport
     public class MarkdownfileLocalStorageTests : DbTestContext
     {
         private MarkdownFile _file;
-        private StoreToDb _storeToDb;
+        private StoreMarkdownFileToDb _storeToDb;
 
         [TestFixtureSetUp]
         public void Given()
         {
             SaveAndCommit(new Tag {Name = "programming"}, new Tag {Name = ".NET"});
 
-            _file = new MarkdownFile(new MetaData(), Encoding.Unicode.GetBytes(DataMother.MarkdownFullHeader()));
-            _storeToDb = new StoreToDb(() => Session);
-            _storeToDb.Store(_file);
+            _file = new MarkdownFile("name", Encoding.Unicode.GetBytes(DataMother.MarkdownFullHeader()));
+            _storeToDb = new StoreMarkdownFileToDb(() => Session);
+            _storeToDb.Store(new [] { _file });
         }
 
         [Test]

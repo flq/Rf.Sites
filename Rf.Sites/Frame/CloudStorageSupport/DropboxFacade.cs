@@ -26,7 +26,7 @@ namespace Rf.Sites.Frame.CloudStorageSupport
                 .Where(UnpublishedMarkdownFiles).ToList();
 
             return unpublishedItems
-                .Select(md => new MarkdownFile(md, dropNetClient.GetFile("/" + md.Name)))
+                .Select(md => new MarkdownFile(md.Name, dropNetClient.GetFile("/" + md.Name)))
                 .ToList();
         }
 

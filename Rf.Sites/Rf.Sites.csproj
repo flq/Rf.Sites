@@ -173,8 +173,10 @@
     <Compile Include="Features\Searching\SearchOnTime.cs" />
     <Compile Include="Frame\AdminSettings.cs" />
     <Compile Include="Frame\CloudStorageSupport\DropboxFacade.cs" />
+    <Compile Include="Frame\CloudStorageSupport\FileSystemFacade.cs" />
     <Compile Include="Frame\CloudStorageSupport\ICloudStorageFacade.cs" />
-    <Compile Include="Frame\CloudStorageSupport\StoreToDb.cs" />
+    <Compile Include="Frame\CloudStorageSupport\MarkdownFile.cs" />
+    <Compile Include="Frame\CloudStorageSupport\StoreMarkdownFileToDb.cs" />
     <Compile Include="Frame\DynamicJson.cs" />
     <Compile Include="Entities\Attachment.cs" />
     <Compile Include="Entities\Content.cs" />
@@ -207,7 +209,6 @@
     <Compile Include="Features\Handle404Endpoint.cs" />
     <Compile Include="Frame\Constants.cs" />
     <Compile Include="Frame\FixedListComparer.cs" />
-    <Compile Include="Frame\IObjectConverter.cs" />
     <Compile Include="Frame\PeriodOfTimeOutput.cs" />
     <Compile Include="Frame\Persistence\IRepository.cs" />
     <Compile Include="Frame\Persistence\Repository.cs" />

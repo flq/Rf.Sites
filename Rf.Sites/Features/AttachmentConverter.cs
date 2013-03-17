@@ -4,7 +4,7 @@ using Rf.Sites.Frame;
 
 namespace Rf.Sites.Features
 {
-    public class AttachmentConverter : IObjectConverter<Attachment, AttachmentVM>
+    public class AttachmentConverter
     {
         private readonly SiteSettings _siteSettings;
 

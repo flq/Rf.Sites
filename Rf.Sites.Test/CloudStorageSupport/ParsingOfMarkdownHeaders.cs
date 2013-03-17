@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Text;
-using DropNet.Models;
 using NUnit.Framework;
 using Rf.Sites.Frame.CloudStorageSupport;
 using Rf.Sites.Test.Support;
@@ -17,7 +16,7 @@ namespace Rf.Sites.Test.CloudStorageSupport
         [TestFixtureSetUp]
         public void Given()
         {
-            _file = new MarkdownFile(new MetaData(), Encoding.Unicode.GetBytes(DataMother.MarkdownFullHeader()));
+            _file = new MarkdownFile("name", Encoding.Unicode.GetBytes(DataMother.MarkdownFullHeader()));
         }
 
         [Test]

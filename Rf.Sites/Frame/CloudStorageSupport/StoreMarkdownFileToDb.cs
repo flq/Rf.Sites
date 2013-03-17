@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Common;
 using System.Linq;
 using NHibernate;
 using NHibernate.Linq;
@@ -8,16 +7,16 @@ using Rf.Sites.Entities;
 
 namespace Rf.Sites.Frame.CloudStorageSupport
 {
-    public class StoreToDb
+    public class StoreMarkdownFileToDb : IDisposable
     {
-        private readonly Func<ISession> _session;
+        private readonly Lazy<ISession> _session;
 
-        public StoreToDb(Func<ISession> session)
+        public StoreMarkdownFileToDb(Func<ISession> session)
         {
-            _session = session;
+            _session = new Lazy<ISession>(session);
         }
 
-        public void Store(params MarkdownFile[] files)
+        public void Store(IList<MarkdownFile> files)
         {
             files.ForEach(Store);
         }
@@ -26,7 +25,7 @@ namespace Rf.Sites.Frame.CloudStorageSupport
         {
             try
             {
-                var s = _session();
+                var s = _session.Value;
                 using (var tx = s.BeginTransaction())
                 {
                     var chosenTags = ChosenTags(file, s);
@@ -57,6 +56,12 @@ namespace Rf.Sites.Frame.CloudStorageSupport
             return (from t in s.Query<Tag>()
                     where file.Tags.Contains(t.Name.ToLower())
                     select t).ToList();
+        }
+
+        public void Dispose()
+        {
+            if (_session.IsValueCreated)
+                _session.Value.Dispose();
         }
     }
 }
