@@ -16,7 +16,7 @@
 
 <div class="content">
 	<div class="content_header">
-		<h1>${Title}</h1>
+		<h1>!{Title}</h1>
 		<p>${Model.WrittenInTime} (${Model.WrittenInPeriod})</p>
 		<p><Join separator=", " items="Model.Tags.Select(t => this.LinkTo(new TagPaging(t)).Text(t))" /></p>
 	</div>

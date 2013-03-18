@@ -136,8 +136,6 @@ div.content_header > p {
 div.page_item 
 {
     margin-bottom:30px;
-    border: 1px solid;
-    border-radius:15px;
     margin-right:10%;
     padding:10px;
 }
@@ -146,36 +144,35 @@ div.page_item
   margin-bottom : 1em;
 }
 
+.page_item_header h2 {
+    border-bottom: 1px solid;
+}
+
 .page_item_header > p
 {
-    background-color: #DDEEDD;
-    border: 1px solid;
-    border-radius:10px;
     float: right;
-    margin-right: -60px;
-    margin-top: -30px;
-    padding: 5px;
+    margin-top: -45px;
     text-align: right;
+}
+
+blockquote {
+    font-style: italic;
+    border-left: 10px solid gray;
+    color: #444444;
+    padding-left: 25px;
+    padding-top: 1px;
+    padding-bottom: 1px;
 }
         
 a {
   text-decoration: none;
-  color: #0044BB;
+  color: #440000;
 }
   
 a:hover {
   text-decoration: underline;
 }
   
-a.tagcloud1 { font-size: 0.8em; font-weight: 100; }
-a.tagcloud2 { font-size: 1.2em; font-weight: 200; }
-a.tagcloud3 { font-size: 1.6em; font-weight: 300; }
-a.tagcloud4 { font-size: 2.0em; font-weight: 400; }
-a.tagcloud5 { font-size: 2.1em; font-weight: 500; }
-a.tagcloud6 { font-size: 2.3em; font-weight: 600; }
-a.tagcloud7 { font-size: 2.5em; font-weight: 700; }
-a.tagcloud8 { font-size: 2.7em; font-weight: 800; }
-
 .alert {
 	background: #fff6bf url(/files/rfsite/info.png) center no-repeat;
 	background-position: 10px 50%; /* x-pos y-pos */
@@ -183,16 +180,6 @@ a.tagcloud8 { font-size: 2.7em; font-weight: 800; }
 	padding: 5px 20px 5px 50px;
 	border-top: 2px solid #ffd324;
 	border-bottom: 2px solid #ffd324;
-}
-
-label.error {
-	color: red;
-	font-style: italic
-}
-
-div.comment_body h1, div.comment_body h2, div.comment_body h3 
-{
-  font-size:1.1em;
 }
 
 
