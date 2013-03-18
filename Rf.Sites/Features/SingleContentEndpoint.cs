@@ -1,4 +1,5 @@
-﻿using FubuMVC.Core;
+﻿using System;
+using FubuMVC.Core;
 using FubuMVC.Core.Urls;
 using Rf.Sites.Entities;
 using Rf.Sites.Features.Models;
@@ -27,7 +28,12 @@ namespace Rf.Sites.Features
         public ContentVM GetContent(ContentId contentId)
         {
             var c = _repository[contentId.Id];
-            return c == null ? null : new ContentVM(c, _settings, _vars, _reg);
+            return NoContentOrNotYetPublished(c) ? null : new ContentVM(c, _settings, _vars, _reg);
+        }
+
+        private static bool NoContentOrNotYetPublished(Entity c)
+        {
+            return c == null || c.Created > DateTime.UtcNow;
         }
     }
 }

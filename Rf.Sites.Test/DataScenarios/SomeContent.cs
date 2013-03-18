@@ -50,6 +50,18 @@ namespace Rf.Sites.Test.DataScenarios
         }
     }
 
+    internal class FutureContent : IDataScenario<Content>
+    {
+        public void Accept(IRepository<Content> repository)
+        {
+            var em = new EntityMaker();
+            var content = em.CreateContent(1, "A title", DateTime.UtcNow.AddDays(1));
+            content.SetBody(DataMother.Markdown4());
+            content.IsMarkdown = true;
+            repository.Add(content);
+        }
+    }
+
     internal class Content_10 : IDataScenario<Content>
     {
         public void Accept(IRepository<Content> repository)

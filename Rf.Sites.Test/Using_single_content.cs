@@ -52,6 +52,15 @@ namespace Rf.Sites.Test
         }
 
         [Test]
+        public void Future_content_is_not_served()
+        {
+            ApplyData<FutureContent>();
+            var next = _sc.GetContent(new ContentId(1));
+            next.Should().BeNull();
+        }
+
+
+        [Test]
         public void code_display_will_work_correctly()
         {
             ApplyData<MarkdownContentWithFSharpCode>();
