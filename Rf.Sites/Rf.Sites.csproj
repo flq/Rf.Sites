@@ -171,6 +171,7 @@
     <Compile Include="Features\Models\PersonalEntryModel.cs" />
     <Compile Include="Features\Searching\SearchOnTime.cs" />
     <Compile Include="Frame\CloudStorageSupport\DropboxFacade.cs" />
+    <Compile Include="Frame\CloudStorageSupport\DropboxSettings.cs" />
     <Compile Include="Frame\CloudStorageSupport\FileSystemFacade.cs" />
     <Compile Include="Frame\CloudStorageSupport\ICloudStorageFacade.cs" />
     <Compile Include="Frame\CloudStorageSupport\MarkdownFile.cs" />

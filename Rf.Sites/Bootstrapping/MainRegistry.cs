@@ -1,6 +1,7 @@
 using System;
 using System.Web;
 using Bottles;
+using DropNet;
 using FubuCore.Configuration;
 using NHibernate;
 using Rf.Sites.Features.Searching;
@@ -27,11 +28,20 @@ namespace Rf.Sites.Bootstrapping
 
             ForSingletonOf<IActivator>().Use<JobsBootstrapper>();
 
-            #if DEBUG
-              For<ICloudStorageFacade>().Use<FileSystemFacade>();
-            #else
-              For<ICloudStorageFacade>().Use<DropboxFacade>();
-            #endif
+#if DEBUG
+            For<ICloudStorageFacade>().Use<FileSystemFacade>();
+#else
+            For<DropNetClient>().Use(ctx =>
+            {
+                var cfg = ctx.GetInstance<DropboxSettings>();
+                var dropnet = new DropNetClient(cfg.ApiKey, cfg.AppSecret, cfg.UserToken, cfg.UserSecret)
+                {
+                    UseSandbox = true
+                };
+                return dropnet;
+            });
+            For<ICloudStorageFacade>().Use<DropboxFacade>();
+#endif
 
             Scan(s =>
             {
@@ -50,7 +60,7 @@ namespace Rf.Sites.Bootstrapping
                 .HybridHttpOrThreadLocalScoped()
                 .Use(ctx => ctx.GetInstance<ISessionFactory>().OpenSession());
 
-            For(typeof (IRepository<>)).Use(typeof (Repository<>));
+            For(typeof(IRepository<>)).Use(typeof(Repository<>));
         }
 
         public class WireUpSettings : IRegistrationConvention
