@@ -3,9 +3,9 @@
 <set Keywords='Model.Keywords'/>
 <content name="head">
     <if condition="Model.NeedsCodeHighlighting">
-      <link type="text/css" rel="stylesheet" media="all" href="/files/rfsite/SyntaxHighlighter.css" />
-      <script type="text/javascript" src="/Scripts/shCore.js"></script>
-      <script type="text/javascript" src="/Scripts/shBrushCSharp.js"></script>
+      <link type="text/css" rel="stylesheet" media="all" href="~/files/rfsite/SyntaxHighlighter.css" />
+      <script type="text/javascript" src="~/Scripts/shCore.js"></script>
+      <script type="text/javascript" src="~/Scripts/shBrushCSharp.js"></script>
         <script type="text/javascript">
             jQuery(document).ready(function($) {
               turn_on_code_highlight();

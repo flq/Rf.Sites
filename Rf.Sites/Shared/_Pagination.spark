@@ -1,4 +1,4 @@
-<script type="text/javascript" src="/Scripts/jquery.pagination.js"></script>    
+<script type="text/javascript" src="~/Scripts/jquery.pagination.js"></script>    
 <script type="text/javascript">
     jQuery(document).ready(function($) {
         init_pagination({

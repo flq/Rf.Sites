@@ -26,7 +26,7 @@ function init_pagination(opts)
     $('#pagination').pagination(total_count, opts);
 }
 
-function init_searchbar(search_element) {
+function init_searchbar(search_element, url) {
     // working with the following structure
     // [{linktext: "bla", link: "http:..." }, ...]
 
@@ -39,7 +39,7 @@ function init_searchbar(search_element) {
     };
 
     search_element.autocomplete({
-        source: '/lookup/',
+        source: url,
         select: function (event, ui) {
             window.location = ui.item.link;
             return true;
