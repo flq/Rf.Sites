@@ -61,29 +61,11 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\FubuMVC.Core.1.0.1.1410\lib\net40\FubuMVC.Core.dll</HintPath>
     </Reference>
-    <Reference Include="FubuMVC.Core.Assets">
-      <HintPath>..\packages\FubuMVC.Core.Assets.0.9.9.325\lib\net40\FubuMVC.Core.Assets.dll</HintPath>
-    </Reference>
     <Reference Include="FubuMVC.Core.UI">
       <HintPath>..\packages\FubuMVC.Core.UI.1.0.1.351\lib\net40\FubuMVC.Core.UI.dll</HintPath>
     </Reference>
     <Reference Include="FubuMVC.Core.View">
       <HintPath>..\packages\FubuMVC.Core.View.1.0.0.383\lib\net40\FubuMVC.Core.View.dll</HintPath>
-    </Reference>
-    <Reference Include="FubuMVC.Diagnostics">
-      <HintPath>..\packages\FubuMVC.Diagnostics.0.9.6.215\lib\net40\FubuMVC.Diagnostics.dll</HintPath>
-    </Reference>
-    <Reference Include="FubuMVC.JQueryUI">
-      <HintPath>..\packages\FubuMVC.JQueryUI.0.5.0.226\lib\net40\FubuMVC.JQueryUI.dll</HintPath>
-    </Reference>
-    <Reference Include="FubuMVC.Media">
-      <HintPath>..\packages\FubuMVC.Media.0.9.5.318\lib\net40\FubuMVC.Media.dll</HintPath>
-    </Reference>
-    <Reference Include="FubuMVC.Navigation">
-      <HintPath>..\packages\FubuMVC.Navigation.0.9.0.88\lib\net40\FubuMVC.Navigation.dll</HintPath>
-    </Reference>
-    <Reference Include="FubuMVC.SlickGrid">
-      <HintPath>..\packages\FubuMVC.SlickGrid.0.0.0.435\lib\net40\FubuMVC.SlickGrid.dll</HintPath>
     </Reference>
     <Reference Include="FubuMVC.Spark, Version=1.0.0.383, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -92,9 +74,6 @@
     <Reference Include="FubuMVC.StructureMap, Version=1.0.1.1410, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\FubuMVC.StructureMap.1.0.1.1410\lib\net40\FubuMVC.StructureMap.dll</HintPath>
-    </Reference>
-    <Reference Include="FubuMVC.TwitterBootstrap">
-      <HintPath>..\packages\FubuMVC.TwitterBootstrap.0.0.0.433\lib\net40\FubuMVC.TwitterBootstrap.dll</HintPath>
     </Reference>
     <Reference Include="HtmlTags, Version=1.2.0.150, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -107,9 +86,8 @@
       <HintPath>..\packages\MarkdownSharp.1.13.0.0\lib\35\MarkdownSharp.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="NHibernate, Version=3.3.1.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NHibernate.3.3.2.4000\lib\Net35\NHibernate.dll</HintPath>
+    <Reference Include="NHibernate">
+      <HintPath>..\packages\NHibernate.3.3.3.4000\lib\Net35\NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="RestSharp">
       <HintPath>..\packages\DropNet.1.9.3\lib\net35\RestSharp.dll</HintPath>
