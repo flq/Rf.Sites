@@ -3,7 +3,7 @@
 
     var disqus_shortname = '${CommentData.DisqusSiteIdentifier}';
     var disqus_identifier = '${CommentData.Identifier}';
-    var disqus_title = ${CommentData.Title};
+    var disqus_title = !{CommentData.Title};
     var disqus_developer = ${CommentData.DisqusDeveloperMode};
     var disqus_url = '${CommentData.AbsoluteUrlToContent}';
 
