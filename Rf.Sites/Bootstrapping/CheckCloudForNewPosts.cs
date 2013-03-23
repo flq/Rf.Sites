@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Rf.Sites.Frame;
 using Rf.Sites.Frame.CloudStorageSupport;
 using WebBackgrounder;
 using System.Linq;
@@ -10,11 +11,13 @@ namespace Rf.Sites.Bootstrapping
     {
         private readonly Func<ICloudStorageFacade> _cloud;
         private readonly Func<StoreMarkdownFileToDb> _storer;
+        
 
-        public CheckCloudForNewPosts(Func<ICloudStorageFacade> cloud, Func<StoreMarkdownFileToDb> storer)
+        public CheckCloudForNewPosts(Func<ICloudStorageFacade> cloud, Func<StoreMarkdownFileToDb> storer, SiteSettings settings)
         {
             _cloud = cloud;
             _storer = storer;
+            Interval = settings.CloudPollInterval;
         }
 
         public Task Execute()
@@ -37,7 +40,7 @@ namespace Rf.Sites.Bootstrapping
         }
 
         public string Name { get { return "Check cloud for new blog posts."; } }
-        public TimeSpan Interval { get { return TimeSpan.FromMinutes(1); } }
+        public TimeSpan Interval { get; private set; }
         public TimeSpan Timeout { get { return TimeSpan.FromMinutes(5); } }
     }
 }

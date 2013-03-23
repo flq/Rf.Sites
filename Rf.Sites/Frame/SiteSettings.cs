@@ -10,5 +10,6 @@ namespace Rf.Sites.Frame
         public string SiteCopyright { get; set; }
         public string DisqusSiteIdentifier { get; set; }
         public string DisqusDeveloperMode { get; set; }
+        public TimeSpan CloudPollInterval { get; set; }
     }
 }
