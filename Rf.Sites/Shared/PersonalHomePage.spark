@@ -1,12 +1,33 @@
-<use master="Page" />
 <viewdata model="Rf.Sites.Features.Models.PersonalEntryPage" />
-<content name="specials">
-    <div class="alert" style="margin-bottom:20px;">
-      <h1>Hi there!</h1>
-      <p>It seems you are visiting my page through my name domain. You can learn a little bit more about myself by <a href="/go/23">following this link</a></p>
-    </div>
-</content>
 
-<for each="var f in Model.Elements">
-    <ContentTeaser teaser="f" />
-</for>
+<h1>Welcome</h1>
+
+<p>This page is maintained by Frank L. Quednau – me.</p>
+<p>My daily content on programming, and a litlte bit of other things are seen at <a href="http://realfiction.net">realfiction.net</a>.</p>
+
+<div style="float: left; margin-right:10px;">
+    <a href="http://stackoverflow.com/users/51428/flq">
+        <img title="profile for flq at Stack Overflow, Q&amp;A for professional and enthusiast programmers" 
+             src="http://stackoverflow.com/users/flair/51428.png" alt="profile for flq at Stack Overflow, Q&amp;A for professional and enthusiast programmers" 
+             width="200" height="58">
+        <br>
+    </a>
+    <div class="fluid-width-video-wrapper">
+        <iframe style="border: 0; height: 142px; width: 200px; overflow: hidden;" src="http://githubbadge.appspot.com/badge/flq" frameborder="0" id="fitvid380700"></iframe>
+    </div>
+</div>
+
+<p>
+    I am currently working as Senior Developer at <a href="http://plancal.ch">Plancal AG</a> – having been in consultancy for many years,
+    a former colleague invited me to have a stab in product development in a position where I am able to shape the future software products of the company.
+</p>
+
+<p>
+    While I am currently most knowledgeable about the .NET technology stack, I take a keen interest in how the whole Software development thing proceeds as a whole.
+    Especially Web technologies are constantly on my radar, as the progress being made in this corner is, simply put, massive.
+</p>
+
+<p>
+    If you want to get an idea of how I code, I invite you to visit my public repositories at github. My answers on Stackoverflow.com should give you some idea of my 
+    analytical abilities, knowledge and rethorical skills. Some of my code is made available as <a href="https://nuget.org">Nuget</a> packages, <a href="https://nuget.org/profiles/flq">see my profile here</a>.
+</p>

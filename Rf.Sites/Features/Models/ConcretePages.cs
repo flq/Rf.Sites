@@ -9,11 +9,8 @@ namespace Rf.Sites.Features.Models
         }
     }
 
-    public class PersonalEntryPage : Page<ContentTeaserVM>
+    public class PersonalEntryPage
     {
-        public PersonalEntryPage(IQueryable<ContentTeaserVM> query)
-            : base(new PagingArgs { Page = 0 }, query)
-        {
-        }
+        
     }
 }

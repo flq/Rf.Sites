@@ -31,9 +31,7 @@ namespace Rf.Sites.Features
         [FubuPartial]
         public PersonalEntryPage PersonalEntry(PersonalEntryModel model)
         {
-            var query = GetQuery();
-            var page = new PersonalEntryPage(query);
-            return page;
+            return new PersonalEntryPage();
         }
 
         public ContentTeaserPage All(PagingArgs paging)
