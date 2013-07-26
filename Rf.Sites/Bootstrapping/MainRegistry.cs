@@ -1,7 +1,8 @@
 using System;
 using System.Web;
-using Bottles;
+#if !DEBUG
 using DropNet;
+#endif
 using FubuCore.Configuration;
 using NHibernate;
 using Rf.Sites.Features.Searching;
@@ -11,7 +12,6 @@ using Rf.Sites.Frame.SiteInfrastructure;
 using StructureMap;
 using StructureMap.Configuration.DSL;
 using StructureMap.Graph;
-using WebBackgrounder;
 
 namespace Rf.Sites.Bootstrapping
 {
@@ -25,8 +25,6 @@ namespace Rf.Sites.Bootstrapping
             For<RequestHeaders>().Use(ctx => new RequestHeaders(ctx.GetInstance<HttpContextBase>().Request.Headers));
 
             DbAccessBits();
-
-            ForSingletonOf<IActivator>().Use<JobsBootstrapper>();
 
 #if DEBUG
             For<ICloudStorageFacade>().Use<FileSystemFacade>();
@@ -47,7 +45,6 @@ namespace Rf.Sites.Bootstrapping
             {
                 s.TheCallingAssembly();
                 s.AddAllTypesOf<ISearchPlugin>();
-                s.AddAllTypesOf<IJob>();
                 s.Convention<WireUpSettings>();
             });
         }

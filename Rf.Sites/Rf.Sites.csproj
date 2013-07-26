@@ -112,9 +112,6 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
-    <Reference Include="WebBackgrounder">
-      <HintPath>..\packages\WebBackgrounder.0.2.0\lib\net40\WebBackgrounder.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="files\rfsite\jquery-ui.css" />
@@ -137,8 +134,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrapping\Bootstrapper.cs" />
-    <Compile Include="Bootstrapping\CheckCloudForNewPosts.cs" />
-    <Compile Include="Bootstrapping\JobBootstrapper.cs" />
     <Compile Include="Bootstrapping\RouteCustomizations.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -147,6 +142,7 @@
     <Compile Include="Features\HomeEndpoint.cs" />
     <Compile Include="Features\Models\MarkdownTransformer.cs" />
     <Compile Include="Features\Models\PersonalEntryModel.cs" />
+    <Compile Include="Features\PublishEndpoint.cs" />
     <Compile Include="Features\Searching\SearchOnTime.cs" />
     <Compile Include="Frame\CloudStorageSupport\DropboxFacade.cs" />
     <Compile Include="Frame\CloudStorageSupport\DropboxSettings.cs" />

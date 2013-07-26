@@ -21,7 +21,7 @@ namespace Rf.Sites.Test.CloudStorageSupport
         {
             SaveAndCommit(new Tag {Name = "programming"}, new Tag {Name = ".NET"});
 
-            _file = new MarkdownFile("name", Encoding.Unicode.GetBytes(DataMother.MarkdownFullHeader()));
+            _file = new MarkdownFile("name", Encoding.UTF8.GetBytes(DataMother.MarkdownFullHeader()));
             _storeToDb = new StoreMarkdownFileToDb(() => Session);
             _storeToDb.Store(new [] { _file });
         }

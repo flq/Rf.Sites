@@ -16,7 +16,7 @@ namespace Rf.Sites.Test.CloudStorageSupport
         [TestFixtureSetUp]
         public void Given()
         {
-            _file = new MarkdownFile("name", Encoding.Unicode.GetBytes(DataMother.MarkdownFullHeader()));
+            _file = new MarkdownFile("name", Encoding.UTF8.GetBytes(DataMother.MarkdownFullHeader()));
         }
 
         [Test]
