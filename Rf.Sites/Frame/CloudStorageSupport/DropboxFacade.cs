@@ -10,6 +10,7 @@ namespace Rf.Sites.Frame.CloudStorageSupport
     public class DropboxFacade : ICloudStorageFacade
     {
         public const string PublishedMarker = "-published";
+        public const string WorkInProgressMarker = "-wip";
 
         private readonly Func<DropNetClient> _clientProvider;
 
@@ -46,7 +47,8 @@ namespace Rf.Sites.Frame.CloudStorageSupport
             return 
                 withoutExtension != null && 
                 extension != null && 
-                withoutExtension.IndexOf(PublishedMarker, StringComparison.Ordinal) == -1 && 
+                withoutExtension.IndexOf(PublishedMarker, StringComparison.Ordinal) == -1 &&
+                withoutExtension.IndexOf(WorkInProgressMarker, StringComparison.Ordinal) == -1 && 
                 extension == ".md";
         }
     }
