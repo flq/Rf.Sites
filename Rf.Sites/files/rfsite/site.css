@@ -72,11 +72,36 @@
       margin-right:10%;
   }
   
-.page {
-  margin-left:12em;
-  margin-right:8em;
-  margin-bottom:50px;
-  padding:0 3em 1em;
+@media (min-width:481px) 
+{
+  .page {
+      margin-left:3em;
+      margin-right:2em;
+      margin-bottom:50px;
+      padding:0 3em 1em;
+  }    
+  
+  .content_body 
+  {
+    margin-left:1em;
+    margin-right:1em;
+  }
+}
+
+@media (min-width:1025px) 
+{
+  .page {
+      margin-left:12em;
+      margin-right:8em;
+      margin-bottom:50px;
+      padding:0 3em 1em;
+  }
+  
+  .content_body 
+  {
+    margin-left:5em;
+    margin-right:5em;
+  }  
 }
   
 div.content_header {
@@ -104,11 +129,7 @@ div.content_header > p {
 	margin-bottom: 30px;
 }
 
-.content_body 
-{
-    margin-left:5em;
-    margin-right:5em;
-}
+
 
 .content_body > p 
 {
