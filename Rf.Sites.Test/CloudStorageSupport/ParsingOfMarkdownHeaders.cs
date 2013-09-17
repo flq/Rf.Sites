@@ -34,7 +34,7 @@ namespace Rf.Sites.Test.CloudStorageSupport
         [Test]
         public void Publishdate_is_set()
         {
-            _file.Publish.Should().Be(new DateTime(2013,3,20));
+            _file.Publish.Should().Be(new DateTime(2013,3,20, 14, 00,00, DateTimeKind.Utc));
         }
 
         [Test]

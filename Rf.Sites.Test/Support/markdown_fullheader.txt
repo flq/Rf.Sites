@@ -1,5 +1,5 @@
 ﻿Title: A new post
-publish: 20.03.2013
+publish: 2013.03.20 10.00 UTC -0400
 Tags: programming,.net
 
 

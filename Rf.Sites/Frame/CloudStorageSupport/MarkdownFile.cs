@@ -69,7 +69,11 @@ namespace Rf.Sites.Frame.CloudStorageSupport
             if (values.ContainsKey("title"))
                 Title = values["title"];
             if (values.ContainsKey("publish"))
-                Publish = DateTime.ParseExact(values["publish"], "dd.MM.yyyy", DateTimeFormatInfo.InvariantInfo);
+            {
+                var dto = DateTimeOffset.ParseExact(values["publish"], "yyyy.MM.dd HH.mm 'UTC' zzz", CultureInfo.InvariantCulture);
+                Publish = dto.UtcDateTime;
+            }
+                
             if (values.ContainsKey("tags"))
                 Tags = values["tags"].Split(',').Select(s => s.Trim().ToLowerInvariant()).ToList();
             return !string.IsNullOrEmpty(Title) && (Tags != null) && !string.IsNullOrEmpty(PostBody);
