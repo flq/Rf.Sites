@@ -18,7 +18,10 @@ namespace Rf.Sites.Test.CloudStorageSupport
             Debug.WriteLine("Token: " + uselogin.Token);
             Debug.WriteLine("Secret: " + uselogin.Secret);
             var url = dropnet.BuildAuthorizeUrl(uselogin);
-            Debug.WriteLine("Url: " + url);
+            Debug.WriteLine("Url: " + url); //Authorize App
+            var token = dropnet.GetAccessToken();
+            Debug.WriteLine("UsrToken: " + token.Token);
+            Debug.WriteLine("UsrSecret: " + token.Secret);
         }
 
         [Test]
