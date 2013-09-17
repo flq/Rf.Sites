@@ -42,14 +42,17 @@ namespace Rf.Sites.Frame.CloudStorageSupport
 
         private static bool UnpublishedMarkdownFiles(MetaData arg)
         {
+            if (arg.Name == null)
+                return false;
             var withoutExtension = Path.GetFileNameWithoutExtension(arg.Name);
             var extension = Path.GetExtension(arg.Name);
-            return 
-                withoutExtension != null && 
-                extension != null && 
+            return
+                withoutExtension != null &&
+                extension != null &&
                 withoutExtension.IndexOf(PublishedMarker, StringComparison.Ordinal) == -1 &&
-                withoutExtension.IndexOf(WorkInProgressMarker, StringComparison.Ordinal) == -1 && 
+                withoutExtension.IndexOf(WorkInProgressMarker, StringComparison.Ordinal) == -1 &&
                 extension == ".md";
+
         }
     }
 }
