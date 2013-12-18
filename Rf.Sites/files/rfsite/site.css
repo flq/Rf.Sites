@@ -52,13 +52,6 @@
     margin-left: 80px;
   }
   
-  #nav {
-    position:absolute;
-    top: 10em;
-    left:10px;
-    width:13em;
-  }
-  
   #footer 
   {
     position:fixed;

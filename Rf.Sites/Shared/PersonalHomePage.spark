@@ -2,32 +2,50 @@
 
 <h1>Welcome</h1>
 
-<p>This page is maintained by Frank L. Quednau – me.</p>
-<p>My daily content on programming, and a litlte bit of other things are seen at <a href="http://realfiction.net">realfiction.net</a>.</p>
-
-<div style="float: left; margin-right:10px;">
-    <a href="http://stackoverflow.com/users/51428/flq">
-        <img title="profile for flq at Stack Overflow, Q&amp;A for professional and enthusiast programmers" 
-             src="http://stackoverflow.com/users/flair/51428.png" alt="profile for flq at Stack Overflow, Q&amp;A for professional and enthusiast programmers" 
-             width="200" height="58">
-        <br>
-    </a>
-    <div class="fluid-width-video-wrapper">
-        <iframe style="border: 0; height: 142px; width: 200px; overflow: hidden;" src="http://githubbadge.appspot.com/badge/flq" frameborder="0" id="fitvid380700"></iframe>
-    </div>
+<table>
+    <tr>
+        <td colspan="2">
+            <p>This page is maintained by Frank L. Quednau – me.</p>
+            <p>My content on programming, and a little bit of other things are seen at <a href="http://realfiction.net">realfiction.net</a>.</p>
+            <br>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div style="margin-right:30px;">
+            <img src="http://realfiction.net/files/me_small.jpg" width="200"><br><br>
+            <a href="http://stackoverflow.com/users/51428/flq">
+            <img title="profile for flq at Stack Overflow, Q&amp;A for professional and enthusiast programmers" 
+                 src="http://stackoverflow.com/users/flair/51428.png" alt="profile for flq at Stack Overflow, Q&amp;A for professional and enthusiast programmers" 
+                 width="200" height="58">
+            </a>
+            <br><br>
+            <div class="fluid-width-video-wrapper">
+                <iframe style="border: 0; height: 142px; width: 200px; overflow: hidden;" src="http://githubbadge.appspot.com/badge/flq" frameborder="0" id="fitvid380700"></iframe>
+            </div>
+            </div>
+        </td>
+        <td style="vertical-align:top;">
+            <p>
+                I am currently working as Senior Developer at <a href="http://plancal.ch">Plancal AG</a> – having been in consultancy for many years,
+                a former colleague invited me to have a go at product development in a position where I am able to shape the future software products of the company.
+                This chapter is now coming to an end. I have learned a good deal about keeping things simple and keeping a team of 7 churning away happily.
+            </p>
+            <p>
+                While I am currently most knowledgeable about the .NET technology stack, I take a keen interest in how the whole Software development thing proceeds as a whole.
+                Especially Web technologies are constantly on my radar, as the progress being made in this corner is, simply put, massive.
+            </p>
+            <p>
+                If you want to get an idea of how I code, I invite you to visit my public repositories at github. My answers on Stackoverflow.com should give you some idea of my 
+                analytical abilities, knowledge and rethorical skills. Some of my code is made available as <a href="https://nuget.org">Nuget</a> packages, <a href="https://nuget.org/profiles/flq">see my profile here</a>.
+            </p>
+        </td>
+    </tr>
+</table>
+<p>
+    If you are a kind person I invite you to have a look at my amazon wish list, which I host on this page...
+</p>
+<div style="margin-left:30px;">
+<SCRIPT charset="utf-8" type="text/javascript" src="http://ws-eu.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&MarketPlace=DE&ID=V20070822%2FDE%2Frealfictionne-21%2F8004%2F9fc853e2-abc2-4188-8e9b-8ce363a4e0fb"> </SCRIPT> <NOSCRIPT><A HREF="http://ws-eu.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&MarketPlace=DE&ID=V20070822%2FDE%2Frealfictionne-21%2F8004%2F9fc853e2-abc2-4188-8e9b-8ce363a4e0fb&Operation=NoScript">Amazon.de Widgets</A></NOSCRIPT>
 </div>
 
-<p>
-    I am currently working as Senior Developer at <a href="http://plancal.ch">Plancal AG</a> – having been in consultancy for many years,
-    a former colleague invited me to have a stab in product development in a position where I am able to shape the future software products of the company.
-</p>
-
-<p>
-    While I am currently most knowledgeable about the .NET technology stack, I take a keen interest in how the whole Software development thing proceeds as a whole.
-    Especially Web technologies are constantly on my radar, as the progress being made in this corner is, simply put, massive.
-</p>
-
-<p>
-    If you want to get an idea of how I code, I invite you to visit my public repositories at github. My answers on Stackoverflow.com should give you some idea of my 
-    analytical abilities, knowledge and rethorical skills. Some of my code is made available as <a href="https://nuget.org">Nuget</a> packages, <a href="https://nuget.org/profiles/flq">see my profile here</a>.
-</p>
